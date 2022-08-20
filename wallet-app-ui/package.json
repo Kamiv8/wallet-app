@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-intl": "^6.0.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
@@ -27,7 +28,9 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "format": "prettier --write src/**/*.ts{,x}",
-    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
+    "extract": "extract-messages -l=en,pl -o src/i18n/languages -d en --flat false src/i18n/messages.js",
+    "compile": "formatjs compile"
   },
   "browserslist": {
     "production": [
@@ -42,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@formatjs/cli": "^5.0.7",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
@@ -60,6 +64,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^26.8.4",
     "eslint-plugin-prettier": "^4.2.1",
+    "extract-react-intl-messages": "^4.1.1",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
     "webpack": "^5.74.0"
