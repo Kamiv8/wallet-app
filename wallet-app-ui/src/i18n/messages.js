@@ -6,4 +6,5 @@ const messages = defineMessages({
     defaultMessage: 'hello',
   },
 });
+
 export default messages;
