@@ -6,7 +6,7 @@ export type TProps = {
   children: ReactNode;
   weight?: 400 | 700;
   underline?: boolean;
-  color?: 'orange' | 'lightBlue' | 'darkBlue';
+  color?: 'orange' | 'lightBlue' | 'darkBlue' | 'error';
 };
 
 const Typography = (props: TProps) => (

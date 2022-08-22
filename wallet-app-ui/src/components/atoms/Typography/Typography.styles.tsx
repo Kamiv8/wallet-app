@@ -11,6 +11,8 @@ const StyledTypography = styled.p`
     theme.colors[color]};
   text-decoration: ${(props) => props.underline && 'underline'};
   font-family: 'Source Code Pro', sans-serif;
+  margin: 0;
+  padding: 0;
 `;
 
 export default StyledTypography;
