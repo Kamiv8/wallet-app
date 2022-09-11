@@ -1,19 +1,41 @@
+using Microsoft.EntityFrameworkCore;
+using WalletApp.API.Authorization;
+using WalletApp.API.Helpers;
+using WalletApp.API.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 var allowOrigins = "_myOrigins";
 // Add services to the container.
 
 
+var services = builder.Services;
+
+services.AddDbContext<DataContext>(
+    option => option.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddCors(options => 
     options.AddPolicy(name: allowOrigins, policy =>
     {
         policy.WithOrigins("http://localhost:3000");
-    })
-    );
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+        policy.AllowCredentials();
+    }));
 
-builder.Services.AddControllers();
+
+
+
+services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
+
+services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
+services.AddScoped<IJwtUtils, JwtUtils>();
+services.AddScoped<IEmailService, EmailService>();
+services.AddScoped<IUserService, UserService>();
+
 
 var app = builder.Build();
 
@@ -27,6 +49,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(allowOrigins);
 app.UseAuthorization();
+app.UseMiddleware<ErrorHandler>();
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 
