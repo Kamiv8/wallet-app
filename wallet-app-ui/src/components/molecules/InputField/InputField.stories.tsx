@@ -1,5 +1,6 @@
 import InputField from './InputField';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import messages from '../../../i18n/messages';
 
 export default {
   title: 'Molecules/InputFiled',
@@ -13,21 +14,27 @@ const Template: ComponentStory<typeof InputField> = (args) => (
 export const Light = Template.bind({});
 Light.args = {
   variant: 'light',
-  placeholder: 'Lorem ipsum dolor sit',
+  placeholder: messages.username,
   onChange: () => {
-    console.log('xd');
+    console.log('click');
   },
-  label: 'Username',
+  label: messages.username,
   error: 'not valid',
 };
 
 export const Dark = Template.bind({});
 Dark.args = {
   variant: 'dark',
-  placeholder: 'Lorem ipsum dolor sit',
-  onChange: () => {
-    console.log('xd');
+  placeholder: {
+    id: '',
+    defaultMessage: 'lorem',
   },
-  label: 'Username',
+  onChange: () => {
+    console.log('click');
+  },
+  label: {
+    id: '',
+    defaultMessage: 'lorem',
+  },
   error: 'not valid',
 };

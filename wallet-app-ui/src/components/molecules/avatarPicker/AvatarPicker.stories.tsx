@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof AvatarPicker> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   selected: 1,
-  onClick: (e) => {
-    console.log(e);
+  onClick: () => {
+    console.log('x');
   },
 };
