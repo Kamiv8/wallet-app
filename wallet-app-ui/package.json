@@ -67,6 +67,7 @@
     "extract-react-intl-messages": "^4.1.1",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
+    "storybook-addon-intl": "^2.4.1",
     "storybook-addon-styled-component-theme": "^2.0.0",
     "webpack": "^5.74.0"
   }

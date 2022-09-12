@@ -6,6 +6,7 @@ module.exports = {
     '@storybook/addon-interactions',
     '@storybook/preset-create-react-app',
     'storybook-addon-styled-component-theme/dist/preset',
+    'storybook-addon-intl/register',
   ],
   framework: '@storybook/react',
   core: {
