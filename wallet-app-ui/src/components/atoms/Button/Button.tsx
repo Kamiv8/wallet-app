@@ -5,6 +5,7 @@ export type TProps = {
   children: ReactNode;
   type?: 'submit' | 'button' | 'reset';
   color?: 'orange' | 'lightBlue' | 'darkBlue';
+  disabled?: boolean;
 };
 
 const Button = (props: TProps) => (

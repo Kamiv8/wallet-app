@@ -9,7 +9,8 @@ export type TProps = {
   label: TFormattedMessage;
   variant: 'light' | 'dark';
   placeholder?: TFormattedMessage;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  name: string;
   error?: string;
   type?: 'text' | 'email' | 'password';
 };
@@ -20,6 +21,7 @@ const InputField = ({
   placeholder,
   onChange,
   error,
+  name,
   type = 'text',
 }: TProps) => {
   return (
@@ -38,6 +40,7 @@ const InputField = ({
         placeholder={placeholder?.defaultMessage}
         onChange={onChange}
         type={type}
+        name={name}
       />
       {error && (
         <StyledErrorMessage size={'xs'} color={'error'}>

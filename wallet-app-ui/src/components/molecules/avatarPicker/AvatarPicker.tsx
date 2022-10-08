@@ -6,17 +6,18 @@ import { StyledWrapper } from './AvatarPicker.styles';
 import { Avatar } from '../../atoms/Avatar/Avatar';
 import { useCallback } from 'react';
 import { TSelectedIcon } from '../../organisms/RegisterForm/RegisterForm';
+import { FieldType } from '../../../hooks/useForm';
 
 export type TProps = {
-  selected: 1 | 2 | 3 | 4;
-  onClick: (index: TSelectedIcon) => void;
+  selected: 0 | 1 | 2 | 3 | 4;
+  onClick: any;
 };
 
 const AvatarPicker = (props: TProps) => {
   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4];
 
   const selectIcon = useCallback((index: TSelectedIcon) => {
-    props.onClick(index);
+    props.onClick(index, 'icon', FieldType.Icon);
   }, []);
 
   return (

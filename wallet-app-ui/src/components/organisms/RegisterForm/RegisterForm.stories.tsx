@@ -1,4 +1,4 @@
-import { RegisterForm } from './RegisterForm';
+import RegisterForm from './RegisterForm';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {

@@ -11,9 +11,8 @@ const StyledButton = styled.button`
       theme.colors[color]};
   background: none;
   font-weight: ${({ theme }) => theme.weight[700]};
-  height: 26px;
-  width: 65px;
   cursor: pointer;
+  padding: 10px 15px;
 `;
 
 export default StyledButton;

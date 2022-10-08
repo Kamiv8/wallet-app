@@ -3,6 +3,7 @@ import { ChangeEvent } from 'react';
 
 type TProps = {
   color: 'orange' | 'darkBlue' | 'error';
+  name: string;
   placeholder?: string;
   type?: 'text' | 'password' | 'email';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;

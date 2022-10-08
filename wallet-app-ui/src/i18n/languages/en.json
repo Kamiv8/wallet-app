@@ -1,3 +1,10 @@
 {
-  "hello": "hello"
+  "hello": "hello",
+  "registerPageConfirmPassword": "Confirm password",
+  "registerPageEmail": "Email",
+  "registerPageIcon": "Icon",
+  "registerPagePassword": "Password",
+  "registerPageRedirectLogin": "If you have an account, click here",
+  "registerPageRegister": "Register",
+  "registerPageUsername": "Username"
 }

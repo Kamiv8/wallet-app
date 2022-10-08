@@ -25,10 +25,15 @@ type TFontWeight = {
   400: number;
 };
 
+type THorizontalMargin = {
+  column: number;
+};
+
 export type TTheme = {
   colors: TColors;
   fonts: TFontSize;
   weight: TFontWeight;
+  horizontalMargin: THorizontalMargin;
 };
 
 const theme: DefaultTheme & TTheme = {
@@ -53,6 +58,9 @@ const theme: DefaultTheme & TTheme = {
   weight: {
     400: 400,
     700: 700,
+  },
+  horizontalMargin: {
+    column: 16,
   },
 };
 

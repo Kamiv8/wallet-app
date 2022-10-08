@@ -5,3 +5,10 @@ export type TFormattedMessage = {
   defaultMessage?: string;
   value?: Record<string, ReactNode>;
 };
+
+export type TValidProps = {
+  default?: boolean;
+  min?: number;
+  max?: number;
+  pattern?: RegExp;
+};
