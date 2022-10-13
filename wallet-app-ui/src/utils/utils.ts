@@ -11,3 +11,6 @@ export const flattenObject = (nestedMessages: any, prefix = '.') => {
     return messages;
   });
 };
+
+export const cutString = (value: string, end: number): string =>
+  value.length > end ? `${value.slice(0, end)}...` : value;

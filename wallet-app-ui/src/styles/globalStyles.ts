@@ -15,6 +15,11 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: "Source Code Pro", sans-serif;
   }
+  
+  a {
+    text-transform: none;
+    text-decoration: none;
+  }
 `;
 
 export default GlobalStyles;

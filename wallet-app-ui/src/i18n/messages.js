@@ -60,6 +60,11 @@ const messages = defineMessages({
     id: 'loginPageLogin',
     defaultMessage: 'Login',
   },
+  // Navigation modal
+  navigationPage: {
+    id: 'navigationPageNavigation',
+    defaultMessage: 'NAVIGATION',
+  },
 });
 
 export default messages;
