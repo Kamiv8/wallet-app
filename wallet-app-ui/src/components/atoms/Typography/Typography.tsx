@@ -8,6 +8,7 @@ export type TProps = {
   underline?: boolean;
   uppercase?: boolean;
   color?: 'orange' | 'lightBlue' | 'darkBlue' | 'error' | 'green' | 'red';
+  letterSpacing?: number;
 };
 
 export const Typography = (props: TProps) => (

@@ -7,6 +7,7 @@ type TRoutes = {
   TABLE: string;
   SETTINGS: string;
   REPORT: string;
+  NAVIGATION: string;
 };
 
 export const RoutesName: TRoutes = {
@@ -18,4 +19,5 @@ export const RoutesName: TRoutes = {
   TABLE: '/table',
   SETTINGS: '/settings',
   REPORT: '/report',
+  NAVIGATION: '/navigation',
 };

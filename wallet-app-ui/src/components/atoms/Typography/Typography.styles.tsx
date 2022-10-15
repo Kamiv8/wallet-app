@@ -14,6 +14,7 @@ const StyledTypography = styled.p`
   font-family: 'Source Code Pro', sans-serif;
   margin: 0;
   padding: 0;
+  letter-spacing: ${({ letterSpacing }: TProps) => `${letterSpacing}px`};
 `;
 
 export default StyledTypography;

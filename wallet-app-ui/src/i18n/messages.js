@@ -65,6 +65,43 @@ const messages = defineMessages({
     id: 'navigationPageNavigation',
     defaultMessage: 'NAVIGATION',
   },
+  navigationHistory: {
+    id: 'navigationHistory',
+    defaultMessage: 'History',
+  },
+  navigationTransaction: {
+    id: 'navigationTransaction',
+    defaultMessage: 'Transaction',
+  },
+  navigationTable: {
+    id: 'navigationTable',
+    defaultMessage: 'Table',
+  },
+  navigationMore: {
+    id: 'navigationMore',
+    defaultMessage: 'More',
+  },
+  // Main page
+  mainPageAllPrices: {
+    id: 'mainPageAllPrices',
+    defaultMessage: 'ALL PRICES',
+  },
+  mainPageLastTransactions: {
+    id: 'mainPageLastTransactions',
+    defaultMessage: 'Last transactions',
+  },
+  mainPageMoneyChart: {
+    id: 'mainPageMoneyChart',
+    defaultMessage: 'Money chart',
+  },
+  mainPageIncomeChart: {
+    id: 'mainPageIncomeChart',
+    defaultMessage: 'Income chart',
+  },
+  mainPageCostChart: {
+    id: 'mainPageCostChart',
+    defaultMessage: 'Cost chart',
+  },
 });
 
 export default messages;

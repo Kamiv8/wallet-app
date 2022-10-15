@@ -7,6 +7,7 @@ import UserDataHeader from '../../molecules/UserDataHeader/UserDataHeader';
 import PersonNavigation from '../../organisms/PersonNavigation/PersonNavigation';
 
 const NavigationPage = () => {
+  // todo generować to jako modal a nie jako page
   return (
     <NavigationTemplate
       title={<FormattedMessage {...messages.navigationPage} />}
