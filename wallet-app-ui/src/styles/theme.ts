@@ -10,6 +10,7 @@ export type TColors = {
   orangePlaceholder: string;
   darkBluePlaceholder: string;
   errorPlaceholder: string;
+  orangeHover: string;
   shadow: string;
   green: string;
 };
@@ -55,6 +56,7 @@ const theme: DefaultTheme & TTheme = {
     red: 'rgba(223,27,27,1)',
     error: 'rgba(237,67,55,1)',
     errorPlaceholder: 'rgba(237,67,55,.7)',
+    orangeHover: 'rgba(245,168,34,.24)',
     shadow: 'rgba(0,0,0.5)',
     green: 'rgba(21,151,0,1)',
   },

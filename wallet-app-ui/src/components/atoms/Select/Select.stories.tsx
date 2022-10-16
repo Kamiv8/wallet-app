@@ -20,6 +20,10 @@ Primary.args = {
       key: '2',
       description: 'chart2',
     },
+    {
+      key: '3',
+      description: 'chart3',
+    },
   ],
   name: 'Filter',
 };

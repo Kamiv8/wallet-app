@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { SelectButton } from './Select.styles';
+import { useCallback, useState } from 'react';
+import { OptionWrapper, SelectButton, Wrapper, Option } from './Select.styles';
 
 type TItem = {
   key: string;
@@ -16,18 +16,40 @@ const Select = (props: TProps) => {
     key: '',
     description: props.name,
   });
+
+  const [isActive, setIsActive] = useState<boolean>(false);
+
+  const optionAction = useCallback(
+    (item: TItem) => {
+      setSelected(item);
+      setIsActive(false);
+    },
+    [setSelected, setIsActive],
+  );
+
   return (
-    <>
-      <SelectButton>{selected.description}</SelectButton>
-      <ul>
-        {props.items.map(({ key, description }) => (
-          <li onClick={() => setSelected({ key, description })} key={key}>
-            {description}
-          </li>
-        ))}
-      </ul>
-      <p>ds</p>
-    </>
+    <Wrapper>
+      <SelectButton isActive={isActive} onClick={() => setIsActive(!isActive)}>
+        {selected.description}
+      </SelectButton>
+      {isActive && (
+        <OptionWrapper>
+          <Option
+            onClick={() => optionAction({ key: '', description: props.name })}
+          >
+            Reset
+          </Option>
+          {props.items.map(({ key, description }) => (
+            <Option
+              onClick={() => optionAction({ key, description })}
+              key={key}
+            >
+              {description}
+            </Option>
+          ))}
+        </OptionWrapper>
+      )}
+    </Wrapper>
   );
 };
 
