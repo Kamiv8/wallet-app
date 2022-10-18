@@ -241,11 +241,9 @@ public class UserService : IUserService
         {
             var verifyUrl = $"{origin}/account/verify-email?token={user.VerificationToken}";
             message = $@"<p>Please click the below link to verify your email address:</p>
-                            <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>";
+                            <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>"; // jeśli jest wyświetlany widok to ma lecieć dopiero ten request i if ok to zmień panding do tego napisu że jest git 
         } else
         {
-            // origin missing if request sent directly to api (e.g. from Postman)
-            // so send instructions to verify directly with api
             message = $@"<p>Please use the below token to verify your email address with the <code>/accounts/verify-email</code> api route:</p>
                             <p><code>{user.VerificationToken}</code></p>";
         }

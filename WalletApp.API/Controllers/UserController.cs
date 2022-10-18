@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.API.Helpers;
 using WalletApp.API.Models.Users.Dto;
@@ -16,9 +17,11 @@ public class UserController : BaseController
 {
     private readonly IUserService _userService;
 
-    public UserController(IUserService userService)
+    private readonly IMediator _mediator;
+
+    public UserController(IUserService userService, IMediator mediator)
     {
-        _userService = userService;
+        this._userService = userService;
     }
 
 

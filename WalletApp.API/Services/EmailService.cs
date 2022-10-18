@@ -25,7 +25,7 @@ public class EmailService : IEmailService
     public void Send(string to, string subject, string html, string from = null)
     {
         var email = new MimeMessage();
-        email.From.Add(MailboxAddress.Parse(from ?? _appSettings.EmailFrom));
+        email.From.Add(MailboxAddress.Parse(_appSettings.EmailFrom));
         email.To.Add(MailboxAddress.Parse(to));
         email.Subject = subject;
         email.Body = new TextPart(TextFormat.Html)
