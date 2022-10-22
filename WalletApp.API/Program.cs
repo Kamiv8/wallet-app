@@ -12,6 +12,7 @@ var allowOrigins = "_myOrigins";
 
 var services = builder.Services;
 
+services.AddTransient<WalletAppSeeder>();
 services.AddDbContext<DataContext>(
     option => option.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddCors(options => 
@@ -40,9 +41,26 @@ services.AddScoped<IEmailService, EmailService>();
 services.AddScoped<IUserService, UserService>();
 
 
+
+void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<WalletAppSeeder>();
+        service.Seed();
+    }
+}
+
+
 var app = builder.Build();
 
+
+SeedData(app);
+
 // Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
