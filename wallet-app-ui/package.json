@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.6",
     "@storybook/addon-docs": "^6.5.12",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
@@ -19,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-final-form": "^6.5.9",
     "react-intl": "^6.0.5",
+    "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "storybook-addon-react-router-v6": "^0.2.1",

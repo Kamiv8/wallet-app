@@ -5,33 +5,18 @@
     <projectFile profileName="WalletApp.API">WalletApp.API/WalletApp.API.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31fc5401-bc2b-465a-81c5-98e89709dbc6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Authorization/AllowAnonymousAttribute.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Authorization/JwtMiddleware.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Authorization/JwtUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/BaseController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/AppException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/AppSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/AutoMapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/ErrorHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Users/Dto/AuthenticateDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Users/Dto/ForgotPasswordDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Users/Dto/RegisteredDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Users/Dto/ResetPasswordDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Users/Dto/ValidateResetTokenDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Users/Dto/VerifyEmailDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Services/EmailService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Controllers/WeatherForecastController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/WalletApp.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/WalletApp.API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/WeatherForecast.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/.idea/codeStyles/Project.xml" afterDir="false" />
-    </list>
+    <list default="true" id="fa6ab20b-ab82-4b90-9280-06630eebece1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="backend" />
+      </map>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1f752884286b6339cb3e8ade38c5b9c5f79f4ad173bae090944b89357bb36a/TimeSpan.cs" root0="SKIP_HIGHLIGHTING" />
@@ -95,7 +80,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="31fc5401-bc2b-465a-81c5-98e89709dbc6" name="Changes" comment="" />
+      <changelist id="fa6ab20b-ab82-4b90-9280-06630eebece1" name="Changes" comment="" />
       <created>1661012807131</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -112,6 +97,8 @@
       <workItem from="1662403586853" duration="1355000" />
       <workItem from="1662404973850" duration="1888000" />
       <workItem from="1662907574261" duration="6055000" />
+      <workItem from="1666170038093" duration="4000" />
+      <workItem from="1666202358802" duration="680000" />
     </task>
     <servers />
   </component>
@@ -140,14 +127,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WalletApp.API/Services/EmailService.cs</url>
           <line>38</line>
-          <properties documentPath="C:\Users\maste\Desktop\WalletApp\WalletApp.API\Services\EmailService.cs" initialLine="38" containingFunctionPresentation="method 'Send'">
-            <startOffsets>
-              <option value="1110" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1127" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\maste\Desktop\WalletApp\WalletApp.API\Services\EmailService.cs" initialLine="38" containingFunctionPresentation="method 'Send'" />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
