@@ -1,14 +1,11 @@
-import { ReactNode } from 'react';
+import { StyledAvatar } from './Avatar.styles';
 
 export type TProps = {
-  selected: boolean;
-  children: ReactNode;
   onClick: (e: any) => void;
+  selected?: boolean;
   image: string;
 };
 
-const Avatar = (props: TProps) => {
-  return <div>{props.children}</div>;
+export const Avatar = (props: TProps) => {
+  return <StyledAvatar {...props} />;
 };
-
-export default Avatar;

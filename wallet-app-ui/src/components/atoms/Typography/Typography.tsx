@@ -6,10 +6,12 @@ export type TProps = {
   children: ReactNode;
   weight?: 400 | 700;
   underline?: boolean;
-  color?: 'orange' | 'lightBlue' | 'darkBlue' | 'error';
+  uppercase?: boolean;
+  color?: 'orange' | 'lightBlue' | 'darkBlue' | 'error' | 'green' | 'red';
+  letterSpacing?: number;
 };
 
-const Typography = (props: TProps) => (
+export const Typography = (props: TProps) => (
   <StyledTypography {...props}>{props.children}</StyledTypography>
 );
 

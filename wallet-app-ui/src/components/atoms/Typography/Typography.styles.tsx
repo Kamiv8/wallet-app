@@ -10,9 +10,11 @@ const StyledTypography = styled.p`
   color: ${({ theme, color = 'darkBlue' }: TProps & { theme: TTheme }) =>
     theme.colors[color]};
   text-decoration: ${(props) => props.underline && 'underline'};
+  text-transform: ${(props) => props.uppercase && 'uppercase'};
   font-family: 'Source Code Pro', sans-serif;
   margin: 0;
   padding: 0;
+  letter-spacing: ${({ letterSpacing }: TProps) => `${letterSpacing}px`};
 `;
 
 export default StyledTypography;
