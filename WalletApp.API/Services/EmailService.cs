@@ -1,8 +1,7 @@
-﻿using MailKit.Net.Smtp;
+﻿using System.Net;
+using System.Net.Mail;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
-using MimeKit;
-using MimeKit.Text;
 using WalletApp.API.Helpers;
 
 namespace WalletApp.API.Services;
@@ -24,19 +23,19 @@ public class EmailService : IEmailService
     
     public void Send(string to, string subject, string html, string from = null)
     {
-        var email = new MimeMessage();
-        email.From.Add(MailboxAddress.Parse(_appSettings.EmailFrom));
-        email.To.Add(MailboxAddress.Parse(to));
-        email.Subject = subject;
-        email.Body = new TextPart(TextFormat.Html)
-        {
-            Text = html
-        };
+        var message = new MailMessage();
+        message.From = new MailAddress(_appSettings.EmailFrom ?? from, "Wallet-app No-Reply");
+        message.Subject = subject;
+        message.IsBodyHtml = true;
+        message.Body = html;
+        message.To.Add(to);
 
         using var smtp = new SmtpClient();
-        smtp.Connect(_appSettings.SmtpHost, _appSettings.SmtpPort, SecureSocketOptions.StartTls);
-        smtp.Authenticate(_appSettings.SmtpUser, _appSettings.SmtpPass);
-        smtp.Send(email);
-        smtp.Disconnect(true);
+        smtp.Host = _appSettings.SmtpHost;
+        smtp.Port = _appSettings.SmtpPort;
+        smtp.UseDefaultCredentials = false;
+        smtp.Credentials = new NetworkCredential(_appSettings.SmtpUser, _appSettings.SmtpPass);
+        smtp.Send(message);
     }
+    
 }

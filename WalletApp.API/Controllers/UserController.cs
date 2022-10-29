@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.API.Helpers;
+using WalletApp.API.Models;
+using WalletApp.API.Models.commands;
 using WalletApp.API.Models.Users.Dto;
 using WalletApp.API.Models.Users.Response;
 using WalletApp.API.Services;
@@ -22,32 +24,47 @@ public class UserController : BaseController
     public UserController(IUserService userService, IMediator mediator)
     {
         this._userService = userService;
+        this._mediator = mediator;
     }
 
 
     [AllowAnonymous]
     [HttpPost("authenticate")]
-    public ActionResult<Authenticate> Authenticate([FromBody] AuthenticateDTO authenticateDto)
+    public ActionResult<Authenticate> Authenticate([FromBody] AuthenticationCommand command, CancellationToken cancellationToken)
     {
-        var response = _userService.Authenticate(authenticateDto, ipAddress());
-        SetTokenCookie(response.RefreshToken);
-        return Ok(response);
+
+        var commandWidthIp = new AuthenticationCommand()
+        {
+            Email = command.Email,
+            Password = command.Password,
+            IpAddress = ipAddress()
+        };
+        
+        var res = _mediator.Send(commandWidthIp, cancellationToken);
+
+        SetTokenCookie(res.Result.Data!);
+        return Ok(res);
     }
 
     [AllowAnonymous]
     [HttpPost("register")]
     public IActionResult Register([FromBody] RegisteredDTO registeredDto)
     {
-        _userService.Register(registeredDto, Request.Headers["origin"]);
+        _userService.Register(registeredDto, Request.Headers["origin"] ); 
         return Ok(new { message = "Registration successful, please check your email for verification instructions" });
     }
 
     [AllowAnonymous]
-    [HttpPost("verify-email")]
-    public IActionResult VerifyEmail([FromBody] VerifyEmailDTO verifyEmailDto)
+    [HttpPost("verify-email/{token}")]
+    public IActionResult VerifyEmail(string token, CancellationToken cancellationToken)
     {
-        _userService.VerifyEmail(verifyEmailDto.Token);
-        return Ok(new {message = "Verification successful, you can now login"});
+        var command = new VerifyEmailCommand()
+        {
+            Token = token
+        };
+        
+        var res = _mediator.Send(command, cancellationToken);
+        return Ok(res);
     }
 
     

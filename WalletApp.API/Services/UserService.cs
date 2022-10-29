@@ -121,13 +121,13 @@ public class UserService : IUserService
     }
 
 
-    public void Register(RegisteredDTO registeredDto,string origin)
+    public void Register(RegisteredDTO registeredDto, string origin)
     {
-        if (_dataContext.Users.Any(u => u.Email == registeredDto.Email))
-        {
-            throw new AppException("This email is taken");
-        }
-
+        // if (_dataContext.Users.Any(u => u.Email == registeredDto.Email))
+        // {
+        //     throw new AppException("This email is taken");
+        // }
+        
         var user = _mapper.Map<User>(registeredDto);
 
         user.Created = DateTime.UtcNow;
@@ -139,6 +139,7 @@ public class UserService : IUserService
         _dataContext.SaveChanges();
 
         SendVerificationEmail(user, origin);
+
     }
 
 
@@ -204,7 +205,7 @@ public class UserService : IUserService
         string message;
         if (!string.IsNullOrEmpty(origin))
         {
-            var resetUrl = $"{origin}/account/reset-password?token={user.ResetToken}";
+            var resetUrl = $"{origin}/account/reset-password/{user.ResetToken}";
             message = $@"<p>Please click the below link to reset your password, the link will be valid for 1 day:</p>
                             <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
         }
@@ -244,8 +245,9 @@ public class UserService : IUserService
                             <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>"; // jeśli jest wyświetlany widok to ma lecieć dopiero ten request i if ok to zmień panding do tego napisu że jest git 
         } else
         {
-            message = $@"<p>Please use the below token to verify your email address with the <code>/accounts/verify-email</code> api route:</p>
-                            <p><code>{user.VerificationToken}</code></p>";
+            var verifyUrl = $"{origin}/account/verify-email?token={user.VerificationToken}";
+            message = $@"<p>Please click the below link to verify your email address:</p>
+                            <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>"; // jeśli jest wyświetlany widok to ma lecieć dopiero ten request i if ok to zmień panding do tego napisu że jest git
         }
 
         _emailService.Send(
@@ -316,6 +318,5 @@ public class UserService : IUserService
         token.ReasonRevoked = reason;
         token.ReplacedByToken = replacedByToken;
     }
-    
     
 }
