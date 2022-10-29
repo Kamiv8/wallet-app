@@ -15,7 +15,7 @@ public interface IUserService
     Authenticate Authenticate(AuthenticateDTO authenticateDto, string ipAddress);
     Authenticate RefreshToken(string token, string ipAddress);
     void RevokeToken(string token, string ipAddress);
-    void Register(RegisteredDTO registeredDto, string origin);
+    void Register(RegisteredDto registeredDto, string origin);
     void VerifyEmail(string token);
     void ForgotPassword(ForgotPasswordDTO forgotPasswordDto, string origin);
     void ValidateResetToken(ValidateResetTokenDTO validateResetTokenDto);
@@ -121,24 +121,9 @@ public class UserService : IUserService
     }
 
 
-    public void Register(RegisteredDTO registeredDto, string origin)
+    public void Register(RegisteredDto registeredDto, string origin)
     {
-        // if (_dataContext.Users.Any(u => u.Email == registeredDto.Email))
-        // {
-        //     throw new AppException("This email is taken");
-        // }
-        
-        var user = _mapper.Map<User>(registeredDto);
 
-        user.Created = DateTime.UtcNow;
-        user.VerificationToken = GenerateVerificationToken();
-
-        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(registeredDto.Password);
-
-        _dataContext.Users.Add(user);
-        _dataContext.SaveChanges();
-
-        SendVerificationEmail(user, origin);
 
     }
 
@@ -235,42 +220,9 @@ public class UserService : IUserService
         return token;
     }
 
-    private void SendVerificationEmail(User user, string origin)
-    {
-        string message = string.Empty;
-        if (!string.IsNullOrEmpty(origin))
-        {
-            var verifyUrl = $"{origin}/account/verify-email?token={user.VerificationToken}";
-            message = $@"<p>Please click the below link to verify your email address:</p>
-                            <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>"; // jeśli jest wyświetlany widok to ma lecieć dopiero ten request i if ok to zmień panding do tego napisu że jest git 
-        } else
-        {
-            var verifyUrl = $"{origin}/account/verify-email?token={user.VerificationToken}";
-            message = $@"<p>Please click the below link to verify your email address:</p>
-                            <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>"; // jeśli jest wyświetlany widok to ma lecieć dopiero ten request i if ok to zmień panding do tego napisu że jest git
-        }
 
-        _emailService.Send(
-            to: user.Email,
-            subject: "Sign-up Verification API - Verify Email",
-            html: $@"<h4>Verify Email</h4>
-                        <p>Thanks for registering!</p>
-                        {message}"
-        );
-    }
 
-    private string GenerateVerificationToken()
-    {
-        var token = Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
 
-        var tokenIsUnique = !_dataContext.Users.Any(u => u.VerificationToken == token);
-        if (!tokenIsUnique)
-        {
-            return GenerateVerificationToken();
-        }
-
-        return token;
-    }
 
 
     private RefreshToken RotateRefreshToken(RefreshToken refreshToken, string ipAddress)

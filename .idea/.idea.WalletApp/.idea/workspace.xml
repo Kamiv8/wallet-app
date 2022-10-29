@@ -5,7 +5,15 @@
     <projectFile profileName="WalletApp.API">WalletApp.API/WalletApp.API.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa6ab20b-ab82-4b90-9280-06630eebece1" name="Changes" comment="" />
+    <list default="true" id="a179f98f-edf1-4d8e-8a31-04bfaa381188" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/User/RegisterCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/commands/User/RegisterCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Helpers/AutoMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/AutoMapper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Models/Users/Dto/RegisteredDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Models/Users/Dto/RegisteredDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Services/UserService.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,12 +27,19 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1af51483c9bf18871cce649b9f966dd7be686536f998c33bba3c5fc4adea4a0/Task.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1f752884286b6339cb3e8ade38c5b9c5f79f4ad173bae090944b89357bb36a/TimeSpan.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2fa34af7c441b736db1b3f65617696f88ac0b6c841803754e2fca4f5cc2c9c/UriHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4ed53b7a8e7c822e931a22d114071ff58b043062851dde9f3454fd2e19dbbe/JwtSecurityTokenHandler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4f33a36f28aecc51f8ac17a1c8c117ca0c19e6291dddaffcd1ab2729112e/MailAddress.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5330988bfaacf93f15e30f9b3dd6018a768f89da3b38d874fda77299c62164/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/575c31ecc35a636b6f962cb71d53992552941a18982aae1c8e6c16305cc3761b/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6823b2dff2d81a72c191393975dfd757bdc28475c828db3adda735b75c34531/QueryableMethodTranslatingExpressionVisitor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/70d783e083a55cce16b895e2b6720c5dce468906649e51faba9ebb5f08df621/SmtpClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/94bcb6975e62e9fa0e9985892e8b2573d25fa18f97e6946f852e299ec847/AllowAnonymousAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/974fa14c57bab8fe29f1bddd39b1a6548b9cc8cf9e0ef5e670c2407a56d9/String.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9e35c13882d3c89b3f745d304329b1e8db8a6ccbc6e7e474e3e576f2f63b310/SymmetricSignatureProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fd3613e79f4141b726a234dc6b12c9e2fa50a7be28b045e19275c69bbf1166/CancellationToken.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -35,16 +50,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.27559054",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WalletApp.API">
     <configuration name="WalletApp.API" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WalletApp.API/WalletApp.API.csproj" />

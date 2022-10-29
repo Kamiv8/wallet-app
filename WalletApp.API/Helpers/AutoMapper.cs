@@ -10,7 +10,7 @@ public class AutoMapper : Profile
     public AutoMapper()
     {
         CreateMap<User, Authenticate>();
-        CreateMap<RegisteredDTO, User>();
+        CreateMap<RegisteredDto, User>();
     }
     
 

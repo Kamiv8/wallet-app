@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WalletApp.API.Helpers;
 using WalletApp.API.Models;
 using WalletApp.API.Models.commands;
+using WalletApp.API.Models.commands.User;
 using WalletApp.API.Models.Users.Dto;
 using WalletApp.API.Models.Users.Response;
 using WalletApp.API.Services;
@@ -17,14 +18,12 @@ namespace WalletApp.API.Controllers;
 [Route("api/[controller]")]
 public class UserController : BaseController
 {
-    private readonly IUserService _userService;
 
     private readonly IMediator _mediator;
 
-    public UserController(IUserService userService, IMediator mediator)
+    public UserController(IMediator mediator)
     {
-        this._userService = userService;
-        this._mediator = mediator;
+        _mediator = mediator;
     }
 
 
@@ -37,7 +36,7 @@ public class UserController : BaseController
         {
             Email = command.Email,
             Password = command.Password,
-            IpAddress = ipAddress()
+            IpAddress = IpAddress()
         };
         
         var res = _mediator.Send(commandWidthIp, cancellationToken);
@@ -48,9 +47,21 @@ public class UserController : BaseController
 
     [AllowAnonymous]
     [HttpPost("register")]
-    public IActionResult Register([FromBody] RegisteredDTO registeredDto)
+    public IActionResult Register([FromBody] RegisteredDto registeredDto, CancellationToken cancellationToken)
     {
-        _userService.Register(registeredDto, Request.Headers["origin"] ); 
+        var command = new RegisterCommand()
+        {
+            Username = registeredDto.Username,
+            Email = registeredDto.Email,
+            Password = registeredDto.Password,
+            ConfirmPassword = registeredDto.ConfirmPassword,
+            IconId = registeredDto.IconId,
+            Origin = Request.Headers["origin"],
+            AcceptTerms = registeredDto.AcceptTerms
+        };
+
+        var res = _mediator.Send(command, cancellationToken);
+        
         return Ok(new { message = "Registration successful, please check your email for verification instructions" });
     }
 
@@ -78,12 +89,11 @@ public class UserController : BaseController
         Response.Cookies.Append("refreshToken", token, cookieOptions);
     }
 
-    private string ipAddress()
+    private string IpAddress()
     {
         if (Request.Headers.ContainsKey("X-Forwarded-For"))
             return Request.Headers["X-Forwarded-For"];
-        else
-            return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+        return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
     }
 
 }
