@@ -20,6 +20,10 @@ const GlobalStyles = createGlobalStyle`
     text-transform: none;
     text-decoration: none;
   }
+  a:-webkit-any-link {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `;
 
 export default GlobalStyles;

@@ -12,7 +12,7 @@ const LoginPage = () => {
       Form={<LoginForm />}
       Heading={
         <Typography color={'lightBlue'} size={'xxl'} weight={700}>
-          <FormattedMessage {...messages.login} />
+          <FormattedMessage {...messages.loginLogin} />
         </Typography>
       }
     />

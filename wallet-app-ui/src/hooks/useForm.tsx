@@ -18,13 +18,12 @@ type TValidValues = {
 
 const useForm = <T,>(initialValues: T) => {
   const [values, setValues] = useState<TInitialValues>(initialValues);
-  
+
   const [validValues, setValidValues] = useState<TValidValues | null>(null);
 
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    console.log(validValues);
     if (validValues !== null) {
       if (
         Object.keys(initialValues).length !== Object.keys(validValues).length
@@ -76,14 +75,14 @@ const useForm = <T,>(initialValues: T) => {
           handleValidValues(fieldName, event.target.value === '');
           break;
       }
-
       setValues((prevState) => ({
         ...prevState,
         [fieldName]: typedValue,
       }));
     },
-    [],
+    [values],
   );
+  console.log(values);
 
   const isError = useCallback(() => {}, []);
 

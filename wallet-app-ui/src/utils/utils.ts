@@ -14,3 +14,7 @@ export const flattenObject = (nestedMessages: any, prefix = '.') => {
 
 export const cutString = (value: string, end: number): string =>
   value.length > end ? `${value.slice(0, end)}...` : value;
+
+export const createPathArray = (pathname: string) => {
+  return pathname.split('/');
+};

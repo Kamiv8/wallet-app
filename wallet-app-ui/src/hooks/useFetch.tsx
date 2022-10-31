@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
-import { devConfig } from '../const/config';
+import axios from 'axios';
 
 export const useGetFetch = (url: string) => {
   const [state, setState] = useState(null);
@@ -13,7 +12,6 @@ export const useGetFetch = (url: string) => {
         if (data.status >= 400 || data.data === null) {
           console.log('coś poszło nie tak');
         }
-
         setState(data.data);
       } catch (e) {
         console.log(e);

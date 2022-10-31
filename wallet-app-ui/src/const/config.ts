@@ -1,5 +1,5 @@
 export const devConfig = {
-  baseURL: 'http://localhost:5001/api',
+  baseURL: 'https://localhost:7037/api',
 };
 
 export const prodConfig = {

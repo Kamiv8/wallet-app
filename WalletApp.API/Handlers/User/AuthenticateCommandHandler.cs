@@ -11,7 +11,7 @@ using WalletApp.API.Services;
 
 namespace WalletApp.API.Handlers.User;
 
-public class AuthenticateCommandHandler: IRequestHandler<AuthenticationCommand, OperationResult<string>>
+public class AuthenticateCommandHandler: IRequestHandler<AuthenticationCommand, OperationResult<Authenticate>>
 {
     private readonly DataContext _dataContext;
     private readonly IJwtUtils _jwtUtils;
@@ -35,13 +35,13 @@ public class AuthenticateCommandHandler: IRequestHandler<AuthenticationCommand, 
     }
 
 
-    public async Task<OperationResult<string>> Handle(AuthenticationCommand command, CancellationToken cancellationToken)
+    public async Task<OperationResult<Authenticate>> Handle(AuthenticationCommand command, CancellationToken cancellationToken)
     {
 
         var user = await _dataContext.Users.SingleOrDefaultAsync(u => u.Email == command.Email);
 
 
-        if (user == null || !user.isVerified || !BCrypt.Net.BCrypt.Verify(command.Password, user.PasswordHash))
+        if (user == null || !user.IsVerified || !BCrypt.Net.BCrypt.Verify(command.Password, user.PasswordHash))
         {
             throw new AppException("Email or password is incorrect");
         }
@@ -61,7 +61,7 @@ public class AuthenticateCommandHandler: IRequestHandler<AuthenticationCommand, 
         response.RefreshToken = refreshToken.Token;
         
 
-        return OperationResult<string>.Success(response.RefreshToken);
+        return OperationResult<Authenticate>.Success(response);
     }
     
     private void RemoveOldRefreshTokens(Entities.User user)

@@ -50,7 +50,7 @@ public class UserService : IUserService
         var user = _dataContext.Users.SingleOrDefault(u => u.Email == authenticateDto.Email);
 
 
-        if (user == null || !user.isVerified || !BCrypt.Net.BCrypt.Verify(authenticateDto.Password, user.PasswordHash))
+        if (user == null || !user.IsVerified || !BCrypt.Net.BCrypt.Verify(authenticateDto.Password, user.PasswordHash))
         {
             throw new AppException("Email or password is incorrect");
         }
@@ -66,7 +66,6 @@ public class UserService : IUserService
 
 
         var response = _mapper.Map<Authenticate>(user);
-        response.JwtToken = jwtToken;
         response.RefreshToken = refreshToken.Token;
         
         return response;
@@ -101,7 +100,6 @@ public class UserService : IUserService
         var jwtToken = _jwtUtils.GenerateJwtToken(user);
 
         var response = _mapper.Map<Authenticate>(user);
-        response.JwtToken = jwtToken;
         response.RefreshToken = newRefreshToken.Token;
         return response;
     }

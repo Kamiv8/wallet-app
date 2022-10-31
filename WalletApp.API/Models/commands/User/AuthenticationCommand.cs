@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using WalletApp.API.Models.Users.Response;
 
 namespace WalletApp.API.Models.commands;
 
-public class AuthenticationCommand: IRequest<OperationResult<string>>
+public class AuthenticationCommand: IRequest<OperationResult<Authenticate>>
 {
     public string Email { get; set; }
 

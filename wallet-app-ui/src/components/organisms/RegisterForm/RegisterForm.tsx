@@ -10,28 +10,32 @@ import {
   StyledFormItem,
   Wrapper,
 } from './RegisterForm.styles';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
+import { useAppDispatch } from '../../../redux/hooks';
+import { registerUser } from '../../../redux/slices/auth.slice';
 
 export type TSelectedIcon = 0 | 1 | 2 | 3 | 4;
 
 const RegisterForm = () => {
-  const initialValues = {
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    icon: 0 as TSelectedIcon,
-  };
-  const { values, handleChange, isDisabled } =
-    useForm<typeof initialValues>(initialValues);
+  const dispatch = useAppDispatch();
+  const initialValues = useMemo(
+    () => ({
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      iconId: 0 as TSelectedIcon,
+    }),
+    [],
+  );
+  const { values, handleChange } = useForm<typeof initialValues>(initialValues);
 
   const onSubmit = useCallback(async () => {
-    console.log(values);
-  }, []);
+    dispatch(registerUser(values));
+  }, [values]);
 
-  console.log(isDisabled);
   return (
-    <Wrapper onSubmit={onSubmit}>
+    <Wrapper>
       <StyledFormItem>
         <InputField
           label={{ ...messages.username }}
@@ -76,7 +80,7 @@ const RegisterForm = () => {
         </Typography>
       </StyledFormItem>
       <StyledButtonWrapper>
-        <Button type={'submit'} disabled={isDisabled}>
+        <Button type={'button'} disabled={false} onClick={onSubmit}>
           <FormattedMessage {...messages.register} />
         </Button>
       </StyledButtonWrapper>

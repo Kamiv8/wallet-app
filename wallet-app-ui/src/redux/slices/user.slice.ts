@@ -8,7 +8,7 @@ type User = {
 };
 
 const initialState: TInitialState<User> = {
-  data: [],
+  data: {} as User,
   loading: 'idle',
 };
 

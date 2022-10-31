@@ -13,6 +13,7 @@ export type TColors = {
   orangeHover: string;
   shadow: string;
   green: string;
+  backgroundBlur: string;
 };
 
 export type TGradients = {
@@ -59,6 +60,7 @@ const theme: DefaultTheme & TTheme = {
     orangeHover: 'rgba(245,168,34,.24)',
     shadow: 'rgba(0,0,0.5)',
     green: 'rgba(21,151,0,1)',
+    backgroundBlur: 'rgba(100,100,100,.15)',
   },
   fonts: {
     xs: '10px',

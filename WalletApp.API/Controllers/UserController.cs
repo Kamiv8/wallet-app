@@ -1,13 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WalletApp.API.Helpers;
-using WalletApp.API.Models;
 using WalletApp.API.Models.commands;
 using WalletApp.API.Models.commands.User;
 using WalletApp.API.Models.Users.Dto;
 using WalletApp.API.Models.Users.Response;
-using WalletApp.API.Services;
 
 namespace WalletApp.API.Controllers;
 
@@ -29,7 +26,7 @@ public class UserController : BaseController
 
     [AllowAnonymous]
     [HttpPost("authenticate")]
-    public ActionResult<Authenticate> Authenticate([FromBody] AuthenticationCommand command, CancellationToken cancellationToken)
+    public ActionResult<string> Authenticate([FromBody] AuthenticationCommand command, CancellationToken cancellationToken)
     {
 
         var commandWidthIp = new AuthenticationCommand()
@@ -41,8 +38,8 @@ public class UserController : BaseController
         
         var res = _mediator.Send(commandWidthIp, cancellationToken);
 
-        SetTokenCookie(res.Result.Data!);
-        return Ok(res);
+        SetTokenCookie(res.Result.Data!.RefreshToken);
+        return Ok(res.Result.Data.RefreshToken);
     }
 
     [AllowAnonymous]

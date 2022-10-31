@@ -9,6 +9,7 @@ export type TProps = {
   color?: 'orange' | 'lightBlue' | 'darkBlue';
   disabled?: boolean;
   variant?: TVariantButton;
+  onClick?: () => any;
 };
 
 const Button = (props: TProps) => (

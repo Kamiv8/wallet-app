@@ -29,7 +29,7 @@ public class RegisterCommandHandler: IRequestHandler<RegisterCommand, Unit>
 
         var isUser = _dataContext.Users.FirstOrDefault(x => x.Email == command.Email);
     
-        if (isUser is {isVerified: false})
+        if (isUser is {IsVerified: false})
         {
             SendVerificationEmail(isUser, command.Origin);
             return Task.FromResult(Unit.Value);
@@ -67,17 +67,9 @@ public class RegisterCommandHandler: IRequestHandler<RegisterCommand, Unit>
     private void SendVerificationEmail(Entities.User user, string origin)
     {
         string message;
-        if (!string.IsNullOrEmpty(origin))
-        {
-            var verifyUrl = $"{origin}/account/verify-email?token={user.VerificationToken}";
+            var verifyUrl = $"{origin}/verify/{user.VerificationToken}";
             message = $@"<p>Please click the below link to verify your email address:</p>
                             <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>"; // jeśli jest wyświetlany widok to ma lecieć dopiero ten request i if ok to zmień panding do tego napisu że jest git 
-        } else
-        {
-            var verifyUrl = $"{origin}/account/verify-email?token={user.VerificationToken}";
-            message = $@"<p>Please click the below link to verify your email address:</p>
-                            <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>"; // jeśli jest wyświetlany widok to ma lecieć dopiero ten request i if ok to zmień panding do tego napisu że jest git
-        }
 
         _emailService.Send(
             to: user.Email,

@@ -56,10 +56,6 @@ const messages = defineMessages({
     id: 'loginPageReset',
     defaultMessage: 'Reset password?',
   },
-  login: {
-    id: 'loginPageLogin',
-    defaultMessage: 'Login',
-  },
   // Navigation modal
   navigationPage: {
     id: 'navigationPageNavigation',

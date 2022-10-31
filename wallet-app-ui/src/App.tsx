@@ -6,6 +6,7 @@ import LanguageProvider, { Languages } from './i18n/intlUtils';
 import { Routes } from './routes';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import ModalRunnerUtil from './utils/ModalRunner.util';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <ThemeProvider theme={theme}>
             <Routes />
             <GlobalStyles />
+            <ModalRunnerUtil />
           </ThemeProvider>
         </BrowserRouter>
       </LanguageProvider>

@@ -12,7 +12,7 @@ public class User
     public bool AcceptTerms { get; set; }
     public string? VerificationToken { get; set; }
     public DateTime? Verified { get; set; }
-    public bool isVerified => Verified.HasValue || PasswordReset.HasValue;
+    public bool IsVerified => Verified.HasValue || PasswordReset.HasValue;
     public string? ResetToken { get; set; }
     public DateTime? ResetTokenExpires { get; set; }
     public DateTime? PasswordReset { get; set; }

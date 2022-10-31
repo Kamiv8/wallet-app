@@ -10,8 +10,15 @@ import {
 import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import Typography from '../../atoms/Typography/Typography';
+import { useAppDispatch } from '../../../redux/hooks';
+import { authenticate } from '../../../redux/slices/auth.slice';
+import { StyledLink } from '../../../styles/override/Link.styles';
+import { RoutesName } from '../../../const/routesName';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginForm = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const initialValues = {
     email: '',
     password: '',
@@ -20,11 +27,12 @@ export const LoginForm = () => {
     useForm<typeof initialValues>(initialValues);
 
   const onSubmit = useCallback(async () => {
-    console.log(values);
-  }, []);
+    await dispatch(authenticate(values));
+    navigate(RoutesName.ROOT);
+  }, [values]);
 
   return (
-    <Wrapper onSubmit={onSubmit}>
+    <Wrapper>
       <StyledFormItem>
         <InputField
           label={{ ...messages.loginEmail }}
@@ -44,16 +52,24 @@ export const LoginForm = () => {
       </StyledFormItem>
       <StyledFormItem>
         <Typography size={'xs'} underline color={'lightBlue'}>
-          <FormattedMessage {...messages.loginRedirectRegister} />
+          <StyledLink to={RoutesName.REGISTER}>
+            <FormattedMessage {...messages.loginRedirectRegister} />
+          </StyledLink>
         </Typography>
       </StyledFormItem>
       <StyledFormItem>
         <Typography size={'xs'} underline color={'lightBlue'}>
-          <FormattedMessage {...messages.loginReset} />
+          <StyledLink to={RoutesName.FORGOTTEN_PASSWORD}>
+            <FormattedMessage {...messages.loginReset} />
+          </StyledLink>
         </Typography>
       </StyledFormItem>
       <StyledButtonWrapper>
-        <Button type={'submit'} disabled={isDisabled}>
+        <Button
+          type={'button'}
+          onClick={() => onSubmit()}
+          disabled={isDisabled}
+        >
           <FormattedMessage {...messages.loginLogin} />
         </Button>
       </StyledButtonWrapper>

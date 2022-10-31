@@ -8,7 +8,7 @@ public class RefreshToken
     public int Id { get; set; }
 
     public User User { get; set; } = new User();
-    public string Token { get; set; } = "";
+    public string? Token { get; set; }
     public DateTime Expires { get; set; }
     public DateTime Created { get; set; }
     public string CreatedByIp { get; set; } = "";
