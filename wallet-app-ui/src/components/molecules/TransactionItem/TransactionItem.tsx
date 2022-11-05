@@ -10,9 +10,7 @@ export type TProps = {
 };
 
 const TransactionItem = (props: TProps) => {
-  console.log(props);
   const href = useHref('/');
-
   return (
     <StyledLink to={href}>
       <Wrapper price={props.data.price}>
@@ -42,11 +40,13 @@ const TransactionItem = (props: TProps) => {
           )}
         </ContentWrapper>
 
-        <div>
-          <Typography weight={700} size={'m'}>
-            {cutString(props.data.description, 130)}
-          </Typography>
-        </div>
+        {props.data.description && (
+          <div>
+            <Typography weight={700} size={'m'}>
+              {cutString(props.data.description, 130)}
+            </Typography>
+          </div>
+        )}
       </Wrapper>
     </StyledLink>
   );

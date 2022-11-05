@@ -7,6 +7,6 @@ export interface Transaction {
   date: Date;
   currency: Currency;
   category: Category;
-  description: string;
+  description?: string;
   price: number;
 }

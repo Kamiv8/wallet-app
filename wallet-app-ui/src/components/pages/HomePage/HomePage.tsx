@@ -6,6 +6,8 @@ import Chart from '../../atoms/Chart/Chart';
 import { data } from '../../../mockData/lineChartData';
 import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
 import { oilData } from '../../../mockData/pieChartData';
+import { transactionData } from '../../../mockData/transactionData';
+import TransactionItem from '../../molecules/TransactionItem/TransactionItem';
 
 const HomePage = () => {
   // variables to test
@@ -31,10 +33,12 @@ const HomePage = () => {
       >
         {allMoney}
       </Typography>
-
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageLastTransactions} />
       </Typography>
+      {transactionData.slice(0, 2).map((t) => (
+        <TransactionItem data={t} />
+      ))}
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageMoneyChart} />
       </Typography>
