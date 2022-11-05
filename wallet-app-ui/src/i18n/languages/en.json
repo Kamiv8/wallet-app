@@ -21,5 +21,9 @@
   "registerPagePassword": "Password",
   "registerPageRedirectLogin": "If you have an account, click here",
   "registerPageRegister": "Register",
-  "registerPageUsername": "Username"
+  "registerPageUsername": "Username",
+  "resetPasswordPageCancel": "Cancel",
+  "resetPasswordPageEmail": "Email",
+  "resetPasswordPageResetPassword": "Reset password",
+  "resetPasswordPageSent": "Sent"
 }

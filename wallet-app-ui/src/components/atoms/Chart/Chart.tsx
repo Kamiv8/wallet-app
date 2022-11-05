@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
   ArcElement,
+  Filler,
 } from 'chart.js';
 import { Chart as LibChart } from 'react-chartjs-2';
 import { useRef } from 'react';
@@ -15,8 +16,8 @@ import { useRef } from 'react';
 export type TProps = {
   data: any;
   type: ChartTypeEnum;
-  labels: string[];
-  options: any;
+  labels?: string[];
+  options?: any;
 };
 
 ChartJS.register(
@@ -26,6 +27,7 @@ ChartJS.register(
   LineElement,
   Tooltip,
   Legend,
+  Filler,
   ArcElement,
 );
 
@@ -35,7 +37,6 @@ const Chart = (props: TProps) => {
   return (
     <LibChart
       type={props.type}
-      options={props.options}
       ref={chartRef}
       data={props.data}
       width={300}

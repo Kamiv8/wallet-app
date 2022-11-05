@@ -21,5 +21,9 @@
   "registerPagePassword": "Hasło",
   "registerPageRedirectLogin": "Jeśli masz konto, kliknij tutaj",
   "registerPageRegister": "Zarejestruj",
-  "registerPageUsername": "Nazwa użytownika"
+  "registerPageUsername": "Nazwa użytownika",
+  "resetPasswordPageCancel": "",
+  "resetPasswordPageEmail": "",
+  "resetPasswordPageResetPassword": "",
+  "resetPasswordPageSent": ""
 }

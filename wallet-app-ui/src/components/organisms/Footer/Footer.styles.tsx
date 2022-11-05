@@ -6,7 +6,7 @@ export const Wrapper = styled.footer`
   background-image: url(${footerBlue});
   position: fixed;
   width: 100vw;
-  height: 20vh;
+  height: 17vh;
   background-repeat: no-repeat;
   background-size: cover;
   bottom: 0;

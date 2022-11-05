@@ -13,6 +13,8 @@ import {
 import { useCallback, useMemo } from 'react';
 import { useAppDispatch } from '../../../redux/hooks';
 import { registerUser } from '../../../redux/slices/auth.slice';
+import { StyledLink } from '../../../styles/override/Link.styles';
+import { RoutesName } from '../../../const/routesName';
 
 export type TSelectedIcon = 0 | 1 | 2 | 3 | 4;
 
@@ -28,7 +30,8 @@ const RegisterForm = () => {
     }),
     [],
   );
-  const { values, handleChange } = useForm<typeof initialValues>(initialValues);
+  const { values, handleChange, isDisabled } =
+    useForm<typeof initialValues>(initialValues);
 
   const onSubmit = useCallback(async () => {
     dispatch(registerUser(values));
@@ -76,11 +79,13 @@ const RegisterForm = () => {
       </StyledFormItem>
       <StyledFormItem>
         <Typography size={'xs'} underline color={'lightBlue'}>
-          <FormattedMessage {...messages.redirectLogin} />
+          <StyledLink to={RoutesName.LOGIN}>
+            <FormattedMessage {...messages.redirectLogin} />
+          </StyledLink>
         </Typography>
       </StyledFormItem>
       <StyledButtonWrapper>
-        <Button type={'button'} disabled={false} onClick={onSubmit}>
+        <Button type={'button'} disabled={isDisabled} onClick={onSubmit}>
           <FormattedMessage {...messages.register} />
         </Button>
       </StyledButtonWrapper>

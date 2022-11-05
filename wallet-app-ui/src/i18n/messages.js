@@ -77,6 +77,23 @@ const messages = defineMessages({
     id: 'navigationMore',
     defaultMessage: 'More',
   },
+  // Reset password
+  resetPasswordPage: {
+    id: 'resetPasswordPageResetPassword',
+    defaultMessage: 'Reset password',
+  },
+  resetPasswordPageEmail: {
+    id: 'resetPasswordPageEmail',
+    defaultMessage: 'Email',
+  },
+  resetPasswordPageCancel: {
+    id: 'resetPasswordPageCancel',
+    defaultMessage: 'Cancel',
+  },
+  resetPasswordPageSent: {
+    id: 'resetPasswordPageSent',
+    defaultMessage: 'Sent',
+  },
   // Main page
   mainPageAllPrices: {
     id: 'mainPageAllPrices',

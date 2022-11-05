@@ -59,17 +59,13 @@ export const LoginForm = () => {
       </StyledFormItem>
       <StyledFormItem>
         <Typography size={'xs'} underline color={'lightBlue'}>
-          <StyledLink to={RoutesName.FORGOTTEN_PASSWORD}>
+          <StyledLink to={RoutesName.RESET_PASSWORD}>
             <FormattedMessage {...messages.loginReset} />
           </StyledLink>
         </Typography>
       </StyledFormItem>
       <StyledButtonWrapper>
-        <Button
-          type={'button'}
-          onClick={() => onSubmit()}
-          disabled={isDisabled}
-        >
+        <Button type={'button'} onClick={onSubmit} disabled={isDisabled}>
           <FormattedMessage {...messages.loginLogin} />
         </Button>
       </StyledButtonWrapper>
