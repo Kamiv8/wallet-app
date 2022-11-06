@@ -26,6 +26,7 @@ module.exports = {
     body {
       padding: 0 !important;
       margin: 0 !important;
+      font-family: "Source Code Pro", sans-serif;
       background-color: rgba(26,28,50,1) !important;
     }
 </style>

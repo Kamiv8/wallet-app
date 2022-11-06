@@ -115,6 +115,11 @@ const messages = defineMessages({
     id: 'mainPageCostChart',
     defaultMessage: 'Cost chart',
   },
+  // History page
+  historyPageHistory: {
+    id: 'historyPageHistory',
+    defaultMessage: 'HISTORY',
+  },
 });
 
 export default messages;

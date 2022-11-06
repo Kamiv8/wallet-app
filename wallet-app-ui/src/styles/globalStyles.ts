@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
   }
   a:-webkit-any-link {
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
   }
 `;
 
