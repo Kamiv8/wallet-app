@@ -1,10 +1,11 @@
 import { ReactNode } from 'react';
 import StyledButton from './Button.style';
+import { ReactComponent as PlusIcon } from '../../../assets/images/plus.svg';
 
 export type TVariantButton = 'text' | 'add';
 
 export type TProps = {
-  children: ReactNode;
+  children?: ReactNode;
   type?: 'submit' | 'button' | 'reset';
   color?: 'orange' | 'lightBlue' | 'darkBlue';
   disabled?: boolean;
@@ -13,7 +14,15 @@ export type TProps = {
 };
 
 const Button = (props: TProps) => (
-  <StyledButton {...props}>{props.children}</StyledButton>
+  <>
+    {props.variant === 'add' ? (
+      <StyledButton {...props}>
+        <PlusIcon />
+      </StyledButton>
+    ) : (
+      <StyledButton {...props}>{props.children}</StyledButton>
+    )}
+  </>
 );
 
 export default Button;

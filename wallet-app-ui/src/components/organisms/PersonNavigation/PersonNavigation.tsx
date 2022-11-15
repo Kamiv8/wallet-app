@@ -18,7 +18,7 @@ const PersonNavigation = () => {
     {
       image: TransactionIcon,
       name: 'Transaction',
-      route: RoutesName.TRANSACTIONS,
+      route: RoutesName.ADD_TRANSACTIONS,
     },
     {
       image: HistoryIcon,

@@ -6,64 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a179f98f-edf1-4d8e-8a31-04bfaa381188" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/ErrorModal/ErrorModal.stories.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/ErrorModal/ErrorModal.styles.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/ErrorModal/ErrorModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/RegisterSuccess/RegisterSuccess.styles.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/RegisterSuccess/RegisterSuccess.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/VerificationSuccessfulPage/VerificationSuccessfulPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/templates/BlurBackgroundTemplate/BlurBackgroundTemplate.stories.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/templates/BlurBackgroundTemplate/BlurBackgroundTemplate.styles.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/templates/BlurBackgroundTemplate/BlurBackgroundTemplate.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/templates/VerificationAccountTemplate/VerificationAccountTemplate.styles.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/templates/VerificationAccountTemplate/VerificationAccountTemplate.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/helpers/extraReducer.helper.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/models/commands/auth/authenticate.command.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/models/commands/auth/verifyAccount.command.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/redux/slices/modal.slice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/types/enums/modal.enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/utils/ModalRunner.util.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/utils/portal.util.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/RefreshToken.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Entities/RefreshToken.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Entities/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Handlers/User/AuthenticateCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/User/AuthenticateCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Handlers/User/RegisterCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/User/RegisterCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Helpers/AutoMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/AutoMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Models/Users/Response/Authenticate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Models/Users/Response/Authenticate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Models/commands/User/AuthenticationCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Models/commands/User/AuthenticationCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/assets/images/sentMail.svg" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/assets/images/sentMail.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Button/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/LoginForm/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/LoginForm/LoginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/RegisterForm/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/RegisterForm/RegisterForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HomePage/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/LoginPage/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/LoginPage/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/templates/MainTemplate/MainTemplate.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/templates/MainTemplate/MainTemplate.styles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/const/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/const/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/const/routesName.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/const/routesName.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/helpers/fetch.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/helpers/fetch.helper.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/hooks/useFetch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/hooks/useFetch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/hooks/useForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/hooks/useForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/pl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/i18n/messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/i18n/messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/models/commands/register.command.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/models/commands/auth/register.command.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/redux/common.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/redux/common.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/redux/slices/auth.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/redux/slices/auth.slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/redux/slices/user.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/redux/slices/user.slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/redux/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/routes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/styles/globalStyles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/styles/globalStyles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/styles/override/Link.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/styles/override/Link.styles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/styles/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/styles/theme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/utils/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/utils/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/Pagination/Pagination.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/Pagination/Pagination.stories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HistoryPage/HistoryPage.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HistoryPage/HistoryPage.styles.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HistoryPage/HistoryPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HistoryPage/HistoryPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/mockData/transactionData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/mockData/transactionData.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,16 +59,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WalletApp.API">
     <configuration name="WalletApp.API" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WalletApp.API/WalletApp.API.csproj" />
@@ -179,7 +126,10 @@
       <workItem from="1667071101273" duration="1598000" />
       <workItem from="1667138047357" duration="3373000" />
       <workItem from="1667151437207" duration="332000" />
-      <workItem from="1667207286469" duration="13204000" />
+      <workItem from="1667207286469" duration="13207000" />
+      <workItem from="1667416367512" duration="1456000" />
+      <workItem from="1667639742112" duration="742000" />
+      <workItem from="1667757241960" duration="1195000" />
     </task>
     <servers />
   </component>

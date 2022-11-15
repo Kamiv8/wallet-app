@@ -49,4 +49,20 @@ export const transactionData: Transaction[] = [
     description: 'lorm ipsum dolor sit',
     price: 123,
   },
+  {
+    id: '123343',
+    title: 'Proszę dodać tytuł tego wydarzenia',
+    date: new Date(),
+    currency: {
+      id: '32',
+      name: 'Polski złoty',
+      mark: 'PLN',
+    },
+    category: {
+      id: '324',
+      name: 'ticket',
+    },
+    description: 'lorm ipsum dolor sit',
+    price: 123,
+  },
 ];

@@ -3,7 +3,7 @@ type TRoutes = {
   REGISTER: string;
   LOGIN: string;
   RESET_PASSWORD: string;
-  TRANSACTIONS: string;
+  ADD_TRANSACTIONS: string;
   HISTORY: string;
   TABLE: string;
   SETTINGS: string;
@@ -16,7 +16,7 @@ export const RoutesName: TRoutes = {
   REGISTER: '/register',
   LOGIN: '/login',
   RESET_PASSWORD: '/resetPassword',
-  TRANSACTIONS: '/transactions',
+  ADD_TRANSACTIONS: '/AddTransactions',
   HISTORY: '/history',
   TABLE: '/table',
   SETTINGS: '/settings',

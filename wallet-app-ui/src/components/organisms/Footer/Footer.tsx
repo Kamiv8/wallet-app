@@ -20,7 +20,7 @@ export type TNavigationItems = {
 
 const Footer = () => {
   const rootURL = useHref(RoutesName.ROOT);
-  const transactionURL = useHref(RoutesName.TRANSACTIONS);
+  const transactionURL = useHref(RoutesName.ADD_TRANSACTIONS);
   const historyURL = useHref(RoutesName.HISTORY);
   const tableURL = useHref(RoutesName.TABLE);
   const navigationURL = useHref(RoutesName.NAVIGATION);

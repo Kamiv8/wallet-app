@@ -11,6 +11,8 @@ import LoginPage from './components/pages/LoginPage/LoginPage';
 import { useAppSelector } from './redux/hooks';
 import { RoutesName } from './const/routesName';
 import ResetPasswordPage from './components/pages/ResetPasswordPage/ResetPasswordPage';
+import AddTransactionPage from './components/pages/AddTransactionPage/AddTransactionPage';
+import HistoryPage from './components/pages/HistoryPage/HistoryPage';
 
 const GuardedRoute = () => {
   const { isUserLoggedIn } = useAppSelector((store) => store.auth.data);
@@ -26,6 +28,11 @@ export const Routes = () => (
     <Route path={'/resetPassword'} element={<ResetPasswordPage />} />
     <Route element={<GuardedRoute />}>
       <Route path={RoutesName.ROOT} element={<HomePage />} />
+      <Route
+        path={RoutesName.ADD_TRANSACTIONS}
+        element={<AddTransactionPage />}
+      />
+      <Route path={RoutesName.HISTORY} element={<HistoryPage />} />
     </Route>
   </RoutesWrapper>
 );
