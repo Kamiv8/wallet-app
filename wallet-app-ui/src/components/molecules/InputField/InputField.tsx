@@ -12,7 +12,7 @@ export type TProps = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   name: string;
   error?: string;
-  type?: 'text' | 'email' | 'password';
+  type?: 'text' | 'email' | 'password' | 'date';
 };
 
 const InputField = ({
@@ -35,6 +35,7 @@ const InputField = ({
           <FormattedMessage {...label} />
         </Typography>
       </label>
+
       <Input
         color={variant === 'light' ? 'orange' : 'darkBlue'}
         placeholder={placeholder?.defaultMessage}

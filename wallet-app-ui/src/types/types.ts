@@ -12,3 +12,12 @@ export type TValidProps = {
   max?: number;
   pattern?: RegExp;
 };
+
+export type TColor =
+  | 'white'
+  | 'orange'
+  | 'darkBlue'
+  | 'lightBlue'
+  | 'red'
+  | 'green'
+  | 'error';

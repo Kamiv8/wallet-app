@@ -1,13 +1,6 @@
 import { ReactNode } from 'react';
 import StyledTypography from './Typography.styles';
-
-export type TTypographyColor =
-  | 'orange'
-  | 'lightBlue'
-  | 'darkBlue'
-  | 'error'
-  | 'green'
-  | 'red';
+import { TColor } from '../../../types/types';
 
 export type TTypographySize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 export type TProps = {
@@ -16,7 +9,7 @@ export type TProps = {
   weight?: 400 | 700;
   underline?: boolean;
   uppercase?: boolean;
-  color?: TTypographyColor;
+  color?: TColor;
   letterSpacing?: number;
 };
 
