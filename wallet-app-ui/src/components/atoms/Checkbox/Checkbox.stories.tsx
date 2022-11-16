@@ -12,6 +12,4 @@ const Template: ComponentStory<typeof Checkbox> = (args) => (
 
 export const Primary = Template.bind({});
 
-Primary.args = {
-  color: 'darkblue',
-};
+Primary.args = {};

@@ -6,11 +6,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a179f98f-edf1-4d8e-8a31-04bfaa381188" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/Pagination/Pagination.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/Pagination/Pagination.stories.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HistoryPage/HistoryPage.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HistoryPage/HistoryPage.styles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HistoryPage/HistoryPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HistoryPage/HistoryPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/mockData/transactionData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/mockData/transactionData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/CreateFindGroupCard/CreateFindGroupCard.stories.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/CreateFindGroupCard/CreateFindGroupCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/SelectField/SelectField.stories.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/SelectField/SelectField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/AddTransactionForm/AddTransactionForm.stories.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/AddTransactionForm/AddTransactionForm.styles.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/AddTransactionForm/AddTransactionForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/CardWrapper/CardWrapper.styled.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/CardWrapper/CardWrapper.styled.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/CardWrapper/CardWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/CardWrapper/CardWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Input/Input.style.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Input/Input.style.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Input/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Input/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Select/Select.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Select/Select.styles.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Select/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Select/Select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/InputField/InputField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/InputField/InputField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/i18n/messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/i18n/messages.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +140,7 @@
       <workItem from="1667416367512" duration="1456000" />
       <workItem from="1667639742112" duration="742000" />
       <workItem from="1667757241960" duration="1195000" />
+      <workItem from="1668633513712" duration="67000" />
     </task>
     <servers />
   </component>

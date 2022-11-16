@@ -120,6 +120,65 @@ const messages = defineMessages({
     id: 'historyPageHistory',
     defaultMessage: 'HISTORY',
   },
+  // Add transaction page
+  addTransactionPageTitle: {
+    id: 'addTransactionPageTitle',
+    defaultMessage: 'Title',
+  },
+  addTransactionPagePrice: {
+    id: 'addTransactionPagePrice',
+    defaultMessage: 'Price',
+  },
+  addTransactionPageCurrencies: {
+    id: 'addTransactionPageCurrencies',
+    defaultMessage: 'Currencies',
+  },
+  addTransactionPageCategory: {
+    id: 'addTransactionPageCategory',
+    defaultMessage: 'Category',
+  },
+  addTransactionPageDate: {
+    id: 'addTransactionPageDate',
+    defaultMessage: 'Date',
+  },
+  addTransactionPageSavedTransaction: {
+    id: 'addTransactionPageSavedTransaction',
+    defaultMessage: 'Saved this transaction',
+  },
+  addTransactionPageTextColor: {
+    id: 'addTransactionPageTextColor',
+    defaultMessage: 'Text color',
+  },
+  addTransactionPageBackgroundColor: {
+    id: 'addTransactionPageBackgroundColor',
+    defaultMessage: 'Background color',
+  },
+  // Group page
+  groupPageGroup: {
+    id: 'groupPageGroup',
+    defaultMessage: 'Group',
+  },
+  groupPageCreateGroup: {
+    id: 'groupPageCreateGroup',
+    defaultMessage: 'Crete group',
+  },
+  groupPageCreateGroupDescription: {
+    id: 'groupPageCreateGroupDescription',
+    defaultMessage: 'Lorem ipsum dolor sit emit', // TODO
+  },
+  groupPageFindGroup: {
+    id: 'groupPageFindGroup',
+    defaultMessage: 'Find group',
+  },
+  groupPageFindGroupDescription: {
+    id: 'groupPageFindGroupDescription',
+    defaultMessage: 'Lorem ipsum dolor sit emit', // TODO
+  },
+  // Buttons
+  buttonAdd: {
+    id: 'buttonAdd',
+    defaultMessage: 'ADD',
+  },
 });
 
 export default messages;

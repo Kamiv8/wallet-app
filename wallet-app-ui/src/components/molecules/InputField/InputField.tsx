@@ -12,7 +12,7 @@ export type TProps = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   name: string;
   error?: string;
-  type?: 'text' | 'email' | 'password' | 'date';
+  type?: 'text' | 'email' | 'password' | 'date' | 'number';
 };
 
 const InputField = ({
@@ -25,7 +25,7 @@ const InputField = ({
   type = 'text',
 }: TProps) => {
   return (
-    <>
+    <div>
       <label>
         <Typography
           size={'m'}
@@ -48,7 +48,7 @@ const InputField = ({
           {error}
         </StyledErrorMessage>
       )}
-    </>
+    </div>
   );
 };
 

@@ -27,7 +27,7 @@ const StyledInput = styled.input`
         : theme.colors.errorPlaceholder};
   }
   font-size: 15px;
-  padding-left: 17px;
+  padding: 0 17px;
 `;
 
 export default StyledInput;

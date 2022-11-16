@@ -2,7 +2,9 @@ import styled, { css } from 'styled-components';
 import { TProps } from './CardWrapper';
 import { TTheme } from '../../../styles/theme';
 
-export const StyledWrapper = styled.div<TProps>`
+export const StyledWrapper = styled.div<
+  Pick<TProps, 'color' | 'gradientColor'>
+>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -19,4 +21,9 @@ export const StyledWrapper = styled.div<TProps>`
     css`
       background: ${({ theme }: { theme: TTheme }) => theme.gradients.main};
     `}
+`;
+
+export const CloseWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;

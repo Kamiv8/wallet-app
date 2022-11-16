@@ -20,7 +20,6 @@ const HistoryPage = () => {
       >
         <FormattedMessage {...messages.historyPageHistory} />
       </Typography>
-
       <SelectWrapper>
         <Select items={[]} name={'Filter'} />
         <Select items={[]} name={'Sort'} />

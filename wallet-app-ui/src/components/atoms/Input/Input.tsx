@@ -5,7 +5,7 @@ type TProps = {
   color: 'orange' | 'darkBlue' | 'error';
   name: string;
   placeholder?: string;
-  type?: 'text' | 'password' | 'email' | 'date';
+  type?: 'text' | 'password' | 'email' | 'date' | 'number';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 

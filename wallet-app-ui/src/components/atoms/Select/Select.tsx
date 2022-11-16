@@ -3,27 +3,27 @@ import { OptionWrapper, SelectButton, Wrapper, Option } from './Select.styles';
 import { ReactComponent as SelectDownArrow } from '../../../assets/images/selectDownArrow.svg';
 import { ReactComponent as SelectUpArrow } from '../../../assets/images/selectUpArrow.svg';
 
-type TItem = {
-  key: string;
+export type TSelectItem = {
+  key: string | number;
   description: string;
 };
 
 export type TProps = {
-  items: TItem[];
-  name: string;
+  items: TSelectItem[];
+  name?: string;
   isRounded?: boolean;
 };
 
 const Select = (props: TProps) => {
-  const [selected, setSelected] = useState<TItem>({
+  const [selected, setSelected] = useState<TSelectItem>({
     key: '',
-    description: props.name,
+    description: (props.name as string) || '',
   });
 
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const optionAction = useCallback(
-    (item: TItem) => {
+    (item: TSelectItem) => {
       setSelected(item);
       setIsActive(false);
     },
@@ -48,7 +48,9 @@ const Select = (props: TProps) => {
         {isActive && (
           <OptionWrapper isRounded={props.isRounded}>
             <Option
-              onClick={() => optionAction({ key: '', description: props.name })}
+              onClick={() =>
+                optionAction({ key: '', description: props.name || '' })
+              }
               isRounded={props.isRounded}
             >
               Reset

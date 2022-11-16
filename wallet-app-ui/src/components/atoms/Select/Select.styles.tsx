@@ -9,7 +9,7 @@ export const SelectButton = styled.span<{
 }>`
   display: inline-flex;
   width: 65px;
-  height: 26px;
+  height: 32px;
   border: 2px solid ${({ theme }: { theme: TTheme }) => theme.colors.orange};
   border-radius: 5px;
   color: ${({ theme }: { theme: TTheme }) => theme.colors.orange};
