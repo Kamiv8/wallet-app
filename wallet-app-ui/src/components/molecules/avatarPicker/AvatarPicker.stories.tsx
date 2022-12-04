@@ -16,4 +16,5 @@ Primary.args = {
   onClick: () => {
     console.log('x');
   },
+  variant: 'group',
 };

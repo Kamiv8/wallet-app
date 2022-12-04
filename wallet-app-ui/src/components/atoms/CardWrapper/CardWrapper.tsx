@@ -1,6 +1,9 @@
 import { ReactNode } from 'react';
-import { CloseWrapper, StyledWrapper } from './CardWrapper.styled';
-import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg';
+import {
+  CloseWrapper,
+  StyledCloseIcon,
+  StyledWrapper,
+} from './CardWrapper.styled';
 
 export type TProps = {
   gradientColor?: boolean;
@@ -13,7 +16,7 @@ const CardWrapper = (props: TProps) => {
   return (
     <StyledWrapper color={props.color} gradientColor={props.gradientColor}>
       <CloseWrapper>
-        <CloseIcon onClick={() => props.close} />
+        <StyledCloseIcon onClick={() => props.close} />
       </CloseWrapper>
       {props.children}
     </StyledWrapper>

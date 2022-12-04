@@ -174,10 +174,53 @@ const messages = defineMessages({
     id: 'groupPageFindGroupDescription',
     defaultMessage: 'Lorem ipsum dolor sit emit', // TODO
   },
+  // find group page
+  findGroupPageFindGroup: {
+    id: 'findGroupPageFindGroup',
+    defaultMessage: 'Find group',
+  },
+  // Create group form
+  createGroupForm: {
+    id: 'createGroupForm',
+    defaultMessage: 'Create group',
+  },
+  createGroupFormName: {
+    id: 'createGroupFormName',
+    defaultMessage: 'Name',
+  },
+  createGroupFormGroupIcon: {
+    id: 'createGroupFormGroupIcon',
+    defaultMessage: 'Group icon',
+  },
+  createGroupFormMaxMembers: {
+    id: 'createGroupFormMaxMembers',
+    defaultMessage: 'Max members',
+  },
+  createGroupFormDefaultCurrencies: {
+    id: 'createGroupFormDefaultCurrencies',
+    defaultMessage: 'Default currencies',
+  },
+  findGroupFormGroupName: {
+    id: 'findGroupFormGroupName',
+    defaultMessage: 'Group name',
+  },
+
   // Buttons
   buttonAdd: {
     id: 'buttonAdd',
     defaultMessage: 'ADD',
+  },
+  buttonCreate: {
+    id: 'buttonCreate',
+    defaultMessage: 'Create',
+  },
+  buttonFind: {
+    id: 'buttonFind',
+    defaultMessage: 'Find',
+  },
+  buttonSent: {
+    id: 'buttonSent',
+    defaultMessage: 'Sent',
   },
 });
 

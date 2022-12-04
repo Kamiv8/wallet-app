@@ -75,7 +75,11 @@ const RegisterForm = () => {
         />
       </StyledFormItem>
       <StyledFormItem>
-        <AvatarPicker selected={values.icon} onClick={handleChange} />
+        <AvatarPicker
+          variant={'single'}
+          selected={values.icon}
+          onClick={handleChange}
+        />
       </StyledFormItem>
       <StyledFormItem>
         <Typography size={'xs'} underline color={'lightBlue'}>

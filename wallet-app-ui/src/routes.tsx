@@ -13,6 +13,7 @@ import { RoutesName } from './const/routesName';
 import ResetPasswordPage from './components/pages/ResetPasswordPage/ResetPasswordPage';
 import AddTransactionPage from './components/pages/AddTransactionPage/AddTransactionPage';
 import HistoryPage from './components/pages/HistoryPage/HistoryPage';
+import FindGroupPage from './components/pages/FindGroupPage/FindGroupPage';
 
 const GuardedRoute = () => {
   const { isUserLoggedIn } = useAppSelector((store) => store.auth.data);
@@ -22,10 +23,13 @@ const GuardedRoute = () => {
 
 export const Routes = () => (
   <RoutesWrapper>
-    <Route path={'/register'} element={<RegisterPage />} />
-    <Route path={'/login'} element={<LoginPage />} />
-    <Route path={'/verify/:id'} element={<VerificationSuccessfulPage />} />
-    <Route path={'/resetPassword'} element={<ResetPasswordPage />} />
+    <Route path={RoutesName.REGISTER} element={<RegisterPage />} />
+    <Route path={RoutesName.LOGIN} element={<LoginPage />} />
+    <Route
+      path={RoutesName.VERIFY + '/:id'}
+      element={<VerificationSuccessfulPage />}
+    />
+    <Route path={RoutesName.RESET_PASSWORD} element={<ResetPasswordPage />} />
     <Route element={<GuardedRoute />}>
       <Route path={RoutesName.ROOT} element={<HomePage />} />
       <Route
@@ -33,6 +37,7 @@ export const Routes = () => (
         element={<AddTransactionPage />}
       />
       <Route path={RoutesName.HISTORY} element={<HistoryPage />} />
+      <Route path={RoutesName.FIND_GROUP} element={<FindGroupPage />} />
     </Route>
   </RoutesWrapper>
 );
