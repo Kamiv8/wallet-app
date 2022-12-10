@@ -1,7 +1,7 @@
 import { Circle, NavColumn, NavigationContent, Wrapper } from './Footer.styles';
-import { Link, useHref } from 'react-router-dom';
+import { Link, useHref, useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
-import { ReactNode } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import NavigationItem from '../../molecules/NavigationItem/NavigationItem';
 import { StyledLink } from '../../../styles/override/Link.styles';
 import Typography from '../../atoms/Typography/Typography';
@@ -11,6 +11,7 @@ import HistoryIcon from '../../../assets/images/navigationIcons/history.svg';
 import TableIcon from '../../../assets/images/navigationIcons/table.svg';
 import MoreIcon from '../../../assets/images/navigationIcons/more.svg';
 import messages from '../../../i18n/messages';
+import NavigationPage from '../../pages/NavigationPage/NavigationPage';
 
 export type TNavigationItems = {
   route: string;
@@ -19,11 +20,13 @@ export type TNavigationItems = {
 };
 
 const Footer = () => {
+  const [isOpenNav, setIsOpenNav] = useState(false);
+  const navigate = useNavigate();
+
   const rootURL = useHref(RoutesName.ROOT);
   const transactionURL = useHref(RoutesName.ADD_TRANSACTIONS);
   const historyURL = useHref(RoutesName.HISTORY);
   const tableURL = useHref(RoutesName.TABLE);
-  const navigationURL = useHref(RoutesName.NAVIGATION);
 
   const navigationItems: TNavigationItems[] = [
     {
@@ -53,39 +56,65 @@ const Footer = () => {
         </Typography>
       ),
     },
-    {
-      icon: MoreIcon,
-      route: navigationURL,
-      text: (
-        <Typography size={'s'} weight={700}>
-          <FormattedMessage {...messages.navigationMore} />
-        </Typography>
-      ),
-    },
   ];
 
+  const toggleNavigation = useCallback(
+    (open: boolean) => {
+      setIsOpenNav(open);
+    },
+    [isOpenNav],
+  );
+
+  const logout = useCallback(() => {
+    localStorage.removeItem('token');
+    navigate(RoutesName.LOGIN);
+  }, []);
+
   return (
-    <Wrapper>
-      <Link to={rootURL}>
-        <Circle />
-      </Link>
-      <NavigationContent>
-        <NavColumn>
-          {navigationItems.slice(0, 2).map((nav) => (
-            <StyledLink to={nav.route}>
-              <NavigationItem icon={nav.icon} text={nav.text} />
-            </StyledLink>
-          ))}
-        </NavColumn>
-        <NavColumn>
-          {navigationItems.slice(2).map((nav) => (
-            <StyledLink to={nav.route}>
-              <NavigationItem icon={nav.icon} text={nav.text} />
-            </StyledLink>
-          ))}
-        </NavColumn>
-      </NavigationContent>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Link to={rootURL}>
+          <Circle />
+        </Link>
+        <NavigationContent>
+          <NavColumn>
+            {navigationItems.slice(0, 2).map((nav) => (
+              <StyledLink to={nav.route}>
+                <NavigationItem
+                  onClick={() => {}}
+                  icon={nav.icon}
+                  text={nav.text}
+                />
+              </StyledLink>
+            ))}
+          </NavColumn>
+          <NavColumn>
+            {navigationItems.slice(2).map((nav) => (
+              <StyledLink to={nav.route}>
+                <NavigationItem
+                  onClick={() => {}}
+                  icon={nav.icon}
+                  text={nav.text}
+                />
+              </StyledLink>
+            ))}
+            <NavigationItem
+              icon={MoreIcon}
+              onClick={toggleNavigation}
+              text={
+                <Typography size={'s'} weight={700}>
+                  <FormattedMessage {...messages.navigationMore} />
+                </Typography>
+              }
+            />
+          </NavColumn>
+        </NavigationContent>
+      </Wrapper>
+
+      {isOpenNav ? (
+        <NavigationPage logout={() => logout()} closeNav={toggleNavigation} />
+      ) : null}
+    </>
   );
 };
 

@@ -22,7 +22,6 @@ const ModalRunnerUtil = () => {
     // }
   }, [sessionStorage, isOpen, type]);
 
-  console.log(isOpen);
   const selectModal = useMemo(() => {
     switch (type) {
       case ModalEnum.LOADING:

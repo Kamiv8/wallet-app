@@ -1,5 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { TTheme } from '../../../styles/theme';
+
+const toggleAnimation = keyframes`
+  from {
+    transform: translateX(100%);
+    
+  }
+  to {
+    transform: translateX(0);
+  }
+
+`;
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -9,6 +20,10 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 18px 17px;
+  position: fixed;
+  transform: translateX(100%);
+  top: 0;
+  animation: ${toggleAnimation} 0.1s linear forwards;
 `;
 
 export const Header = styled.header`

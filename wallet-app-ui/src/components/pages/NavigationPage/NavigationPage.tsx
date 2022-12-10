@@ -6,8 +6,12 @@ import { ReactComponent as LogoutIcon } from '../../../assets/images/logout.svg'
 import UserDataHeader from '../../molecules/UserDataHeader/UserDataHeader';
 import PersonNavigation from '../../organisms/PersonNavigation/PersonNavigation';
 
-const NavigationPage = () => {
-  // todo generować to jako modal a nie jako page
+type TProps = {
+  closeNav: (open: boolean) => void;
+  logout: () => void;
+};
+
+const NavigationPage = (props: TProps) => {
   return (
     <NavigationTemplate
       title={<FormattedMessage {...messages.navigationPage} />}
@@ -19,8 +23,8 @@ const NavigationPage = () => {
         />
       }
       personNavigation={<PersonNavigation />}
-      closeIcon={<CloseIcon />}
-      logoutIcon={<LogoutIcon />}
+      closeIcon={<CloseIcon onClick={() => props.closeNav(false)} />}
+      logoutIcon={<LogoutIcon onClick={() => props.logout()} />}
     />
   );
 };

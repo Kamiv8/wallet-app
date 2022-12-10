@@ -10,16 +10,13 @@ namespace WalletApp.API.Handlers.User;
 public class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordCommand, Unit>
 {
     private readonly DataContext _dataContext;
-    private readonly IMapper _mapper;
     private readonly IEmailService _emailService;
 
     public ForgotPasswordCommandHandler(
         DataContext dataContext,
-        IMapper mapper,
         IEmailService emailService)
     {
         _dataContext = dataContext;
-        _mapper = mapper;
         _emailService = emailService;
     }
 
@@ -28,24 +25,20 @@ public class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordComman
     {
         var account = _dataContext.Users.SingleOrDefault(x => x.Email == command.Email);
 
-        // always return ok response to prevent email enumeration
         if (account == null) return Task.FromResult(Unit.Value);
 
-        // create reset token that expires after 1 day
-        account.ResetToken = generateResetToken();
+        account.ResetToken = GenerateResetToken();
         account.ResetTokenExpires = DateTime.UtcNow.AddDays(1);
 
         _dataContext.Users.Update(account);
         _dataContext.SaveChanges();
 
-        // send email
-        // sendPasswordResetEmail(account, origin);
-
+        SendPasswordResetEmail(account, command.Origin);
 
         return Task.FromResult(Unit.Value);
     }
     
-    private string generateResetToken()
+    private string GenerateResetToken()
     {
         // token is a cryptographically strong random sequence of values
         var token = Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
@@ -53,13 +46,13 @@ public class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordComman
         // ensure token is unique by checking against db
         var tokenIsUnique = !_dataContext.Users.Any(x => x.ResetToken == token);
         if (!tokenIsUnique)
-            return generateResetToken();
+            return GenerateResetToken();
         
         return token;
     }
     
     
-    private void sendPasswordResetEmail(Entities.User account, string origin)
+    private void SendPasswordResetEmail(Entities.User account, string origin)
     {
         string message;
         if (!string.IsNullOrEmpty(origin))

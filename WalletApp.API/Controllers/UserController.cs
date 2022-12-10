@@ -75,6 +75,33 @@ public class UserController : BaseController
         return Ok(res);
     }
 
+
+    [AllowAnonymous]
+    [HttpPost("forgot-password")]
+    public IActionResult ForgotPassword([FromBody] ForgotPasswordDTO dto, CancellationToken cancellationToken)
+    {
+        var command = new ForgotPasswordCommand()
+        {
+            Email = dto.Email,
+            Origin = Request.Headers["origin"]
+        };
+
+        var res = _mediator.Send(command, cancellationToken);
+        
+        return Ok(res);
+    }
+    
+    
+    
+    [AllowAnonymous]
+    [HttpPost("reset-password")]
+    public IActionResult ResetPassword()
+    {
+        return Ok();
+    }
+    
+    
+
     
     private void SetTokenCookie(string token)
     {

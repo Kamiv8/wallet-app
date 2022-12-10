@@ -8,8 +8,8 @@ export default {
   decorators: [withRouter],
 } as ComponentMeta<typeof NavigationPage>;
 
-const Template: ComponentStory<typeof NavigationPage> = () => (
-  <NavigationPage />
+const Template: ComponentStory<typeof NavigationPage> = (args) => (
+  <NavigationPage {...args} />
 );
 
 export const Primary = Template.bind({});
