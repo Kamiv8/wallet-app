@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using WalletApp.API.Authorization;
 using WalletApp.API.Helpers;
 using WalletApp.API.Models;
@@ -34,10 +35,12 @@ services.AddSwaggerGen();
 services.AddMediatR(typeof(Program));
 
 services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-
+services.AddHttpContextAccessor();
+services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 services.AddScoped<IJwtUtils, JwtUtils>();
 services.AddScoped<IEmailService, EmailService>();
 services.AddScoped<IUserService, UserService>();
+services.AddScoped<IAuthService, AuthService>();
 
 
 

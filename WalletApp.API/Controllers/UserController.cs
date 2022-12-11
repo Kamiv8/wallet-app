@@ -39,7 +39,7 @@ public class UserController : BaseController
         var res = _mediator.Send(commandWidthIp, cancellationToken);
 
         SetTokenCookie(res.Result.Data!.RefreshToken);
-        return Ok(res.Result.Data.RefreshToken);
+        return Ok( new { Token = res.Result.Data.JwtToken} );
     }
 
     [AllowAnonymous]
@@ -99,6 +99,11 @@ public class UserController : BaseController
     {
         return Ok();
     }
+    
+    // User data token
+    
+    
+    
     
     
 

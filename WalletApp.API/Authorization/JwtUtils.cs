@@ -13,7 +13,7 @@ namespace WalletApp.API.Authorization;
 public interface IJwtUtils
 {
     public string GenerateJwtToken(User user);
-    public int? ValidateJwtToken(string token);
+    public Guid? ValidateJwtToken(string token);
     public RefreshToken GenerateRefreshToken(string ipAddress);
 }
 
@@ -46,7 +46,7 @@ public class JwtUtils: IJwtUtils
 
     }
     
-    public int? ValidateJwtToken(string token)
+    public Guid? ValidateJwtToken(string token)
     {
         if (token == null) return null;
 
@@ -62,11 +62,10 @@ public class JwtUtils: IJwtUtils
                 IssuerSigningKey = new SymmetricSecurityKey(key),
                 ValidateIssuer = false,
                 ValidateAudience = false,
-                ClockSkew = TimeSpan.Zero
             }, out SecurityToken validatedToken);
 
             var jwtToken = (JwtSecurityToken) validatedToken;
-            var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+            var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
             return userId;
 
         }

@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Security.Claims;
+using System.Security.Cryptography;
 using AutoMapper;
 using Microsoft.Extensions.Options;
 using MimeKit.Encodings;
@@ -20,13 +21,15 @@ public class UserService : IUserService
 {
     private readonly DataContext _dataContext;
 
+
     public UserService(
-        DataContext dataContext)
+        DataContext dataContext
+        )
     {
         _dataContext = dataContext;
     }
 
-    
+
     public User GetAccountByResetToken(string token)
     {
         var account = _dataContext.Users.SingleOrDefault(x =>
@@ -44,7 +47,10 @@ public class UserService : IUserService
         }
         return user;
     }
+    
 
+    
+    
 
 
 }

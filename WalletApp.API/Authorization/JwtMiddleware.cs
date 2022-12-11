@@ -20,7 +20,7 @@ public class JwtMiddleware
         var userId = jwtUtils.ValidateJwtToken(token);
         if (userId != null)
         {
-            context.Items["User"] = await dataContext.Users.FindAsync(userId.Value);
+            context.Items["User"] = await dataContext.Users.FindAsync(userId);
         }
 
         await _next(context);
