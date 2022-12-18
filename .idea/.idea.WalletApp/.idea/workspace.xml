@@ -6,33 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a179f98f-edf1-4d8e-8a31-04bfaa381188" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/CategoryController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Category/CreateCategoryCommandHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Category/GetCategoriesQueryHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Category/GetDefaultCategoriesQueryHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Category/CreateCategoryDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Category/DefaultCategoryDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Category/DeleteCategoryDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Category/UpdateCategoryDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/commands/Category/CreateCategoryCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/commands/Category/UpdateCategoryCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/queries/Categories/CategoriesQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/queries/Categories/DefaultCategoriesQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Category/DeleteCategoryCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Category/UpdateCategoryCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/commands/Category/DeleteCategoryCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/Category.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Entities/Category.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Entities/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/AddTransactionCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/AddTransactionCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Helpers/AutoMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/AutoMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Helpers/DataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/DataContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Helpers/WalletAppSeeder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/WalletAppSeeder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221022125658_Initial.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221022125658_Initial.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221022132946_firstSeedData.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221022132946_firstSeedData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/DataContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Services/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Services/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/WalletApp.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/WalletApp.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Controllers/CategoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/CategoryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Models/Category/UpdateCategoryDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Models/Category/UpdateCategoryDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Models/commands/Category/UpdateCategoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Models/commands/Category/UpdateCategoryCommand.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +156,7 @@
       <workItem from="1670965816607" duration="827000" />
       <workItem from="1671297893004" duration="176000" />
       <workItem from="1671298094067" duration="16481000" />
+      <workItem from="1671380626267" duration="5612000" />
     </task>
     <servers />
   </component>

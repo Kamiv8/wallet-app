@@ -59,13 +59,14 @@ public class CategoryController : ControllerBase
         return Ok(new { message = "Created category successful" });
     }
     // update category
-    [HttpPatch] // TODO
+    [HttpPatch]
     public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDto dto,
         CancellationToken cancellationToken)
     {
         var command = new UpdateCategoryCommand()
         {
-            CategoryId = dto.CategoryId
+            CategoryId = dto.CategoryId,
+            Name = dto.Name
         };
 
         await _mediator.Send(command, cancellationToken);
@@ -75,11 +76,15 @@ public class CategoryController : ControllerBase
 
 
     // delete category
-    [HttpDelete] // TODO
+    [HttpDelete] 
     public async Task<IActionResult> DeleteCategory([FromBody] DeleteCategoryDto dto, CancellationToken cancellationToken)
     {
+        var command = new DeleteCategoryCommand()
+        {
+            CategoryId = dto.CategoryId
+        };
 
-
+        await _mediator.Send(command, cancellationToken);
 
         return Ok(new {message = "Deleted category successful"});
     }
