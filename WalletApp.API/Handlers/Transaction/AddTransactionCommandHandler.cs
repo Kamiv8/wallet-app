@@ -24,9 +24,11 @@ public class AddTransactionCommandHandler: IRequestHandler<AddTransactionCommand
     public Task<Unit> Handle(AddTransactionCommand command, CancellationToken cancellationToken)
     {
 
-        var user = _dataContext.Users.FirstOrDefault(x => x.Id == _authService.User.Id);
+        var user = _dataContext.Users.FirstOrDefault(x => x.Id == _authService.User!.Id);
         
-
+        
+        
+        
         
         
         

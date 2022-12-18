@@ -4,7 +4,7 @@
 
 namespace WalletApp.API.Migrations
 {
-    public partial class firstSeedData : Migration
+    public partial class initialdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

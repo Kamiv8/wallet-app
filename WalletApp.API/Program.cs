@@ -1,3 +1,4 @@
+using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -9,6 +10,8 @@ using WalletApp.API.Services;
 var builder = WebApplication.CreateBuilder(args);
 var allowOrigins = "_myOrigins";
 // Add services to the container.
+var automapper = new MapperConfiguration(item => item.AddProfile(new WalletApp.API.Helpers.AutoMapper()));
+var mapper = automapper.CreateMapper();
 
 
 var services = builder.Services;
@@ -27,7 +30,6 @@ builder.Services.AddCors(options =>
 
 
 
-services.AddAutoMapper(typeof(Program));
 services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
@@ -41,6 +43,7 @@ services.AddScoped<IJwtUtils, JwtUtils>();
 services.AddScoped<IEmailService, EmailService>();
 services.AddScoped<IUserService, UserService>();
 services.AddScoped<IAuthService, AuthService>();
+services.AddSingleton(mapper);
 
 
 

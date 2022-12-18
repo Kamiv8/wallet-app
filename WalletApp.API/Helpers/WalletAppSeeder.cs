@@ -124,23 +124,28 @@ public class WalletAppSeeder
         {
             new Category()
             {
-                Name = "Ticket"
+                Name = "Ticket",
+                User = null
             },
             new Category()
             {
-                Name = "Home"
+                Name = "Home",
+                User = null,
             },
             new Category()
             {
-                Name = "Eats"
+                Name = "Eats",
+                User = null
             },
             new Category()
             {
-                Name = "Bills"
+                Name = "Bills",
+                User = null
             },
             new Category()
             {
-                Name = "The remaining"
+                Name = "The remaining",
+                User = null
             }
             
         };

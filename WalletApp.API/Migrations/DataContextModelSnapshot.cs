@@ -32,7 +32,12 @@ namespace WalletApp.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Categories");
                 });
@@ -242,7 +247,6 @@ namespace WalletApp.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Token")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("UserId")
@@ -411,6 +415,16 @@ namespace WalletApp.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("WalletApp.API.Entities.Category", b =>
+                {
+                    b.HasOne("WalletApp.API.Entities.User", "User")
+                        .WithMany("Categories")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.Group", b =>
@@ -626,6 +640,8 @@ namespace WalletApp.API.Migrations
 
             modelBuilder.Entity("WalletApp.API.Entities.User", b =>
                 {
+                    b.Navigation("Categories");
+
                     b.Navigation("Group")
                         .IsRequired();
 

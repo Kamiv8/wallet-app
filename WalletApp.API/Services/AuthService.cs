@@ -16,7 +16,6 @@ public class AuthService : IAuthService
     {
         _accessor = accessor;
     }
-
     
     public User? User => (User?)_accessor.HttpContext!.Items["User"];
 }

@@ -34,6 +34,11 @@ public class DataContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<User>()
+            .HasMany(u => u.Categories)
+            .WithOne(c => c.User)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<User>()
             .HasMany(n => n.Notifications)
             .WithOne(u => u.User)
             .OnDelete(DeleteBehavior.Restrict);
