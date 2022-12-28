@@ -17,10 +17,10 @@ public class JwtMiddleware
     public async Task Invoke(HttpContext context, DataContext dataContext, IJwtUtils jwtUtils)
     {
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-        var userId = jwtUtils.ValidateJwtToken(token);
-        if (userId != null)
+        var userData = jwtUtils.ValidateJwtToken(token);
+        if (userData != null)
         {
-            context.Items["User"] = await dataContext.Users.FindAsync(userId);
+            context.Items["User"] = await dataContext.Users.FindAsync(userData.userId);
         }
 
         await _next(context);

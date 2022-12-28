@@ -13,7 +13,7 @@ namespace WalletApp.API.Authorization;
 public interface IJwtUtils
 {
     public string GenerateJwtToken(User user);
-    public Guid? ValidateJwtToken(string token);
+    public UserClaimsData? ValidateJwtToken(string token);
     public RefreshToken GenerateRefreshToken(string ipAddress);
 }
 
@@ -21,7 +21,7 @@ public class JwtUtils: IJwtUtils
 {
     private readonly DataContext _dataContext;
     private readonly AppSettings _appSettings;
-
+    
     public JwtUtils(DataContext dataContext, IOptions<AppSettings> appSettings)
     {
         _dataContext = dataContext;
@@ -32,11 +32,13 @@ public class JwtUtils: IJwtUtils
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[]
             {
-                new Claim("id", user.Id.ToString())
+                new Claim("id", user.Id.ToString()),
             }),
             Expires = DateTime.UtcNow.AddMinutes(15),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -46,7 +48,7 @@ public class JwtUtils: IJwtUtils
 
     }
     
-    public Guid? ValidateJwtToken(string token)
+    public UserClaimsData? ValidateJwtToken(string token)
     {
         if (token == null) return null;
 
@@ -66,7 +68,10 @@ public class JwtUtils: IJwtUtils
 
             var jwtToken = (JwtSecurityToken) validatedToken;
             var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
-            return userId;
+            return new UserClaimsData()
+            {
+                userId = userId,
+            };
 
         }
         catch

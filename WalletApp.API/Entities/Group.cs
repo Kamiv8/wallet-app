@@ -10,16 +10,11 @@ public class Group
     public int MaxMembers { get; set; }
     [Column(TypeName = "decimal(15,2)")]
     public decimal Money { get; set; }
-    [ForeignKey("AdminId")]
-    public virtual User User { get; set; }
     public Guid AdminId { get; set; }
     [ForeignKey("CurrencyId")]
     public virtual Currency Currency { get; set; }
     public Guid CurrencyId { get; set; }
 
-    public List<Member> Members { get; set; } = new List<Member>();
-
-    public List<Transaction> Transactions { get; set; } = new List<Transaction>();
     public List<Report> Reports { get; set; } = new List<Report>();
 
     public List<Notification> Notifications { get; set; } = new List<Notification>();

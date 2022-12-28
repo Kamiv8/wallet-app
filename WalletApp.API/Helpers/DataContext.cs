@@ -7,17 +7,17 @@ public class DataContext : DbContext
 {
     public DataContext(DbContextOptions<DataContext> options): base(options){}
 
+    
     public DbSet<User> Users { get; set; }
+    public DbSet<UserData> UserDatas { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<Category> Categories  { get; set; }
     public DbSet<Currency> Currencies { get; set; }
     public DbSet<Group> Groups { get; set; }
-    public DbSet<Member> Members { get; set; }
     public DbSet<Note> Notes { get; set; }
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<NotificationType> NotificationsType { get; set; }
     public DbSet<Report> Reports { get; set; }
-    public DbSet<Role> Roles { get; set; }
     
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -49,20 +49,19 @@ public class DataContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<User>()
-            .HasOne(u => u.Group)
-            .WithOne(g => g.User)
-            .HasForeignKey<Group>(g => g.AdminId);
-
-        modelBuilder.Entity<User>()
-            .HasOne(u => u.Member)
-            .WithOne(m => m.User)
-            .HasForeignKey<Member>(m => m.UserId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(u => u.UserData)
+            .WithOne(ud => ud.User)
+            .HasForeignKey<UserData>(ud => ud.UserId);
 
         modelBuilder.Entity<Currency>()
-            .HasOne(c => c.Transaction)
+            .HasMany(c => c.Transactions)
             .WithOne(t => t.Currency)
-            .HasForeignKey<Transaction>(t => t.CurrencyId);
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Currency>()
+            .HasOne(c => c.UserData)
+            .WithOne(ud => ud.Currency)
+            .HasForeignKey<UserData>(ud => ud.CurrencyId);
 
         modelBuilder.Entity<Currency>()
             .HasOne(c => c.Group)
@@ -70,28 +69,8 @@ public class DataContext : DbContext
             .HasForeignKey<Group>(g => g.CurrencyId);
 
         modelBuilder.Entity<Category>()
-            .HasOne(c => c.Transaction)
+            .HasMany(c => c.Transactions)
             .WithOne(t => t.Category)
-            .HasForeignKey<Transaction>(t => t.CategoryId);
-
-        modelBuilder.Entity<Role>()
-            .HasOne(r => r.Member)
-            .WithOne(m => m.Role)
-            .HasForeignKey<Member>(m => m.RoleId);
-
-        modelBuilder.Entity<Member>()
-            .HasOne(m => m.Transaction)
-            .WithOne(t => t.Member)
-            .HasForeignKey<Transaction>(t => t.MemberId);
-        
-        modelBuilder.Entity<Group>()
-            .HasMany(g => g.Transactions)
-            .WithOne(t => t.Group)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<Group>()
-            .HasMany(g => g.Members)
-            .WithOne(m => m.Group)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Group>()
@@ -108,6 +87,8 @@ public class DataContext : DbContext
             .HasMany(g => g.Notes)
             .WithOne(n => n.Group)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        
 
         modelBuilder.Entity<NotificationType>()
             .HasOne(nt => nt.Notification)

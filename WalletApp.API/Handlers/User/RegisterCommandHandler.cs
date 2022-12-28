@@ -4,6 +4,7 @@ using MediatR;
 using WalletApp.API.Helpers;
 using WalletApp.API.Services;
 using WalletApp.API.Models.commands.User;
+using WalletApp.API.Models.enums;
 
 namespace WalletApp.API.Handlers.User;
 
@@ -41,7 +42,7 @@ public class RegisterCommandHandler: IRequestHandler<RegisterCommand, Unit>
         }
         
         var user = _mapper.Map<Entities.User>(command);
-
+        user.Role = Role.None;
         user.Created = DateTime.UtcNow;
         user.VerificationToken = GenerateVerificationToken();
 

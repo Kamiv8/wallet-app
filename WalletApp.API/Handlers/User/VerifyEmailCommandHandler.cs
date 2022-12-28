@@ -3,9 +3,9 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using WalletApp.API.Authorization;
 using WalletApp.API.Helpers;
-using WalletApp.API.Models;
 using WalletApp.API.Models.commands;
 using WalletApp.API.Services;
+using WalletApp.API.Entities;
 
 namespace WalletApp.API.Handlers.User;
 
@@ -44,6 +44,17 @@ public class VerifyEmailCommandHandler: IRequestHandler<VerifyEmailCommand, Unit
         user.Verified = DateTime.UtcNow;
         user.VerificationToken = null;
         _dataContext.Users.Update(user);
+        var defaultCurrencyId = _dataContext.Currencies.SingleOrDefault(x => x.Mark == "PLN").Id;
+        if (_dataContext.UserDatas.SingleOrDefault(x => x.UserId == user.Id) == null)
+        {
+            var userData = new UserData()
+            {
+                CurrencyId = defaultCurrencyId,
+                ActualMoneyValue = 0,
+                UserId = user.Id
+            };
+            _dataContext.UserDatas.Add(userData);
+        }
         _dataContext.SaveChanges();
         return Task.FromResult(Unit.Value);
     }

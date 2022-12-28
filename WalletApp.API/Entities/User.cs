@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using WalletApp.API.Models.enums;
 
 namespace WalletApp.API.Entities;
 
@@ -19,15 +20,13 @@ public class User
     public DateTime Created { get; set; }
     public DateTime? Updated { get; set; }
     public int IconId { get; set; }
-    [Column(TypeName = "decimal(15,2)")]
-    public decimal Money { get; set; }
-    
+    public Role? Role { get; set; }
+    public Guid? GroupId { get; set; }
     public List<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
     public List<Transaction> Transactions { get; set; } = new List<Transaction>();
     public List<Report> Reports { get; set; } = new List<Report>();
     public List<Notification> Notifications { get; set; } = new List<Notification>();
     public List<Note> Notes { get; set; } = new List<Note>();
     public IEnumerable<Category> Categories { get; set; }
-    public virtual Group Group { get; set; }
-    public virtual Member Member { get; set; }
+    public virtual UserData UserData { get; set; }
 }

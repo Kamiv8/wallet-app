@@ -2,7 +2,10 @@
 using WalletApp.API.Entities;
 using WalletApp.API.Models.Category;
 using WalletApp.API.Models.commands;
+using WalletApp.API.Models.commands.Group;
+using WalletApp.API.Models.commands.Transaction;
 using WalletApp.API.Models.commands.User;
+using WalletApp.API.Models.Currency;
 using WalletApp.API.Models.Users.Response;
 
 namespace WalletApp.API.Helpers;
@@ -19,6 +22,9 @@ public class AutoMapper : Profile
                 opt =>
                     opt.MapFrom(x => x.RefreshTokens.Find(y => y.User.Id == x.Id)!.Token));
         CreateMap<RegisterCommand, User>();
+        CreateMap<AddTransactionCommand, Transaction>();
+        CreateMap<Currency, CurrencyDto>();
+        CreateMap<CreateGroupCommand, Group>();
 
     }
     

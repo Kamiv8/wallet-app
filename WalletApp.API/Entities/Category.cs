@@ -7,5 +7,5 @@ public class Category
 
     public virtual User? User { get; set; }
 
-    public virtual Transaction Transaction { get; set; }
+    public virtual List<Transaction> Transactions { get; set; } = new List<Transaction>();
 }

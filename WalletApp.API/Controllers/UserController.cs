@@ -26,7 +26,7 @@ public class UserController : BaseController
 
     [AllowAnonymous]
     [HttpPost("authenticate")]
-    public ActionResult<string> Authenticate([FromBody] AuthenticationCommand command, CancellationToken cancellationToken)
+    public async Task<ActionResult<string>> Authenticate([FromBody] AuthenticationCommand command, CancellationToken cancellationToken)
     {
 
         var commandWidthIp = new AuthenticationCommand()
@@ -36,10 +36,10 @@ public class UserController : BaseController
             IpAddress = IpAddress()
         };
         
-        var res = _mediator.Send(commandWidthIp, cancellationToken);
+        var res = await _mediator.Send(commandWidthIp, cancellationToken);
 
-        SetTokenCookie(res.Result.Data!.RefreshToken);
-        return Ok( new { Token = res.Result.Data.JwtToken} );
+        SetTokenCookie(res.Data!.RefreshToken);
+        return Ok( new { Token = res.Data.JwtToken} );
     }
 
     [AllowAnonymous]

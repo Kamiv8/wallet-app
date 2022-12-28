@@ -24,13 +24,6 @@ public class WalletAppSeeder
 
             }
             
-            if (!_context.Roles.Any())
-            {
-                var roles = GetDefaultRole();
-                _context.Roles.AddRange(roles);
-                _context.SaveChanges();
-
-            }
 
             if (!_context.Currencies.Any())
             {
@@ -50,24 +43,7 @@ public class WalletAppSeeder
 
         }
     }
-
-
-    private List<Role> GetDefaultRole()
-    {
-        var roles = new List<Role>()
-        {
-            new Role()
-            {
-                Name = "Admin"
-            },
-            new Role()
-            {
-                Name = "Member"
-            }
-        };
-        return roles;
-
-    }
+    
     private List<NotificationType> GetNotificationTypes()
     {
         var notificationTypes = new List<NotificationType>()
@@ -92,27 +68,32 @@ public class WalletAppSeeder
             new Currency()
             {
                 Name = "United States Dollar",
-                Mark = "USD"
+                Mark = "USD",
+                ExchangeRate = (decimal)3.37
             },
             new Currency()
             {
                 Name = "Swiss franc",
-                Mark = "CHF"
+                Mark = "CHF",
+                ExchangeRate = (decimal)4.69
             },
             new Currency()
             {
                 Name = "Pound sterling",
-                Mark = "GBP"
+                Mark = "GBP",
+                ExchangeRate = (decimal)5.28
             },
             new Currency()
             {
                 Name = "Euro",
-                Mark = "EUR"
+                Mark = "EUR",
+                ExchangeRate = (decimal)4.64
             },
             new Currency()
             {
                 Name = "Polish złoty",
-                Mark = "PLN"
+                Mark = "PLN",
+                ExchangeRate = 1
             }
         };
         return currencies;

@@ -48,6 +48,9 @@ namespace WalletApp.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal>("ExchangeRate")
+                        .HasColumnType("decimal(15,2)");
+
                     b.Property<string>("Mark")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -88,43 +91,10 @@ namespace WalletApp.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdminId")
-                        .IsUnique();
-
                     b.HasIndex("CurrencyId")
                         .IsUnique();
 
                     b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("WalletApp.API.Entities.Member", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("GroupId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserId")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("RoleId")
-                        .IsUnique();
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.Note", b =>
@@ -286,21 +256,6 @@ namespace WalletApp.API.Migrations
                     b.ToTable("Reports");
                 });
 
-            modelBuilder.Entity("WalletApp.API.Entities.Role", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-                });
-
             modelBuilder.Entity("WalletApp.API.Entities.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
@@ -308,56 +263,41 @@ namespace WalletApp.API.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BackgroundColor")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("CategoryId")
-                        .IsRequired()
+                    b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CurrencyId")
-                        .IsRequired()
+                    b.Property<Guid>("CurrencyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("GroupId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool>("IsDefault")
                         .HasColumnType("bit");
-
-                    b.Property<Guid?>("MemberId")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("TextColor")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId")
-                        .IsUnique();
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("CurrencyId")
-                        .IsUnique();
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("MemberId")
-                        .IsUnique();
+                    b.HasIndex("CurrencyId");
 
                     b.HasIndex("UserId");
 
@@ -380,11 +320,11 @@ namespace WalletApp.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("IconId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("Money")
-                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
@@ -398,6 +338,9 @@ namespace WalletApp.API.Migrations
 
                     b.Property<DateTime?>("ResetTokenExpires")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("Role")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
@@ -417,6 +360,32 @@ namespace WalletApp.API.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("WalletApp.API.Entities.UserData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ActualMoneyValue")
+                        .HasColumnType("decimal(15,2)");
+
+                    b.Property<Guid>("CurrencyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CurrencyId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserDatas");
+                });
+
             modelBuilder.Entity("WalletApp.API.Entities.Category", b =>
                 {
                     b.HasOne("WalletApp.API.Entities.User", "User")
@@ -429,12 +398,6 @@ namespace WalletApp.API.Migrations
 
             modelBuilder.Entity("WalletApp.API.Entities.Group", b =>
                 {
-                    b.HasOne("WalletApp.API.Entities.User", "User")
-                        .WithOne("Group")
-                        .HasForeignKey("WalletApp.API.Entities.Group", "AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WalletApp.API.Entities.Currency", "Currency")
                         .WithOne("Group")
                         .HasForeignKey("WalletApp.API.Entities.Group", "CurrencyId")
@@ -442,35 +405,6 @@ namespace WalletApp.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Currency");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WalletApp.API.Entities.Member", b =>
-                {
-                    b.HasOne("WalletApp.API.Entities.Group", "Group")
-                        .WithMany("Members")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("WalletApp.API.Entities.Role", "Role")
-                        .WithOne("Member")
-                        .HasForeignKey("WalletApp.API.Entities.Member", "RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WalletApp.API.Entities.User", "User")
-                        .WithOne("Member")
-                        .HasForeignKey("WalletApp.API.Entities.Member", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Group");
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.Note", b =>
@@ -552,27 +486,15 @@ namespace WalletApp.API.Migrations
             modelBuilder.Entity("WalletApp.API.Entities.Transaction", b =>
                 {
                     b.HasOne("WalletApp.API.Entities.Category", "Category")
-                        .WithOne("Transaction")
-                        .HasForeignKey("WalletApp.API.Entities.Transaction", "CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WalletApp.API.Entities.Currency", "Currency")
-                        .WithOne("Transaction")
-                        .HasForeignKey("WalletApp.API.Entities.Transaction", "CurrencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WalletApp.API.Entities.Group", "Group")
                         .WithMany("Transactions")
-                        .HasForeignKey("GroupId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WalletApp.API.Entities.Member", "Member")
-                        .WithOne("Transaction")
-                        .HasForeignKey("WalletApp.API.Entities.Transaction", "MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("WalletApp.API.Entities.Currency", "Currency")
+                        .WithMany("Transactions")
+                        .HasForeignKey("CurrencyId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WalletApp.API.Entities.User", "User")
@@ -585,17 +507,31 @@ namespace WalletApp.API.Migrations
 
                     b.Navigation("Currency");
 
-                    b.Navigation("Group");
+                    b.Navigation("User");
+                });
 
-                    b.Navigation("Member");
+            modelBuilder.Entity("WalletApp.API.Entities.UserData", b =>
+                {
+                    b.HasOne("WalletApp.API.Entities.Currency", "Currency")
+                        .WithOne("UserData")
+                        .HasForeignKey("WalletApp.API.Entities.UserData", "CurrencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WalletApp.API.Entities.User", "User")
+                        .WithOne("UserData")
+                        .HasForeignKey("WalletApp.API.Entities.UserData", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Currency");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.Category", b =>
                 {
-                    b.Navigation("Transaction")
-                        .IsRequired();
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.Currency", b =>
@@ -603,27 +539,19 @@ namespace WalletApp.API.Migrations
                     b.Navigation("Group")
                         .IsRequired();
 
-                    b.Navigation("Transaction")
+                    b.Navigation("Transactions");
+
+                    b.Navigation("UserData")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.Group", b =>
                 {
-                    b.Navigation("Members");
-
                     b.Navigation("Notes");
 
                     b.Navigation("Notifications");
 
                     b.Navigation("Reports");
-
-                    b.Navigation("Transactions");
-                });
-
-            modelBuilder.Entity("WalletApp.API.Entities.Member", b =>
-                {
-                    b.Navigation("Transaction")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.NotificationType", b =>
@@ -632,21 +560,9 @@ namespace WalletApp.API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WalletApp.API.Entities.Role", b =>
-                {
-                    b.Navigation("Member")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("WalletApp.API.Entities.User", b =>
                 {
                     b.Navigation("Categories");
-
-                    b.Navigation("Group")
-                        .IsRequired();
-
-                    b.Navigation("Member")
-                        .IsRequired();
 
                     b.Navigation("Notes");
 
@@ -657,6 +573,9 @@ namespace WalletApp.API.Migrations
                     b.Navigation("Reports");
 
                     b.Navigation("Transactions");
+
+                    b.Navigation("UserData")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
