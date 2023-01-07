@@ -10,7 +10,7 @@ import {
 import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import Typography from '../../atoms/Typography/Typography';
-import { useAppDispatch } from '../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { authenticate } from '../../../redux/slices/auth.slice';
 import { StyledLink } from '../../../styles/override/Link.styles';
 import { RoutesName } from '../../../const/routesName';
@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 export const LoginForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {data: {isUserLoggedIn}} = useAppSelector(store => store.auth);
   const initialValues = {
     email: '',
     password: '',
@@ -28,8 +29,11 @@ export const LoginForm = () => {
 
   const onSubmit = useCallback(async () => {
     await dispatch(authenticate(values));
-    navigate(RoutesName.ROOT);
-  }, [values]);
+    
+    if(isUserLoggedIn) {
+      navigate(RoutesName.ROOT);
+    }
+  }, [values, isUserLoggedIn]);
 
   return (
     <Wrapper>

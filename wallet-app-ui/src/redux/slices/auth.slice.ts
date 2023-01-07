@@ -25,10 +25,7 @@ export const registerUser = createAsyncThunk(
       value.confirmPassword,
       value.icon,
     );
-    const data = await api.post(
-      'https://localhost:7037/api/user/register',
-      command,
-    );
+    const data = await api.post('/user/register', command);
 
     return data;
   },
@@ -39,10 +36,7 @@ export const verifyAccount = createAsyncThunk(
   async (value: any) => {
     const command = new VerifyAccountCommand(value.token);
 
-    const data = await api.post(
-      `https://localhost:7037/api/User/verify-email/${command.token}`,
-      {},
-    );
+    const data = await api.post(`/User/verify-email/${command.token}`, {});
 
     return data;
   },
@@ -54,6 +48,7 @@ export const authenticate = createAsyncThunk(
     const command = new AuthenticateCommand(value.email, value.password);
 
     const data = await api.post('/user/authenticate', command);
+
     return data;
   },
 );
@@ -83,7 +78,7 @@ const authSlice = createSlice({
       builder,
       authenticate,
       (state, action) => {
-        localStorage.setItem('token', action.payload.data);
+        localStorage.setItem('token', action.payload.data.token || '');
         state.data.isUserLoggedIn = true;
       },
     );

@@ -82,7 +82,6 @@ const useForm = <T,>(initialValues: T) => {
     },
     [values],
   );
-  console.log(values);
 
   const isError = useCallback(() => {}, []);
 

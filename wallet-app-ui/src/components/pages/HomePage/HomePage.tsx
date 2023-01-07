@@ -3,15 +3,26 @@ import Typography from '../../atoms/Typography/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import Chart from '../../atoms/Chart/Chart';
-import { data } from '../../../mockData/lineChartData';
 import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
-import { oilData } from '../../../mockData/pieChartData';
-import { transactionData } from '../../../mockData/transactionData';
 import TransactionItem from '../../molecules/TransactionItem/TransactionItem';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { getCostChartData, getIncomeChartData, getLastTransactions, getMoneyChartData } from '../../../redux/slices/pages/homePage.slice';
+import { lineChartMapper, pieChartMapper } from '../../../helpers/chartDataMapper.helper';
 
 const HomePage = () => {
+  const dispatch = useAppDispatch();
+  const {lastTransactions, moneyChart, incomeChart, costChart} = useAppSelector(store => store.homePage);
+  
   // variables to test
   const allMoney = '32333USD';
+
+  useEffect(() => {
+    dispatch(getLastTransactions())
+    dispatch(getMoneyChartData())
+    dispatch(getIncomeChartData())
+    dispatch(getCostChartData())
+  },[])
 
   return (
     <MainTemplate>
@@ -36,21 +47,21 @@ const HomePage = () => {
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageLastTransactions} />
       </Typography>
-      {transactionData.slice(0, 2).map((t) => (
+      {lastTransactions.slice(0, 2).map((t: any) => (
         <TransactionItem data={t} />
       ))}
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageMoneyChart} />
       </Typography>
-      <Chart data={data} type={ChartTypeEnum.LINE} />
+      <Chart data={lineChartMapper(moneyChart).data} options={lineChartMapper(moneyChart).options} type={ChartTypeEnum.LINE} />
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageIncomeChart} />
       </Typography>
-      <Chart data={oilData} type={ChartTypeEnum.PIE} />
+      <Chart data={pieChartMapper(incomeChart)} type={ChartTypeEnum.PIE} />
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageCostChart} />
       </Typography>
-      <Chart data={oilData} type={ChartTypeEnum.PIE} />
+      <Chart data={pieChartMapper(costChart)} type={ChartTypeEnum.PIE} />
     </MainTemplate>
   );
 };

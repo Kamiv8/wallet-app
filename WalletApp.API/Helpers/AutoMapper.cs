@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using WalletApp.API.Entities;
 using WalletApp.API.Models.Category;
-using WalletApp.API.Models.commands;
 using WalletApp.API.Models.commands.Group;
 using WalletApp.API.Models.commands.Transaction;
 using WalletApp.API.Models.commands.User;
 using WalletApp.API.Models.Currency;
+using WalletApp.API.Models.Transaction;
 using WalletApp.API.Models.Users.Response;
 
 namespace WalletApp.API.Helpers;
@@ -25,7 +25,11 @@ public class AutoMapper : Profile
         CreateMap<AddTransactionCommand, Transaction>();
         CreateMap<Currency, CurrencyDto>();
         CreateMap<CreateGroupCommand, Group>();
-
+        CreateMap<Transaction, GetAllTransactionDto>()
+            .ForMember(dest => dest.CurrencyMark, 
+                opt => opt.MapFrom(x => x.Currency.Mark))
+            .ForMember(dest => dest.Category, 
+                opt => opt.MapFrom(x => x.Category.Name) );
     }
     
 

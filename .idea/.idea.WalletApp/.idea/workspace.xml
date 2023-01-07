@@ -6,46 +6,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a179f98f-edf1-4d8e-8a31-04bfaa381188" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Authorization/UserClaimsData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/CurrencyController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/StatsController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Entities/UserData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Currency/GetCurrencyQueryHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Group/CreateTransactionCommandHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Currency/CurrencyDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Group/CreateGroupDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Group/FindGroupDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/commands/Group/CreateGroupCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/queries/Currency/GetCurrencyQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/GetAllDefaultTransactionQueryHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/GetAllTransactionQueryHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/GetToCostChartQueryHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/GetToIncomeChartQueryHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/GetToMoneyChartQueryHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/GetTransactionDetailsQueryHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/PagedList.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/CategoryChartData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/PageDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/PagingResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Transaction/GetAllTransactionDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Transaction/GetTransactionDetailsDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/Transaction/ToMoenyChartDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/queries/Transaction/GetAllDefaultTransactionsQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/queries/Transaction/GetAllTransactionQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/queries/Transaction/GetToCostChartQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/queries/Transaction/GetToIncomeChartQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/queries/Transaction/GetToMoneyChartQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WalletApp.API/Models/queries/Transaction/GetTransactionDetailsQuery.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Authorization/JwtMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Authorization/JwtMiddleware.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Authorization/JwtUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Authorization/JwtUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Controllers/GroupController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/GroupController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WalletApp.API/Controllers/TransactionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/TransactionController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/Category.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Entities/Category.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/Currency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Entities/Currency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/Group.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Entities/Group.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/Member.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/Role.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/Transaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Entities/Transaction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Entities/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/AddTransactionCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/AddTransactionCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Handlers/User/RegisterCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/User/RegisterCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Handlers/User/VerifyEmailCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/User/VerifyEmailCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Handlers/User/AuthenticateCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Handlers/User/AuthenticateCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WalletApp.API/Helpers/AutoMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/AutoMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Helpers/DataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/DataContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Helpers/WalletAppSeeder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Helpers/WalletAppSeeder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221217175813_Initial.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221217175813_Initial.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221217175930_initial-database.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221217175930_initial-database.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221227195405_Initial.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/20221227195405_Initial.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WalletApp.API/Migrations/DataContextModelSnapshot.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WalletApp.API/Models/Transaction/AddTransactionDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Models/Transaction/AddTransactionDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WalletApp.API/Models/commands/Transaction/AddTransactionCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Models/commands/Transaction/AddTransactionCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/WalletApp.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/WalletApp.API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Chart/Chart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Chart/Chart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/TransactionItem/TransactionItem.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/TransactionItem/TransactionItem.stories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/TransactionItem/TransactionItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/TransactionItem/TransactionItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/LoginForm/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/LoginForm/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HomePage/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/helpers/chartDataMapper.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/helpers/chartDataMapper.helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/helpers/extraReducer.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/helpers/extraReducer.helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/helpers/fetch.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/helpers/fetch.helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/hooks/useForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/hooks/useForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/pl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/mockData/lineChartData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/mockData/lineChartData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/mockData/transactionData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/mockData/transactionData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/models/resources/transaction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/models/resources/transaction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/redux/slices/auth.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/redux/slices/auth.slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/redux/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +67,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1139bec68f639ea68cf7ec50a3d2dcb5f2ebeeb7e1ed5151656aa3f3ac56cbfe/NavigationExpandingExpressionVisitor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17a25bf4cd58852e31b6bc798fef1d6289441360eea1912bf89a9b4fd337a3/SingleQueryingEnumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/198a6261cebc324728dcc4c178edc5f2894123f711722c80e8557cbfd27651/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1af51483c9bf18871cce649b9f966dd7be686536f998c33bba3c5fc4adea4a0/Task.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1c5ae7aa27a87d65dd39429e7e28c412409121c9aed3db8bf37e366e77ed4a/HttpContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1f752884286b6339cb3e8ade38c5b9c5f79f4ad173bae090944b89357bb36a/TimeSpan.cs" root0="SKIP_HIGHLIGHTING" />
@@ -80,6 +86,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/69a6423685776cfa8c4b54bf4d63ec1880352fc5426dbfe8dac256f86449bbda/Mapper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/70d783e083a55cce16b895e2b6720c5dce468906649e51faba9ebb5f08df621/SmtpClient.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d9a41d47547e1fe7fe548b21ab4de12cc2671170a023bc8c629017837eb5f4/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/89d12e679032f7f4fad1e3d72e6c4d59ae9ea4bc2f7bf56fc15ae9fb2378bc4/PageResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/91b25c1a913f19c4aa148156858c93f572a888bcf3dcc9aef872811cff8c/HttpHeaders.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/94bcb6975e62e9fa0e9985892e8b2573d25fa18f97e6946f852e299ec847/AllowAnonymousAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/974fa14c57bab8fe29f1bddd39b1a6548b9cc8cf9e0ef5e670c2407a56d9/String.cs" root0="SKIP_HIGHLIGHTING" />
@@ -88,6 +95,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/be423d85679b2858c931031f36f4d779e7cfc1bfca1d62787ecbbae4e32383/DefaultHttpContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c1558d44394b3be0f45e5cfe17d84d06c60a9ea79543868636a2edb57c2342/IRequestHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c6354d55b4c1fdbe22621ea48185af62cdeadcf4f28d9ed0890dfdf36c6/ControllerBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c8f6807189e9fbcc629a3cf45491f6b4d74a9db3d51b612ba51687e0fecca2/Comparer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c9ca552eea9bb8fababbf1cd3f981cf68849ccc365dcca5627376f98e505c74/ControllerActionInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4708639776589f5ac2739f6fcbfc67343b1f9dac51cc1dbfdb003eef77cc1c/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fd3613e79f4141b726a234dc6b12c9e2fa50a7be28b045e19275c69bbf1166/CancellationToken.cs" root0="SKIP_HIGHLIGHTING" />
@@ -102,23 +110,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\maste\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\maste\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\maste\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\maste\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\maste\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\maste\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WalletApp.API">
     <configuration name="WalletApp.API" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WalletApp.API/WalletApp.API.csproj" />
@@ -209,7 +217,13 @@
       <workItem from="1672170287834" duration="571000" />
       <workItem from="1672170892091" duration="391000" />
       <workItem from="1672226661119" duration="89000" />
-      <workItem from="1672226779717" duration="1472000" />
+      <workItem from="1672226779717" duration="15352000" />
+      <workItem from="1672600610092" duration="79000" />
+      <workItem from="1672947346933" duration="33000" />
+      <workItem from="1672955770388" duration="848000" />
+      <workItem from="1672956659288" duration="1622000" />
+      <workItem from="1673016059400" duration="9898000" />
+      <workItem from="1673089369181" duration="7594000" />
     </task>
     <servers />
   </component>
@@ -236,30 +250,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/AddTransactionCommandHandler.cs</url>
-          <line>66</line>
-          <properties documentPath="C:\Users\maste\Desktop\WalletApp\WalletApp.API\Handlers\Transaction\AddTransactionCommandHandler.cs" initialLine="67" containingFunctionPresentation="method 'Handle'">
+          <url>file://$PROJECT_DIR$/WalletApp.API/Handlers/User/AuthenticateCommandHandler.cs</url>
+          <line>44</line>
+          <properties documentPath="C:\Users\maste\Desktop\WalletApp\WalletApp.API\Handlers\User\AuthenticateCommandHandler.cs" initialLine="44" containingFunctionPresentation="method 'Handle'">
             <startOffsets>
-              <option value="2154" />
+              <option value="1463" />
             </startOffsets>
             <endOffsets>
-              <option value="2155" />
+              <option value="1464" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WalletApp.API/Handlers/Transaction/AddTransactionCommandHandler.cs</url>
-          <line>38</line>
-          <properties documentPath="C:\Users\maste\Desktop\WalletApp\WalletApp.API\Handlers\Transaction\AddTransactionCommandHandler.cs" initialLine="40" containingFunctionPresentation="method 'Handle'">
-            <startOffsets>
-              <option value="1280" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1316" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

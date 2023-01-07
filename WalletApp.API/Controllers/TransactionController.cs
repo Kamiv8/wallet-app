@@ -1,8 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using WalletApp.API.Models.commands.Transaction;
-using WalletApp.API.Services;
 using WalletApp.API.Authorization;
+using WalletApp.API.Helpers;
+using WalletApp.API.Models;
+using WalletApp.API.Models.Category;
+using WalletApp.API.Models.queries.Transaction;
 using WalletApp.API.Models.Transaction;
 
 namespace WalletApp.API.Controllers;
@@ -36,7 +40,8 @@ public class TransactionController : BaseController
             IsDefault = dto.IsDefault,
             TextColor = dto.TextColor,
             BackgroundColor = dto.BackgroundColor,
-            Type = dto.Type
+            Type = dto.Type,
+            Description = dto.Description
         };
         
         var res = await _mediator.Send(command, cancellationToken);
@@ -60,16 +65,31 @@ public class TransactionController : BaseController
     
     // Get transactions - paggination
     [HttpGet]
-    public IActionResult GetTransactions()
+    public async Task<ActionResult<PagingResult<GetAllTransactionDto>>> GetTransactions([FromQuery] PageDto dto, CancellationToken cancellationToken)
     {
-        return Ok();
+        var query = new GetAllTransactionQuery
+        {
+            PageNumber = dto.PageNumber,
+            PageSize = dto.PageSize,
+            Type = dto.Type
+        };
+
+        var res = await _mediator.Send(query, cancellationToken);
+        
+        return Ok(res);
     }
     
     // Get transaction details
     [HttpGet("{id}")]
-    public IActionResult GetDetailsTransaction(string id)
+    public async Task<ActionResult<GetTransactionDetailsDto>> GetDetailsTransaction(Guid id, CancellationToken cancellationToken)
     {
-        return Ok();
+        var query = new GetTransactionDetailsQuery
+        {
+            Id = id
+        };
+
+        var res = await _mediator.Send(query, cancellationToken);
+        return Ok(res);
     }
     
     // Edit saved transaction
@@ -87,7 +107,47 @@ public class TransactionController : BaseController
         return Ok();
     }
     
+    // GET all default transaction
+    [HttpGet("default")]
+    public async Task<ActionResult<List<GetAllTransactionDto>>> GetAllDefaultTransaction(CancellationToken cancellationToken)
+    {
+        var query = new GetAllDefaultTransactionsQuery();
+        var res = await _mediator.Send(query, cancellationToken);
+        return Ok(res);
+    }
+    // GET to money chart
+    [HttpGet("moneyChart")]
+    public async Task<IActionResult> GetAllTransactionToMoneyChart(CancellationToken cancellationToken)
+    {
+        var query = new GetToMoneyChartQuery();
+
+        var res = await _mediator.Send(query, cancellationToken);
+
+        return Ok(res);
+    }
     
+    //GET to incomeChart
+    [HttpGet("incomeChart")]
+    public async Task<ActionResult<List<ToChartModelDto>>> GetTransactionsToIncomeChart(CancellationToken cancellationToken)
+    {
+        var query = new GetToIncomeChartQuery();
+        var res = await _mediator.Send(query, cancellationToken);
+        return Ok(res);
+    }
+    
+    
+    // GET to costChart
+    [HttpGet("costChart")]
+    public async Task<ActionResult<List<ToChartModelDto>>> GetTransactionsToCostChart(
+        CancellationToken cancellationToken)
+    {
+        var query = new GetToCostChartQuery();
+
+        var res = await _mediator.Send(query, cancellationToken);
+
+        return Ok(res);
+    }
+
 
 
 

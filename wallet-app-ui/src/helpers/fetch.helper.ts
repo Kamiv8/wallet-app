@@ -4,7 +4,7 @@ import { devConfig } from '../const/config';
 const config: AxiosRequestConfig = {
   baseURL: devConfig.baseURL,
   headers: {
-    Authorization: `${localStorage.getItem('token')}`,
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-type': 'application/json',
   },
 };

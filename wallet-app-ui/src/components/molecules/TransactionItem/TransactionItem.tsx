@@ -19,23 +19,23 @@ const TransactionItem = (props: TProps) => {
             {cutString(props.data.title, 15)}
           </Typography>
           <Typography size={'s'}>
-            {props.data.date.toLocaleTimeString()}{' '}
-            {props.data.date.toLocaleDateString()}
+            {new Date(props.data.date).toLocaleTimeString()}{' '}
+            {new Date(props.data.date).toLocaleDateString()}
           </Typography>
         </ContentWrapper>
         <ContentWrapper>
           <Typography size={'m'} weight={700}>
-            {props.data.category.name}
+            {props.data.category}
           </Typography>
           {props.data.price <= 0 ? (
             <Typography size={'m'} weight={700} color={'red'}>
               {props.data.price}
-              {props.data.currency.mark}
+              {props.data.currencyMark}
             </Typography>
           ) : (
             <Typography size={'m'} weight={700} color={'green'}>
               {props.data.price}
-              {props.data.currency.mark}
+              {props.data.currencyMark}
             </Typography>
           )}
         </ContentWrapper>

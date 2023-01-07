@@ -5,8 +5,8 @@ export interface Transaction {
   id: string;
   title: string;
   date: Date;
-  currency: Currency;
-  category: Category;
+  currencyMark: string;
+  category: string;
   description?: string;
   price: number;
 }

@@ -40,8 +40,8 @@ public class AuthenticateCommandHandler: IRequestHandler<AuthenticationCommand, 
 
         var user = await _dataContext.Users.SingleOrDefaultAsync(u => u.Email == command.Email);
 
-
-        if (user == null || !user.IsVerified || !BCrypt.Net.BCrypt.Verify(command.Password, user.PasswordHash))
+        var isVerify = BCrypt.Net.BCrypt.Verify(command.Password, user.PasswordHash);
+        if (user == null || !user.IsVerified || !isVerify)
         {
             throw new AppException("Email or password is incorrect");
         }

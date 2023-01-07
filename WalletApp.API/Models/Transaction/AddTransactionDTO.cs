@@ -13,4 +13,5 @@ public class AddTransactionDTO
     public string? BackgroundColor { get; set; }
     public bool IsDefault { get; set; }
     public TransactionType Type { get; set; }
+    public string Description { get; set; }
 }

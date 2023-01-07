@@ -39,6 +39,7 @@ const Chart = (props: TProps) => {
       type={props.type}
       ref={chartRef}
       data={props.data}
+      options={props.options}
       width={300}
       height={300}
     />

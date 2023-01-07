@@ -18,7 +18,10 @@ public class Transaction
     public virtual Currency Currency { get; set; }
     public Guid? CurrencyId { get; set; }
     public virtual User User { get; set; }
+    public Guid UserId { get; set; }
 
     public TransactionType Type { get; set; }
 
+    public string Description { get; set; }
+    // TODO add desctiption
 }
