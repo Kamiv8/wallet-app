@@ -10,9 +10,10 @@ import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import Chart from '../../atoms/Chart/Chart';
-import { oilData } from '../../../mockData/pieChartData';
 import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
 import { cutString } from '../../../utils/utils';
+import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
+import { pieChartMapper } from '../../../helpers/chartDataMapper.helper';
 
 export type TProps = {
   title: string;
@@ -21,6 +22,7 @@ export type TProps = {
   currency: Currency;
   date: Date;
   description?: string;
+  toChart?: ToPieChartDto[]
 };
 
 const HistoryCardDetails = (props: TProps) => {
@@ -75,7 +77,7 @@ const HistoryCardDetails = (props: TProps) => {
           Percentage by {props.category} category:
         </Typography>
         <ChartWrapper>
-          <Chart data={oilData} type={ChartTypeEnum.PIE} />
+          <Chart data={pieChartMapper(props.toChart as ToPieChartDto[])} type={ChartTypeEnum.PIE} />
         </ChartWrapper>
       </div>
     </Wrapper>

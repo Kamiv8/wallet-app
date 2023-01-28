@@ -9,7 +9,7 @@ export type TProps = {
 const PaginationItem = ({ index, isCurrent, onClick }: TProps) => {
   return (
     <StyledLi isCurrent={isCurrent === index} onClick={() => onClick(index)}>
-      {index}
+      {index + 1}
     </StyledLi>
   );
 };

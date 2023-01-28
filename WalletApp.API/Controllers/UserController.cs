@@ -37,7 +37,7 @@ public class UserController : BaseController
         };
         
         var res = await _mediator.Send(commandWidthIp, cancellationToken);
-
+        
         SetTokenCookie(res.Data!.RefreshToken);
         return Ok( new { Token = res.Data.JwtToken} );
     }

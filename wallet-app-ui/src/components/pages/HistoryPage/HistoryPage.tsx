@@ -4,11 +4,39 @@ import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import Select from '../../atoms/Select/Select';
 import { PaginationWrapper, SelectWrapper } from './HistoryPage.styles';
-import { transactionData } from '../../../mockData/transactionData';
 import TransactionItem from '../../molecules/TransactionItem/TransactionItem';
 import Pagination from '../../molecules/Pagination/Pagination';
+import { useEffect, useState } from 'react';
+import { PageResult } from '../../../models/resources/pageResult';
+import { Transaction } from '../../../models/resources/transaction';
+import { api } from '../../../helpers/fetch.helper';
+import { usePagination } from 'react-use-pagination';
+import { AxiosResponse } from 'axios';
 
 const HistoryPage = () => {
+  const [state, setState] = useState<PageResult<Transaction> | null>();
+  const pagination = usePagination({
+    totalItems: state?.count || 5,
+    initialPageSize: 4,
+    initialPage: 1,
+  });
+
+  useEffect(() => {
+    (async () => {
+      const data: AxiosResponse<any, PageResult<Transaction>> = await api.get(
+        '/transaction',
+        {
+          params: {
+            type: 0,
+            pageSize: 3,
+            pageNumber: pagination.currentPage + 1,
+          },
+        },
+      );
+      setState(data.data);
+    })();
+  }, [pagination.currentPage]);
+
   return (
     <MainTemplate>
       <Typography
@@ -24,11 +52,11 @@ const HistoryPage = () => {
         <Select items={[]} name={'Filter'} />
         <Select items={[]} name={'Sort'} />
       </SelectWrapper>
-      {transactionData.map((t) => (
-        <TransactionItem data={t} />
+      {state?.items.map((t) => (
+        <TransactionItem data={t} key={t.id} />
       ))}
       <PaginationWrapper>
-        <Pagination totalItems={transactionData.length} initialPageSize={3} />
+        <Pagination pagination={pagination} />
       </PaginationWrapper>
     </MainTemplate>
   );

@@ -7,22 +7,31 @@ import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
 import TransactionItem from '../../molecules/TransactionItem/TransactionItem';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { getCostChartData, getIncomeChartData, getLastTransactions, getMoneyChartData } from '../../../redux/slices/pages/homePage.slice';
-import { lineChartMapper, pieChartMapper } from '../../../helpers/chartDataMapper.helper';
+import {
+  getCostChartData,
+  getIncomeChartData,
+  getLastTransactions,
+  getMoneyChartData,
+} from '../../../redux/slices/pages/homePage.slice';
+import {
+  lineChartMapper,
+  pieChartMapper,
+} from '../../../helpers/chartDataMapper.helper';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const {lastTransactions, moneyChart, incomeChart, costChart} = useAppSelector(store => store.homePage);
-  
+  const { lastTransactions, moneyChart, incomeChart, costChart } =
+    useAppSelector((store) => store.homePage);
+
   // variables to test
   const allMoney = '32333USD';
 
   useEffect(() => {
-    dispatch(getLastTransactions())
-    dispatch(getMoneyChartData())
-    dispatch(getIncomeChartData())
-    dispatch(getCostChartData())
-  },[])
+    dispatch(getLastTransactions());
+    dispatch(getMoneyChartData());
+    dispatch(getIncomeChartData());
+    dispatch(getCostChartData());
+  }, [localStorage.getItem('token')]);
 
   return (
     <MainTemplate>
@@ -53,7 +62,11 @@ const HomePage = () => {
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageMoneyChart} />
       </Typography>
-      <Chart data={lineChartMapper(moneyChart).data} options={lineChartMapper(moneyChart).options} type={ChartTypeEnum.LINE} />
+      <Chart
+        data={lineChartMapper(moneyChart).data}
+        options={lineChartMapper(moneyChart).options}
+        type={ChartTypeEnum.LINE}
+      />
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageIncomeChart} />
       </Typography>

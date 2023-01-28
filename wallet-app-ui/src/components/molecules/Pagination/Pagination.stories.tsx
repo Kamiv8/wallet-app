@@ -13,6 +13,5 @@ const Template: ComponentStory<typeof Pagination> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  totalItems: 50,
-  initialPageSize: 3,
+  pagination: {},
 };

@@ -7,15 +7,17 @@ import messages from '../../../i18n/messages';
 
 const LoginPage = () => {
   return (
-    <RegisterTemplate
-      Image={LoginImage}
-      Form={<LoginForm />}
-      Heading={
-        <Typography color={'lightBlue'} size={'xxl'} weight={700}>
-          <FormattedMessage {...messages.loginLogin} />
-        </Typography>
-      }
-    />
+    <>
+      <RegisterTemplate
+        Image={LoginImage}
+        Form={<LoginForm />}
+        Heading={
+          <Typography color={'lightBlue'} size={'xxl'} weight={700}>
+            <FormattedMessage {...messages.loginLogin} />
+          </Typography>
+        }
+      />
+    </>
   );
 };
 

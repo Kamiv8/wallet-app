@@ -3,6 +3,7 @@ import userSlice from './slices/user.slice';
 import authSlice from './slices/auth.slice';
 import modalSlice from './slices/modal.slice';
 import homePageSlice from './slices/pages/homePage.slice';
+import historyDetailsSlice from './slices/pages/historyDetails.slice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     user: userSlice.reducer,
     auth: authSlice.reducer,
     homePage: homePageSlice.reducer,
+    historyDetailsPage: historyDetailsSlice.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

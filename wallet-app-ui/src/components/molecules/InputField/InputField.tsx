@@ -23,6 +23,7 @@ const InputField = ({
   error,
   name,
   type = 'text',
+  ...props
 }: TProps) => {
   return (
     <div>
@@ -42,6 +43,7 @@ const InputField = ({
         onChange={onChange}
         type={type}
         name={name}
+        {...props}
       />
       {error && (
         <StyledErrorMessage size={'xs'} color={'error'}>

@@ -1,5 +1,4 @@
 import useForm from '../../../hooks/useForm';
-import { useCallback } from 'react';
 import InputField from '../../molecules/InputField/InputField';
 import messages from '../../../i18n/messages';
 import {
@@ -19,7 +18,9 @@ import { useNavigate } from 'react-router-dom';
 export const LoginForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {data: {isUserLoggedIn}} = useAppSelector(store => store.auth);
+  const {
+    data: { isUserLoggedIn, token },
+  } = useAppSelector((store) => store.auth);
   const initialValues = {
     email: '',
     password: '',
@@ -27,13 +28,12 @@ export const LoginForm = () => {
   const { values, handleChange, isDisabled } =
     useForm<typeof initialValues>(initialValues);
 
-  const onSubmit = useCallback(async () => {
+  const onSubmit = async () => {
     await dispatch(authenticate(values));
-    
-    if(isUserLoggedIn) {
+    if (token && isUserLoggedIn) {
       navigate(RoutesName.ROOT);
     }
-  }, [values, isUserLoggedIn]);
+  };
 
   return (
     <Wrapper>

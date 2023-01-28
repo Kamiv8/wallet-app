@@ -1,4 +1,3 @@
-import { usePagination } from 'react-use-pagination';
 import { StyledSVGWrapper, Wrapper } from './Pagination.styles';
 import { ReactComponent as FirstPageIcon } from '../../../assets/images/pagination/FirstPage.svg';
 import { ReactComponent as NextPageIcon } from '../../../assets/images/pagination/NextPage.svg';
@@ -11,17 +10,10 @@ import {
 } from '../../../helpers/pagination.helper';
 
 export type TProps = {
-  totalItems: number;
-  initialPageSize: number;
+  pagination: any;
 };
 
-const Pagination = (props: TProps) => {
-  const pagination = usePagination({
-    totalItems: props.totalItems,
-    initialPageSize: props.initialPageSize,
-    initialPage: 0,
-  });
-
+const Pagination = ({ pagination }: TProps) => {
   return (
     <Wrapper>
       <StyledSVGWrapper>

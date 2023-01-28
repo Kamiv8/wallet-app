@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSlice,
+  isRejectedWithValue,
+} from '@reduxjs/toolkit';
 import { TInitialState } from '../common.types';
 import { RegisterCommand } from '../../models/commands/auth/register.command';
 import { extraReducerHelper } from '../../helpers/extraReducer.helper';
@@ -10,7 +14,8 @@ import { ResetPasswordCommand } from '../../models/commands/auth/resetPassword.c
 
 const initialState: TInitialState<any> = {
   data: {
-    isUserLoggedIn: false,
+    isUserLoggedIn: !!localStorage.getItem('token'),
+    token: localStorage.getItem('token'),
   },
   loading: 'idle',
 };
@@ -38,7 +43,7 @@ export const verifyAccount = createAsyncThunk(
 
     const data = await api.post(`/User/verify-email/${command.token}`, {});
 
-    return data;
+    return isRejectedWithValue(data);
   },
 );
 
@@ -46,9 +51,11 @@ export const authenticate = createAsyncThunk(
   'auth/authenticate',
   async (value: any) => {
     const command = new AuthenticateCommand(value.email, value.password);
-
     const data = await api.post('/user/authenticate', command);
-
+    if (data.status === 200) {
+      console.log(data);
+      localStorage.setItem('token', data.data.token || '');
+    }
     return data;
   },
 );
@@ -78,8 +85,9 @@ const authSlice = createSlice({
       builder,
       authenticate,
       (state, action) => {
-        localStorage.setItem('token', action.payload.data.token || '');
+        // localStorage.setItem('token', action.payload.data.token || '');
         state.data.isUserLoggedIn = true;
+        state.data.token = action.payload.data.token;
       },
     );
     extraReducerHelper<TInitialState<any>, ResetPasswordCommand>(

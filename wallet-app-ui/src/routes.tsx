@@ -1,4 +1,5 @@
 import {
+  Navigate,
   // Navigate,
   Outlet,
   Route,
@@ -14,11 +15,12 @@ import ResetPasswordPage from './components/pages/ResetPasswordPage/ResetPasswor
 import AddTransactionPage from './components/pages/AddTransactionPage/AddTransactionPage';
 import HistoryPage from './components/pages/HistoryPage/HistoryPage';
 import FindGroupPage from './components/pages/FindGroupPage/FindGroupPage';
+import HistoryDetailsPage from './components/pages/HistoryDetailsPage/HistoryDetailsPage';
 
 const GuardedRoute = () => {
   const { isUserLoggedIn } = useAppSelector((store) => store.auth.data);
 
-  return isUserLoggedIn ? <Outlet /> : <Outlet />; // <Navigate to={RoutesName.LOGIN} />;
+  return isUserLoggedIn ? <Outlet /> : <Navigate to={RoutesName.LOGIN} />;
 };
 
 export const Routes = () => (
@@ -36,6 +38,7 @@ export const Routes = () => (
         path={RoutesName.ADD_TRANSACTIONS}
         element={<AddTransactionPage />}
       />
+      <Route path={RoutesName.HISTORY + "/:id"} element={<HistoryDetailsPage />} />
       <Route path={RoutesName.HISTORY} element={<HistoryPage />} />
       <Route path={RoutesName.FIND_GROUP} element={<FindGroupPage />} />
     </Route>

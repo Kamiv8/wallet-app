@@ -4,13 +4,14 @@ import Typography from '../../atoms/Typography/Typography';
 import { cutString } from '../../../utils/utils';
 import { useHref } from 'react-router-dom';
 import { StyledLink } from '../../../styles/override/Link.styles';
+import { RoutesName } from '../../../const/routesName';
 
 export type TProps = {
   data: Transaction;
 };
 
 const TransactionItem = (props: TProps) => {
-  const href = useHref('/');
+  const href = useHref(`${RoutesName.HISTORY}/${props.data.id}`);
   return (
     <StyledLink to={href}>
       <Wrapper price={props.data.price}>

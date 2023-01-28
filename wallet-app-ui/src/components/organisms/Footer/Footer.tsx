@@ -79,7 +79,7 @@ const Footer = () => {
         <NavigationContent>
           <NavColumn>
             {navigationItems.slice(0, 2).map((nav) => (
-              <StyledLink to={nav.route}>
+              <StyledLink to={nav.route} key={nav.route}>
                 <NavigationItem
                   onClick={() => {}}
                   icon={nav.icon}
@@ -90,7 +90,7 @@ const Footer = () => {
           </NavColumn>
           <NavColumn>
             {navigationItems.slice(2).map((nav) => (
-              <StyledLink to={nav.route}>
+              <StyledLink to={nav.route} key={nav.route}>
                 <NavigationItem
                   onClick={() => {}}
                   icon={nav.icon}
