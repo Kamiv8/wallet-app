@@ -3,12 +3,16 @@ import { TTheme } from '../../../styles/theme';
 import { TProps } from './Button';
 
 const StyledButton = styled.button<TProps>`
-  color: ${({ theme, color = 'orange' }: TProps & { theme: TTheme }) =>
-    theme.colors[color]};
+  color: ${({
+    theme,
+    color = 'orange',
+    customColor,
+  }: TProps & { theme: TTheme }) =>
+    !customColor ? theme.colors[color] : customColor};
   border-radius: 5px;
   border: 2px solid
-    ${({ theme, color = 'orange' }: TProps & { theme: TTheme }) =>
-      theme.colors[color]};
+    ${({ theme, color = 'orange', customColor }: TProps & { theme: TTheme }) =>
+      !customColor ? theme.colors[color] : customColor};
   background: none;
   font-weight: ${({ theme }) => theme.weight[700]};
   cursor: pointer;

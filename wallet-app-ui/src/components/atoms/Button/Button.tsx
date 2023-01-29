@@ -8,6 +8,7 @@ export type TProps = {
   children?: ReactNode;
   type?: 'submit' | 'button' | 'reset';
   color?: 'orange' | 'lightBlue' | 'darkBlue';
+  customColor?: string;
   disabled?: boolean;
   variant?: TVariantButton;
   onClick?: () => any;

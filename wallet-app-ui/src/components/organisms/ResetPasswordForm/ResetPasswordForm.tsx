@@ -7,12 +7,10 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { ButtonsWrapper, LastButton } from './ResetPassword.styles';
-import { useAppDispatch } from '../../../redux/hooks';
-import { resetPassword } from '../../../redux/slices/auth.slice';
+import { AuthApi } from '../../../api/auth.api';
 
 const ResetPasswordForm = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const initialValues = {
     email: '',
   };
@@ -20,8 +18,8 @@ const ResetPasswordForm = () => {
   const { handleChange, values, isDisabled } =
     useForm<typeof initialValues>(initialValues);
 
-  const onSubmit = useCallback(() => {
-    dispatch(resetPassword(values));
+  const onSubmit = useCallback(async () => {
+    await AuthApi.resetPassword(values);
   }, [values]);
 
   const onCancel = useCallback(() => {

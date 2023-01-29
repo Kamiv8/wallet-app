@@ -9,18 +9,14 @@ import {
 import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import Typography from '../../atoms/Typography/Typography';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { authenticate } from '../../../redux/slices/auth.slice';
 import { StyledLink } from '../../../styles/override/Link.styles';
 import { RoutesName } from '../../../const/routesName';
+import { AuthApi } from '../../../api/auth.api';
 import { useNavigate } from 'react-router-dom';
+import { ApiStatus } from '../../../models/apiResult';
 
 export const LoginForm = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {
-    data: { isUserLoggedIn, token },
-  } = useAppSelector((store) => store.auth);
   const initialValues = {
     email: '',
     password: '',
@@ -29,8 +25,9 @@ export const LoginForm = () => {
     useForm<typeof initialValues>(initialValues);
 
   const onSubmit = async () => {
-    await dispatch(authenticate(values));
-    if (token && isUserLoggedIn) {
+    const authenticate = await AuthApi.authenticate(values);
+
+    if (authenticate.status === ApiStatus.SUCCESS) {
       navigate(RoutesName.ROOT);
     }
   };

@@ -5,5 +5,7 @@ export interface Transaction {
   currencyMark: string;
   category: string;
   description?: string;
+  backgroundColor?: string;
+  textColor?: string;
   price: number;
 }

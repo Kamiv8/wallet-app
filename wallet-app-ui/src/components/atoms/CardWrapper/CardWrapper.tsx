@@ -16,7 +16,7 @@ const CardWrapper = (props: TProps) => {
   return (
     <StyledWrapper color={props.color} gradientColor={props.gradientColor}>
       <CloseWrapper>
-        <StyledCloseIcon onClick={() => props.close} />
+        <StyledCloseIcon onClick={props.close} />
       </CloseWrapper>
       {props.children}
     </StyledWrapper>

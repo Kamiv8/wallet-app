@@ -11,6 +11,7 @@ import Button from '../../atoms/Button/Button';
 import { Currency } from '../../../models/resources/currency';
 
 export type TProps = {
+  title: string;
   category: string;
   price: number;
   currency: Currency;
@@ -23,29 +24,38 @@ const SavedTransaction = (props: TProps) => {
   return (
     <Wrapper backgroundColor={props.backgroundColor}>
       <FirstRow>
-        <Typography size={'l'} weight={700}>
-          ds
+        <Typography customColor={props.textColor} size={'l'} weight={700}>
+          {props.title}
         </Typography>
       </FirstRow>
       <SecondRow>
-        <Typography weight={700} size={'m'} uppercase>
+        <Typography
+          customColor={props.textColor}
+          weight={700}
+          size={'m'}
+          uppercase
+        >
           {props.category}
         </Typography>
-        <Typography size={'m'} weight={700}>
+        <Typography customColor={props.textColor} size={'m'} weight={700}>
           {props.price}
           {props.currency.mark}
         </Typography>
       </SecondRow>
       {props.description && (
         <div>
-          <Typography size={'s'} weight={700}>
+          <Typography customColor={props.textColor} size={'s'} weight={700}>
             {cutString(props.description, 200)}
           </Typography>
         </div>
       )}
       <ButtonWrapper>
         <StyledEditIcon onClick={() => {}} />
-        <Button type={'button'} color={'darkBlue'} onClick={() => {}}>
+        <Button
+          customColor={props.textColor}
+          type={'button'}
+          onClick={() => {}}
+        >
           Add
         </Button>
       </ButtonWrapper>

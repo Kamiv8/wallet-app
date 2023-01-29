@@ -10,6 +10,7 @@ export type TProps = {
   underline?: boolean;
   uppercase?: boolean;
   color?: TColor;
+  customColor?: string;
   letterSpacing?: number;
 };
 

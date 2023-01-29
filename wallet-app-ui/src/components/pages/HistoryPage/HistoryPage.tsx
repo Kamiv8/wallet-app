@@ -9,31 +9,25 @@ import Pagination from '../../molecules/Pagination/Pagination';
 import { useEffect, useState } from 'react';
 import { PageResult } from '../../../models/resources/pageResult';
 import { Transaction } from '../../../models/resources/transaction';
-import { api } from '../../../helpers/fetch.helper';
 import { usePagination } from 'react-use-pagination';
-import { AxiosResponse } from 'axios';
+import { TransactionApi } from '../../../api/transaction.api';
 
 const HistoryPage = () => {
   const [state, setState] = useState<PageResult<Transaction> | null>();
   const pagination = usePagination({
     totalItems: state?.count || 5,
     initialPageSize: 4,
-    initialPage: 1,
+    initialPage: 0,
   });
 
   useEffect(() => {
     (async () => {
-      const data: AxiosResponse<any, PageResult<Transaction>> = await api.get(
-        '/transaction',
-        {
-          params: {
-            type: 0,
-            pageSize: 3,
-            pageNumber: pagination.currentPage + 1,
-          },
-        },
-      );
-      setState(data.data);
+      const transactions = await TransactionApi.getTransactions({
+        type: 0,
+        pageSize: 3,
+        pageNumber: pagination.currentPage + 1,
+      });
+      setState(transactions.data);
     })();
   }, [pagination.currentPage]);
 

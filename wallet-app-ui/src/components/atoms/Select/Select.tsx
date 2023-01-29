@@ -30,6 +30,8 @@ const Select = (props: TProps) => {
     [setSelected, setIsActive],
   );
 
+  console.log(selected);
+
   return (
     <>
       <Wrapper>

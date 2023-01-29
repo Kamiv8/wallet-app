@@ -9,18 +9,27 @@ import RegisterPage from './components/pages/RegisterPage/RegisterPage';
 import HomePage from './components/pages/HomePage/HomePage';
 import VerificationSuccessfulPage from './components/pages/VerificationSuccessfulPage/VerificationSuccessfulPage';
 import LoginPage from './components/pages/LoginPage/LoginPage';
-import { useAppSelector } from './redux/hooks';
 import { RoutesName } from './const/routesName';
 import ResetPasswordPage from './components/pages/ResetPasswordPage/ResetPasswordPage';
 import AddTransactionPage from './components/pages/AddTransactionPage/AddTransactionPage';
 import HistoryPage from './components/pages/HistoryPage/HistoryPage';
 import FindGroupPage from './components/pages/FindGroupPage/FindGroupPage';
 import HistoryDetailsPage from './components/pages/HistoryDetailsPage/HistoryDetailsPage';
+import jwtDecode from 'jwt-decode';
 
 const GuardedRoute = () => {
-  const { isUserLoggedIn } = useAppSelector((store) => store.auth.data);
+  const token = localStorage.getItem('token');
+  const now = new Date();
+  if (!token) {
+    return <Navigate to={RoutesName.LOGIN} />;
+  }
+  const decodedToken = jwtDecode(token) as any;
 
-  return isUserLoggedIn ? <Outlet /> : <Navigate to={RoutesName.LOGIN} />;
+  if (decodedToken.exp * 1000 < now.getTime()) {
+    return <Navigate to={RoutesName.LOGIN} />;
+  }
+
+  return <Outlet />;
 };
 
 export const Routes = () => (
@@ -38,7 +47,10 @@ export const Routes = () => (
         path={RoutesName.ADD_TRANSACTIONS}
         element={<AddTransactionPage />}
       />
-      <Route path={RoutesName.HISTORY + "/:id"} element={<HistoryDetailsPage />} />
+      <Route
+        path={RoutesName.HISTORY + '/:id'}
+        element={<HistoryDetailsPage />}
+      />
       <Route path={RoutesName.HISTORY} element={<HistoryPage />} />
       <Route path={RoutesName.FIND_GROUP} element={<FindGroupPage />} />
     </Route>

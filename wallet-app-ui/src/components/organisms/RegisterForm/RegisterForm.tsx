@@ -11,15 +11,13 @@ import {
   Wrapper,
 } from './RegisterForm.styles';
 import { useCallback, useMemo } from 'react';
-import { useAppDispatch } from '../../../redux/hooks';
-import { registerUser } from '../../../redux/slices/auth.slice';
 import { StyledLink } from '../../../styles/override/Link.styles';
 import { RoutesName } from '../../../const/routesName';
+import { AuthApi } from '../../../api/auth.api';
 
 export type TSelectedIcon = 0 | 1 | 2 | 3 | 4;
 
 const RegisterForm = () => {
-  const dispatch = useAppDispatch();
   const initialValues = useMemo(
     () => ({
       username: '',
@@ -34,7 +32,7 @@ const RegisterForm = () => {
     useForm<typeof initialValues>(initialValues);
 
   const onSubmit = useCallback(async () => {
-    dispatch(registerUser(values));
+    await AuthApi.register(values);
   }, [values]);
 
   return (

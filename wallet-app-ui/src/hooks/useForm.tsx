@@ -6,6 +6,7 @@ export enum FieldType {
   Checkbox = 3,
   Icon = 4,
   Email = 5,
+  Date = 6,
 }
 
 type TInitialValues = {
@@ -53,7 +54,7 @@ const useForm = <T,>(initialValues: T) => {
 
   const handleChange = useCallback(
     (event: any, fieldName: string, type: FieldType = FieldType.Text) => {
-      let typedValue: number | string | null = null;
+      let typedValue: number | string | Date | null = null;
       switch (type) {
         case FieldType.Number:
           typedValue = +event.target.value;
@@ -69,6 +70,9 @@ const useForm = <T,>(initialValues: T) => {
         case FieldType.Email:
           typedValue = event.target.value;
           handleValidValues(fieldName, event.target.value === '');
+          break;
+        case FieldType.Date:
+          typedValue = new Date(event.target.value);
           break;
         default:
           typedValue = event.target.value;
