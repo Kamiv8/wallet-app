@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { CurrencyMark } from '../../../models/resources/currency';
 import { TransactionDetails } from '../../../models/resources/TransactionDetails';
 import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
-import { api } from '../../../helpers/fetch.helper';
+import { TransactionApi } from '../../../api/transaction.api';
 
 const HistoryDetailsPage = () => {
   const location = useLocation();
@@ -26,11 +26,8 @@ const HistoryDetailsPage = () => {
   useEffect(() => {
     (async () => {
       const parsedId = location.pathname.split('/');
-      const data = await api.get(`/transaction/${parsedId[2]}`);
-      if (data.status === 200) {
-        setState(data.data);
-        console.log(data);
-      }
+      const data = await TransactionApi.getTransactionDetails(parsedId[2]);
+      setState(data?.data);
     })();
   }, []);
 

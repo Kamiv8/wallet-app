@@ -4,9 +4,9 @@ import Typography from '../../atoms/Typography/Typography';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
 import { useEffect, useState } from 'react';
 import { Transaction } from '../../../models/resources/transaction';
-import { api } from '../../../helpers/fetch.helper';
 import { CurrencyMark } from '../../../models/resources/currency';
 import AddTransactionForm from '../../organisms/AddTransactionForm/AddTransactionForm';
+import { TransactionApi } from '../../../api/transaction.api';
 
 type TState = {
   transactions: Transaction[];
@@ -20,14 +20,12 @@ const AddTransactionPage = () => {
   });
 
   const getSavedTransactions = async () => {
-    const data = await api.get('/transaction/default');
-
-    if (data.status === 200) {
-      setState({
-        ...state,
-        transactions: data.data,
-      });
-    }
+    const data = await TransactionApi.getDefaultTransactions();
+    console.log(data.data);
+    setState({
+      ...state,
+      transactions: data.data,
+    });
   };
 
   useEffect(() => {
@@ -59,6 +57,7 @@ const AddTransactionPage = () => {
         state.transactions.map((item) => (
           <SavedTransaction
             key={item.id}
+            id={item.id}
             title={item.title}
             category={item.category}
             price={item.price}

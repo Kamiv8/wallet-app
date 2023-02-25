@@ -145,6 +145,10 @@ const messages = defineMessages({
     id: 'addTransactionPageSavedTransaction',
     defaultMessage: 'Saved this transaction',
   },
+  addTransactionPageDescription: {
+    id: 'addTransactionPageDescription',
+    defaultMessage: 'Description',
+  },
   addTransactionPageTextColor: {
     id: 'addTransactionPageTextColor',
     defaultMessage: 'Text color',
@@ -204,6 +208,17 @@ const messages = defineMessages({
     id: 'findGroupFormGroupName',
     defaultMessage: 'Group name',
   },
+  //Settings
+  settingsMainPageSettings: {
+    id: 'settingsMainPageSettings',
+    defaultMessage: 'Settings',
+  },
+
+  //Change currency
+  changeCurrencyFormCurrency: {
+    id: 'changeCurrencyFormCurrency',
+    defaultMessage: 'Currency',
+  },
 
   // Buttons
   buttonAdd: {
@@ -221,6 +236,10 @@ const messages = defineMessages({
   buttonSent: {
     id: 'buttonSent',
     defaultMessage: 'Sent',
+  },
+  buttonSave: {
+    id: 'buttonSave',
+    defaultMessage: 'Save',
   },
 });
 

@@ -11,6 +11,7 @@ import Button from '../../atoms/Button/Button';
 import { Currency } from '../../../models/resources/currency';
 
 export type TProps = {
+  id: string;
   title: string;
   category: string;
   price: number;

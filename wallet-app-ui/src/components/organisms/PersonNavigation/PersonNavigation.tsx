@@ -5,6 +5,7 @@ import { ReactComponent as HistoryIcon } from '../../../assets/images/navigation
 import { ReactComponent as TableIcon } from '../../../assets/images/navigationIcons/table.svg';
 import { ReactComponent as SettingsIcon } from '../../../assets/images/navigationIcons/settings.svg';
 import { ReactComponent as ReportIcon } from '../../../assets/images/navigationIcons/pdf.svg';
+import { ReactComponent as GroupIcon } from '../../../assets/images/navigationIcons/group.svg';
 import { RoutesName } from '../../../const/routesName';
 
 export type TBoxes = {
@@ -32,13 +33,18 @@ const PersonNavigation = () => {
     },
     {
       image: SettingsIcon,
-      name: 'History',
+      name: 'Settings',
       route: RoutesName.SETTINGS,
     },
     {
       image: ReportIcon,
       name: 'Reports',
       route: RoutesName.REPORT,
+    },
+    {
+      image: GroupIcon,
+      name: 'Group',
+      route: RoutesName.CREATE_FIND_GROUP,
     },
   ];
 

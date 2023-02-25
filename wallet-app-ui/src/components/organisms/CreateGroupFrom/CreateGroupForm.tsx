@@ -32,10 +32,12 @@ const CreateGroupForm = (props: TProps) => {
         <SelectField
           selectItems={[]}
           label={{ ...messages.createGroupFormMaxMembers }}
+          name={''}
         />
         <SelectField
           selectItems={[]}
           label={{ ...messages.createGroupFormDefaultCurrencies }}
+          name={''}
         />
         <Button color={'darkBlue'}>
           <FormattedMessage {...messages.buttonCreate} />

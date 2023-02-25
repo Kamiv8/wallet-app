@@ -15,6 +15,7 @@ export const Wrapper = styled.div<TProps>`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  text-align: center;
   align-items: center;
   padding: 16px 0;
   gap: 10px;
@@ -47,4 +48,8 @@ export const ImageContainer = styled.div``;
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
+`;
+
+export const TextWrapper = styled.div`
+  padding: 0 10px;
 `;

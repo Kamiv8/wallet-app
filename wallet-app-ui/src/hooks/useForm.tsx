@@ -7,6 +7,7 @@ export enum FieldType {
   Icon = 4,
   Email = 5,
   Date = 6,
+  Select = 7,
 }
 
 type TInitialValues = {
@@ -71,6 +72,10 @@ const useForm = <T,>(initialValues: T) => {
           typedValue = event.target.value;
           handleValidValues(fieldName, event.target.value === '');
           break;
+        case FieldType.Select:
+          typedValue = event;
+          handleValidValues(fieldName, event === '');
+          break;
         case FieldType.Date:
           typedValue = new Date(event.target.value);
           break;
@@ -79,6 +84,7 @@ const useForm = <T,>(initialValues: T) => {
           handleValidValues(fieldName, event.target.value === '');
           break;
       }
+
       setValues((prevState) => ({
         ...prevState,
         [fieldName]: typedValue,

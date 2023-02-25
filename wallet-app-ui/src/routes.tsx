@@ -16,6 +16,9 @@ import HistoryPage from './components/pages/HistoryPage/HistoryPage';
 import FindGroupPage from './components/pages/FindGroupPage/FindGroupPage';
 import HistoryDetailsPage from './components/pages/HistoryDetailsPage/HistoryDetailsPage';
 import jwtDecode from 'jwt-decode';
+import SettingsPage from './components/pages/SettingsPage/SettingsPage';
+import GroupPage from './components/pages/GroupPage/GroupPage';
+import ChangeCurrencyPage from './components/pages/ChangeCurrencyPage/ChangeCurrencyPage';
 
 const GuardedRoute = () => {
   const token = localStorage.getItem('token');
@@ -52,7 +55,13 @@ export const Routes = () => (
         element={<HistoryDetailsPage />}
       />
       <Route path={RoutesName.HISTORY} element={<HistoryPage />} />
+      <Route path={RoutesName.CREATE_FIND_GROUP} element={<GroupPage />} />
       <Route path={RoutesName.FIND_GROUP} element={<FindGroupPage />} />
+      <Route path={RoutesName.SETTINGS} element={<SettingsPage />} />
+      <Route
+        path={RoutesName.CHANGE_CURRENCIES}
+        element={<ChangeCurrencyPage />}
+      />
     </Route>
   </RoutesWrapper>
 );

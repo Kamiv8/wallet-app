@@ -9,11 +9,13 @@ import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import { FormWrapper, SavedInputsWrapper } from './AddTransactionForm.styles';
 import useForm, { FieldType } from '../../../hooks/useForm';
-import { api } from '../../../helpers/fetch.helper';
 import { CurrencyDto } from '../../../models/dtos/currencyDto';
 import { Category } from '../../../models/resources/category';
 import { CurrencyApi } from '../../../api/currency.api';
 import { CategoryApi } from '../../../api/category.api';
+import { TransactionApi } from '../../../api/transaction.api';
+import TextAreaField from '../../molecules/TextAreaField/TextAreaField';
+import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
 
 export type TProps = {
   onClose: () => void;
@@ -29,12 +31,13 @@ const AddTransactionForm = (props: TProps) => {
   const initialValues = {
     title: '',
     price: '',
-    currencies: '',
-    category: '',
+    currencyId: '',
+    categoryId: '',
     date: new Date(),
     isDefault: false,
     textColor: '',
     backgroundColor: '',
+    description: '',
   };
 
   const { values, handleChange } = useForm<typeof initialValues>(initialValues);
@@ -68,22 +71,13 @@ const AddTransactionForm = (props: TProps) => {
     })();
   }, []);
 
-  const parseDataToSelect = (data: Category[] | CurrencyDto[]) => {
-    return data.map((x) => {
-      return {
-        key: x.id,
-        description: x.name,
-      };
-    });
-  };
-
   const onSubmit = async () => {
     const command = {
       ...values,
       type: 0,
     };
 
-    await api.post('/transaction', command);
+    await TransactionApi.addTransaction(command);
   };
 
   return (
@@ -105,10 +99,14 @@ const AddTransactionForm = (props: TProps) => {
         <SelectField
           selectItems={parseDataToSelect(state.currency)}
           label={{ ...messages.addTransactionPageCurrencies }}
+          name={'currencyId'}
+          onChange={handleChange}
         />
         <SelectField
           selectItems={parseDataToSelect(state.category)}
           label={{ ...messages.addTransactionPageCategory }}
+          name={'categoryId'}
+          onChange={handleChange}
         />
         <InputField
           label={{ ...messages.addTransactionPageDate }}
@@ -116,6 +114,12 @@ const AddTransactionForm = (props: TProps) => {
           name={'date'}
           type={'date'}
           onChange={(e) => handleChange(e, 'date', FieldType.Date)}
+        />
+        <TextAreaField
+          label={{ ...messages.addTransactionPageDescription }}
+          variant={'dark'}
+          onChange={(e) => handleChange(e, 'description')}
+          name={'description'}
         />
         <CheckboxField
           label={{ ...messages.addTransactionPageSavedTransaction }}
@@ -138,7 +142,7 @@ const AddTransactionForm = (props: TProps) => {
           </SavedInputsWrapper>
         )}
 
-        <Button color={'darkBlue'} type={'button'} onClick={() => onSubmit()}>
+        <Button color={'darkBlue'} type={'button'} onClick={onSubmit}>
           <FormattedMessage {...messages.buttonAdd} />
         </Button>
       </FormWrapper>

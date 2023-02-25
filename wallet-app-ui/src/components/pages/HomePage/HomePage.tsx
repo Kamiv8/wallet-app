@@ -14,12 +14,18 @@ import { TransactionApi } from '../../../api/transaction.api';
 import { Transaction } from '../../../models/resources/transaction';
 import { ToMoneyChartDto } from '../../../models/dtos/toMoneyChartDto';
 import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
+import { UserApi } from '../../../api/user.api';
 
+type TActualMoney = {
+  money: number;
+  currencyMark: string;
+};
 interface IState {
   lastTransactions: Array<Transaction>;
   moneyChart: Array<ToMoneyChartDto>;
   incomeChart: Array<ToPieChartDto>;
   costChart: Array<ToPieChartDto>;
+  actualMoney: TActualMoney;
 }
 
 const HomePage = () => {
@@ -28,22 +34,34 @@ const HomePage = () => {
     moneyChart: [],
     incomeChart: [],
     costChart: [],
+    actualMoney: {
+      money: 0,
+      currencyMark: '',
+    },
   });
 
-  // variables to test
-  const allMoney = '32333USD';
+  async function getActualMoney() {
+    const actualMoney = await UserApi.getActualMoney();
+    setState((prev) => ({
+      ...prev,
+      actualMoney: {
+        ...prev.actualMoney,
+        currencyMark: actualMoney.data.currencyName,
+        money: actualMoney.data.actualMoney,
+      },
+    }));
+  }
 
   async function getLastTransactions() {
     const lastTransactions = await TransactionApi.getLastTransactions();
     setState((prev) => ({
       ...prev,
-      lastTransactions: lastTransactions.data,
+      lastTransactions: lastTransactions.data.items,
     }));
   }
 
   async function getMoneyChartData() {
     const moneyChartData = await TransactionApi.getMoneyChartData();
-
     setState((prev) => ({
       ...prev,
       moneyChart: moneyChartData.data,
@@ -70,6 +88,7 @@ const HomePage = () => {
     (async () => {
       if (localStorage.getItem('token')) {
         await Promise.all([
+          getActualMoney(),
           getLastTransactions(),
           getMoneyChartData(),
           getIncomeChartData(),
@@ -97,7 +116,8 @@ const HomePage = () => {
         color={'orange'}
         letterSpacing={1.6}
       >
-        {allMoney}
+        {state.actualMoney.money}
+        {state.actualMoney.currencyMark}
       </Typography>
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageLastTransactions} />

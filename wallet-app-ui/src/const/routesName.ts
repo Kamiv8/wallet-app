@@ -13,6 +13,12 @@ type TRoutes = {
   CREATE_FIND_GROUP: string;
   CREATE_GROUP: string;
   FIND_GROUP: string;
+  CHANGE_CURRENCIES: string;
+  CHANGE_CATEGORY: string;
+  CHANGE_ICON: string;
+  CHANGE_PASSWORD: string;
+  CHANGE_USERNAME: string;
+  CHANGE_LANGUAGE: string;
 };
 
 export const RoutesName: TRoutes = {
@@ -30,4 +36,10 @@ export const RoutesName: TRoutes = {
   CREATE_FIND_GROUP: '/createFindGroup',
   CREATE_GROUP: '/createGroup',
   FIND_GROUP: '/findGroup',
+  CHANGE_CURRENCIES: '/settings/changeCurrencies',
+  CHANGE_CATEGORY: '/settings/changeCategory',
+  CHANGE_ICON: '/settings/changeIcon',
+  CHANGE_PASSWORD: '/settings/changePassword',
+  CHANGE_USERNAME: '/settings/changeUsername',
+  CHANGE_LANGUAGE: '/settings/changeLanguage',
 };

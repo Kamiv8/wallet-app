@@ -1,6 +1,11 @@
 import { FunctionComponent, SVGProps } from 'react';
 import { Typography } from '../../atoms/Typography/Typography';
-import { ImageContainer, StyledLink, Wrapper } from './NavigationBox.styles';
+import {
+  ImageContainer,
+  StyledLink,
+  TextWrapper,
+  Wrapper,
+} from './NavigationBox.styles';
 import { useHref } from 'react-router-dom';
 
 export type TProps = {
@@ -23,9 +28,11 @@ const NavigationBox = ({
         <ImageContainer>
           <Image />
         </ImageContainer>
-        <Typography size={'s'} weight={700}>
-          {name}
-        </Typography>
+        <TextWrapper>
+          <Typography size={'s'} weight={700}>
+            {name}
+          </Typography>
+        </TextWrapper>
       </Wrapper>
     </StyledLink>
   );

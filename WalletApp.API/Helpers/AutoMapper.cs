@@ -6,6 +6,7 @@ using WalletApp.API.Models.commands.Transaction;
 using WalletApp.API.Models.commands.User;
 using WalletApp.API.Models.Currency;
 using WalletApp.API.Models.Transaction;
+using WalletApp.API.Models.Users.Dto;
 using WalletApp.API.Models.Users.Response;
 
 namespace WalletApp.API.Helpers;
@@ -30,6 +31,7 @@ public class AutoMapper : Profile
                 opt => opt.MapFrom(x => x.Currency.Mark))
             .ForMember(dest => dest.Category, 
                 opt => opt.MapFrom(x => x.Category.Name) );
+        CreateMap<User, GetUserDataDTO>();
     }
     
 

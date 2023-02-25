@@ -22,7 +22,7 @@ services.AddDbContext<DataContext>(
 builder.Services.AddCors(options => 
     options.AddPolicy(name: allowOrigins, policy =>
     {
-        policy.WithOrigins("http://localhost:3000");
+        policy.AllowAnyOrigin();
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
     }));
@@ -73,10 +73,11 @@ if (true)
 }
 
 app.UseHttpsRedirection();
-app.UseCors(allowOrigins);
-app.UseAuthorization();
 app.UseMiddleware<ErrorHandler>();
 app.UseMiddleware<JwtMiddleware>();
+app.UseCors(allowOrigins);
+app.UseAuthorization();
+
 
 app.MapControllers();
 

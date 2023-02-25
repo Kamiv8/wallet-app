@@ -1,128 +1,93 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WalletApp.API.Models.commands;
+using WalletApp.API.Authorization;
 using WalletApp.API.Models.commands.User;
+using WalletApp.API.Models.queries.User;
 using WalletApp.API.Models.Users.Dto;
-using WalletApp.API.Models.Users.Response;
 
 namespace WalletApp.API.Controllers;
 
-
-
-[Authorize]
 [ApiController]
-[Route("api/[controller]")]
+[Authorize]
+[Route("/api/[controller]")]
 public class UserController : BaseController
 {
-
     private readonly IMediator _mediator;
+
 
     public UserController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
-
-    [AllowAnonymous]
-    [HttpPost("authenticate")]
-    public async Task<ActionResult<string>> Authenticate([FromBody] AuthenticationCommand command, CancellationToken cancellationToken)
+    [HttpGet("userData")]
+    public async Task<ActionResult<GetUserDataDTO>> GetUserData(CancellationToken cancellationToken)
     {
-
-        var commandWidthIp = new AuthenticationCommand()
-        {
-            Email = command.Email,
-            Password = command.Password,
-            IpAddress = IpAddress()
-        };
-        
-        var res = await _mediator.Send(commandWidthIp, cancellationToken);
-        
-        SetTokenCookie(res.Data!.RefreshToken);
-        return Ok( new { Token = res.Data.JwtToken} );
+        var query = new GetUserDataQuery();
+        var res = await _mediator.Send(query, cancellationToken);
+        return Ok(res);
     }
 
-    [AllowAnonymous]
-    [HttpPost("register")]
-    public IActionResult Register([FromBody] RegisteredDto registeredDto, CancellationToken cancellationToken)
+    [HttpGet("actualMoney")]
+    public async Task<ActionResult<GetActualMoneyDto>> GetActualMoney(CancellationToken cancellationToken)
     {
-        var command = new RegisterCommand()
-        {
-            Username = registeredDto.Username,
-            Email = registeredDto.Email,
-            Password = registeredDto.Password,
-            ConfirmPassword = registeredDto.ConfirmPassword,
-            IconId = registeredDto.IconId,
-            Origin = Request.Headers["origin"],
-            AcceptTerms = registeredDto.AcceptTerms
-        };
-
-        var res = _mediator.Send(command, cancellationToken);
-        
-        return Ok(new { message = "Registration successful, please check your email for verification instructions" });
-    }
-
-    [AllowAnonymous]
-    [HttpPost("verify-email/{token}")]
-    public IActionResult VerifyEmail(string token, CancellationToken cancellationToken)
-    {
-        var command = new VerifyEmailCommand()
-        {
-            Token = token
-        };
-        
-        var res = _mediator.Send(command, cancellationToken);
+        var query = new GetUserActualMoneyQuery();
+        var res = await _mediator.Send(query, cancellationToken);
         return Ok(res);
     }
 
 
-    [AllowAnonymous]
-    [HttpPost("forgot-password")]
-    public IActionResult ForgotPassword([FromBody] ForgotPasswordDTO dto, CancellationToken cancellationToken)
+    [HttpPut("changeCurrencies")]
+    public async Task<IActionResult> ChangeDefaultCurrencies(ChangeCurrencyCommand dto,
+        CancellationToken cancellationToken)
     {
-        var command = new ForgotPasswordCommand()
+        var command = new ChangeCurrencyCommand()
         {
-            Email = dto.Email,
-            Origin = Request.Headers["origin"]
+            CurrencyId = dto.CurrencyId
         };
-
-        var res = _mediator.Send(command, cancellationToken);
-        
+        var res = await _mediator.Send(command, cancellationToken);
         return Ok(res);
     }
-    
-    
-    
-    [AllowAnonymous]
-    [HttpPost("reset-password")]
-    public IActionResult ResetPassword()
-    {
-        return Ok();
-    }
-    
-    // User data token
-    
-    
-    
-    
-    
 
-    
-    private void SetTokenCookie(string token)
+    [HttpPut("changeIcon")]
+    public async Task<IActionResult> ChangeUserIcon(ChangeIconDto dto, CancellationToken cancellationToken)
     {
-        var cookieOptions = new CookieOptions
+        var command = new ChangeIconCommand()
         {
-            HttpOnly = true,
-            Expires = DateTime.UtcNow.AddDays(14)
+            IconId = dto.IconId
         };
-        Response.Cookies.Append("refreshToken", token, cookieOptions);
+        var res = await _mediator.Send(command, cancellationToken);
+        
+        return Ok(new {message = "User icon changed successful"});
     }
 
-    private string IpAddress()
+    [HttpPut("changePassword")]
+    public async Task<IActionResult> ChangeUserPassword(ChangeUserPasswordDto dto, CancellationToken cancellationToken)
     {
-        if (Request.Headers.ContainsKey("X-Forwarded-For"))
-            return Request.Headers["X-Forwarded-For"];
-        return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+        var command = new ChangeUserPasswordCommand()
+        {
+            OldPassword = dto.OldPassword,
+            NewPassword = dto.NewPassword,
+            ConfirmNewPassword = dto.ConfirmNewPassword
+        };
+        var res = await _mediator.Send(command, cancellationToken);
+        
+        return Ok(new {message = "User password changed successful"});
     }
+
+    [HttpPut("changeUsername")]
+    public async Task<IActionResult> ChangeUsername(ChangeUsernameDto dto, CancellationToken cancellationToken)
+    {
+        var command = new ChangeUsernameCommand()
+        {
+            NewUsername = dto.NewUsername
+        };
+
+        var res = await _mediator.Send(command, cancellationToken);
+        
+        return Ok(new {message = "Username changed successful"});
+    }
+    
+
 
 }
