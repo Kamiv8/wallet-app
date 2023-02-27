@@ -21,7 +21,9 @@ public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryComman
         if (category == null)
             throw new Exception("Cannot find this category");
 
-        _dataContext.Categories.Remove(category);
+        category.IsDeleted = true;
+        
+        _dataContext.Categories.Update(category);
         _dataContext.SaveChanges();
         
         return Task.FromResult(Unit.Value);

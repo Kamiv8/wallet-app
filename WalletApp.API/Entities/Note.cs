@@ -9,8 +9,8 @@ public class Note
     public string BackgroundColor { get; set; }
     public bool IsDone { get; set; }
     
-    public virtual User User { get; set; }
+    public virtual User? User { get; set; }
 
-    public virtual Group Group { get; set; }
+    public virtual Group? Group { get; set; }
     
 }

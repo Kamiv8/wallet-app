@@ -41,4 +41,15 @@ public class GroupController : BaseController
     
     // sent request to join
     
+    // accept request to join 
+    
+    // reject request to join
+    
+    
+    // SETTINGS
+    
+    // change group name
+    
+    // 
+    
 }

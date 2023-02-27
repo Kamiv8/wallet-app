@@ -46,6 +46,11 @@ const useForm = <T,>(initialValues: T) => {
     }
   }, [values]);
 
+  const resetForm = useCallback(() => {
+    setValues(initialValues);
+    setValidValues(null);
+  }, []);
+
   const handleValidValues = useCallback((fieldName: string, value: boolean) => {
     setValidValues((prevState) => ({
       ...prevState,
@@ -95,6 +100,6 @@ const useForm = <T,>(initialValues: T) => {
 
   const isError = useCallback(() => {}, []);
 
-  return { values, handleChange, isError, isDisabled };
+  return { values, handleChange, isError, isDisabled, resetForm };
 };
 export default useForm;

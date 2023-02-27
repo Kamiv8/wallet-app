@@ -25,7 +25,7 @@ public class GetCategoriesQueryHandler : IRequestHandler<CategoriesQuery, List<D
     {
 
         var categories = _dataContext.Categories
-            .Where(x => x.User == null || x.User == _authService.User)
+            .Where(x => (x.User == _authService.User) && x.IsDeleted == false)
             .ToList();
 
         var mCategories = _mapper.Map<List<DefaultCategoryDto>>(categories);

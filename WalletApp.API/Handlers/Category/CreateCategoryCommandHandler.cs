@@ -18,16 +18,15 @@ public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryComman
     
     public Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
-        if (request.Name.Trim() != "")
+        if (request.Name.Trim() == "") return Task.FromResult(Unit.Value);
+        var category = new Entities.Category()
         {
-            var category = new Entities.Category()
-            {
-                User = _authService.User,
-                Name = request.Name,
-            };
-            _dataContext.Categories.Add(category);
-            _dataContext.SaveChanges();
-        }
+            User = _authService.User,
+            Name = request.Name,
+            IsDeleted = false
+        };
+        _dataContext.Categories.Add(category);
+        _dataContext.SaveChanges();
 
 
 

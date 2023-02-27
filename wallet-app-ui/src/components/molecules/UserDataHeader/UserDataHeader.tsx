@@ -9,7 +9,7 @@ import { Wrapper } from './UserDataHeader.styles';
 
 export type TProps = {
   avatarClick: () => void;
-  avatarNumber: 1 | 2 | 3 | 4;
+  avatarNumber: 0 | 1 | 2 | 3;
   fullName: ReactNode;
 };
 
@@ -17,8 +17,8 @@ const UserDataHeader = (props: TProps) => {
   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4];
 
   const avatar = useMemo(() => {
-    return avatars[props.avatarNumber];
-  }, []);
+    return avatars[props.avatarNumber - 1];
+  }, [props.avatarNumber]);
 
   return (
     <Wrapper>

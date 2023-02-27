@@ -19,6 +19,11 @@ import jwtDecode from 'jwt-decode';
 import SettingsPage from './components/pages/SettingsPage/SettingsPage';
 import GroupPage from './components/pages/GroupPage/GroupPage';
 import ChangeCurrencyPage from './components/pages/ChangeCurrencyPage/ChangeCurrencyPage';
+import ChangeLanguagePage from './components/pages/ChangeLanguagePage/ChangeLanguagePage';
+import ChangeUserIconPage from './components/pages/ChangeUserIconPage/ChangeUserIconPage';
+import ChangeUsernamePage from './components/pages/ChangeUsernamePage/ChangeUsernamePage';
+import ChangeUserPasswordPage from './components/pages/ChangeUserPasswordPage/ChangeUserPasswordPage';
+import ChangeCategoryPage from './components/pages/ChangeCategoryPage/ChangeCategoryPage';
 
 const GuardedRoute = () => {
   const token = localStorage.getItem('token');
@@ -61,6 +66,23 @@ export const Routes = () => (
       <Route
         path={RoutesName.CHANGE_CURRENCIES}
         element={<ChangeCurrencyPage />}
+      />
+      <Route
+        path={RoutesName.CHANGE_LANGUAGE}
+        element={<ChangeLanguagePage />}
+      />
+      <Route path={RoutesName.CHANGE_ICON} element={<ChangeUserIconPage />} />
+      <Route
+        path={RoutesName.CHANGE_USERNAME}
+        element={<ChangeUsernamePage />}
+      />
+      <Route
+        path={RoutesName.CHANGE_PASSWORD}
+        element={<ChangeUserPasswordPage />}
+      />
+      <Route
+        path={RoutesName.CHANGE_CATEGORY}
+        element={<ChangeCategoryPage />}
       />
     </Route>
   </RoutesWrapper>

@@ -18,6 +18,7 @@ public class Group
     public List<Report> Reports { get; set; } = new List<Report>();
 
     public List<Notification> Notifications { get; set; } = new List<Notification>();
-    
+    public IEnumerable<Category> Categories { get; set; }
+
     public List<Note> Notes { get; set; } = new List<Note>();
 }

@@ -220,6 +220,42 @@ const messages = defineMessages({
     defaultMessage: 'Currency',
   },
 
+  // change language
+  changeLanguageFormLanguage: {
+    id: 'changeLanguageFormLanguage',
+    defaultMessage: 'Language',
+  },
+
+  // change username
+  changeUsernameFormUsername: {
+    id: 'changeUsernameFormUsername',
+    defaultMessage: 'Username',
+  },
+
+  // change password
+  changePasswordFormOldPassword: {
+    id: 'changePasswordFormOldPassword',
+    defaultMessage: 'Old password',
+  },
+  changePasswordFormNewPassword: {
+    id: 'changePasswordFormNewPassword',
+    defaultMessage: 'New password',
+  },
+  changePasswordFormConfirmNewPassword: {
+    id: 'changePasswordFormConfirmNewPassword',
+    defaultMessage: 'Confirm new password',
+  },
+
+  //change category
+  changeCategoryFormAddNewCategory: {
+    id: 'changeCategoryFormAddNewCategory',
+    defaultMessage: 'Add new category',
+  },
+  changeCategoryFormYourCategory: {
+    id: 'changeCategoryFormYourCategory',
+    defaultMessage: 'Your category',
+  },
+
   // Buttons
   buttonAdd: {
     id: 'buttonAdd',
@@ -240,6 +276,10 @@ const messages = defineMessages({
   buttonSave: {
     id: 'buttonSave',
     defaultMessage: 'Save',
+  },
+  buttonDelete: {
+    id: 'buttonDelete',
+    defaultMessage: 'Delete',
   },
 });
 

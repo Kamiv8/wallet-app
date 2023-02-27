@@ -23,27 +23,27 @@ const SettingsPage = () => {
         <NavigationBox
           Image={ChangeUserIcon}
           name={'Change Category'}
-          routeName={RoutesName.CHANGE_CURRENCIES}
+          routeName={RoutesName.CHANGE_CATEGORY}
         />
         <NavigationBox
           Image={ChangeUserIcon}
           name={'Change icon'}
-          routeName={RoutesName.CHANGE_CURRENCIES}
+          routeName={RoutesName.CHANGE_ICON}
         />
         <NavigationBox
           Image={ChangeUserIcon}
           name={'Change password'}
-          routeName={RoutesName.CHANGE_CURRENCIES}
+          routeName={RoutesName.CHANGE_PASSWORD}
         />
         <NavigationBox
           Image={ChangeUserIcon}
           name={'Change username'}
-          routeName={RoutesName.CHANGE_CURRENCIES}
+          routeName={RoutesName.CHANGE_USERNAME}
         />
         <NavigationBox
           Image={ChangeUserIcon}
           name={'Change language'}
-          routeName={RoutesName.CHANGE_CURRENCIES}
+          routeName={RoutesName.CHANGE_LANGUAGE}
         />
       </SettingsTemplate>
     </MainTemplate>

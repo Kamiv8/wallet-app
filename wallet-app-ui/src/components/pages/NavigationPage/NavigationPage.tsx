@@ -5,7 +5,7 @@ import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg';
 import { ReactComponent as LogoutIcon } from '../../../assets/images/logout.svg';
 import UserDataHeader from '../../molecules/UserDataHeader/UserDataHeader';
 import PersonNavigation from '../../organisms/PersonNavigation/PersonNavigation';
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { RoleEnum } from '../../../types/enums/role.enum';
 import { UserApi } from '../../../api/user.api';
 
@@ -16,7 +16,7 @@ type TProps = {
 
 type TState = {
   username: string;
-  avatarNumber: 1 | 2 | 3 | 4;
+  avatarNumber: 0 | 1 | 2 | 3;
   groupId: number | null;
   role: RoleEnum;
 };
@@ -24,7 +24,7 @@ type TState = {
 const NavigationPage = (props: TProps) => {
   const [state, setState] = useState<TState>({
     username: '',
-    avatarNumber: 1,
+    avatarNumber: 0,
     groupId: null,
     role: RoleEnum.NONE,
   });
@@ -40,7 +40,7 @@ const NavigationPage = (props: TProps) => {
     }));
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     (async () => {
       await getUserData();
     })();

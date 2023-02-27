@@ -77,16 +77,17 @@ public class DataContext : DbContext
             .HasMany(g => g.Reports)
             .WithOne(r => r.Group)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Group>()
+            .HasMany(g => g.Categories)
+            .WithOne(c => c.Group)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Group>()
             .HasMany(g => g.Notifications)
             .WithOne(n => n.Group)
             .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<Group>()
-            .HasMany(g => g.Notes)
-            .WithOne(n => n.Group)
-            .OnDelete(DeleteBehavior.Restrict);
+        
         
         
 

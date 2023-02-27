@@ -76,12 +76,12 @@ public class CategoryController : ControllerBase
 
 
     // delete category
-    [HttpDelete] 
-    public async Task<IActionResult> DeleteCategory([FromBody] DeleteCategoryDto dto, CancellationToken cancellationToken)
+    [HttpDelete("{id}")] 
+    public async Task<IActionResult> DeleteCategory(Guid id, CancellationToken cancellationToken)
     {
         var command = new DeleteCategoryCommand()
         {
-            CategoryId = dto.CategoryId
+            CategoryId = id
         };
 
         await _mediator.Send(command, cancellationToken);

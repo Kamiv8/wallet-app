@@ -2,6 +2,7 @@
 using WalletApp.API.Entities;
 using WalletApp.API.Models.Category;
 using WalletApp.API.Models.commands.Group;
+using WalletApp.API.Models.commands.Note;
 using WalletApp.API.Models.commands.Transaction;
 using WalletApp.API.Models.commands.User;
 using WalletApp.API.Models.Currency;
@@ -32,6 +33,8 @@ public class AutoMapper : Profile
             .ForMember(dest => dest.Category, 
                 opt => opt.MapFrom(x => x.Category.Name) );
         CreateMap<User, GetUserDataDTO>();
+        CreateMap<CreateNoteCommand, Note>();
+
     }
     
 

@@ -15,6 +15,19 @@ export class CategoryApi {
     return BaseApiHandler.handleApi(data);
   }
 
+  public static async deleteCategory(value: any): Promise<IApiResult> {
+    const data = await axios.delete(
+      `/category/${value}`,
+      CategoryApi.apiOptions(),
+    );
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async addNewCategory(value: any): Promise<IApiResult> {
+    const data = await axios.post('/category', value, CategoryApi.apiOptions());
+    return BaseApiHandler.handleApi(data);
+  }
+
   private static apiOptions() {
     return {
       baseURL: devConfig.baseURL,
