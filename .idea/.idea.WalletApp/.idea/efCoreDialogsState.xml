@@ -3,6 +3,7 @@
   <component name="EfCoreDialogsState">
     <option name="keyValueStorage">
       <map>
+        <entry key="Common:9361b65a-a379-43fa-998c-4f8dfd49a11e:dbContext" value="WalletApp.API.Helpers.DataContext" />
         <entry key="Common:buildConfiguration" value="Debug" />
         <entry key="Common:dbContext" value="WalletApp.API.Helpers.DataContext" />
         <entry key="Common:noBuild" value="false" />

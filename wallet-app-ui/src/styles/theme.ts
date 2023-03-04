@@ -14,6 +14,12 @@ export type TColors = {
   shadow: string;
   green: string;
   backgroundBlur: string;
+  tableCardColors: {
+    pink: string;
+    green: string;
+    blue: string;
+    yellow: string;
+  };
 };
 
 export type TGradients = {
@@ -61,6 +67,12 @@ const theme: DefaultTheme & TTheme = {
     shadow: 'rgba(0,0,0.5)',
     green: 'rgba(21,151,0,1)',
     backgroundBlur: 'rgba(100,100,100,.15)',
+    tableCardColors: {
+      pink: 'rgba(170, 116, 195, 1)',
+      green: 'rgba(116, 195, 148, 1)',
+      blue: 'rgba(84, 150, 178, 1)',
+      yellow: 'rgba(180, 195, 116, 1)',
+    },
   },
   fonts: {
     xs: '10px',

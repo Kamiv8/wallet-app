@@ -21,7 +21,6 @@ const AddTransactionPage = () => {
 
   const getSavedTransactions = async () => {
     const data = await TransactionApi.getDefaultTransactions();
-    console.log(data.data);
     setState({
       ...state,
       transactions: data.data,

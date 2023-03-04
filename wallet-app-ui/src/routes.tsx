@@ -24,6 +24,9 @@ import ChangeUserIconPage from './components/pages/ChangeUserIconPage/ChangeUser
 import ChangeUsernamePage from './components/pages/ChangeUsernamePage/ChangeUsernamePage';
 import ChangeUserPasswordPage from './components/pages/ChangeUserPasswordPage/ChangeUserPasswordPage';
 import ChangeCategoryPage from './components/pages/ChangeCategoryPage/ChangeCategoryPage';
+import TablePage from './components/pages/TablePage/TablePage';
+import NoteDetailsPage from './components/pages/NoteDetailsPage/NoteDetailsPage';
+import AddNotePage from './components/pages/AddNotePage/AddNotePage';
 
 const GuardedRoute = () => {
   const token = localStorage.getItem('token');
@@ -84,6 +87,9 @@ export const Routes = () => (
         path={RoutesName.CHANGE_CATEGORY}
         element={<ChangeCategoryPage />}
       />
+      <Route path={RoutesName.TABLE} element={<TablePage />} />
+      <Route path={RoutesName.TABLE + `/:id`} element={<NoteDetailsPage />} />
+      <Route path={RoutesName.ADD_NOTE} element={<AddNotePage />} />
     </Route>
   </RoutesWrapper>
 );

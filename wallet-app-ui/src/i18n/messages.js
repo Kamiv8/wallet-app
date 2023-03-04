@@ -256,6 +256,44 @@ const messages = defineMessages({
     defaultMessage: 'Your category',
   },
 
+  // table page
+
+  tablePageTable: {
+    id: 'tablePageTable',
+    defaultMessage: 'Table',
+  },
+
+  // details note
+
+  detailsNotePageNoteDetails: {
+    id: 'detailsNotePageNoteDetails',
+    defaultMessage: 'Note details',
+  },
+
+  // add note form
+  addNoteFormTitle: {
+    id: 'addNotePageTitle',
+    defaultMessage: 'Title',
+  },
+  addNoteFormTodoList: {
+    id: 'addNotePageTodoList',
+    defaultMessage: 'Todo list',
+  },
+  addNoteFormTextColor: {
+    id: 'addNoteTextColor',
+    defaultMessage: 'Text color',
+  },
+  addNoteFormBackgroundColor: {
+    id: 'addNotePageBackgroundColor',
+    defaultMessage: 'Background color',
+  },
+
+  // add note page
+  addNotePageAddNote: {
+    id: 'addNotePageAddNote',
+    defaultMessage: 'Add note',
+  },
+
   // Buttons
   buttonAdd: {
     id: 'buttonAdd',

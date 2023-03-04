@@ -6,33 +6,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a179f98f-edf1-4d8e-8a31-04bfaa381188" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/api/auth.api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/api/baseApiHandler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/api/category.api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/api/currency.api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/api/transaction.api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/models/apiResult.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/models/dtos/currencyDto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/api/baseApiConfig.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/api/table.api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/TableCard/TableCard.stories.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/TableCard/TableCard.styles.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/TableCard/TableCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/NoteDetailsPage/NoteDetailsPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/TablePage/TablePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/templates/GridTemplate/GridTemplate.styles.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/templates/GridTemplate/GridTemplate.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-ui/src/models/resources/note.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/efCoreDialogsState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/efCoreDialogsState.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Authorization/JwtUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Authorization/JwtUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletApp.API/Models/Transaction/GetAllTransactionDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WalletApp.API/Models/Transaction/GetAllTransactionDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Button/Button.style.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Button/Button.style.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Button/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/CardWrapper/CardWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/CardWrapper/CardWrapper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Select/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Select/Select.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Typography/Typography.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Typography/Typography.styles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Typography/Typography.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/atoms/Typography/Typography.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/SavedTransaction/SavedTransaction.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/molecules/SavedTransaction/SavedTransaction.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/AddTransactionForm/AddTransactionForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/AddTransactionForm/AddTransactionForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/LoginForm/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/organisms/LoginForm/LoginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/AddTransactionPage/AddTransactionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/AddTransactionPage/AddTransactionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/components/pages/HomePage/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/hooks/useForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/hooks/useForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/models/resources/transaction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/models/resources/transaction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/redux/slices/pages/homePage.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/redux/slices/pages/homePage.slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/api/transaction.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/api/transaction.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/i18n/languages/pl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/i18n/messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/i18n/messages.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-ui/src/styles/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-ui/src/styles/theme.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +69,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/974fa14c57bab8fe29f1bddd39b1a6548b9cc8cf9e0ef5e670c2407a56d9/String.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9d4f4ac7db6d2c5d183ab2d92602280ed4349fd6e6a1b6313546b3d01fdab5/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9e35c13882d3c89b3f745d304329b1e8db8a6ccbc6e7e474e3e576f2f63b310/SymmetricSignatureProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b34cdea969917836c37b6dc15e916d3e5954856c12dd1caf3926e4a2a3a0dfe2/AuthorizationAppBuilderExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/be423d85679b2858c931031f36f4d779e7cfc1bfca1d62787ecbbae4e32383/DefaultHttpContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c09c2ce5107b877e7d30d6b1ce5e4c36cdd52749b6bedce0ba4056c294869653/Type.Helpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c1558d44394b3be0f45e5cfe17d84d06c60a9ea79543868636a2edb57c2342/IRequestHandler.cs" root0="SKIP_HIGHLIGHTING" />
@@ -87,6 +78,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c9ca552eea9bb8fababbf1cd3f981cf68849ccc365dcca5627376f98e505c74/ControllerActionInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df71358f7b7337a1eee3a65abe6d678dd9a065e256b8cc3fd44a2949754/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e0bea4e5f03899efe75dc4dcf582f230702687c5ac6269866345ce4aae5d8a36/ServiceProviderServiceExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e7e231682be8652744726acc6de35323daa68061429db55e0c251114902f60/String.Manipulation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4708639776589f5ac2739f6fcbfc67343b1f9dac51cc1dbfdb003eef77cc1c/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fd3613e79f4141b726a234dc6b12c9e2fa50a7be28b045e19275c69bbf1166/CancellationToken.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fd7e84c652acb74d1bb469c0db41fde874bfe844286f14882816f367e4e8e1/Type.cs" root0="FORCE_HIGHLIGHTING" />
@@ -108,6 +100,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\maste\\AppData\\Local\\JetBrains\\Toolbox\\apps\\Rider\\ch-0\\223.8617.53\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -221,7 +214,26 @@
       <workItem from="1674501838152" duration="1223000" />
       <workItem from="1674643555040" duration="294000" />
       <workItem from="1674918328136" duration="2115000" />
-      <workItem from="1675002873406" duration="4416000" />
+      <workItem from="1675002873406" duration="5009000" />
+      <workItem from="1675108925959" duration="2298000" />
+      <workItem from="1675511320642" duration="1433000" />
+      <workItem from="1675515271687" duration="9030000" />
+      <workItem from="1675608469928" duration="6456000" />
+      <workItem from="1675711172569" duration="1806000" />
+      <workItem from="1676318718842" duration="2252000" />
+      <workItem from="1676402831217" duration="4871000" />
+      <workItem from="1676577807995" duration="55000" />
+      <workItem from="1676577886620" duration="3722000" />
+      <workItem from="1677094288989" duration="5249000" />
+      <workItem from="1677186507747" duration="640000" />
+      <workItem from="1677323071864" duration="2311000" />
+      <workItem from="1677342006136" duration="79000" />
+      <workItem from="1677342117193" duration="2500000" />
+      <workItem from="1677441029162" duration="2943000" />
+      <workItem from="1677524802064" duration="2390000" />
+      <workItem from="1677527236477" duration="365000" />
+      <workItem from="1677527623616" duration="9026000" />
+      <workItem from="1677689697000" duration="1822000" />
     </task>
     <servers />
   </component>
@@ -245,6 +257,23 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WalletApp.API/Handlers/User/RegisterCommandHandler.cs</url>
+          <line>68</line>
+          <properties documentPath="C:\Users\maste\Desktop\WalletApp\WalletApp.API\Handlers\User\RegisterCommandHandler.cs" initialLine="68" containingFunctionPresentation="method 'SendVerificationEmail'">
+            <startOffsets>
+              <option value="2077" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2078" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#System.IdentityModel.Tokens.Jwt.JwtSecurityToken" memberName="Claims" />

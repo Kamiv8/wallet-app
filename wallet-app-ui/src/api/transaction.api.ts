@@ -1,14 +1,11 @@
 import { IApiResult } from '../models/apiResult';
 import { BaseApiHandler } from './baseApiHandler';
-import { devConfig } from '../const/config';
 import axios from 'axios';
+import { BaseApiConfig } from './baseApiConfig';
 
-export class TransactionApi {
+export class TransactionApi extends BaseApiConfig {
   public static async getDefaultTransactions(): Promise<IApiResult> {
-    const data = await axios.get(
-      '/transaction/default',
-      TransactionApi.apiOptions(),
-    );
+    const data = await axios.get('/transaction/default', this.apiOptions());
 
     return BaseApiHandler.handleApi(data);
   }
@@ -73,15 +70,5 @@ export class TransactionApi {
       TransactionApi.apiOptions(),
     );
     return BaseApiHandler.handleApi(data);
-  }
-
-  private static apiOptions() {
-    return {
-      baseURL: devConfig.baseURL,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        'Content-type': 'application/json',
-      },
-    };
   }
 }

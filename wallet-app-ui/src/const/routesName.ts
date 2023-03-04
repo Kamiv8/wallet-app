@@ -7,6 +7,7 @@ type TRoutes = {
   VERIFY: string;
   HISTORY: string;
   TABLE: string;
+  ADD_NOTE: string;
   SETTINGS: string;
   REPORT: string;
   NAVIGATION: string;
@@ -30,6 +31,7 @@ export const RoutesName: TRoutes = {
   ADD_TRANSACTIONS: '/AddTransactions',
   HISTORY: '/history',
   TABLE: '/table',
+  ADD_NOTE: '/table/addNote',
   SETTINGS: '/settings',
   REPORT: '/report',
   NAVIGATION: '/navigation',

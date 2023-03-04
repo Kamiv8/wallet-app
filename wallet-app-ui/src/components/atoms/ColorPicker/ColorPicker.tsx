@@ -8,7 +8,6 @@ export type TProps = {
 };
 
 const ColorPicker = (props: TProps) => {
-  console.log(props);
   return <StyledInput {...props} type={'color'} />;
 };
 
