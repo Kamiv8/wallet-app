@@ -2,9 +2,8 @@ import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import SavedTransaction from '../../molecules/SavedTransaction/SavedTransaction';
 import Typography from '../../atoms/Typography/Typography';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Transaction } from '../../../models/resources/transaction';
-import { CurrencyMark } from '../../../models/resources/currency';
 import AddTransactionForm from '../../organisms/AddTransactionForm/AddTransactionForm';
 import { TransactionApi } from '../../../api/transaction.api';
 
@@ -47,6 +46,27 @@ const AddTransactionPage = () => {
     });
   };
 
+  const addTransaction = useCallback(
+    async (id: string) => {
+      const transaction = state.transactions.find((x) => x.id === id);
+
+      if (!transaction) return;
+
+      const values = {
+        title: transaction.title,
+        price: transaction.price,
+        description: transaction.description,
+        categoryId: transaction.category.id,
+        currencyId: transaction.currency.id,
+        isDefault: false,
+        date: new Date(),
+      };
+
+      await TransactionApi.addTransaction(values);
+    },
+    [state],
+  );
+
   return (
     <MainTemplate>
       <Typography size={'xl'} color={'lightBlue'} weight={700} uppercase>
@@ -62,12 +82,9 @@ const AddTransactionPage = () => {
             price={item.price}
             textColor={item.textColor}
             backgroundColor={item.backgroundColor}
-            currency={{
-              id: 's',
-              name: 'Polski złoty',
-              mark: item.currencyMark as CurrencyMark,
-            }}
+            currency={item.currency}
             description={item.description}
+            addTransaction={addTransaction}
           />
         ))}
       {state.isNew && (

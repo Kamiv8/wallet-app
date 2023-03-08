@@ -39,6 +39,7 @@ public class JwtUtils: IJwtUtils
             Subject = new ClaimsIdentity(new[]
             {
                 new Claim("id", user.Id.ToString()),
+                new Claim("groupId", user.GroupId != null ? user.GroupId.ToString() : "")
             }),
             Expires = DateTime.UtcNow.AddHours(15),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -68,9 +69,11 @@ public class JwtUtils: IJwtUtils
 
             var jwtToken = (JwtSecurityToken) validatedToken;
             var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+            var groupId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "groupId").Value);
             return new UserClaimsData()
             {
                 userId = userId,
+                GroupId = groupId
             };
 
         }

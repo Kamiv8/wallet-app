@@ -26,17 +26,17 @@ const TransactionItem = (props: TProps) => {
         </ContentWrapper>
         <ContentWrapper>
           <Typography size={'m'} weight={700}>
-            {props.data.category}
+            {props.data.category.name}
           </Typography>
           {props.data.price <= 0 ? (
             <Typography size={'m'} weight={700} color={'red'}>
               {props.data.price}
-              {props.data.currencyMark}
+              {props.data.currency.mark}
             </Typography>
           ) : (
             <Typography size={'m'} weight={700} color={'green'}>
               {props.data.price}
-              {props.data.currencyMark}
+              {props.data.currency.mark}
             </Typography>
           )}
         </ContentWrapper>

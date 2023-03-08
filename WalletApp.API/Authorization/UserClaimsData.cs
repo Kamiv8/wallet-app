@@ -3,4 +3,5 @@
 public class UserClaimsData
 {
     public Guid userId { get; set; }
+    public Guid? GroupId { get; set; }
 }

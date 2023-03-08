@@ -2,5 +2,5 @@
 
 public class FindGroupDto
 {
-    
+    public string Name { get; set; }
 }

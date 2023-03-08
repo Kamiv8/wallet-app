@@ -27,6 +27,7 @@ public class GetAllTransactionQueryHandler : IRequestHandler<GetAllTransactionQu
         var transactions = _dataContext.Transactions
             .Where(x => x.UserId == _authService.User.Id  && x.Type == request.Type)
             .Include(x=> x.Currency)
+            .Include(x => x.Category)
             .ToList();
 
         var mTransactions = _mapper.Map<List<GetAllTransactionDto>>(transactions);

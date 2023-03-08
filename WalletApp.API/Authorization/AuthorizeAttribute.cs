@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using WalletApp.API.Entities;
+using WalletApp.API.Models.enums;
 
 namespace WalletApp.API.Authorization;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 {
+    private readonly IList<Role> _roles;
 
-    public AuthorizeAttribute()
+    public AuthorizeAttribute(params Role[] roles)
     {
+        _roles = roles ?? new Role[] {};
     }
 
     public void OnAuthorization(AuthorizationFilterContext context)
@@ -20,7 +23,7 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 
         // authorization
         var account = (User?)context.HttpContext.Items["User"];
-        if (account == null)
+        if (account == null || (_roles.Any() && !_roles.Contains(account.Role ?? Role.None)))
         {
             // not logged in or role not authorized
             context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };

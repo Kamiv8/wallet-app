@@ -28,10 +28,10 @@ public class AutoMapper : Profile
         CreateMap<Currency, CurrencyDto>();
         CreateMap<CreateGroupCommand, Group>();
         CreateMap<Transaction, GetAllTransactionDto>()
-            .ForMember(dest => dest.CurrencyMark, 
-                opt => opt.MapFrom(x => x.Currency.Mark))
+            .ForMember(dest => dest.Currency, 
+                opt => opt.MapFrom(x => x.Currency))
             .ForMember(dest => dest.Category, 
-                opt => opt.MapFrom(x => x.Category.Name) );
+                opt => opt.MapFrom(x => x.Category) );
         CreateMap<User, GetUserDataDTO>();
         CreateMap<CreateNoteCommand, Note>();
 

@@ -3,10 +3,11 @@ import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import HistoryCardDetails from '../../organisms/HistoryCardDetails/HistoryCardDetails';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { CurrencyMark } from '../../../models/resources/currency';
+import { Currency } from '../../../models/resources/currency';
 import { TransactionDetails } from '../../../models/resources/TransactionDetails';
 import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
 import { TransactionApi } from '../../../api/transaction.api';
+import { Category } from '../../../models/resources/category';
 
 const HistoryDetailsPage = () => {
   const location = useLocation();
@@ -14,10 +15,18 @@ const HistoryDetailsPage = () => {
   const [state, setState] = useState<TransactionDetails>({
     id: '',
     title: '',
-    category: '',
+    category: {
+      id: '',
+      name: '',
+    } as Category,
     price: 0,
     date: new Date(),
-    currencyMark: '' as CurrencyMark,
+    currency: {
+      id: '',
+      name: '',
+      exchangeRate: 0,
+      mark: 'PLN',
+    } as Currency,
     percentage: {
       byCategory: [] as ToPieChartDto[],
     },
@@ -40,11 +49,7 @@ const HistoryDetailsPage = () => {
         title={state.title}
         category={state.category}
         price={state.price}
-        currency={{
-          id: '2',
-          name: 'Polski złoty',
-          mark: state.currencyMark as CurrencyMark,
-        }}
+        currency={state.currency}
         date={new Date(state.date)}
         toChart={state?.percentage.byCategory}
       />

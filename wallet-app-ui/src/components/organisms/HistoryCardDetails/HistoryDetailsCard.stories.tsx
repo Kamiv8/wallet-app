@@ -18,10 +18,14 @@ Primary.args = {
   currency: {
     id: '1',
     mark: 'PLN',
+    exchangeRate: 2,
     name: 'Polski złoty',
   },
   price: 12,
-  category: 'ticket',
+  category: {
+    id: '',
+    name: 'ticket',
+  },
   title: 'Lorem ipsum dolor sit ipsum dolor sit',
   date: new Date(),
 };

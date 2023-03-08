@@ -14,21 +14,19 @@ import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
 import { cutString } from '../../../utils/utils';
 import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
 import { pieChartMapper } from '../../../helpers/chartDataMapper.helper';
+import { Category } from '../../../models/resources/category';
 
 export type TProps = {
   title: string;
-  category: string;
+  category: Category;
   price: number;
   currency: Currency;
   date: Date;
   description?: string;
-  toChart?: ToPieChartDto[]
+  toChart?: ToPieChartDto[];
 };
 
 const HistoryCardDetails = (props: TProps) => {
-  console.log(props);
-  //TODO get data to chart js
-
   const navigate = useNavigate();
 
   return (
@@ -44,7 +42,7 @@ const HistoryCardDetails = (props: TProps) => {
           Category
         </Typography>
         <Typography weight={700} size={'m'}>
-          {props.category}
+          {props.category.name}
         </Typography>
       </Content>
       <Content>
@@ -74,10 +72,13 @@ const HistoryCardDetails = (props: TProps) => {
       </Content>
       <div>
         <Typography size={'l'} weight={700}>
-          Percentage by {props.category} category:
+          Percentage by {props.category.name} category:
         </Typography>
         <ChartWrapper>
-          <Chart data={pieChartMapper(props.toChart as ToPieChartDto[])} type={ChartTypeEnum.PIE} />
+          <Chart
+            data={pieChartMapper(props.toChart as ToPieChartDto[])}
+            type={ChartTypeEnum.PIE}
+          />
         </ChartWrapper>
       </div>
     </Wrapper>

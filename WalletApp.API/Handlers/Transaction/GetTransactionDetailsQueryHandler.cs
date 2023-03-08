@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WalletApp.API.Helpers;
 using WalletApp.API.Models;
 using WalletApp.API.Models.Category;
+using WalletApp.API.Models.Currency;
 using WalletApp.API.Models.queries.Transaction;
 using WalletApp.API.Models.Transaction;
 using WalletApp.API.Services;
@@ -27,6 +28,8 @@ public class GetTransactionDetailsQueryHandler : IRequestHandler<GetTransactionD
     {
 
         var transaction = _dataContext.Transactions
+            .Include(x => x.Category)
+            .Include(x => x.Currency)
             .SingleOrDefault(x => x.Id == request.Id);
 
         if (transaction is null)
@@ -65,10 +68,20 @@ public class GetTransactionDetailsQueryHandler : IRequestHandler<GetTransactionD
         var result = new GetTransactionDetailsDto()
         {
             Title = transaction.Title,
-            Category = _dataContext.Categories.FirstOrDefault(x => x.Id == transaction.CategoryId)!.Name,
             Price = transaction.Price,
-            CurrencyMark = _dataContext.Currencies.FirstOrDefault(x => x.Id == transaction.CurrencyId)!.Mark,
             Date = transaction.Date
+        };
+        result.Currency = new CurrencyDto()
+        {
+            Id = transaction.Currency.Id,
+            ExchangeRate = transaction.Currency.ExchangeRate,
+            Mark = transaction.Currency.Mark,
+            Name = transaction.Currency.Name
+        };
+        result.Category = new DefaultCategoryDto()
+        {
+            Id = transaction.Category.Id,
+            Name = transaction.Currency.Name
         };
         result.Percentage = new CategoryChartData
         {

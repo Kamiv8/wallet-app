@@ -9,16 +9,20 @@ import Typography from '../../atoms/Typography/Typography';
 import { cutString } from '../../../utils/utils';
 import Button from '../../atoms/Button/Button';
 import { Currency } from '../../../models/resources/currency';
+import { FormattedMessage } from 'react-intl';
+import messages from '../../../i18n/messages';
+import { Category } from '../../../models/resources/category';
 
 export type TProps = {
   id: string;
   title: string;
-  category: string;
+  category: Category;
   price: number;
   currency: Currency;
   backgroundColor?: string;
   textColor?: string;
   description?: string;
+  addTransaction: (id: string) => void;
 };
 
 const SavedTransaction = (props: TProps) => {
@@ -36,7 +40,7 @@ const SavedTransaction = (props: TProps) => {
           size={'m'}
           uppercase
         >
-          {props.category}
+          {props.category.name}
         </Typography>
         <Typography customColor={props.textColor} size={'m'} weight={700}>
           {props.price}
@@ -55,9 +59,9 @@ const SavedTransaction = (props: TProps) => {
         <Button
           customColor={props.textColor}
           type={'button'}
-          onClick={() => {}}
+          onClick={() => props.addTransaction(props.id)}
         >
-          Add
+          <FormattedMessage {...messages.buttonAdd} />
         </Button>
       </ButtonWrapper>
     </Wrapper>
