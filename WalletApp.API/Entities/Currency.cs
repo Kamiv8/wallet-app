@@ -11,8 +11,8 @@ public class Currency
     public decimal ExchangeRate { get; set; }
 
     public virtual List<Transaction> Transactions { get; set; } = new List<Transaction>();
-    public virtual UserData UserData { get; set; }
+    public virtual List<UserData> UserData { get; set; } = new List<UserData>();
 
-    public virtual Group Group { get; set; }
+    public virtual List<Group> Group { get; set; } = new List<Group>();
 
 }

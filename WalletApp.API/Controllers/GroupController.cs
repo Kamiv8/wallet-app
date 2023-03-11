@@ -80,6 +80,7 @@ public class GroupController : BaseController
 
     // accept request to join
     [HttpPost("acceptUser")]
+    [Authorize(Role.Admin)]
     public async Task<IActionResult> AcceptUser([FromBody] AcceptUserDto dto, CancellationToken cancellationToken)
     {
         var command = new AcceptUserCommand()
@@ -95,6 +96,7 @@ public class GroupController : BaseController
     
     // reject request to join
     [HttpPost("rejectUser")]
+    [Authorize(Role.Admin)]
     public async Task<IActionResult> RejectUser([FromBody] RejectUserDto dto, CancellationToken cancellationToken)
     {
         var command = new RejectUserCommand()
@@ -104,6 +106,17 @@ public class GroupController : BaseController
         };
         
         var res = await _mediator.Send(command, cancellationToken);
+        
+        return Ok(res);
+    }
+
+    [HttpGet("notificationCount")]
+    [Authorize(Role.Admin)]
+    public async Task<ActionResult<JoinUserNotifiCountDto>> GetJoinUserNotificationCount(CancellationToken cancellationToken)
+    {
+        var query = new JoinUserNotificationCountQuery();
+
+        var res = await _mediator.Send(query, cancellationToken);
         
         return Ok(res);
     }

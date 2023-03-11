@@ -13,10 +13,10 @@ const VerificationSuccessfulPage = () => {
 
   useEffect(() => {
     (async () => {
-      const values = {
+      const { token } = {
         token: createPathArray(location.pathname)[2],
       };
-      await AuthApi.verifyAccount({ token: values });
+      await AuthApi.verifyAccount({ token });
     })();
   }, []);
 

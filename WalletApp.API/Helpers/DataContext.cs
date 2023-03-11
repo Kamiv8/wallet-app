@@ -59,14 +59,14 @@ public class DataContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<Currency>()
-            .HasOne(c => c.UserData)
+            .HasMany(c => c.UserData)
             .WithOne(ud => ud.Currency)
-            .HasForeignKey<UserData>(ud => ud.CurrencyId);
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Currency>()
-            .HasOne(c => c.Group)
+            .HasMany(c => c.Group)
             .WithOne(g => g.Currency)
-            .HasForeignKey<Group>(g => g.CurrencyId);
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Category>()
             .HasMany(c => c.Transactions)

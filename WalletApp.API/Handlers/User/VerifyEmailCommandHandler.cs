@@ -36,7 +36,7 @@ public class VerifyEmailCommandHandler: IRequestHandler<VerifyEmailCommand, Unit
 
     public Task<Unit> Handle(VerifyEmailCommand command, CancellationToken cancellationToken)
     {
-        var user = _dataContext.Users.SingleOrDefault(u => u.VerificationToken == command.Token);
+        var user = _dataContext.Users.FirstOrDefault(u => u.VerificationToken == command.Token);
 
         if (user == null)
             throw new AppException("Verification failed");
@@ -44,8 +44,8 @@ public class VerifyEmailCommandHandler: IRequestHandler<VerifyEmailCommand, Unit
         user.Verified = DateTime.UtcNow;
         user.VerificationToken = null;
         _dataContext.Users.Update(user);
-        var defaultCurrencyId = _dataContext.Currencies.SingleOrDefault(x => x.Mark == "PLN").Id;
-        if (_dataContext.UserDatas.SingleOrDefault(x => x.UserId == user.Id) == null)
+        var defaultCurrencyId = _dataContext.Currencies.FirstOrDefault(x => x.Mark == "PLN")!.Id;
+        if (_dataContext.UserDatas.FirstOrDefault(x => x.UserId == user.Id) == null)
         {
             var userData = new UserData()
             {

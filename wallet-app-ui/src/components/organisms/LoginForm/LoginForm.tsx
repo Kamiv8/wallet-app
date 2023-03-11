@@ -14,6 +14,7 @@ import { RoutesName } from '../../../const/routesName';
 import { AuthApi } from '../../../api/auth.api';
 import { useNavigate } from 'react-router-dom';
 import { ApiStatus } from '../../../models/apiResult';
+import { UserApi } from '../../../api/user.api';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -28,6 +29,11 @@ export const LoginForm = () => {
     const authenticate = await AuthApi.authenticate(values);
 
     if (authenticate.status === ApiStatus.SUCCESS) {
+      const userData = await UserApi.getUserData();
+      if (userData.data.groupId !== null) {
+        localStorage.setItem('groupId', userData.data.groupId);
+        localStorage.setItem('userRole', userData.data.role);
+      }
       navigate(RoutesName.ROOT);
     }
   };

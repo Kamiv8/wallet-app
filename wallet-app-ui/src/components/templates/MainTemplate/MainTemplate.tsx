@@ -4,13 +4,14 @@ import Footer from '../../organisms/Footer/Footer';
 
 export type TProps = {
   children: ReactNode | ReactNode[];
+  isGroup?: boolean;
 };
 
 const MainTemplate = (props: TProps) => {
   return (
     <>
       <Wrapper>{props.children}</Wrapper>
-      <Footer />
+      <Footer isGroup={props.isGroup} />
     </>
   );
 };

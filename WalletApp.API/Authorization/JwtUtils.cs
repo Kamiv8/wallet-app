@@ -69,7 +69,7 @@ public class JwtUtils: IJwtUtils
 
             var jwtToken = (JwtSecurityToken) validatedToken;
             var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
-            var groupId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "groupId").Value);
+            Guid? groupId = jwtToken.Claims.FirstOrDefault(x => x.Type == "groupId")?.Value != "" ? Guid.Parse(jwtToken.Claims.First(x => x.Type == "groupId").Value) : (Guid?)null;
             return new UserClaimsData()
             {
                 userId = userId,

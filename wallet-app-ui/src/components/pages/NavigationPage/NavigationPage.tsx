@@ -5,9 +5,11 @@ import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg';
 import { ReactComponent as LogoutIcon } from '../../../assets/images/logout.svg';
 import UserDataHeader from '../../molecules/UserDataHeader/UserDataHeader';
 import PersonNavigation from '../../organisms/PersonNavigation/PersonNavigation';
-import { useLayoutEffect, useState } from 'react';
+import { useContext, useLayoutEffect, useState } from 'react';
 import { RoleEnum } from '../../../types/enums/role.enum';
 import { UserApi } from '../../../api/user.api';
+import ApplicationContext from '../../../contexts/application.context';
+import GroupNavigation from '../../organisms/GroupNavigation/GroupNavigation';
 
 type TProps = {
   closeNav: (open: boolean) => void;
@@ -22,6 +24,7 @@ type TState = {
 };
 
 const NavigationPage = (props: TProps) => {
+  const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<TState>({
     username: '',
     avatarNumber: 0,
@@ -57,6 +60,8 @@ const NavigationPage = (props: TProps) => {
         />
       }
       personNavigation={<PersonNavigation />}
+      hasGroup={!!appContext.state.groupId}
+      groupNavigation={<GroupNavigation />}
       closeIcon={<CloseIcon onClick={() => props.closeNav(false)} />}
       logoutIcon={<LogoutIcon onClick={() => props.logout()} />}
     />

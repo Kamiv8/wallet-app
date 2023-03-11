@@ -9,15 +9,18 @@ export type TProps = {
   gradientColor?: boolean;
   color?: string;
   children?: ReactNode | ReactNode[];
-  close: () => void;
+  close?: () => void;
 };
 
 const CardWrapper = (props: TProps) => {
   return (
     <StyledWrapper color={props.color} gradientColor={props.gradientColor}>
-      <CloseWrapper>
-        <StyledCloseIcon onClick={props.close} />
-      </CloseWrapper>
+      {props.close && (
+        <CloseWrapper>
+          <StyledCloseIcon onClick={props.close} />
+        </CloseWrapper>
+      )}
+
       {props.children}
     </StyledWrapper>
   );

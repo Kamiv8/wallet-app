@@ -19,7 +19,11 @@ export type TNavigationItems = {
   text: ReactNode;
 };
 
-const Footer = () => {
+export type TProps = {
+  isGroup?: boolean;
+};
+
+const Footer = (props: TProps) => {
   const [isOpenNav, setIsOpenNav] = useState(false);
   const navigate = useNavigate();
 
@@ -67,12 +71,14 @@ const Footer = () => {
 
   const logout = useCallback(() => {
     localStorage.removeItem('token');
+    localStorage.removeItem('groupId');
+    localStorage.removeItem('userRole');
     navigate(RoutesName.LOGIN);
   }, []);
 
   return (
     <>
-      <Wrapper>
+      <Wrapper isGroup={props.isGroup}>
         <Link to={rootURL}>
           <Circle />
         </Link>
@@ -112,7 +118,7 @@ const Footer = () => {
       </Wrapper>
 
       {isOpenNav ? (
-        <NavigationPage logout={() => logout()} closeNav={toggleNavigation} />
+        <NavigationPage logout={logout} closeNav={toggleNavigation} />
       ) : null}
     </>
   );

@@ -45,3 +45,15 @@ export const RoutesName: TRoutes = {
   CHANGE_USERNAME: '/settings/changeUsername',
   CHANGE_LANGUAGE: '/settings/changeLanguage',
 };
+
+type TGroupRoutes = {
+  ROOT: string;
+  SETTINGS: string;
+  NOTIFICATIONS: string;
+};
+
+export const GroupRoutesName: TGroupRoutes = {
+  ROOT: '/group',
+  SETTINGS: '/group/settings',
+  NOTIFICATIONS: '/group/notifications',
+};

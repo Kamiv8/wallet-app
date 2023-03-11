@@ -294,6 +294,12 @@ const messages = defineMessages({
     defaultMessage: 'Add note',
   },
 
+  //notification page
+  notificationPageNotificationPanel: {
+    id: 'notificationPageNotificationPanel',
+    defaultMessage: 'Notification panel',
+  },
+
   // Buttons
   buttonAdd: {
     id: 'buttonAdd',

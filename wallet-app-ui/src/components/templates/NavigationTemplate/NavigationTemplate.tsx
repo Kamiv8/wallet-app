@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import {
   Content,
+  GroupNavBoxes,
   Header,
   LogoutWrapper,
   NavBoxes,
@@ -16,6 +17,7 @@ export type TProps = {
   personNavigation: ReactNode;
   logoutIcon: ReactNode;
   groupNavigation?: ReactNode;
+  hasGroup?: boolean;
 };
 
 const NavigationTemplate = (props: TProps) => {
@@ -30,7 +32,19 @@ const NavigationTemplate = (props: TProps) => {
       <Content>
         <UserDataWrapper>{props.userData}</UserDataWrapper>
         <NavBoxes>{props.personNavigation}</NavBoxes>
-        {props.groupNavigation && <div>{props.groupNavigation}</div>}
+        {props.hasGroup && (
+          <GroupNavBoxes>
+            <Typography
+              weight={700}
+              uppercase
+              customColor={'#ffffffdd'}
+              size={'l'}
+            >
+              Group
+            </Typography>
+            <NavBoxes>{props.groupNavigation}</NavBoxes>
+          </GroupNavBoxes>
+        )}
       </Content>
       <LogoutWrapper>{props.logoutIcon}</LogoutWrapper>
     </Wrapper>

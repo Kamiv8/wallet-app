@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import footerBlue from '../../../assets/images/footerBlue.svg';
+import footerGreen from '../../../assets/images/footerGreen.svg';
 import { TTheme } from '../../../styles/theme';
 
-export const Wrapper = styled.footer`
-  background-image: url(${footerBlue});
+export const Wrapper = styled.footer<{ isGroup?: boolean }>`
+  background-image: ${({ isGroup }) =>
+    isGroup ? `url(${footerGreen})` : `url(${footerBlue})`};
   position: fixed;
   width: 100vw;
   height: 17vh;

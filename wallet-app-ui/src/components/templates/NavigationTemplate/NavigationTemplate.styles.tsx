@@ -46,6 +46,11 @@ export const NavBoxes = styled.div`
   height: 30%;
   margin-top: 10%;
 `;
+export const GroupNavBoxes = styled.div`
+  width: 100%;
+  height: 30%;
+  margin-top: 20%;
+`;
 
 export const LogoutWrapper = styled.div`
   width: 100%;

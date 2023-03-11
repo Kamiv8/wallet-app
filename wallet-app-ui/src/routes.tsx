@@ -1,6 +1,5 @@
 import {
   Navigate,
-  // Navigate,
   Outlet,
   Route,
   Routes as RoutesWrapper,
@@ -9,7 +8,7 @@ import RegisterPage from './components/pages/RegisterPage/RegisterPage';
 import HomePage from './components/pages/HomePage/HomePage';
 import VerificationSuccessfulPage from './components/pages/VerificationSuccessfulPage/VerificationSuccessfulPage';
 import LoginPage from './components/pages/LoginPage/LoginPage';
-import { RoutesName } from './const/routesName';
+import { GroupRoutesName, RoutesName } from './const/routesName';
 import ResetPasswordPage from './components/pages/ResetPasswordPage/ResetPasswordPage';
 import AddTransactionPage from './components/pages/AddTransactionPage/AddTransactionPage';
 import HistoryPage from './components/pages/HistoryPage/HistoryPage';
@@ -27,6 +26,8 @@ import ChangeCategoryPage from './components/pages/ChangeCategoryPage/ChangeCate
 import TablePage from './components/pages/TablePage/TablePage';
 import NoteDetailsPage from './components/pages/NoteDetailsPage/NoteDetailsPage';
 import AddNotePage from './components/pages/AddNotePage/AddNotePage';
+import GroupHomePage from './components/pages/groupPages/GroupHomePage/GroupHomePage';
+import NotificationPanelPage from './components/pages/groupPages/NotificationPanel/NotificationPanelPage';
 
 const GuardedRoute = () => {
   const token = localStorage.getItem('token');
@@ -39,6 +40,13 @@ const GuardedRoute = () => {
   if (decodedToken.exp * 1000 < now.getTime()) {
     return <Navigate to={RoutesName.LOGIN} />;
   }
+
+  return <Outlet />;
+};
+
+const GroupRoute = () => {
+  const userGroup = localStorage.getItem('groupId');
+  if (!userGroup) return <Navigate to={RoutesName.ROOT} />;
 
   return <Outlet />;
 };
@@ -90,6 +98,13 @@ export const Routes = () => (
       <Route path={RoutesName.TABLE} element={<TablePage />} />
       <Route path={RoutesName.TABLE + `/:id`} element={<NoteDetailsPage />} />
       <Route path={RoutesName.ADD_NOTE} element={<AddNotePage />} />
+      <Route element={<GroupRoute />}>
+        <Route path={GroupRoutesName.ROOT} element={<GroupHomePage />} />
+        <Route
+          path={GroupRoutesName.NOTIFICATIONS}
+          element={<NotificationPanelPage />}
+        />
+      </Route>
     </Route>
   </RoutesWrapper>
 );

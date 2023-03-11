@@ -6,7 +6,7 @@ export const FoundedGroup = () => {
   return (
     <CardWrapper gradientColor close={() => {}}>
       <div>
-        <Avatar onClick={() => {}} image={''} />
+        <Avatar onClick={() => {}} image={1} />
         <Typography size={'m'} weight={700}>
           Lorem ipsum dolor sit
         </Typography>

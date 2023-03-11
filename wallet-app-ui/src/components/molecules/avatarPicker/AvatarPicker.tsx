@@ -35,7 +35,7 @@ const AvatarPicker = (props: TProps) => {
               key={index}
               selected={props.selected === index + 1}
               onClick={() => selectIcon((index + 1) as TSelectedIcon)}
-              image={Item}
+              image={index + 1}
             />
           ))}
         </>
@@ -48,7 +48,7 @@ const AvatarPicker = (props: TProps) => {
               key={index}
               selected={props.selected === index + 1}
               onClick={() => selectIcon((index + 1) as TSelectedIcon)}
-              image={Item}
+              image={index + 1}
             />
           ))}
         </>

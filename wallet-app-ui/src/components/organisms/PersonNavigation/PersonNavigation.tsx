@@ -6,15 +6,18 @@ import { ReactComponent as TableIcon } from '../../../assets/images/navigationIc
 import { ReactComponent as SettingsIcon } from '../../../assets/images/navigationIcons/settings.svg';
 import { ReactComponent as ReportIcon } from '../../../assets/images/navigationIcons/pdf.svg';
 import { ReactComponent as GroupIcon } from '../../../assets/images/navigationIcons/group.svg';
-import { RoutesName } from '../../../const/routesName';
+import { GroupRoutesName, RoutesName } from '../../../const/routesName';
+import { useContext } from 'react';
+import ApplicationContext from '../../../contexts/application.context';
 
 export type TBoxes = {
   image: any;
-  name: string; // TODO
+  name: string;
   route: string;
 };
 
 const PersonNavigation = () => {
+  const applicationContext = useContext(ApplicationContext);
   const boxes: TBoxes[] = [
     {
       image: TransactionIcon,
@@ -44,7 +47,9 @@ const PersonNavigation = () => {
     {
       image: GroupIcon,
       name: 'Group',
-      route: RoutesName.CREATE_FIND_GROUP,
+      route: applicationContext.state.groupId
+        ? GroupRoutesName.ROOT
+        : RoutesName.CREATE_FIND_GROUP,
     },
   ];
 
