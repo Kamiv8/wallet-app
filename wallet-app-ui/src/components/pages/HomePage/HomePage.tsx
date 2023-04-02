@@ -5,7 +5,7 @@ import messages from '../../../i18n/messages';
 import Chart from '../../atoms/Chart/Chart';
 import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
 import TransactionItem from '../../molecules/TransactionItem/TransactionItem';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   lineChartMapper,
   pieChartMapper,
@@ -15,6 +15,8 @@ import { Transaction } from '../../../models/resources/transaction';
 import { ToMoneyChartDto } from '../../../models/dtos/toMoneyChartDto';
 import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
 import { UserApi } from '../../../api/user.api';
+import ApplicationContext from '../../../contexts/application.context';
+import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
 
 type TActualMoney = {
   money: number;
@@ -29,6 +31,7 @@ interface IState {
 }
 
 const HomePage = () => {
+  const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<IState>({
     lastTransactions: [],
     moneyChart: [],
@@ -53,7 +56,9 @@ const HomePage = () => {
   }
 
   async function getLastTransactions() {
-    const lastTransactions = await TransactionApi.getLastTransactions();
+    const lastTransactions = await TransactionApi.getLastTransactions(
+      getApplicationType(appContext.state.type),
+    );
     setState((prev) => ({
       ...prev,
       lastTransactions: lastTransactions.data.items,
@@ -61,7 +66,9 @@ const HomePage = () => {
   }
 
   async function getMoneyChartData() {
-    const moneyChartData = await TransactionApi.getMoneyChartData();
+    const moneyChartData = await TransactionApi.getMoneyChartData(
+      getApplicationType(appContext.state.type),
+    );
     setState((prev) => ({
       ...prev,
       moneyChart: moneyChartData.data,
@@ -69,7 +76,9 @@ const HomePage = () => {
   }
 
   async function getIncomeChartData() {
-    const incomeChartData = await TransactionApi.getIncomeChartData();
+    const incomeChartData = await TransactionApi.getIncomeChartData(
+      getApplicationType(appContext.state.type),
+    );
     setState((prev) => ({
       ...prev,
       incomeChart: incomeChartData.data,
@@ -77,7 +86,9 @@ const HomePage = () => {
   }
 
   async function getCostChartData() {
-    const costChartData = await TransactionApi.getCostChartData();
+    const costChartData = await TransactionApi.getCostChartData(
+      getApplicationType(appContext.state.type),
+    );
     setState((prev) => ({
       ...prev,
       costChart: costChartData.data,

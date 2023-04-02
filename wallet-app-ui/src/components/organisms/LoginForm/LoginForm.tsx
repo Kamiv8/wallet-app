@@ -15,8 +15,12 @@ import { AuthApi } from '../../../api/auth.api';
 import { useNavigate } from 'react-router-dom';
 import { ApiStatus } from '../../../models/apiResult';
 import { UserApi } from '../../../api/user.api';
+import { useContext } from 'react';
+import ApplicationContext from '../../../contexts/application.context';
+import { ActionEnum } from '../../../contexts/application.reducer';
 
 export const LoginForm = () => {
+  const appContext = useContext(ApplicationContext);
   const navigate = useNavigate();
   const initialValues = {
     email: '',
@@ -33,6 +37,13 @@ export const LoginForm = () => {
       if (userData.data.groupId !== null) {
         localStorage.setItem('groupId', userData.data.groupId);
         localStorage.setItem('userRole', userData.data.role);
+        appContext.dispatch({
+          type: ActionEnum.CHANGE_APPLICATION_TYPE,
+          payload: {
+            groupId: userData.data.groupId,
+            userRole: userData.data.role,
+          },
+        });
       }
       navigate(RoutesName.ROOT);
     }

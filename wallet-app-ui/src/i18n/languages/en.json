@@ -1,4 +1,9 @@
 {
+  "addNotePageAddNote": "Add note",
+  "addNotePageBackgroundColor": "Background color",
+  "addNotePageTitle": "Title",
+  "addNotePageTodoList": "Todo list",
+  "addNoteTextColor": "Text color",
   "addTransactionPageBackgroundColor": "Background color",
   "addTransactionPageCategory": "Category",
   "addTransactionPageCurrencies": "Currencies",
@@ -27,6 +32,7 @@
   "createGroupFormGroupIcon": "Group icon",
   "createGroupFormMaxMembers": "Max members",
   "createGroupFormName": "Name",
+  "detailsNotePageNoteDetails": "Note details",
   "findGroupFormGroupName": "Group name",
   "findGroupPageFindGroup": "Find group",
   "groupPageCreateGroup": "Crete group",
@@ -51,6 +57,7 @@
   "navigationPageNavigation": "NAVIGATION",
   "navigationTable": "Table",
   "navigationTransaction": "Transaction",
+  "notificationPageNotificationPanel": "Notification panel",
   "registerPageConfirmPassword": "Confirm password",
   "registerPageEmail": "Email",
   "registerPageIcon": "Icon",
@@ -62,5 +69,6 @@
   "resetPasswordPageEmail": "Email",
   "resetPasswordPageResetPassword": "Reset password",
   "resetPasswordPageSent": "Sent",
-  "settingsMainPageSettings": "Settings"
+  "settingsMainPageSettings": "Settings",
+  "tablePageTable": "Table"
 }

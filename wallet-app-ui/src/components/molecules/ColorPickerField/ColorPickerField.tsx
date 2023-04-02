@@ -9,6 +9,7 @@ export type TProps = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   label: TFormattedMessage;
   color: TColor;
+  defaultValue?: string;
 };
 
 const ColorPickerField = (props: TProps) => {

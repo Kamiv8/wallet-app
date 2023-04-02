@@ -8,6 +8,8 @@ export default {
   decorators: [withRouter],
 } as ComponentMeta<typeof FindGroupForm>;
 
-const Template: ComponentStory<typeof FindGroupForm> = () => <FindGroupForm />;
+const Template: ComponentStory<typeof FindGroupForm> = (args) => (
+  <FindGroupForm {...args} />
+);
 
 export const Primary = Template.bind({});

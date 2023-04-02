@@ -81,6 +81,8 @@ public class AddTransactionCommandHandler: IRequestHandler<AddTransactionCommand
             {
                 transaction.Price *= transaction.Price;
             }
+
+            transaction.GroupId = user.GroupId;
             group.Money += transaction.Price;
             _dataContext.Groups.Update(group);
 

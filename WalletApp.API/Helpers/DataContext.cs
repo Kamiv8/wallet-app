@@ -72,10 +72,16 @@ public class DataContext : DbContext
             .HasMany(c => c.Transactions)
             .WithOne(t => t.Category)
             .OnDelete(DeleteBehavior.Restrict);
-
+        
         modelBuilder.Entity<Group>()
             .HasMany(g => g.Reports)
             .WithOne(r => r.Group)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Group>()
+            .HasMany(g => g.Transactions)
+            .WithOne(t => t.Group)
+            .HasForeignKey(p => p.GroupId)
             .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<Group>()
@@ -88,9 +94,6 @@ public class DataContext : DbContext
             .WithOne(n => n.Group)
             .OnDelete(DeleteBehavior.Restrict);
         
-        
-        
-
         modelBuilder.Entity<NotificationType>()
             .HasOne(nt => nt.Notification)
             .WithOne(n => n.NotificationType)

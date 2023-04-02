@@ -9,40 +9,75 @@ import { ReactComponent as GroupIcon } from '../../../assets/images/navigationIc
 import { GroupRoutesName, RoutesName } from '../../../const/routesName';
 import { useContext } from 'react';
 import ApplicationContext from '../../../contexts/application.context';
+import { ActionEnum } from '../../../contexts/application.reducer';
 
 export type TBoxes = {
   image: any;
   name: string;
   route: string;
+  action: () => void;
 };
 
 const PersonNavigation = () => {
   const applicationContext = useContext(ApplicationContext);
+
+  console.log(applicationContext.state);
+
   const boxes: TBoxes[] = [
     {
       image: TransactionIcon,
       name: 'Transaction',
       route: RoutesName.ADD_TRANSACTIONS,
+      action: () => {
+        applicationContext.dispatch({
+          type: ActionEnum.CHANGE_APPLICATION_TYPE,
+          payload: 'SINGLE',
+        });
+      },
     },
     {
       image: HistoryIcon,
       name: 'History',
       route: RoutesName.HISTORY,
+      action: () => {
+        applicationContext.dispatch({
+          type: ActionEnum.CHANGE_APPLICATION_TYPE,
+          payload: 'SINGLE',
+        });
+      },
     },
     {
       image: TableIcon,
       name: 'Table',
       route: RoutesName.TABLE,
+      action: () => {
+        applicationContext.dispatch({
+          type: ActionEnum.CHANGE_APPLICATION_TYPE,
+          payload: 'SINGLE',
+        });
+      },
     },
     {
       image: SettingsIcon,
       name: 'Settings',
       route: RoutesName.SETTINGS,
+      action: () => {
+        applicationContext.dispatch({
+          type: ActionEnum.CHANGE_APPLICATION_TYPE,
+          payload: 'SINGLE',
+        });
+      },
     },
     {
       image: ReportIcon,
       name: 'Reports',
       route: RoutesName.REPORT,
+      action: () => {
+        applicationContext.dispatch({
+          type: ActionEnum.CHANGE_APPLICATION_TYPE,
+          payload: 'SINGLE',
+        });
+      },
     },
     {
       image: GroupIcon,
@@ -50,6 +85,12 @@ const PersonNavigation = () => {
       route: applicationContext.state.groupId
         ? GroupRoutesName.ROOT
         : RoutesName.CREATE_FIND_GROUP,
+      action: () => {
+        applicationContext.dispatch({
+          type: ActionEnum.CHANGE_APPLICATION_TYPE,
+          payload: 'GROUP',
+        });
+      },
     },
   ];
 
@@ -61,6 +102,7 @@ const PersonNavigation = () => {
           Image={b.image}
           name={b.name}
           routeName={b.route}
+          action={b.action}
         />
       ))}
     </Wrapper>

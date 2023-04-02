@@ -63,7 +63,7 @@ const NavigationPage = (props: TProps) => {
       hasGroup={!!appContext.state.groupId}
       groupNavigation={<GroupNavigation />}
       closeIcon={<CloseIcon onClick={() => props.closeNav(false)} />}
-      logoutIcon={<LogoutIcon onClick={() => props.logout()} />}
+      logoutIcon={<LogoutIcon onClick={props.logout} />}
     />
   );
 };

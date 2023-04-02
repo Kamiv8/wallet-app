@@ -1,22 +1,48 @@
 import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
 import { Avatar } from '../../atoms/Avatar/Avatar';
 import Typography from '../../atoms/Typography/Typography';
+import Button from '../../atoms/Button/Button';
+import { FormattedMessage } from 'react-intl';
+import messages from '../../../i18n/messages';
+import {
+  ButtonWrapper,
+  ContentWrapper,
+  HeaderWrapper,
+} from '../../organisms/FindGroupForm/FindGroupForm.styles';
+import { FoundedGroupType } from '../../../models/resources/foundedGroupType';
 
-export const FoundedGroup = () => {
+type TProps = {
+  data: FoundedGroupType;
+  onClick: (groupId: string) => void;
+};
+export const FoundedGroup = (props: TProps) => {
   return (
     <CardWrapper gradientColor close={() => {}}>
-      <div>
-        <Avatar onClick={() => {}} image={1} />
-        <Typography size={'m'} weight={700}>
-          Lorem ipsum dolor sit
+      <HeaderWrapper>
+        <Avatar image={props.data.icon} />
+        <Typography size={'l'} weight={700}>
+          {props.data.name}
         </Typography>
-      </div>
-      <div>
-        <Typography size={'m'}>HeadAdmin</Typography>
-        <Typography size={'m'}>Name admin</Typography>
-        <Typography size={'m'}>Members</Typography>
-        <Typography size={'m'}>4</Typography>
-      </div>
+      </HeaderWrapper>
+      <ContentWrapper>
+        <Typography weight={700} size={'m'}>
+          Head Admin
+        </Typography>
+        <Typography weight={700} size={'m'}>
+          {props.data.admin}
+        </Typography>
+        <Typography weight={700} size={'m'}>
+          Members
+        </Typography>
+        <Typography weight={700} size={'m'}>
+          {props.data.members}
+        </Typography>
+      </ContentWrapper>
+      <ButtonWrapper>
+        <Button color={'darkBlue'} onClick={() => props.onClick(props.data.id)}>
+          <FormattedMessage {...messages.buttonSent} />
+        </Button>
+      </ButtonWrapper>
     </CardWrapper>
   );
 };

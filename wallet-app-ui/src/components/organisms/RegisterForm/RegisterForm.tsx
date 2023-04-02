@@ -24,7 +24,7 @@ const RegisterForm = () => {
       email: '',
       password: '',
       confirmPassword: '',
-      iconId: 0 as TSelectedIcon,
+      iconId: 1 as TSelectedIcon,
     }),
     [],
   );

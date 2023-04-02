@@ -3,7 +3,7 @@ import InputField from '../../molecules/InputField/InputField';
 import messages from '../../../i18n/messages';
 import SelectField from '../../molecules/SelectField/SelectField';
 import CheckboxField from '../../molecules/CheckboxField/CheckboxField';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ColorPickerField from '../../molecules/ColorPickerField/ColorPickerField';
 import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
@@ -16,12 +16,15 @@ import { CategoryApi } from '../../../api/category.api';
 import { TransactionApi } from '../../../api/transaction.api';
 import TextAreaField from '../../molecules/TextAreaField/TextAreaField';
 import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
+import ApplicationContext from '../../../contexts/application.context';
+import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
 
 export type TProps = {
   onClose: () => void;
 };
 
 const AddTransactionForm = (props: TProps) => {
+  const appContext = useContext(ApplicationContext);
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [state, setState] = useState({
     currency: [] as CurrencyDto[],
@@ -38,6 +41,7 @@ const AddTransactionForm = (props: TProps) => {
     textColor: '',
     backgroundColor: '',
     description: '',
+    type: getApplicationType(appContext.state.type),
   };
 
   const { values, handleChange } = useForm<typeof initialValues>(initialValues);
@@ -57,7 +61,9 @@ const AddTransactionForm = (props: TProps) => {
   }
 
   async function getUserCategoryData() {
-    const userCategoryData = await CategoryApi.getUserCategory();
+    const userCategoryData = await CategoryApi.getUserCategory(
+      getApplicationType(appContext.state.type),
+    );
 
     setState((prev) => ({
       ...prev,
@@ -72,12 +78,7 @@ const AddTransactionForm = (props: TProps) => {
   }, []);
 
   const onSubmit = async () => {
-    const command = {
-      ...values,
-      type: 0,
-    };
-
-    await TransactionApi.addTransaction(command);
+    await TransactionApi.addTransaction(values);
   };
 
   return (

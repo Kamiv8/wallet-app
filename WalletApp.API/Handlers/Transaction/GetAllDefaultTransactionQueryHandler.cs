@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using WalletApp.API.Helpers;
+using WalletApp.API.Models.enums;
 using WalletApp.API.Models.queries.Transaction;
 using WalletApp.API.Models.Transaction;
 using WalletApp.API.Services;
@@ -23,14 +24,26 @@ public class GetAllDefaultTransactionQueryHandler : IRequestHandler<GetAllDefaul
     
     public Task<List<GetAllTransactionDto>> Handle(GetAllDefaultTransactionsQuery request, CancellationToken cancellationToken)
     {
-        var defaultTransactions =
-            _dataContext.Transactions
-                .Where(x => x.IsDefault == true && _authService.User!.Id == x.UserId)
+        List<Entities.Transaction> defaultTransactions = new List<Entities.Transaction>();
+
+        if (request.Type == TransactionType.Person)
+        {
+           defaultTransactions = _dataContext.Transactions
+                .Where(x => x.IsDefault == true && request.Type == x.Type && _authService.User!.Id == x.UserId)
                 .Include(x => x.Category)
                 .Include(x => x.Currency)
                 .ToList();
+        }
 
-
+        if (request.Type == TransactionType.Group)
+        {
+            defaultTransactions = _dataContext.Transactions
+                .Where(x => x.IsDefault == true && request.Type == x.Type && _authService.User!.GroupId == x.GroupId)
+                .Include(x => x.Category)
+                .Include(x => x.Currency)
+                .ToList();
+        }
+        
         if (defaultTransactions.Count == 0)
         {
             return Task.FromResult(new List<GetAllTransactionDto>());

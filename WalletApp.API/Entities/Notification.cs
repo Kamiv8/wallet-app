@@ -13,6 +13,9 @@ public class Notification
     [ForeignKey("UserId")]
     public virtual User User { get; set; }
 
-    public virtual Group Group { get; set; }
+    public Guid UserId { get; set; }
+
+    public virtual Group? Group { get; set; }
+    public Guid? Guid { get; set; }
     
 }

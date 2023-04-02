@@ -4,6 +4,8 @@ using WalletApp.API.Models.commands.Transaction;
 using WalletApp.API.Authorization;
 using WalletApp.API.Models;
 using WalletApp.API.Models.Category;
+using WalletApp.API.Models.enums;
+using WalletApp.API.Models.queries.Group;
 using WalletApp.API.Models.queries.Transaction;
 using WalletApp.API.Models.Transaction;
 
@@ -107,17 +109,23 @@ public class TransactionController : BaseController
     
     // GET all default transaction
     [HttpGet("default")]
-    public async Task<ActionResult<List<GetAllTransactionDto>>> GetAllDefaultTransaction(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<GetAllTransactionDto>>> GetAllDefaultTransaction([FromQuery] ApplicationTypeDto dto, CancellationToken cancellationToken)
     {
-        var query = new GetAllDefaultTransactionsQuery();
+        var query = new GetAllDefaultTransactionsQuery()
+        {
+            Type = dto.Type
+        };
         var res = await _mediator.Send(query, cancellationToken);
         return Ok(res);
     }
     // GET to money chart
     [HttpGet("moneyChart")]
-    public async Task<IActionResult> GetAllTransactionToMoneyChart(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAllTransactionToMoneyChart([FromQuery] ApplicationTypeDto dto, CancellationToken cancellationToken)
     {
-        var query = new GetToMoneyChartQuery();
+        var query = new GetToMoneyChartQuery()
+        {
+            Type = dto.Type
+        };
 
         var res = await _mediator.Send(query, cancellationToken);
 
@@ -126,9 +134,12 @@ public class TransactionController : BaseController
     
     //GET to incomeChart
     [HttpGet("incomeChart")]
-    public async Task<ActionResult<List<ToChartModelDto>>> GetTransactionsToIncomeChart(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<ToChartModelDto>>> GetTransactionsToIncomeChart([FromQuery] ApplicationTypeDto dto, CancellationToken cancellationToken)
     {
-        var query = new GetToIncomeChartQuery();
+        var query = new GetToIncomeChartQuery()
+        {
+            Type = dto.Type
+        };
         var res = await _mediator.Send(query, cancellationToken);
         return Ok(res);
     }
@@ -136,14 +147,43 @@ public class TransactionController : BaseController
     
     // GET to costChart
     [HttpGet("costChart")]
-    public async Task<ActionResult<List<ToChartModelDto>>> GetTransactionsToCostChart(
+    public async Task<ActionResult<List<ToChartModelDto>>> GetTransactionsToCostChart([FromQuery] ApplicationTypeDto dto,
         CancellationToken cancellationToken)
     {
-        var query = new GetToCostChartQuery();
+        var query = new GetToCostChartQuery()
+        {
+            Type = dto.Type
+        };
 
         var res = await _mediator.Send(query, cancellationToken);
 
         return Ok(res);
     }
+    
+    
+    // GET money incomeChart by user
+    [HttpGet("userIncomeChart")]
+    [Authorize(Role.Admin, Role.Member)]
+    public async Task<ActionResult<List<ToChartModelDto>>> GetTransactionsToUserIncomeChart(
+        CancellationToken cancellationToken)
+    {
+        var query = new GetToUserIncomeChartQuery();
+        
+        var res = await _mediator.Send(query, cancellationToken);
+        
+        return Ok(res);
+    }
+    
+    // GET money costChart by user
+    [HttpGet("userCostChart")]
+    [Authorize(Role.Admin, Role.Member)]
+    public async Task<ActionResult<List<ToChartModelDto>>> GetTransactionToUserConstChart(CancellationToken cancellationToken)
+    {
+        var query = new GetToUserCostChartQuery();
 
+        var res = await _mediator.Send(query, cancellationToken);
+        
+        return Ok(res);
+    }
+    
 }

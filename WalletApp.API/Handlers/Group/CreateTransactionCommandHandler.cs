@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using MediatR;
 using WalletApp.API.Helpers;
+using WalletApp.API.Models;
 using WalletApp.API.Models.commands.Group;
 using WalletApp.API.Models.enums;
 using WalletApp.API.Services;
 
 namespace WalletApp.API.Handlers.Group;
 
-public class CreateTransactionCommandHandler : IRequestHandler<CreateGroupCommand, Unit>
+public class CreateTransactionCommandHandler : IRequestHandler<CreateGroupCommand, GroupIdDto>
 {
     private readonly DataContext _dataContext;
     private readonly IAuthService _authService;
@@ -20,7 +21,7 @@ public class CreateTransactionCommandHandler : IRequestHandler<CreateGroupComman
         _mapper = mapper;
     }
     
-    public Task<Unit> Handle(CreateGroupCommand request, CancellationToken cancellationToken)
+    public Task<GroupIdDto> Handle(CreateGroupCommand request, CancellationToken cancellationToken)
     {
         if (_authService.User.GroupId != null)
         {
@@ -36,9 +37,14 @@ public class CreateTransactionCommandHandler : IRequestHandler<CreateGroupComman
         var user = _dataContext.Users.FirstOrDefault(x => x.Id == _authService.User.Id);
         user.GroupId = group.Id;
         user.Role = Role.Admin;
+        var result = new GroupIdDto()
+        {
+            GroupId = group.Id,
+            UserRole = Role.Admin
+        };
         _dataContext.Users.Update(user);
         _dataContext.SaveChanges();
         
-        return Task.FromResult(Unit.Value);
+        return Task.FromResult(result);
     }
 }

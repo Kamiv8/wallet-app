@@ -13,6 +13,7 @@ export type TProps = {
   name: string;
   routeName: string;
   notificationsNumber?: number;
+  action?: () => void;
 };
 
 const NavigationBox = ({
@@ -20,10 +21,11 @@ const NavigationBox = ({
   name,
   notificationsNumber,
   routeName,
+  action,
 }: TProps) => {
   const href = useHref(routeName);
   return (
-    <StyledLink to={href}>
+    <StyledLink to={href} onClick={action}>
       <Wrapper notificationsNumber={notificationsNumber}>
         <ImageContainer>
           <Image />

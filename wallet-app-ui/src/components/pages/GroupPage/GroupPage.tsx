@@ -5,8 +5,11 @@ import CreateFindGroupCard from '../../molecules/CreateFindGroupCard/CreateFindG
 import Typography from '../../atoms/Typography/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
+import { useNavigate } from 'react-router-dom';
+import { RoutesName } from '../../../const/routesName';
 
 const GroupPage = () => {
+  const navigate = useNavigate();
   return (
     <MainTemplate>
       <Typography
@@ -21,12 +24,12 @@ const GroupPage = () => {
       <Wrapper>
         <GroupIcon />
         <CreateFindGroupCard
-          onClick={() => {}}
+          onClick={() => navigate(RoutesName.CREATE_GROUP)}
           title={{ ...messages.groupPageCreateGroup }}
           description={{ ...messages.groupPageCreateGroupDescription }}
         />
         <CreateFindGroupCard
-          onClick={() => {}}
+          onClick={() => navigate(RoutesName.FIND_GROUP)}
           title={{ ...messages.groupPageFindGroup }}
           description={{ ...messages.groupPageFindGroupDescription }}
         />

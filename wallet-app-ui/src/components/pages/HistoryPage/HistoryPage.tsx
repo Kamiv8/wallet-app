@@ -6,13 +6,16 @@ import Select from '../../atoms/Select/Select';
 import { PaginationWrapper, SelectWrapper } from './HistoryPage.styles';
 import TransactionItem from '../../molecules/TransactionItem/TransactionItem';
 import Pagination from '../../molecules/Pagination/Pagination';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { PageResult } from '../../../models/resources/pageResult';
 import { Transaction } from '../../../models/resources/transaction';
 import { usePagination } from 'react-use-pagination';
 import { TransactionApi } from '../../../api/transaction.api';
+import ApplicationContext from '../../../contexts/application.context';
+import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
 
 const HistoryPage = () => {
+  const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<PageResult<Transaction> | null>();
   const pagination = usePagination({
     totalItems: state?.count || 5,
@@ -23,7 +26,7 @@ const HistoryPage = () => {
   useEffect(() => {
     (async () => {
       const transactions = await TransactionApi.getTransactions({
-        type: 0,
+        type: getApplicationType(appContext.state.type),
         pageSize: 3,
         pageNumber: pagination.currentPage + 1,
       });

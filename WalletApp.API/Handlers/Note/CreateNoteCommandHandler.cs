@@ -2,6 +2,7 @@
 using MediatR;
 using WalletApp.API.Helpers;
 using WalletApp.API.Models.commands.Note;
+using WalletApp.API.Models.enums;
 using WalletApp.API.Services;
 
 namespace WalletApp.API.Handlers.Note;
@@ -28,11 +29,15 @@ public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Unit>
         if (user == null)
             throw new AppException("Cannot find user");
 
-
         var note = _mapper.Map<Entities.Note>(request);
 
         note.User = _authService.User!;
         note.IsDone = false;
+
+        if (request.Type == TransactionType.Group)
+        {
+            note.GroupId = user.GroupId;
+        }
 
         _dataContext.Notes.Add(note);
         _dataContext.SaveChanges();

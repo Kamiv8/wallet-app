@@ -1,6 +1,6 @@
 import { Circle, NavColumn, NavigationContent, Wrapper } from './Footer.styles';
 import { Link, useHref, useNavigate } from 'react-router-dom';
-import { RoutesName } from '../../../const/routesName';
+import { GroupRoutesName, RoutesName } from '../../../const/routesName';
 import { ReactNode, useCallback, useState } from 'react';
 import NavigationItem from '../../molecules/NavigationItem/NavigationItem';
 import { StyledLink } from '../../../styles/override/Link.styles';
@@ -28,6 +28,7 @@ const Footer = (props: TProps) => {
   const navigate = useNavigate();
 
   const rootURL = useHref(RoutesName.ROOT);
+  const rootGroupURL = useHref(GroupRoutesName.ROOT);
   const transactionURL = useHref(RoutesName.ADD_TRANSACTIONS);
   const historyURL = useHref(RoutesName.HISTORY);
   const tableURL = useHref(RoutesName.TABLE);
@@ -79,7 +80,7 @@ const Footer = (props: TProps) => {
   return (
     <>
       <Wrapper isGroup={props.isGroup}>
-        <Link to={rootURL}>
+        <Link to={props.isGroup ? rootGroupURL : rootURL}>
           <Circle />
         </Link>
         <NavigationContent>

@@ -2,7 +2,7 @@
 
 namespace WalletApp.API.Models.commands.Group;
 
-public class CreateGroupCommand : IRequest<Unit>
+public class CreateGroupCommand : IRequest<GroupIdDto>
 {
     public string Name { get; set; }
     public int MaxMembers { get; set; }

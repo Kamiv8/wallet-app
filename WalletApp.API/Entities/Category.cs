@@ -8,5 +8,6 @@ public class Category
     public bool IsDeleted { get; set; }
     public virtual User? User { get; set; }
     public virtual Group? Group { get; set; }
+    public Guid? GroupId { get; set; }
     public virtual List<Transaction> Transactions { get; set; } = new List<Transaction>();
 }

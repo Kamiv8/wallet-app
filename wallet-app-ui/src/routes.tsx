@@ -28,6 +28,8 @@ import NoteDetailsPage from './components/pages/NoteDetailsPage/NoteDetailsPage'
 import AddNotePage from './components/pages/AddNotePage/AddNotePage';
 import GroupHomePage from './components/pages/groupPages/GroupHomePage/GroupHomePage';
 import NotificationPanelPage from './components/pages/groupPages/NotificationPanel/NotificationPanelPage';
+import CreateGroupPage from './components/pages/CreateGroupPage/CreateGroupPage';
+import GroupSettingsPage from './components/pages/groupPages/GroupSettingsPage/GroupSettingsPage';
 
 const GuardedRoute = () => {
   const token = localStorage.getItem('token');
@@ -46,7 +48,7 @@ const GuardedRoute = () => {
 
 const GroupRoute = () => {
   const userGroup = localStorage.getItem('groupId');
-  if (!userGroup) return <Navigate to={RoutesName.ROOT} />;
+  if (!userGroup) return <Navigate to={RoutesName.CREATE_FIND_GROUP} />;
 
   return <Outlet />;
 };
@@ -73,6 +75,7 @@ export const Routes = () => (
       <Route path={RoutesName.HISTORY} element={<HistoryPage />} />
       <Route path={RoutesName.CREATE_FIND_GROUP} element={<GroupPage />} />
       <Route path={RoutesName.FIND_GROUP} element={<FindGroupPage />} />
+      <Route path={RoutesName.CREATE_GROUP} element={<CreateGroupPage />} />
       <Route path={RoutesName.SETTINGS} element={<SettingsPage />} />
       <Route
         path={RoutesName.CHANGE_CURRENCIES}
@@ -98,11 +101,16 @@ export const Routes = () => (
       <Route path={RoutesName.TABLE} element={<TablePage />} />
       <Route path={RoutesName.TABLE + `/:id`} element={<NoteDetailsPage />} />
       <Route path={RoutesName.ADD_NOTE} element={<AddNotePage />} />
+
       <Route element={<GroupRoute />}>
         <Route path={GroupRoutesName.ROOT} element={<GroupHomePage />} />
         <Route
           path={GroupRoutesName.NOTIFICATIONS}
           element={<NotificationPanelPage />}
+        />
+        <Route
+          path={GroupRoutesName.SETTINGS}
+          element={<GroupSettingsPage />}
         />
       </Route>
     </Route>

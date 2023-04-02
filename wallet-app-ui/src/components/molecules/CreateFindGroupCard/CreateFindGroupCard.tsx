@@ -11,7 +11,7 @@ export type TProps = {
 
 const CreateFindGroupCard = (props: TProps) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={props.onClick}>
       <TitleWrapper>
         <Typography size={'l'} color={'darkBlue'} weight={700} uppercase>
           <FormattedMessage {...props.title} />

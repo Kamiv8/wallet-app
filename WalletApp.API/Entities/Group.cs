@@ -15,8 +15,8 @@ public class Group
     public virtual Currency Currency { get; set; }
     public Guid CurrencyId { get; set; }
 
+    public List<Transaction> Transactions = new List<Transaction>();
     public List<Report> Reports { get; set; } = new List<Report>();
-
     public List<Notification> Notifications { get; set; } = new List<Notification>();
     public IEnumerable<Category> Categories { get; set; }
 

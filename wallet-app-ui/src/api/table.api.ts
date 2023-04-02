@@ -10,8 +10,13 @@ export class TableApi extends BaseApiConfig {
     return BaseApiHandler.handleApi(data);
   }
 
-  public static async getAllNotes(): Promise<IApiResult> {
-    const data = await axios.get('/table', this.apiOptions());
+  public static async getAllNotes(type: any): Promise<IApiResult> {
+    const data = await axios.get('/table', {
+      ...this.apiOptions(),
+      params: {
+        type,
+      },
+    });
 
     return BaseApiHandler.handleApi(data);
   }

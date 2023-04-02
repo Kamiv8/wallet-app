@@ -7,8 +7,14 @@ import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import useForm from '../../../hooks/useForm';
+import { GroupApi } from '../../../api/group.api';
+import { ApiStatus } from '../../../models/apiResult';
 
-const FindGroupForm = () => {
+type TProps = {
+  foundedGroup: (data: any) => void;
+};
+
+const FindGroupForm = (props: TProps) => {
   const navigate = useNavigate();
 
   const initialValues = {
@@ -17,7 +23,12 @@ const FindGroupForm = () => {
 
   const { handleChange, values } = useForm<typeof initialValues>(initialValues);
 
-  console.log(values);
+  const onSubmit = async () => {
+    const data = await GroupApi.findGroup(values);
+    if (data.status === ApiStatus.SUCCESS) {
+      props.foundedGroup(data.data);
+    }
+  };
 
   return (
     <CardWrapper
@@ -31,7 +42,7 @@ const FindGroupForm = () => {
           name={'name'}
           onChange={(e) => handleChange(e, 'name')}
         />
-        <Button color={'darkBlue'}>
+        <Button color={'darkBlue'} onClick={onSubmit}>
           <FormattedMessage {...messages.buttonSent} />
         </Button>
       </FormWrapper>

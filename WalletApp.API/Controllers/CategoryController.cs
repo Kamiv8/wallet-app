@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.API.Authorization;
 using WalletApp.API.Entities;
+using WalletApp.API.Models;
 using WalletApp.API.Models.Category;
 using WalletApp.API.Models.commands.Category;
 using WalletApp.API.Models.queries.Categories;
@@ -25,9 +26,12 @@ public class CategoryController : ControllerBase
     
     // Get user category and default
     [HttpGet]
-    public async Task<ActionResult<List<DefaultCategoryDto>>> GetCategories(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<DefaultCategoryDto>>> GetCategories([FromQuery] ApplicationTypeDto dto, CancellationToken cancellationToken)
     {
-        var query = new CategoriesQuery();
+        var query = new CategoriesQuery()
+        {
+            Type = dto.Type
+        };
 
         var res = await _mediator.Send(query, cancellationToken);
 
@@ -35,9 +39,12 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet("default")]
-    public async Task<ActionResult<List<DefaultCategoryDto>>> GetDefault(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<DefaultCategoryDto>>> GetDefault([FromQuery] ApplicationTypeDto dto, CancellationToken cancellationToken)
     {
-        var query = new DefaultCategoriesQuery();
+        var query = new DefaultCategoriesQuery()
+        {
+            Type = dto.Type
+        };
 
         var res = await _mediator.Send(query, cancellationToken);
 
@@ -51,7 +58,8 @@ public class CategoryController : ControllerBase
     {
         var command = new CreateCategoryCommand()
         {
-            Name = dto.Name
+            Name = dto.Name,
+            Type = dto.Type
         };
 
         await _mediator.Send(command, cancellationToken);

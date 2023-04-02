@@ -132,7 +132,7 @@ namespace WalletApp.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -153,7 +153,10 @@ namespace WalletApp.API.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("GroupId")
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("Guid")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("NotificationTypeId")
@@ -245,13 +248,13 @@ namespace WalletApp.API.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("GroupId")
+                    b.Property<Guid?>("GroupId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsYearReport")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -287,6 +290,9 @@ namespace WalletApp.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDefault")
                         .HasColumnType("bit");
 
@@ -311,6 +317,8 @@ namespace WalletApp.API.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CurrencyId");
+
+                    b.HasIndex("GroupId");
 
                     b.HasIndex("UserId");
 
@@ -435,7 +443,8 @@ namespace WalletApp.API.Migrations
                     b.HasOne("WalletApp.API.Entities.User", "User")
                         .WithMany("Notes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Group");
 
@@ -447,8 +456,7 @@ namespace WalletApp.API.Migrations
                     b.HasOne("WalletApp.API.Entities.Group", "Group")
                         .WithMany("Notifications")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WalletApp.API.Entities.NotificationType", "NotificationType")
                         .WithOne("Notification")
@@ -485,14 +493,12 @@ namespace WalletApp.API.Migrations
                     b.HasOne("WalletApp.API.Entities.Group", "Group")
                         .WithMany("Reports")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WalletApp.API.Entities.User", "User")
                         .WithMany("Reports")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Group");
 
@@ -513,6 +519,11 @@ namespace WalletApp.API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("WalletApp.API.Entities.Group", "Group")
+                        .WithMany("Transactions")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WalletApp.API.Entities.User", "User")
                         .WithMany("Transactions")
                         .HasForeignKey("UserId")
@@ -522,6 +533,8 @@ namespace WalletApp.API.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Currency");
+
+                    b.Navigation("Group");
 
                     b.Navigation("User");
                 });
@@ -568,6 +581,8 @@ namespace WalletApp.API.Migrations
                     b.Navigation("Notifications");
 
                     b.Navigation("Reports");
+
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.NotificationType", b =>

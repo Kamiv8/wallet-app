@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using WalletApp.API.Helpers;
 using WalletApp.API.Models.commands.Category;
+using WalletApp.API.Models.enums;
 using WalletApp.API.Services;
 
 namespace WalletApp.API.Handlers.Category;
@@ -25,6 +26,12 @@ public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryComman
             Name = request.Name,
             IsDeleted = false
         };
+
+        if (request.Type == TransactionType.Group)
+        {
+            category.GroupId = _authService.User.GroupId;
+        }
+    
         _dataContext.Categories.Add(category);
         _dataContext.SaveChanges();
 

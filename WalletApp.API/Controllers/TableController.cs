@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.API.Authorization;
+using WalletApp.API.Models;
 using WalletApp.API.Models.commands.Note;
 using WalletApp.API.Models.Note;
 using WalletApp.API.Models.queries.Note;
@@ -31,7 +32,8 @@ public class TableController : BaseController
             Title = dto.Title,
             Text = dto.Text,
             BackgroundColor = dto.BackgroundColor,
-            TextColor = dto.TextColor
+            TextColor = dto.TextColor,
+            Type = dto.Type
         };
         var res = await _mediator.Send(command, cancellationToken);
 
@@ -41,9 +43,12 @@ public class TableController : BaseController
     // Get all notes
 
     [HttpGet]
-    public async Task<ActionResult<List<NoteDto>>> GetAllNotes(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<NoteDto>>> GetAllNotes([FromQuery] ApplicationTypeDto dto, CancellationToken cancellationToken)
     {
-        var query = new GetAllNotesQuery();
+        var query = new GetAllNotesQuery()
+        {
+            Type = dto.Type
+        };
 
         var res = await _mediator.Send(query, cancellationToken);
 

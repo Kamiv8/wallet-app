@@ -53,12 +53,18 @@ export class AuthApi {
     return BaseApiHandler.handleApi(data);
   }
 
-  public static async verifyAccount(value: any): Promise<IApiResult> {
+  public static async verifyAccount(
+    value: any,
+    controller: AbortController,
+  ): Promise<IApiResult> {
     const command = new VerifyAccountCommand(value.token);
     const data = await axios.post(
       `/auth/verify-email/${command.token}`,
       {},
-      AuthApi.apiOptions(),
+      {
+        signal: controller.signal,
+        ...AuthApi.apiOptions(),
+      },
     );
     return BaseApiHandler.handleApi(data);
   }

@@ -26,7 +26,7 @@ public class JoinUserNotificationsQueryHandler : IRequestHandler<JoinUserNotific
         var notificationType = _dataContext.NotificationsType.FirstOrDefault(x => x.Name == "Invite_User");
         var notifications = _dataContext.Notifications
             .Where(x =>
-                x.User.Id == _authService.User!.Id && x.NotificationType == notificationType && x.Group.Id == _authService.User.GroupId)
+                 x.NotificationTypeId == notificationType.Id && x.Group.Id == _authService.User.GroupId)
             .ToList();
 
 

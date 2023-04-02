@@ -12,8 +12,8 @@ using WalletApp.API.Helpers;
 namespace WalletApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230225162043_change_category_model")]
-    partial class change_category_model
+    [Migration("20230328172654_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,8 +101,7 @@ namespace WalletApp.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CurrencyId")
-                        .IsUnique();
+                    b.HasIndex("CurrencyId");
 
                     b.ToTable("Groups");
                 });
@@ -117,7 +116,7 @@ namespace WalletApp.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("GroupId")
+                    b.Property<Guid?>("GroupId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDone")
@@ -156,7 +155,10 @@ namespace WalletApp.API.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("GroupId")
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("Guid")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("NotificationTypeId")
@@ -248,13 +250,13 @@ namespace WalletApp.API.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("GroupId")
+                    b.Property<Guid?>("GroupId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsYearReport")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -290,6 +292,9 @@ namespace WalletApp.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDefault")
                         .HasColumnType("bit");
 
@@ -314,6 +319,8 @@ namespace WalletApp.API.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CurrencyId");
+
+                    b.HasIndex("GroupId");
 
                     b.HasIndex("UserId");
 
@@ -393,8 +400,7 @@ namespace WalletApp.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CurrencyId")
-                        .IsUnique();
+                    b.HasIndex("CurrencyId");
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -422,9 +428,9 @@ namespace WalletApp.API.Migrations
             modelBuilder.Entity("WalletApp.API.Entities.Group", b =>
                 {
                     b.HasOne("WalletApp.API.Entities.Currency", "Currency")
-                        .WithOne("Group")
-                        .HasForeignKey("WalletApp.API.Entities.Group", "CurrencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany("Group")
+                        .HasForeignKey("CurrencyId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Currency");
@@ -434,9 +440,7 @@ namespace WalletApp.API.Migrations
                 {
                     b.HasOne("WalletApp.API.Entities.Group", "Group")
                         .WithMany("Notes")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("GroupId");
 
                     b.HasOne("WalletApp.API.Entities.User", "User")
                         .WithMany("Notes")
@@ -454,8 +458,7 @@ namespace WalletApp.API.Migrations
                     b.HasOne("WalletApp.API.Entities.Group", "Group")
                         .WithMany("Notifications")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WalletApp.API.Entities.NotificationType", "NotificationType")
                         .WithOne("Notification")
@@ -492,14 +495,12 @@ namespace WalletApp.API.Migrations
                     b.HasOne("WalletApp.API.Entities.Group", "Group")
                         .WithMany("Reports")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WalletApp.API.Entities.User", "User")
                         .WithMany("Reports")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Group");
 
@@ -520,6 +521,11 @@ namespace WalletApp.API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("WalletApp.API.Entities.Group", "Group")
+                        .WithMany("Transactions")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WalletApp.API.Entities.User", "User")
                         .WithMany("Transactions")
                         .HasForeignKey("UserId")
@@ -530,15 +536,17 @@ namespace WalletApp.API.Migrations
 
                     b.Navigation("Currency");
 
+                    b.Navigation("Group");
+
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.UserData", b =>
                 {
                     b.HasOne("WalletApp.API.Entities.Currency", "Currency")
-                        .WithOne("UserData")
-                        .HasForeignKey("WalletApp.API.Entities.UserData", "CurrencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany("UserData")
+                        .HasForeignKey("CurrencyId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WalletApp.API.Entities.User", "User")
@@ -559,13 +567,11 @@ namespace WalletApp.API.Migrations
 
             modelBuilder.Entity("WalletApp.API.Entities.Currency", b =>
                 {
-                    b.Navigation("Group")
-                        .IsRequired();
+                    b.Navigation("Group");
 
                     b.Navigation("Transactions");
 
-                    b.Navigation("UserData")
-                        .IsRequired();
+                    b.Navigation("UserData");
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.Group", b =>
@@ -577,6 +583,8 @@ namespace WalletApp.API.Migrations
                     b.Navigation("Notifications");
 
                     b.Navigation("Reports");
+
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("WalletApp.API.Entities.NotificationType", b =>

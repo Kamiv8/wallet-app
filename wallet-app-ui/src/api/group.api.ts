@@ -4,6 +4,11 @@ import axios from 'axios';
 import { BaseApiHandler } from './baseApiHandler';
 
 export class GroupApi extends BaseApiConfig {
+  public static async createGroup(values: any): Promise<IApiResult> {
+    const data = await axios.post('/group', values, this.apiOptions());
+    return BaseApiHandler.handleApi(data);
+  }
+
   public static async findGroup(values: any): Promise<IApiResult> {
     const data = await axios.post(
       '/group/findGroup',
@@ -48,6 +53,11 @@ export class GroupApi extends BaseApiConfig {
 
   public static async getJoinUserNotificationCount(): Promise<IApiResult> {
     const data = await axios.get('/group/notificationCount', this.apiOptions());
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getActualMoney(): Promise<IApiResult> {
+    const data = await axios.get('/group/actualMoney', this.apiOptions());
     return BaseApiHandler.handleApi(data);
   }
 }

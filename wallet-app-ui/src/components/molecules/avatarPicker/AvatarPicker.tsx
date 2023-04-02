@@ -49,6 +49,7 @@ const AvatarPicker = (props: TProps) => {
               selected={props.selected === index + 1}
               onClick={() => selectIcon((index + 1) as TSelectedIcon)}
               image={index + 1}
+              isGroup
             />
           ))}
         </>

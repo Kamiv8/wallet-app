@@ -13,16 +13,22 @@ import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import List from '../../molecules/List/List';
 import { CategoryApi } from '../../../api/category.api';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import useForm from '../../../hooks/useForm';
 import Typography from '../../atoms/Typography/Typography';
+import ApplicationContext from '../../../contexts/application.context';
+import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
 
 const ChangeCategoryForm = () => {
+  const appContext = useContext(ApplicationContext);
   const navigate = useNavigate();
   const [state, setState] = useState([]);
   const [refresher, setRefresher] = useState(false);
   async function getCategories() {
-    return CategoryApi.getUserCategory();
+    console.log(appContext);
+    return CategoryApi.getUserCategory(
+      getApplicationType(appContext.state.type),
+    );
   }
 
   useEffect(() => {

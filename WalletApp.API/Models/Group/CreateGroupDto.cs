@@ -1,6 +1,7 @@
 ﻿namespace WalletApp.API.Models;
 
-public class CreateGroupDto
+public class 
+CreateGroupDto
 {
     public string Name { get; set; }
     public int MaxMembers { get; set; }

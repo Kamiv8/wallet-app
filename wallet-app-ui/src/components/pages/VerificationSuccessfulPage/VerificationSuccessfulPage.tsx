@@ -12,12 +12,17 @@ const VerificationSuccessfulPage = () => {
   const location = useLocation();
 
   useEffect(() => {
+    const controller = new AbortController();
     (async () => {
       const { token } = {
         token: createPathArray(location.pathname)[2],
       };
-      await AuthApi.verifyAccount({ token });
+      await AuthApi.verifyAccount({ token }, controller);
     })();
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   return (
