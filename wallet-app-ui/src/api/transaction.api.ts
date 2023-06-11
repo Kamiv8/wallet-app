@@ -5,8 +5,13 @@ import { BaseApiConfig } from './baseApiConfig';
 import { AppTypeEnum } from '../types/enums/appType.enum';
 
 export class TransactionApi extends BaseApiConfig {
-  public static async getDefaultTransactions(): Promise<IApiResult> {
-    const data = await axios.get('/transaction/default', this.apiOptions());
+  public static async getDefaultTransactions(type: any): Promise<IApiResult> {
+    const data = await axios.get('/transaction/default', {
+      ...this.apiOptions(),
+      params: {
+        type,
+      },
+    });
 
     return BaseApiHandler.handleApi(data);
   }
@@ -51,6 +56,22 @@ export class TransactionApi extends BaseApiConfig {
         type,
       },
     });
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getUserIncomeChartData(): Promise<IApiResult> {
+    const data = await axios.get(
+      '/transaction/userIncomeChart',
+      this.apiOptions(),
+    );
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getUserCostChartData(): Promise<IApiResult> {
+    const data = await axios.get(
+      'transaction/userCostChart',
+      this.apiOptions(),
+    );
     return BaseApiHandler.handleApi(data);
   }
 

@@ -81,7 +81,7 @@ public class GetTransactionDetailsQueryHandler : IRequestHandler<GetTransactionD
         result.Category = new DefaultCategoryDto()
         {
             Id = transaction.Category.Id,
-            Name = transaction.Currency.Name
+            Name = transaction.Category.Name
         };
         result.Percentage = new CategoryChartData
         {

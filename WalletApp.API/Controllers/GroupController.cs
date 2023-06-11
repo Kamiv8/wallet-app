@@ -5,6 +5,7 @@ using WalletApp.API.Models;
 using WalletApp.API.Models.commands.Group;
 using WalletApp.API.Models.enums;
 using WalletApp.API.Models.queries.Group;
+using WalletApp.API.Models.Users.Dto;
 
 namespace WalletApp.API.Controllers;
 
@@ -136,9 +137,13 @@ public class GroupController : BaseController
     // get group data
     [HttpGet("groupData")]
     [Authorize(Role.Admin)]
-    public async Task<ActionResult<ActualMoneyDto>> GetGroupData(CancellationToken cancellationToken)
+    public async Task<ActionResult<GroupDataDto>> GetGroupData(CancellationToken cancellationToken)
     {
-        return Ok();
+        var query = new GetGroupDataQuery();
+
+        var res = await _mediator.Send(query, cancellationToken);
+        
+        return Ok(res);
     }
     
     // get actual money and currency
@@ -158,29 +163,47 @@ public class GroupController : BaseController
     // change group name
     [HttpPut("changeName")]
     [Authorize(Role.Admin)]
-    public async Task<IActionResult> ChangeGroupName(CancellationToken cancellationToken)
+    public async Task<IActionResult> ChangeGroupName([FromBody] GroupChangeNameDto dto, CancellationToken cancellationToken)
     {
+        var command = new ChangeGroupNameCommand()
+        {
+            GroupName = dto.GroupName
+        };
+
+        var res = await _mediator.Send(command, cancellationToken);
         
-        
-        return Ok();
+        return Ok(res);
     }
     
     // change icon
     [HttpPut("changeIcon")]
     [Authorize(Role.Admin)]
-    public async Task<IActionResult> ChangeIcon(CancellationToken cancellationToken)
+    public async Task<IActionResult> ChangeIcon([FromBody] ChangeIconDto dto, CancellationToken cancellationToken)
     {
+
+        var command = new ChangeIconCommand()
+        {
+            IconId = dto.IconId
+        };
+
+        var res = await _mediator.Send(command, cancellationToken);
         
-        return Ok();
+        return Ok(res);
     }
 
     // change currency
     [HttpPut("changeCurrency")]
     [Authorize(Role.Admin)]
-    public async Task<IActionResult> ChangeCurrency(CancellationToken cancellationToken)
+    public async Task<IActionResult> ChangeCurrency([FromBody] ChangeCurrencyDto dto,CancellationToken cancellationToken)
     {
+        var command = new ChangeCurrencyCommand()
+        {
+            CurrencyId = dto.CurrencyId
+        };
+
+        var res = await _mediator.Send(command, cancellationToken);
         
-        return Ok();
+        return Ok(res);
     }
     
     // delete user
@@ -202,7 +225,7 @@ public class GroupController : BaseController
     // change role for user
     [HttpPut("changeMember")]
     [Authorize(Role.Admin)]
-    public async Task<IActionResult> ChangeMemberRole([FromBody] ChangeMemberDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> ChangeMemberRole([FromQuery] ChangeMemberDto dto, CancellationToken cancellationToken)
     {
         var command = new ChangeMemberCommand()
         {

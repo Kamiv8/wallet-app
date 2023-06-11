@@ -60,4 +60,29 @@ export class GroupApi extends BaseApiConfig {
     const data = await axios.get('/group/actualMoney', this.apiOptions());
     return BaseApiHandler.handleApi(data);
   }
+
+  public static async getGroupData(): Promise<IApiResult> {
+    const data = await axios.get('/group/groupData', this.apiOptions());
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getUsers(): Promise<IApiResult> {
+    const data = await axios.get('/group/users', this.apiOptions());
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async deleteUser(value: any): Promise<IApiResult> {
+    const data = await axios.delete('/group/user', {
+      ...this.apiOptions(),
+      params: {
+        userId: value,
+      },
+    });
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async deleteGroup(): Promise<IApiResult> {
+    const data = await axios.delete('/group', this.apiOptions());
+    return BaseApiHandler.handleApi(data);
+  }
 }

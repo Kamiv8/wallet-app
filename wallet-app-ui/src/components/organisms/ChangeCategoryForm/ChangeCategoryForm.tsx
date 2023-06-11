@@ -25,7 +25,6 @@ const ChangeCategoryForm = () => {
   const [state, setState] = useState([]);
   const [refresher, setRefresher] = useState(false);
   async function getCategories() {
-    console.log(appContext);
     return CategoryApi.getUserCategory(
       getApplicationType(appContext.state.type),
     );

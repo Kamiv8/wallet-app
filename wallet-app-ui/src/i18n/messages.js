@@ -168,7 +168,7 @@ const messages = defineMessages({
   },
   groupPageCreateGroupDescription: {
     id: 'groupPageCreateGroupDescription',
-    defaultMessage: 'Lorem ipsum dolor sit emit', // TODO
+    defaultMessage: ' ', // TODO
   },
   groupPageFindGroup: {
     id: 'groupPageFindGroup',
@@ -176,7 +176,7 @@ const messages = defineMessages({
   },
   groupPageFindGroupDescription: {
     id: 'groupPageFindGroupDescription',
-    defaultMessage: 'Lorem ipsum dolor sit emit', // TODO
+    defaultMessage: ' ', // TODO
   },
   // find group page
   findGroupPageFindGroup: {
@@ -298,6 +298,28 @@ const messages = defineMessages({
   notificationPageNotificationPanel: {
     id: 'notificationPageNotificationPanel',
     defaultMessage: 'Notification panel',
+  },
+
+  // group main page
+  groupMainPageUserIncomeChart: {
+    id: 'groupMainPageUserIncomeChart',
+    defaultMessage: 'Group member income',
+  },
+
+  groupMainPageUserCostChart: {
+    id: 'groupMainPageUserCostChart',
+    defaultMessage: 'Group member cost',
+  },
+
+  // manage form
+
+  manageFormUser: {
+    id: 'manageFormUser',
+    defaultMessage: 'User',
+  },
+  manageFormRole: {
+    id: 'manageFormRole',
+    defaultMessage: 'Role',
   },
 
   // Buttons

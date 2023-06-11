@@ -21,6 +21,7 @@ export class AuthApi {
 
     if (dataResult.status === ApiStatus.SUCCESS) {
       localStorage.setItem('token', dataResult.data.token);
+      localStorage.setItem('type', 'SINGLE');
     }
 
     return dataResult;

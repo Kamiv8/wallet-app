@@ -20,7 +20,6 @@ const TransactionItem = (props: TProps) => {
             {cutString(props.data.title, 15)}
           </Typography>
           <Typography size={'s'}>
-            {new Date(props.data.date).toLocaleTimeString()}{' '}
             {new Date(props.data.date).toLocaleDateString()}
           </Typography>
         </ContentWrapper>

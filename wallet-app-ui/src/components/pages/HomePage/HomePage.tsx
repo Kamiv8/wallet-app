@@ -136,25 +136,43 @@ const HomePage = () => {
       {state.lastTransactions.slice(0, 2).map((t: any) => (
         <TransactionItem data={t} />
       ))}
-      <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
-        <FormattedMessage {...messages.mainPageMoneyChart} />
-      </Typography>
-      <Chart
-        data={lineChartMapper(state.moneyChart).data}
-        options={lineChartMapper(state.moneyChart).options}
-        type={ChartTypeEnum.LINE}
-      />
-      <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
-        <FormattedMessage {...messages.mainPageIncomeChart} />
-      </Typography>
-      <Chart
-        data={pieChartMapper(state.incomeChart)}
-        type={ChartTypeEnum.PIE}
-      />
-      <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
-        <FormattedMessage {...messages.mainPageCostChart} />
-      </Typography>
-      <Chart data={pieChartMapper(state.costChart)} type={ChartTypeEnum.PIE} />
+
+      {state.moneyChart.length && (
+        <>
+          <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
+            <FormattedMessage {...messages.mainPageMoneyChart} />
+          </Typography>
+          <Chart
+            data={lineChartMapper(state.moneyChart).data}
+            options={lineChartMapper(state.moneyChart).options}
+            type={ChartTypeEnum.LINE}
+          />
+        </>
+      )}
+
+      {state.incomeChart.length && (
+        <>
+          <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
+            <FormattedMessage {...messages.mainPageIncomeChart} />
+          </Typography>
+          <Chart
+            data={pieChartMapper(state.incomeChart)}
+            type={ChartTypeEnum.PIE}
+          />
+        </>
+      )}
+
+      {state.costChart.length && (
+        <>
+          <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
+            <FormattedMessage {...messages.mainPageCostChart} />
+          </Typography>
+          <Chart
+            data={pieChartMapper(state.costChart)}
+            type={ChartTypeEnum.PIE}
+          />
+        </>
+      )}
     </MainTemplate>
   );
 };

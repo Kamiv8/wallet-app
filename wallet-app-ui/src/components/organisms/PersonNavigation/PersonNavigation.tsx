@@ -21,8 +21,6 @@ export type TBoxes = {
 const PersonNavigation = () => {
   const applicationContext = useContext(ApplicationContext);
 
-  console.log(applicationContext.state);
-
   const boxes: TBoxes[] = [
     {
       image: TransactionIcon,

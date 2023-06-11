@@ -2,10 +2,12 @@ import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import SavedTransaction from '../../molecules/SavedTransaction/SavedTransaction';
 import Typography from '../../atoms/Typography/Typography';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { Transaction } from '../../../models/resources/transaction';
 import AddTransactionForm from '../../organisms/AddTransactionForm/AddTransactionForm';
 import { TransactionApi } from '../../../api/transaction.api';
+import ApplicationContext from '../../../contexts/application.context';
+import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
 
 type TState = {
   transactions: Transaction[];
@@ -13,13 +15,16 @@ type TState = {
 };
 
 const AddTransactionPage = () => {
+  const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<TState>({
     transactions: [],
     isNew: false,
   });
 
   const getSavedTransactions = async () => {
-    const data = await TransactionApi.getDefaultTransactions();
+    const data = await TransactionApi.getDefaultTransactions(
+      getApplicationType(appContext.state.type),
+    );
     setState({
       ...state,
       transactions: data.data,

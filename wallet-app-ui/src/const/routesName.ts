@@ -50,10 +50,12 @@ type TGroupRoutes = {
   ROOT: string;
   SETTINGS: string;
   NOTIFICATIONS: string;
+  MANAGE_USERS: string;
 };
 
 export const GroupRoutesName: TGroupRoutes = {
   ROOT: '/group',
   SETTINGS: '/group/settings',
   NOTIFICATIONS: '/group/notifications',
+  MANAGE_USERS: '/group/manageUsers',
 };

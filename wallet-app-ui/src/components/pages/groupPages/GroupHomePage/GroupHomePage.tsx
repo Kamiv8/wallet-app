@@ -29,6 +29,8 @@ interface IState {
   moneyChart: Array<ToMoneyChartDto>;
   incomeChart: Array<ToPieChartDto>;
   costChart: Array<ToPieChartDto>;
+  userIncomeChart: Array<ToPieChartDto>;
+  userCostChart: Array<ToPieChartDto>;
 }
 
 const GroupHomePage = () => {
@@ -42,6 +44,8 @@ const GroupHomePage = () => {
     moneyChart: [],
     incomeChart: [],
     costChart: [],
+    userCostChart: [],
+    userIncomeChart: [],
   });
 
   const getActualMoneyData = async () => {
@@ -96,6 +100,23 @@ const GroupHomePage = () => {
     }));
   }
 
+  async function getUserIncomeChartData() {
+    const incomeChartData = await TransactionApi.getUserIncomeChartData();
+
+    setState((prev) => ({
+      ...prev,
+      userIncomeChart: incomeChartData.data,
+    }));
+  }
+
+  async function getUserCostChartData() {
+    const costUserChartData = await TransactionApi.getUserCostChartData();
+    setState((prev) => ({
+      ...prev,
+      userCostChart: costUserChartData.data,
+    }));
+  }
+
   useEffect(() => {
     (async () => {
       await Promise.all([
@@ -104,9 +125,13 @@ const GroupHomePage = () => {
         getMoneyChartData(),
         getIncomeChartData(),
         getCostChartData(),
+        getUserIncomeChartData(),
+        getUserCostChartData(),
       ]);
     })();
   }, []);
+
+  console.log(state);
 
   return (
     <MainTemplate isGroup>
@@ -134,25 +159,67 @@ const GroupHomePage = () => {
       {state.lastTransactions.slice(0, 2).map((t: Transaction) => (
         <TransactionItem data={t} />
       ))}
-      <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
-        <FormattedMessage {...messages.mainPageMoneyChart} />
-      </Typography>
-      <Chart
-        data={lineChartMapper(state.moneyChart).data}
-        options={lineChartMapper(state.moneyChart).options}
-        type={ChartTypeEnum.LINE}
-      />
-      <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
-        <FormattedMessage {...messages.mainPageIncomeChart} />
-      </Typography>
-      <Chart
-        data={pieChartMapper(state.incomeChart)}
-        type={ChartTypeEnum.PIE}
-      />
-      <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
-        <FormattedMessage {...messages.mainPageCostChart} />
-      </Typography>
-      <Chart data={pieChartMapper(state.costChart)} type={ChartTypeEnum.PIE} />
+
+      {state.moneyChart.length && (
+        <>
+          <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
+            <FormattedMessage {...messages.mainPageMoneyChart} />
+          </Typography>
+          <Chart
+            data={lineChartMapper(state.moneyChart).data}
+            options={lineChartMapper(state.moneyChart).options}
+            type={ChartTypeEnum.LINE}
+          />
+        </>
+      )}
+
+      {state.incomeChart.length && (
+        <>
+          <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
+            <FormattedMessage {...messages.mainPageIncomeChart} />
+          </Typography>
+          <Chart
+            data={pieChartMapper(state.incomeChart)}
+            type={ChartTypeEnum.PIE}
+          />
+        </>
+      )}
+
+      {state.costChart.length && (
+        <>
+          <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
+            <FormattedMessage {...messages.mainPageCostChart} />
+          </Typography>
+          <Chart
+            data={pieChartMapper(state.costChart)}
+            type={ChartTypeEnum.PIE}
+          />
+        </>
+      )}
+
+      {state.userIncomeChart.length && (
+        <>
+          <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
+            <FormattedMessage {...messages.groupMainPageUserIncomeChart} />
+          </Typography>
+          <Chart
+            data={pieChartMapper(state.userIncomeChart)}
+            type={ChartTypeEnum.PIE}
+          />
+        </>
+      )}
+
+      {state.userCostChart.length && (
+        <>
+          <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
+            <FormattedMessage {...messages.groupMainPageUserCostChart} />
+          </Typography>
+          <Chart
+            data={pieChartMapper(state.userCostChart)}
+            type={ChartTypeEnum.PIE}
+          />
+        </>
+      )}
     </MainTemplate>
   );
 };

@@ -1,29 +1,26 @@
 import { ModalEnum } from '../types/enums/modal.enum';
-import { useEffect, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import BlurBackgroundTemplate from '../components/templates/BlurBackgroundTemplate/BlurBackgroundTemplate';
 import { HashLoader } from 'react-spinners';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import ErrorModal from '../components/molecules/ErrorModal/ErrorModal';
-import { closeModal, openModal } from '../redux/slices/modal.slice';
 import RegisterSuccess from '../components/molecules/RegisterSuccess/RegisterSuccess';
+import ApplicationContext from '../contexts/application.context';
+import { ActionEnum } from '../contexts/application.reducer';
 
 const ModalRunnerUtil = () => {
-  const dispatch = useAppDispatch();
-  const { type, text, isOpen } = useAppSelector((state) => state.modal.data);
-
-  useEffect(() => {
-    //if (sessionStorage.getItem('modal') && !!sessionStorage.getItem('modal')) {
-    dispatch(
-      openModal({
-        type: +sessionStorage.getItem('modal')! as unknown as ModalEnum,
-        text: sessionStorage.getItem('modalText') as string,
-      }),
-    );
-    // }
-  }, [sessionStorage, isOpen, type]);
+  const appContext = useContext(ApplicationContext);
+  function closeModal() {
+    appContext.dispatch({
+      type: ActionEnum.CHANGE_APPLICATION_TYPE,
+      payload: {
+        type: ModalEnum.NONE,
+        isOpen: false,
+      },
+    });
+  }
 
   const selectModal = useMemo(() => {
-    switch (type) {
+    switch (appContext.state.modalState.type) {
       case ModalEnum.LOADING:
         return (
           <BlurBackgroundTemplate
@@ -31,7 +28,7 @@ const ModalRunnerUtil = () => {
             content={
               <HashLoader size={150} color={'#6ADDDD'} speedMultiplier={1.5} />
             }
-            isOpen={isOpen}
+            isOpen={appContext.state.modalState.isOpen}
             closeModal={() => {}}
           />
         );
@@ -40,9 +37,9 @@ const ModalRunnerUtil = () => {
       case ModalEnum.ERROR:
         return (
           <BlurBackgroundTemplate
-            content={<ErrorModal text={text as string} />}
-            isOpen={isOpen}
-            closeModal={() => dispatch(closeModal())}
+            content={<ErrorModal text={'' as string} />}
+            isOpen={appContext.state.modalState.isOpen}
+            closeModal={closeModal}
             type={ModalEnum.ERROR}
           />
         );
@@ -51,13 +48,13 @@ const ModalRunnerUtil = () => {
         return (
           <BlurBackgroundTemplate
             content={<RegisterSuccess text={'Please check your email'} />}
-            isOpen={isOpen}
-            closeModal={() => dispatch(closeModal())}
+            isOpen={appContext.state.modalState.isOpen}
+            closeModal={closeModal}
             type={ModalEnum.REGISTER_SUCCESS}
           />
         );
     }
-  }, [type, isOpen]);
+  }, [appContext.state.modalState.type, appContext.state.modalState.isOpen]);
 
   return <>{selectModal}</>;
 };

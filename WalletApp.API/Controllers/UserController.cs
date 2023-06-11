@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.API.Authorization;
+using WalletApp.API.Models;
 using WalletApp.API.Models.commands.User;
 using WalletApp.API.Models.queries.User;
 using WalletApp.API.Models.Users.Dto;
@@ -50,7 +51,7 @@ public class UserController : BaseController
     }
 
     [HttpPut("changeIcon")]
-    public async Task<IActionResult> ChangeUserIcon(ChangeIconDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> ChangeUserIcon(ChangeUserIconDto dto, CancellationToken cancellationToken)
     {
         var command = new ChangeIconCommand()
         {

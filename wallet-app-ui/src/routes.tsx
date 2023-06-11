@@ -30,6 +30,7 @@ import GroupHomePage from './components/pages/groupPages/GroupHomePage/GroupHome
 import NotificationPanelPage from './components/pages/groupPages/NotificationPanel/NotificationPanelPage';
 import CreateGroupPage from './components/pages/CreateGroupPage/CreateGroupPage';
 import GroupSettingsPage from './components/pages/groupPages/GroupSettingsPage/GroupSettingsPage';
+import { ManageUsersPage } from './components/pages/groupPages/ManageUsersPage/ManageUsersPage';
 
 const GuardedRoute = () => {
   const token = localStorage.getItem('token');
@@ -111,6 +112,10 @@ export const Routes = () => (
         <Route
           path={GroupRoutesName.SETTINGS}
           element={<GroupSettingsPage />}
+        />
+        <Route
+          path={GroupRoutesName.MANAGE_USERS}
+          element={<ManageUsersPage />}
         />
       </Route>
     </Route>

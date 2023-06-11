@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using WalletApp.API.Helpers;
 using WalletApp.API.Models.Category;
@@ -27,10 +28,20 @@ public class GetToUserIncomeChartQueryHandler : IRequestHandler<GetToUserIncomeC
     public Task<List<ToChartModelDto>> Handle(GetToUserIncomeChartQuery request, CancellationToken cancellationToken)
     {
 
-       // var transactions = _dataContext.Transactions.Where(x => );
+       var transactions = _dataContext.Transactions
+           .Where(x => x.GroupId == _authService.User.GroupId && x.Price > 0)
+           .Include(x => x.User);
 
-       
-       
-       throw new NotImplementedException();
+
+       var groupedTransactions = transactions
+           .GroupBy(x => x.UserId)
+           .Select(x => new ToChartModelDto()
+           {
+               Name = x.Select(y => y.User.Username).First(),
+               Value = x.Sum(y => y.Price)
+           })
+           .ToList();
+
+       return Task.FromResult(!transactions.Any() ? new List<ToChartModelDto>() : groupedTransactions);
     }
 }

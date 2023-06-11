@@ -2,8 +2,7 @@ import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import Typography from '../../atoms/Typography/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import Select from '../../atoms/Select/Select';
-import { PaginationWrapper, SelectWrapper } from './HistoryPage.styles';
+import { PaginationWrapper } from './HistoryPage.styles';
 import TransactionItem from '../../molecules/TransactionItem/TransactionItem';
 import Pagination from '../../molecules/Pagination/Pagination';
 import { useContext, useEffect, useState } from 'react';
@@ -45,10 +44,10 @@ const HistoryPage = () => {
       >
         <FormattedMessage {...messages.historyPageHistory} />
       </Typography>
-      <SelectWrapper>
-        <Select items={[]} name={'Filter'} />
-        <Select items={[]} name={'Sort'} />
-      </SelectWrapper>
+      {/*<SelectWrapper>*/}
+      {/*  <Select items={[]} name={'Filter'} />*/}
+      {/*  <Select items={[]} name={'Sort'} />*/}
+      {/*</SelectWrapper>*/}
       {state?.items.map((t) => (
         <TransactionItem data={t} key={t.id} />
       ))}

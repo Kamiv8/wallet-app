@@ -54,7 +54,7 @@ export const pieChartMapper = (data: ToPieChartDto[]) => {
 export const lineChartMapper = (data: ToMoneyChartDto[]) => {
   return {
     data: {
-      labels: data.map((x) => x.name),
+      labels: data.map((x) => new Date(x.name).toLocaleDateString()),
       datasets: [
         {
           data: data.map((x) => x.value),
