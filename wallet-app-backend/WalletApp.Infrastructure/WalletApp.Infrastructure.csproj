@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>WalletApp.Infractructure</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\WalletApp.Application\WalletApp.Application.csproj" />
+      <ProjectReference Include="..\WalletApp.Common\WalletApp.Common.csproj" />
+      <ProjectReference Include="..\WalletApp.Domain\WalletApp.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.24.0" />
+    </ItemGroup>
+
+</Project>
