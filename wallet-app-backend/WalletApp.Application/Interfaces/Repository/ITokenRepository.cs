@@ -4,8 +4,9 @@ namespace WalletApp.Application.Interfaces.Repository;
 
 public interface ITokenRepository
 {
-    void UpdateRefreshToken(Token token);
-    Task<Token?> GetTokenByUserId(Guid id);
-    Task CreateTokenRow(Token token);
+    void UpdateRefreshToken(Domain.Entities.Token token);
+    Task<Domain.Entities.Token?> GetTokenByUserId(Guid id);
+    Task CreateTokenRow(Domain.Entities.Token token);
+    Task RevokeToken(Guid id);
     Task Save(CancellationToken cancellationToken);
 }

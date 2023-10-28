@@ -14,7 +14,12 @@ public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, A
     private readonly JWTConfig _options;
 
 
-    public AuthenticateCommandHandler(IAccountRepository accountRepository, ITokenRepository tokenRepository , IJWTUtil jwtUtil, IOptions<JWTConfig> options)
+    public AuthenticateCommandHandler(
+        IAccountRepository accountRepository,
+        ITokenRepository tokenRepository,
+        IJWTUtil jwtUtil,
+        IOptions<JWTConfig> options
+        )
     {
         _accountRepository = accountRepository;
         _tokenRepository = tokenRepository;
@@ -37,7 +42,6 @@ public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, A
         var token = await _tokenRepository.GetTokenByUserId(account.Id);
         if (token is null)
             throw new ErrorDetails("Cannot find old token");
-        
         _accountRepository.UpdateAccount(account);
         token.RefreshToken = refreshToken.RefreshToken;
         token.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_options.RefreshTokenTTL);

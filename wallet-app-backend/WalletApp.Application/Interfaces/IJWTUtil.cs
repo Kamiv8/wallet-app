@@ -7,5 +7,5 @@ public interface IJWTUtil
 {
     string GenerateJwtToken(Domain.Entities.Account account);
     Guid? ValidateJwtToken(string? token);
-    Token GenerateRefreshToken();
+    Domain.Entities.Token GenerateRefreshToken();
 }

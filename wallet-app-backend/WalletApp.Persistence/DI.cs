@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ public static class DI
         services.AddScoped<IWalletDbContext, WalletDbContext>();
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<ITokenRepository, TokenRepository>();
+        services.AddScoped<ICurrencyRepository, CurrencyRepository>();
         
         
         return services;

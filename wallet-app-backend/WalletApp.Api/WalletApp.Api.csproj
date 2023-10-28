@@ -13,6 +13,8 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Quartz.Extensions.Hosting" Version="3.7.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="7.0.1-dev-00320" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
 
@@ -20,6 +22,10 @@
       <ProjectReference Include="..\WalletApp.Application\WalletApp.Application.csproj" />
       <ProjectReference Include="..\WalletApp.Infrastructure\WalletApp.Infrastructure.csproj" />
       <ProjectReference Include="..\WalletApp.Persistence\WalletApp.Persistence.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Logs\" />
     </ItemGroup>
 
 </Project>

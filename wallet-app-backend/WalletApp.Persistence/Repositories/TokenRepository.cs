@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
+using WalletApp.Domain.Common;
 using WalletApp.Domain.Entities;
 
 namespace WalletApp.Persistence.Repositories;
@@ -28,6 +29,15 @@ public class TokenRepository : ITokenRepository
     public async Task CreateTokenRow(Token token)
     {
         await _db.Tokens.AddAsync(token);
+    }
+
+    public async Task RevokeToken(Guid id)
+    {
+        var token = await _db.Tokens.SingleOrDefaultAsync(x => x.AccountId == id);
+        if (token is null) throw new ErrorDetails("Invalid token");
+        token.RefreshToken = null;
+        token.RefreshTokenExpiryTime = null;
+        _db.Tokens.Update(token);
     }
 
     public async Task Save(CancellationToken cancellationToken)

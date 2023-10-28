@@ -11,5 +11,6 @@ public static class RelationshipConfig
             .HasOne(a => a.Token)
             .WithOne(t => t.Account)
             .HasForeignKey<Token>(t => t.AccountId);
+        
     }
 }

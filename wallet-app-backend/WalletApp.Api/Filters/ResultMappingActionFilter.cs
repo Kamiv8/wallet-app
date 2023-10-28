@@ -9,9 +9,9 @@ public class ResultMappingActionFilter : IAsyncActionFilter
 
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
-        await next();
+       var newContext = await next();
 
-        if (context.Result is ObjectResult objectResult)
+        if (newContext.Result is OkObjectResult objectResult)
         {
             var apiResult = new ApiResponse<object>()
             {
@@ -19,7 +19,7 @@ public class ResultMappingActionFilter : IAsyncActionFilter
                 Response = objectResult.Value
             };
 
-            context.Result = new ObjectResult(apiResult);
+            newContext.Result = new ObjectResult(apiResult);
         }
     }
 }

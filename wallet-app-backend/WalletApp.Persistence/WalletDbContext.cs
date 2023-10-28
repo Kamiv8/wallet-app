@@ -20,6 +20,7 @@ public class WalletDbContext : DbContext, IWalletDbContext
     public DbSet<Account> Accounts { get; set; }
     public DbSet<Token> Tokens { get; set; }
 
+    public DbSet<Currency> Currencies { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -36,16 +37,16 @@ public class WalletDbContext : DbContext, IWalletDbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CratedBy = _userService?.Id ?? null;
+                    entry.Entity.CratedBy = _userService?.Account?.Id ?? null;
                     entry.Entity.CreatedTime = DateTime.Now;
                     entry.Entity.IsDeleted = false;
                     break;
                 case EntityState.Modified:
-                    entry.Entity.ModifiedBy = _userService?.Id;
+                    entry.Entity.ModifiedBy = _userService?.Account?.Id ?? null;
                     entry.Entity.ModifiedTime = DateTime.Now;
                     break;
                 case EntityState.Deleted:
-                    entry.Entity.DeletedBy = _userService?.Id;
+                    entry.Entity.DeletedBy = _userService?.Account?.Id ?? null;
                     entry.Entity.DeletedTime = DateTime.Now;
                     entry.Entity.IsDeleted = true;
                     entry.State = EntityState.Modified;

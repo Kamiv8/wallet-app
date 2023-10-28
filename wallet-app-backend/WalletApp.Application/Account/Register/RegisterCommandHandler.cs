@@ -36,7 +36,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand>
         await _accountRepository.CreateAccount(entityAccount);
         await _accountRepository.Save(cancellationToken);
         
-        var emptyToken = new Token()
+        var emptyToken = new Domain.Entities.Token()
         {
             RefreshToken = null,
             JWTToken = null,
