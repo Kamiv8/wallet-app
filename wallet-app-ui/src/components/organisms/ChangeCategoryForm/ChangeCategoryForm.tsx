@@ -33,7 +33,7 @@ const ChangeCategoryForm = () => {
   useEffect(() => {
     (async () => {
       const data = await getCategories();
-      setState(data.data);
+      setState(data.data?.response);
       setRefresher(false);
     })();
   }, [refresher]);

@@ -15,7 +15,6 @@ public class ResultMappingActionFilter : IAsyncActionFilter
         {
             var apiResult = new ApiResponse<object>()
             {
-                StatusCode = (uint?)objectResult.StatusCode ?? (uint)200,
                 Response = objectResult.Value
             };
 

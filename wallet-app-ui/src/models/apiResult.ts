@@ -3,8 +3,8 @@ export enum ApiStatus {
   SUCCESS = 1,
   ERROR = 2,
 }
-export interface IApiResult {
+export interface IApiResult<T = any> {
   status: ApiStatus;
   message: string;
-  data?: any;
+  data?: T
 }

@@ -23,7 +23,7 @@ public class CallToNbpApiJob : IJob
     {
         var response = await _client.GetCurrencies(new CancellationToken());
         var deserializeData = ResultSerializer.Deserialize(response);
-        var actualCurrency = await _currencyRepository.GetCurrency("EUR");
+        var actualCurrency = await _currencyRepository.GetCurrencyByCode("EUR");
         var entityCurrencyList = deserializeData.Rates.Select(item => new Currency()
             {
                 Ask = item.Ask,

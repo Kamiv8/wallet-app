@@ -25,7 +25,7 @@ const ChangeCurrencyForm = () => {
   async function getCurrencyData() {
     const currencyData = await CurrencyApi.getCurrency();
 
-    setState(currencyData.data);
+    setState(currencyData.data?.response);
   }
 
   useEffect(() => {

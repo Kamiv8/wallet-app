@@ -36,7 +36,7 @@ const HistoryDetailsPage = () => {
     (async () => {
       const parsedId = location.pathname.split('/');
       const data = await TransactionApi.getTransactionDetails(parsedId[2]);
-      setState(data?.data);
+      setState(data?.data?.response);
     })();
   }, []);
 

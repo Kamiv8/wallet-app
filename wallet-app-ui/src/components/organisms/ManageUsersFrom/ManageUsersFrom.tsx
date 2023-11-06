@@ -30,7 +30,7 @@ const ManageUsersFrom = () => {
     (async () => {
       const users = await GroupApi.getUsers();
       setState({
-        users: users.data,
+        users: users.data?.response,
       });
     })();
   }, []);

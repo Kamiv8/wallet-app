@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WalletApp.Application.Interfaces;
 using WalletApp.Application.Token.RevokeRefreshToken;
 using WalletApp.Application.Token.UpdateRefreshToken;
 
@@ -9,9 +10,15 @@ namespace WalletApp.Controllers;
 [Route("api/[controller]")]
 public class TokenController : BaseController
 {
+    private readonly ICookieHelper _cookieHelper;
 
-    [HttpPut]
-    public async Task<IActionResult> UpdateToken(CancellationToken cancellationToken)
+    public TokenController(ICookieHelper cookieHelper)
+    {
+        _cookieHelper = cookieHelper;
+    }
+    
+    [HttpGet]
+    public async Task<ActionResult<RefreshTokenDto>> GetTokens(CancellationToken cancellationToken)
     {
         var oldToken = Request.Cookies["refreshToken"];
         var command = new UpdateRefreshTokenCommand()
@@ -19,7 +26,7 @@ public class TokenController : BaseController
             RefreshToken = oldToken,
         };
         var res = await Mediator.Send(command, cancellationToken);
-
+        _cookieHelper.SetToken(res.RefreshToken);
         return Ok(res);
     }
 
@@ -30,7 +37,5 @@ public class TokenController : BaseController
         await Mediator.Send(command, cancellationToken);
         return Ok();
     }
-    
-    
     
 }

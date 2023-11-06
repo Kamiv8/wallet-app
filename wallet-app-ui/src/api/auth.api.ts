@@ -1,27 +1,30 @@
-import { ApiStatus, IApiResult } from '../models/apiResult';
-import { AuthenticateCommand } from '../models/commands/auth/authenticate.command';
-import { BaseApiHandler } from './baseApiHandler';
-import { RegisterCommand } from '../models/commands/auth/register.command';
-import axios from 'axios';
-import { ResetPasswordCommand } from '../models/commands/auth/resetPassword.command';
-import { VerifyAccountCommand } from '../models/commands/auth/verifyAccount.command';
-import { devConfig } from '../const/config';
+import { ApiStatus, IApiResult } from "../models/apiResult";
+import { AuthenticateCommand } from "../models/commands/auth/authenticate.command";
+import { BaseApiHandler } from "./baseApiHandler";
+import { RegisterCommand } from "../models/commands/auth/register.command";
+import axios from "axios";
+import { ResetPasswordCommand } from "../models/commands/auth/resetPassword.command";
+import { VerifyAccountCommand } from "../models/commands/auth/verifyAccount.command";
+import { devConfig } from "../const/config";
+import { api } from "./baseAxios.config";
+import { CookieHelper } from "../helpers/cookie.helper";
+import { AuthenticateDto } from "../models/commands/account/authenticate/authenticate.dto";
+
 
 export class AuthApi {
-  public static async authenticate(value: any): Promise<IApiResult> {
+  public static async authenticate(value: any): Promise<IApiResult<AuthenticateDto>> {
     const command = new AuthenticateCommand(value.email, value.password);
 
-    const data = await axios.post(
-      '/auth/authenticate',
+    const data = await api.post(
+      '/account/authenticate',
       command,
-      AuthApi.apiOptions(),
     );
 
-    const dataResult = BaseApiHandler.handleApi(data);
-
+    const dataResult = BaseApiHandler.handleApi<AuthenticateDto>(data);
     if (dataResult.status === ApiStatus.SUCCESS) {
-      localStorage.setItem('token', dataResult.data.token);
+      localStorage.setItem('token', dataResult.data?.token ?? "");
       localStorage.setItem('type', 'SINGLE');
+      CookieHelper.setCookie("refreshToken", dataResult.data?.refreshToken ?? "");
     }
 
     return dataResult;

@@ -24,9 +24,19 @@ public class CurrencyRepository : ICurrencyRepository
         await _db.Currencies.AddRangeAsync(currencies);
     }
 
-    public async Task<Currency?> GetCurrency(string code)
+    public async Task<Currency?> GetCurrencyByCode(string code)
     {
         return await _db.Currencies.FirstOrDefaultAsync(x => x.Code == code);
+    }
+
+    public async Task<IEnumerable<Currency>> GetCurrencies()
+    {
+        return await _db.Currencies.ToListAsync();
+    }
+
+    public Task<Currency?> GetCurrencyById(Guid id)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task Save(CancellationToken cancellationToken)

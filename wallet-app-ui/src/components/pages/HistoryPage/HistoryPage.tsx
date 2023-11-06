@@ -29,7 +29,7 @@ const HistoryPage = () => {
         pageSize: 3,
         pageNumber: pagination.currentPage + 1,
       });
-      setState(transactions.data);
+      setState(transactions.data?.response);
     })();
   }, [pagination.currentPage]);
 

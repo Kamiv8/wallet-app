@@ -33,12 +33,12 @@ const GroupSettingsPage = () => {
 
       setState({
         ...state,
-        id: groupData.data.id,
-        iconId: groupData.data.iconId,
-        groupName: groupData.data.groupName,
-        admins: groupData.data.admins,
-        membersCount: groupData.data.membersCount,
-        maxMembers: groupData.data.maxMembers,
+        id: groupData.data?.response.id,
+        iconId: groupData.data?.response.iconId,
+        groupName: groupData.data?.response.groupName,
+        admins: groupData.data?.response.admins,
+        membersCount: groupData.data?.response.membersCount,
+        maxMembers: groupData.data?.response.maxMembers,
       });
     })();
   }, []);

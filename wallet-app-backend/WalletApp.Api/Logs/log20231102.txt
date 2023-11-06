@@ -1,0 +1,37 @@
+2023-11-02 16:12:22.576 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2023-11-02 16:12:22.600 +01:00 [INF] Quartz Scheduler created
+2023-11-02 16:12:22.601 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2023-11-02 16:12:22.602 +01:00 [INF] RAMJobStore initialized.
+2023-11-02 16:12:22.603 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2023-11-02 16:12:22.605 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2023-11-02 16:12:22.606 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2023-11-02 16:12:22.613 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2023-11-02 16:12:22.615 +01:00 [INF] Adding job: DEFAULT.NBP
+2023-11-02 16:12:22.658 +01:00 [INF] Now listening on: http://localhost:5238
+2023-11-02 16:12:22.661 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-11-02 16:12:22.661 +01:00 [INF] Hosting environment: Development
+2023-11-02 16:12:22.662 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2023-11-02 16:12:22.663 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2023-11-02 16:12:22.776 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2023-11-02 16:12:22.779 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2023-11-02 16:12:22.894 +01:00 [INF] Received HTTP response headers after 111.5924ms - 200
+2023-11-02 16:12:22.898 +01:00 [INF] End processing HTTP request after 124.8726ms - 200
+2023-11-02 16:12:22.938 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/swagger - -
+2023-11-02 16:12:22.960 +01:00 [WRN] Failed to determine the https port for redirect.
+2023-11-02 16:12:22.993 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/swagger - - - 404 0 - 56.8415ms
+2023-11-02 16:12:23.873 +01:00 [INF] Executed DbCommand (52ms) [Parameters=[@__code_0='?' (Size = 3) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CurrencyName], [c].[TradingDate]
+FROM [Currencies] AS [c]
+WHERE [c].[Code] = @__code_0
+2023-11-02 16:12:24.021 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p2='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p3='?' (Size = 3) (DbType = AnsiString), @p4='?' (Size = 30) (DbType = AnsiString), @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p8='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p9='?' (Size = 3) (DbType = AnsiString), @p10='?' (Size = 30) (DbType = AnsiString), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p14='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p15='?' (Size = 3) (DbType = AnsiString), @p16='?' (Size = 30) (DbType = AnsiString), @p17='?' (DbType = DateTime), @p18='?' (DbType = Guid), @p19='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p20='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p21='?' (Size = 3) (DbType = AnsiString), @p22='?' (Size = 30) (DbType = AnsiString), @p23='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Currencies] ([Id], [Ask], [Bid], [Code], [CurrencyName], [TradingDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5),
+(@p6, @p7, @p8, @p9, @p10, @p11),
+(@p12, @p13, @p14, @p15, @p16, @p17),
+(@p18, @p19, @p20, @p21, @p22, @p23);
+2023-11-02 16:12:47.830 +01:00 [INF] Application is shutting down...
+2023-11-02 16:12:47.842 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED shutting down.
+2023-11-02 16:12:47.845 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED paused.
+2023-11-02 16:12:47.848 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED Shutdown complete.

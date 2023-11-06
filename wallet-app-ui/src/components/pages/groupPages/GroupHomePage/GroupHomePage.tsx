@@ -53,10 +53,10 @@ const GroupHomePage = () => {
 
     setState((prev) => ({
       ...prev,
-      iconId: data.iconId,
-      groupName: data.groupName,
-      actualMoney: data.actualMoney,
-      currencyMark: data.currencyMark,
+      iconId: data?.response.iconId,
+      groupName: data?.response.groupName,
+      actualMoney: data?.response.actualMoney,
+      currencyMark: data?.response.currencyMark,
     }));
   };
 
@@ -66,7 +66,7 @@ const GroupHomePage = () => {
     );
     setState((prev) => ({
       ...prev,
-      lastTransactions: data.items,
+      lastTransactions: data?.response.items,
     }));
   };
 
@@ -76,7 +76,7 @@ const GroupHomePage = () => {
     );
     setState((prev) => ({
       ...prev,
-      moneyChart: moneyChartData.data,
+      moneyChart: moneyChartData.data?.response,
     }));
   }
 
@@ -86,7 +86,7 @@ const GroupHomePage = () => {
     );
     setState((prev) => ({
       ...prev,
-      incomeChart: incomeChartData.data,
+      incomeChart: incomeChartData.data?.response,
     }));
   }
 
@@ -96,7 +96,7 @@ const GroupHomePage = () => {
     );
     setState((prev) => ({
       ...prev,
-      costChart: costChartData.data,
+      costChart: costChartData.data?.response,
     }));
   }
 
@@ -105,7 +105,7 @@ const GroupHomePage = () => {
 
     setState((prev) => ({
       ...prev,
-      userIncomeChart: incomeChartData.data,
+      userIncomeChart: incomeChartData.data?.response,
     }));
   }
 
@@ -113,7 +113,7 @@ const GroupHomePage = () => {
     const costUserChartData = await TransactionApi.getUserCostChartData();
     setState((prev) => ({
       ...prev,
-      userCostChart: costUserChartData.data,
+      userCostChart: costUserChartData.data?.response,
     }));
   }
 
@@ -131,7 +131,6 @@ const GroupHomePage = () => {
     })();
   }, []);
 
-  console.log(state);
 
   return (
     <MainTemplate isGroup>

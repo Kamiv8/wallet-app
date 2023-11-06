@@ -51,14 +51,14 @@ const CreateGroupForm = () => {
   useEffect(() => {
     (async () => {
       const data = await CurrencyApi.getCurrency();
-      setCurrencies(data.data);
+      setCurrencies(data.data?.response);
     })();
   }, []);
 
   const onSubmit = async () => {
     const data = await GroupApi.createGroup(values);
-    localStorage.setItem('groupId', data.data.groupId.toString());
-    localStorage.setItem('userRole', data.data.role);
+    localStorage.setItem('groupId', data.data?.response.groupId.toString());
+    localStorage.setItem('userRole', data.data?.response.role);
   };
 
   return (

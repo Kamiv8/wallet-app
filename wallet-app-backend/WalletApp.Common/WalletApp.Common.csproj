@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WalletApp.Application\WalletApp.Application.csproj" />
+    </ItemGroup>
+
 </Project>

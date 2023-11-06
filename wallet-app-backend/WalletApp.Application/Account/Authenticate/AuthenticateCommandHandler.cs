@@ -48,11 +48,7 @@ public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, A
         _tokenRepository.UpdateRefreshToken(token);
 
         await _accountRepository.Save(cancellationToken);
-        var dto = new AuthenticateDto()
-        {
-            RefreshToken = token.RefreshToken!,
-            Token = newToken
-        };
+        var dto = new AuthenticateDto(newToken, token.RefreshToken);
 
         return dto;
     }

@@ -56,7 +56,7 @@ const AddTransactionForm = (props: TProps) => {
 
     setState((prev) => ({
       ...prev,
-      currency: currencyData.data,
+      currency: currencyData.data?.response,
     }));
   }
 
@@ -67,7 +67,7 @@ const AddTransactionForm = (props: TProps) => {
 
     setState((prev) => ({
       ...prev,
-      category: userCategoryData.data,
+      category: userCategoryData.data?.response,
     }));
   }
 

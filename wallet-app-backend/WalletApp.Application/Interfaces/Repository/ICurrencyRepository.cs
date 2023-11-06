@@ -6,7 +6,9 @@ public interface ICurrencyRepository
 {
     void UpdateRange(List<Currency> currencies);
     Task AddRange(List<Currency> currencies);
-    Task<Currency?> GetCurrency(string code);
+    Task<Currency?> GetCurrencyByCode(string code);
+    Task<IEnumerable<Currency>> GetCurrencies();
+    Task<Currency?> GetCurrencyById(Guid id);
     Task Save(CancellationToken cancellationToken);
 
 

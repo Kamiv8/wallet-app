@@ -36,10 +36,10 @@ const NavigationPage = (props: TProps) => {
     const userData = await UserApi.getUserData();
     setState((prev) => ({
       ...prev,
-      username: userData.data.username,
-      avatarNumber: userData.data.iconId,
-      role: userData.data.role,
-      groupId: userData.data.groupId,
+      username: userData.data?.response.username,
+      avatarNumber: userData.data?.response.iconId,
+      role: userData.data?.response.role,
+      groupId: userData.data?.response.groupId,
     }));
   }
 

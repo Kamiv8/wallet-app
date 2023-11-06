@@ -18,7 +18,7 @@ const GroupNavigation = () => {
   useEffect(() => {
     (async () => {
       const data = await GroupApi.getJoinUserNotificationCount();
-      setState(data.data?.count);
+      setState(data.data?.response.count);
     })();
   }, []);
 

@@ -23,7 +23,7 @@ const TablePage = () => {
       const data = await TableApi.getAllNotes(
         getApplicationType(appContext.state.type),
       );
-      setState(data.data);
+      setState(data.data?.response);
     })();
   }, []);
 

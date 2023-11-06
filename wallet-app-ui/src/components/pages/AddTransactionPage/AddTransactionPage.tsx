@@ -27,7 +27,7 @@ const AddTransactionPage = () => {
     );
     setState({
       ...state,
-      transactions: data.data,
+      transactions: data.data?.response,
     });
   };
 

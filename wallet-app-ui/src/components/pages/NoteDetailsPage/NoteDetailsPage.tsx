@@ -20,7 +20,7 @@ const NoteDetailsPage = () => {
         location.pathname.split('/').pop()!,
       );
       if (data.status) {
-        setState(data.data);
+        setState(data.data?.response);
       }
     })();
   }, []);

@@ -31,17 +31,17 @@ export const LoginForm = () => {
 
   const onSubmit = async () => {
     const authenticate = await AuthApi.authenticate(values);
-
+    console.log(authenticate);
     if (authenticate.status === ApiStatus.SUCCESS) {
       const userData = await UserApi.getUserData();
-      if (userData.data.groupId !== null) {
-        localStorage.setItem('groupId', userData.data.groupId);
-        localStorage.setItem('userRole', userData.data.role);
+      if (userData.data?.response.groupId !== null) {
+        localStorage.setItem('groupId', userData.data?.response.groupId);
+        localStorage.setItem('userRole', userData.data?.response.role);
         appContext.dispatch({
           type: ActionEnum.CHANGE_APPLICATION_TYPE,
           payload: {
-            groupId: userData.data.groupId,
-            userRole: userData.data.role,
+            groupId: userData.data?.response.groupId,
+            userRole: userData.data?.response.role,
           },
         });
       }

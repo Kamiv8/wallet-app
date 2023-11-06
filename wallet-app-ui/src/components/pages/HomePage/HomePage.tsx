@@ -49,8 +49,8 @@ const HomePage = () => {
       ...prev,
       actualMoney: {
         ...prev.actualMoney,
-        currencyMark: actualMoney.data.currencyName,
-        money: actualMoney.data.actualMoney,
+        currencyMark: actualMoney.data?.response.currencyName,
+        money: actualMoney.data?.response.actualMoney,
       },
     }));
   }
@@ -61,7 +61,7 @@ const HomePage = () => {
     );
     setState((prev) => ({
       ...prev,
-      lastTransactions: lastTransactions.data.items,
+      lastTransactions: lastTransactions.data?.response.items,
     }));
   }
 
@@ -71,7 +71,7 @@ const HomePage = () => {
     );
     setState((prev) => ({
       ...prev,
-      moneyChart: moneyChartData.data,
+      moneyChart: moneyChartData.data?.response,
     }));
   }
 
@@ -81,7 +81,7 @@ const HomePage = () => {
     );
     setState((prev) => ({
       ...prev,
-      incomeChart: incomeChartData.data,
+      incomeChart: incomeChartData.data?.response,
     }));
   }
 
@@ -91,7 +91,7 @@ const HomePage = () => {
     );
     setState((prev) => ({
       ...prev,
-      costChart: costChartData.data,
+      costChart: costChartData.data?.response,
     }));
   }
 

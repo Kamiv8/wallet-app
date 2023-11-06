@@ -14,7 +14,7 @@ const NotificationPanelPage = () => {
   useEffect(() => {
     (async () => {
       const data = await GroupApi.joinRequestNotification();
-      setState(data.data);
+      setState(data.data?.response);
     })();
   }, [refresher]);
 
