@@ -7,5 +7,5 @@ public class Token
     public string? RefreshToken { get; set; }
     public DateTime? RefreshTokenExpiryTime { get; set; }
     public Guid? AccountId { get; set; }
-    public virtual Account Account { get; set; } = null!;
+    public virtual Account Account { get; set; } = default!;
 }

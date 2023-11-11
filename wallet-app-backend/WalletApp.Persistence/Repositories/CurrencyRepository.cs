@@ -24,14 +24,19 @@ public class CurrencyRepository : ICurrencyRepository
         await _db.Currencies.AddRangeAsync(currencies);
     }
 
+    public void RemoveRange(List<Currency> currencies)
+    {
+        _db.Currencies.RemoveRange(currencies);
+    }
+
     public async Task<Currency?> GetCurrencyByCode(string code)
     {
         return await _db.Currencies.FirstOrDefaultAsync(x => x.Code == code);
     }
 
-    public async Task<IEnumerable<Currency>> GetCurrencies()
+    public async Task<List<Currency>> GetCurrencies(CancellationToken cancellationToken)
     {
-        return await _db.Currencies.ToListAsync();
+        return await _db.Currencies.ToListAsync(cancellationToken);
     }
 
     public Task<Currency?> GetCurrencyById(Guid id)

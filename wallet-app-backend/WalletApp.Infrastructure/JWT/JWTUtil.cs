@@ -3,8 +3,8 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using WalletApp.Application;
 using WalletApp.Application.Interfaces;
+using WalletApp.Application.Options;
 using WalletApp.Common.Helpers;
 using WalletApp.Domain.Entities;
 
@@ -12,28 +12,38 @@ namespace WalletApp.Infrastructure.JWT;
 
 public class JWTUtil : IJWTUtil
 {
-    private readonly JWTConfig _options;
+    private readonly JwtOptions _options;
 
-    public JWTUtil(IOptions<JWTConfig> options)
+    public JWTUtil(IOptions<JwtOptions> options)
     {
         _options = options.Value;
     }
-    
+
     public string GenerateJwtToken(Account account)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_options.Secret);
-        var tokenDescriptor = new SecurityTokenDescriptor
+        var key = Encoding.UTF8.GetBytes(_options.Secret);
+        var claims = new Claim[]
         {
-            Subject = new ClaimsIdentity(new[] { new Claim("id", account.Id.ToString()) }),
-            Expires = DateTime.UtcNow.AddMinutes(1),
-            SigningCredentials =
-                new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            new(JwtRegisteredClaimNames.Sub, account.Id.ToString()),
+            new(JwtRegisteredClaimNames.Email, account.Email)
         };
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+
+        var signingCredentials = new SigningCredentials(
+            new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
+
+        var tokenDescriptor = new JwtSecurityToken(
+            _options.Issuer,
+            _options.Audience,
+            claims,
+            null,
+            DateTime.UtcNow.AddMinutes(_options.AccessTokenTtl),
+            signingCredentials
+        );
+        var token = tokenHandler.WriteToken(tokenDescriptor);
+        return token;
     }
-    
+
     public Guid? ValidateJwtToken(string? token)
     {
         if (token is null) return null;
@@ -43,7 +53,7 @@ public class JWTUtil : IJWTUtil
 
         try
         {
-           tokenHandler.ValidateToken(token, new TokenValidationParameters
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(key),
@@ -52,10 +62,11 @@ public class JWTUtil : IJWTUtil
                 ClockSkew = TimeSpan.Zero
             }, out SecurityToken validationToken);
 
-           var jwtToken = (JwtSecurityToken)validationToken;
-           var userId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "id")?.Value ?? String.Empty);
+            var jwtToken = (JwtSecurityToken)validationToken;
+            var userId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "id")?.Value ??
+                                    String.Empty);
 
-           return userId == Guid.Empty ? null : userId;
+            return userId == Guid.Empty ? null : userId;
         }
         catch
         {
@@ -68,10 +79,9 @@ public class JWTUtil : IJWTUtil
         var refreshToken = new Token
         {
             RefreshToken = UniqueTokenGenerator.GetUniqueToken(),
-            RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7)
+            RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_options.RefreshTokenTtl)
         };
 
         return refreshToken;
     }
-    
 }

@@ -2,10 +2,11 @@ import { IApiResult } from '../models/apiResult';
 import { devConfig } from '../const/config';
 import axios from 'axios';
 import { BaseApiHandler } from './baseApiHandler';
+import { api } from "./baseAxios.config";
 
 export class UserApi {
   public static async getUserData(): Promise<IApiResult> {
-    const data = await axios.get('/user/userData', UserApi.apiOptions());
+    const data = await api.get('/account/data');
     return BaseApiHandler.handleApi(data);
   }
 

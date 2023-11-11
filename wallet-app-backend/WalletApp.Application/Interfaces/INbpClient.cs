@@ -1,6 +1,9 @@
+using WalletApp.Application.Common.Currency.Update;
+using WalletApp.Domain.Models;
+
 namespace WalletApp.Application.Interfaces;
 
 public interface INbpClient
 {
-    Task<string> GetCurrencies(CancellationToken cancellationToken);
+    Task<UpdateCurrencyResponseDto> GetCurrencies(CancellationToken cancellationToken);
 }

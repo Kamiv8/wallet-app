@@ -27,11 +27,6 @@ public static class RelationshipConfig
             .WithOne(a => a.Account)
             .HasForeignKey(a => a.AccountId);
 
-        modelBuilder.Entity<AccountData>()
-            .HasOne(a => a.Currency)
-            .WithMany(a => a.AccountData)
-            .HasForeignKey(c => c.CurrencyId);
-
         modelBuilder.Entity<Transaction>()
             .HasOne(t => t.Category)
             .WithMany(t => t.Transactions)

@@ -19,7 +19,7 @@ public static class DI
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<ITokenRepository, TokenRepository>();
         services.AddScoped<ICurrencyRepository, CurrencyRepository>();
-        
+        services.AddScoped<IAccountDataRepository, AccountDataRepository>();
         
         return services;
     }

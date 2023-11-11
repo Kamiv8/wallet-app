@@ -31,7 +31,6 @@ export const LoginForm = () => {
 
   const onSubmit = async () => {
     const authenticate = await AuthApi.authenticate(values);
-    console.log(authenticate);
     if (authenticate.status === ApiStatus.SUCCESS) {
       const userData = await UserApi.getUserData();
       if (userData.data?.response.groupId !== null) {

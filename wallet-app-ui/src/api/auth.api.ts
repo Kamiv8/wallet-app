@@ -1,7 +1,6 @@
 import { ApiStatus, IApiResult } from "../models/apiResult";
 import { AuthenticateCommand } from "../models/commands/auth/authenticate.command";
 import { BaseApiHandler } from "./baseApiHandler";
-import { RegisterCommand } from "../models/commands/auth/register.command";
 import axios from "axios";
 import { ResetPasswordCommand } from "../models/commands/auth/resetPassword.command";
 import { VerifyAccountCommand } from "../models/commands/auth/verifyAccount.command";
@@ -9,6 +8,7 @@ import { devConfig } from "../const/config";
 import { api } from "./baseAxios.config";
 import { CookieHelper } from "../helpers/cookie.helper";
 import { AuthenticateDto } from "../models/commands/account/authenticate/authenticate.dto";
+import { RegisterCommand } from "../models/commands/account/register/register.command";
 
 
 export class AuthApi {
@@ -38,10 +38,9 @@ export class AuthApi {
       value.confirmPassword,
       value.icon,
     );
-    const data = await axios.post(
-      '/auth/register',
+    const data = await api.post(
+      '/account/register',
       command,
-      AuthApi.apiOptions(),
     );
 
     return BaseApiHandler.handleApi(data);

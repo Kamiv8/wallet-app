@@ -8,7 +8,7 @@ export class TokenApi {
 
   public static async getAccessToken(): Promise<IApiResult> {
     const tokenCookie = CookieHelper.getCookie("refreshToken");
-    const res = await api.get("/token", {headers: {Cookie: tokenCookie} });
+    const res = await api.get(`/token/${tokenCookie}`);
     return BaseApiHandler.handleApi(res);
   }
 

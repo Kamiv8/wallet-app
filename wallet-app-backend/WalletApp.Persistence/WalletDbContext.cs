@@ -19,8 +19,11 @@ public class WalletDbContext : DbContext, IWalletDbContext
     
     public DbSet<Account> Accounts { get; set; }
     public DbSet<Token> Tokens { get; set; }
-
     public DbSet<Currency> Currencies { get; set; }
+    public DbSet<AccountData> AccountData { get; set; }
+    public DbSet<Note> Notes { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,15 +1,14 @@
-using WalletApp.Domain.Entities;
-
+using DomainAccount = WalletApp.Domain.Entities.Account;
 namespace WalletApp.Application.Interfaces.Repository;
+
 
 public interface IAccountRepository
 {
-    Task<ICollection<Domain.Entities.Account>> GetAll();
-    Task<Domain.Entities.Account?> GetAccountById(Guid id);
-    Task<Domain.Entities.Account?> GetAccountByEmail(string email);
-    Task<Domain.Entities.Account?> GetAccountByRefreshToken(string refreshToken);
-    Task CreateAccount(Domain.Entities.Account account);
-    void UpdateAccount(Domain.Entities.Account account);
+    Task<ICollection<DomainAccount>> GetAll();
+    Task<DomainAccount?> GetAccountById(Guid id);
+    Task<DomainAccount?> GetAccountByEmail(string email);
+    Task<DomainAccount?> GetAccountByRefreshToken(string refreshToken);
+    Task CreateAccount(DomainAccount account);
     Task RemoveAccount(Guid id);
 
     Task Save(CancellationToken cancellationToken, bool isBaseEntity = false);

@@ -12,6 +12,6 @@ public class CurrentUserService : ICurrentUserService
         _accessor = accessor;
     }
 
-    public Account? Account => (Account?)_accessor.HttpContext!.Items["User"];
+    public Account? Account => (Account?)_accessor.HttpContext!.Items["User"] ?? null;
 
 }
