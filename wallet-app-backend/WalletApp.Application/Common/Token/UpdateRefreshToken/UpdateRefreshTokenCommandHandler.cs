@@ -1,54 +1,55 @@
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using WalletApp.Application.Common;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
-using WalletApp.Domain.Common;
+using WalletApp.Domain.Entities;
 
 namespace WalletApp.Application.Token.UpdateRefreshToken;
 
 public class
     UpdateRefreshTokenCommandHandler : IRequestHandler<UpdateRefreshTokenCommand,
-        ApiResult<RefreshTokenDto>>
+        ApiResult<RefreshTokenResponseDto>>
 {
-    private readonly IAccountRepository _accountRepository;
+    private readonly UserManager<UserIdentity> _userManager;
     private readonly ITokenRepository _tokenRepository;
     private readonly IJWTUtil _jwtUtil;
 
-    public UpdateRefreshTokenCommandHandler(IAccountRepository accountRepository,
+    public UpdateRefreshTokenCommandHandler(UserManager<UserIdentity> userManager,
         ITokenRepository tokenRepository, IJWTUtil jwtUtil)
     {
-        _accountRepository = accountRepository;
+        _userManager = userManager;
         _tokenRepository = tokenRepository;
         _jwtUtil = jwtUtil;
     }
 
-    public async Task<ApiResult<RefreshTokenDto>> Handle(UpdateRefreshTokenCommand request,
+    public async Task<ApiResult<RefreshTokenResponseDto>> Handle(UpdateRefreshTokenCommand request,
         CancellationToken cancellationToken)
     {
         if (request.RefreshToken is null)
-            return new ApiResult<RefreshTokenDto>(ApiResultStatus.Error, null,
-                "The token is empty");
-        var user = await _accountRepository.GetAccountByRefreshToken(request.RefreshToken);
+            return new ApiResult<RefreshTokenResponseDto>(ApiResultStatus.Error, null,
+                TokenErrorMessages.EmptyToken
+            );
+        var oldToken = await _tokenRepository.GetTokenByRefreshToken(request.RefreshToken);
 
-        if (user is null)
-            return new ApiResult<RefreshTokenDto>(ApiResultStatus.Error, null, "Invalid token");
+        if (oldToken is null || oldToken.RefreshTokenExpiryTime <= DateTime.Now)
+            return new ApiResult<RefreshTokenResponseDto>(ApiResultStatus.Error, null,
+                TokenErrorMessages.CannotFindToken);
 
-        if (user.Token.RefreshTokenExpiryTime <= DateTime.Now)
-            return new ApiResult<RefreshTokenDto>(ApiResultStatus.Error, null,
-                "This provided token is invalid");
+        var user = await _userManager.FindByIdAsync(oldToken.UserIdentityId.ToString());
 
-        var newRefreshToken = _jwtUtil.GenerateRefreshToken();
-        var entityToken = await _tokenRepository.GetTokenByUserId(user.Id);
-        entityToken.RefreshToken = newRefreshToken.RefreshToken;
-        entityToken.RefreshTokenExpiryTime = newRefreshToken.RefreshTokenExpiryTime;
-        _tokenRepository.UpdateRefreshToken(entityToken);
+        var newRefreshToken = _jwtUtil.GenerateRefreshToken(request.IpAddress);
+
+        oldToken.RefreshToken = newRefreshToken.RefreshToken;
+        oldToken.RefreshTokenExpiryTime = newRefreshToken.RefreshTokenExpiryTime;
         await _tokenRepository.Save(cancellationToken);
 
-        var jwtToken = _jwtUtil.GenerateJwtToken(user);
+        var jwtToken = await _jwtUtil.GenerateJwtToken(user);
 
-        var response = new RefreshTokenDto(jwtToken, newRefreshToken.RefreshToken);
+        var response = new RefreshTokenResponseDto(jwtToken, newRefreshToken.RefreshToken);
 
-        return new ApiResult<RefreshTokenDto>(ApiResultStatus.Success, response, null);
+        return new ApiResult<RefreshTokenResponseDto>(ApiResultStatus.Success, response, null);
     }
 }

@@ -2,5 +2,6 @@ namespace WalletApp.Application.Interfaces;
 
 public interface ICurrentUserService
 {
-    public Domain.Entities.Account? Account { get;  }
+    public Guid? Id { get; }
+    public string? Email { get; }
 }

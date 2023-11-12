@@ -21,17 +21,18 @@ public class AccountController : BaseController
         _cookieHelper = cookieHelper;
     }
 
-
+    [AllowAnonymous]
     [HttpPost("authenticate")]
     public async Task<ActionResult<ApiResult<AuthenticateResponseDto>>> Authentication(
         [FromBody] AuthenticateDto dto, CancellationToken cancellationToken)
     {
-        var command = new AuthenticateCommand(dto.Email, dto.Password);
+        var command = new AuthenticateCommand(dto.Username, dto.Password, IpAddress());
         var res = await _mediator.Send(command, cancellationToken);
         _cookieHelper.SetToken(res?.Data?.RefreshToken);
         return CreateResponse(res);
     }
 
+    [AllowAnonymous]
     [HttpPost("register")]
     public async Task<ActionResult<ApiResult>> Register([FromBody] RegisterDto dto,
         CancellationToken cancellationToken)
@@ -53,5 +54,13 @@ public class AccountController : BaseController
         var query = new GetAccountDataQuery();
         var res = await _mediator.Send(query, cancellationToken);
         return CreateResponse(res);
+    }
+
+
+    private string IpAddress()
+    {
+        if (Request.Headers.ContainsKey("X-Forwarded-For"))
+            return Request.Headers["X-Forwarded-For"];
+        return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
     }
 }

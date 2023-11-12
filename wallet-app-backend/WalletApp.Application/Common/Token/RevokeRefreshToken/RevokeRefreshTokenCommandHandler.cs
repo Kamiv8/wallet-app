@@ -24,7 +24,7 @@ public class
     public async Task<ApiResult> Handle(RevokeRefreshTokenCommand request,
         CancellationToken cancellationToken)
     {
-        var user = _userService.Account?.Id;
+        var user = _userService?.Id;
         if (user is null) return new ApiResult(ApiResultStatus.Error, "Cannot find user");
 
         await _tokenRepository.RevokeToken((Guid)user);

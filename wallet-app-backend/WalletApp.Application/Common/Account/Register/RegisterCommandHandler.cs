@@ -1,5 +1,7 @@
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using WalletApp.Application.Common;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Entities;
@@ -8,53 +10,38 @@ namespace WalletApp.Application.Account.Register;
 
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ApiResult>
 {
-    private readonly IAccountRepository _accountRepository;
-    private readonly ITokenRepository _tokenRepository;
+    private readonly UserManager<UserIdentity> _userManager;
     private readonly IAccountDataRepository _accountDataRepository;
 
-    public RegisterCommandHandler(IAccountRepository accountRepository,
-        ITokenRepository tokenRepository, IAccountDataRepository accountDataRepository)
+    public RegisterCommandHandler(UserManager<UserIdentity> userManager,
+        IAccountDataRepository accountDataRepository)
     {
-        _accountRepository = accountRepository;
-        _tokenRepository = tokenRepository;
+        _userManager = userManager;
         _accountDataRepository = accountDataRepository;
     }
 
     public async Task<ApiResult> Handle(RegisterCommand request,
         CancellationToken cancellationToken)
     {
-        var user = await _accountRepository.GetAccountByEmail(request.Email);
+        var entityUser = await _userManager.FindByEmailAsync(request.Email);
+        if (entityUser is not null)
+            return new ApiResult(ApiResultStatus.Error, AccountErrorMessages.EmailNotExist);
 
-        if (user is not null)
-            return new ApiResult(ApiResultStatus.Error, "Email does exist");
-
-        var entityAccount = new Domain.Entities.Account()
+        var newUser = new UserIdentity
         {
-            Username = request.Username,
             Email = request.Email,
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
-            Icon = (int)request.IconType
+            UserName = request.Username,
+            IconType = request.IconType
         };
 
-
-        var emptyToken = new Domain.Entities.Token()
+        var accountData = new AccountData
         {
-            RefreshToken = null,
-            JWTToken = null,
-            RefreshTokenExpiryTime = null,
-            Account = entityAccount!
-        };
-
-        await _tokenRepository.CreateTokenRow(emptyToken);
-
-        var accountData = new AccountData()
-        {
-            Account = entityAccount!,
+            UserIdentity = newUser!,
             ActualMoney = 0,
         };
 
         await _accountDataRepository.CreateAsync(accountData);
-        await _accountDataRepository.Save(cancellationToken);
+        await _userManager.CreateAsync(newUser, request.Password);
         return new ApiResult(ApiResultStatus.Success, null);
     }
 }

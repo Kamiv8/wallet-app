@@ -1,3 +1,3 @@
 export class AuthenticateCommand {
-  constructor(public email: string, public password: string) {}
+  constructor(public username: string, public password: string) {}
 }

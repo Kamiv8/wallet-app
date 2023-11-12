@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WalletApp.Application.Interfaces;
 using WalletApp.Domain.Common;
@@ -6,7 +8,7 @@ using WalletApp.Domain.Entities;
 
 namespace WalletApp.Persistence;
 
-public class WalletDbContext : DbContext, IWalletDbContext
+public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Guid>, IWalletDbContext
 {
     private readonly ICurrentUserService _userService;
 
@@ -27,6 +29,12 @@ public class WalletDbContext : DbContext, IWalletDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<IdentityUserLogin<Guid>>(entity =>
+        {
+            entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+        });
+        
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         modelBuilder.CreateRelationship();
         modelBuilder.Seed();
@@ -40,16 +48,16 @@ public class WalletDbContext : DbContext, IWalletDbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CratedBy = _userService?.Account?.Id ?? null;
+                    entry.Entity.CratedBy = _userService?.Id ?? null;
                     entry.Entity.CreatedTime = DateTime.Now;
                     entry.Entity.IsDeleted = false;
                     break;
                 case EntityState.Modified:
-                    entry.Entity.ModifiedBy = _userService?.Account?.Id ?? null;
+                    entry.Entity.ModifiedBy = _userService?.Id ?? null;
                     entry.Entity.ModifiedTime = DateTime.Now;
                     break;
                 case EntityState.Deleted:
-                    entry.Entity.DeletedBy = _userService?.Account?.Id ?? null;
+                    entry.Entity.DeletedBy = _userService?.Id ?? null;
                     entry.Entity.DeletedTime = DateTime.Now;
                     entry.Entity.IsDeleted = true;
                     entry.State = EntityState.Modified;

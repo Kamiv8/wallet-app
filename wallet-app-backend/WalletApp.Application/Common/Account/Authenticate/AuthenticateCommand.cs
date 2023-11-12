@@ -4,4 +4,4 @@ using WalletApp.Application.Common;
 namespace WalletApp.Application.Account.Authenticate;
 
 public sealed record AuthenticateCommand
-    (string Email, string Password) : IRequest<ApiResult<AuthenticateResponseDto>>;
+    (string Username, string Password,string IpAddress) : IRequest<ApiResult<AuthenticateResponseDto>>;

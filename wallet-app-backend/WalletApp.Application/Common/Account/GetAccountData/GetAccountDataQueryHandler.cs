@@ -14,6 +14,7 @@ public class GetAccountDataQueryHandler : IRequestHandler<GetAccountDataQuery, A
     {
         _repository = repository;
         _userService = userService;
+        
     }
     
     

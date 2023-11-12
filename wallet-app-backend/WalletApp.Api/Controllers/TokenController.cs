@@ -1,15 +1,15 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Token.RevokeRefreshToken;
 using WalletApp.Application.Token.UpdateRefreshToken;
-using WalletApp.Domain.Common;
 
 namespace WalletApp.Controllers;
 
 
-
+[Authorize]
 [Route("api/[controller]")]
 public class TokenController : BaseController
 {
@@ -23,11 +23,11 @@ public class TokenController : BaseController
     }
     
     [HttpGet("{oldToken}")]
-    public async Task<ActionResult<ApiResult<RefreshTokenDto>>> GetTokens([FromRoute] string oldToken, CancellationToken cancellationToken)
+    public async Task<ActionResult<ApiResult<RefreshTokenResponseDto>>> GetTokens([FromRoute] string oldToken, CancellationToken cancellationToken)
     {
-        var command = new UpdateRefreshTokenCommand(oldToken);
+        var command = new UpdateRefreshTokenCommand(oldToken, IpAddress());
         var res = await _mediator.Send(command, cancellationToken);
-        _cookieHelper.SetToken(res.Data.RefreshToken);
+        _cookieHelper.SetToken(res.Data?.RefreshToken);
         return CreateResponse(res);
     }
 
@@ -38,5 +38,10 @@ public class TokenController : BaseController
         var res = await _mediator.Send(command, cancellationToken);
         return CreateResponse(res);
     }
-    
+    private string IpAddress()
+    {
+        if (Request.Headers.ContainsKey("X-Forwarded-For"))
+            return Request.Headers["X-Forwarded-For"];
+        return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
+    }
 }

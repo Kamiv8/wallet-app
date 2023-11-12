@@ -11,9 +11,9 @@ export class BaseApiHandler {
     }
 
     return {
-      status: ApiStatus.SUCCESS,
+      status: response.data.status,
       message: '',
-      data: response.data.response,
+      data: response.data.data,
     } as IApiResult<T>;
   }
 }

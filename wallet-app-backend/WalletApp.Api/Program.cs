@@ -1,15 +1,22 @@
 using System.IdentityModel.Tokens.Jwt;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Serilog;
 using WalletApp.Application;
+using WalletApp.Application.Authentication;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Options;
 using WalletApp.Application.Options.JwtOptionsSetup;
 using WalletApp.Common.Helpers;
+using WalletApp.Domain.Entities;
 using WalletApp.Infrastructure;
+using WalletApp.Middleware;
 using WalletApp.Persistence;
 using WalletApp.Services;
 
@@ -31,14 +38,21 @@ builder.Services.AddCors(options =>
     }));
 
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddHttpClient();
-builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IValidator<JwtOptions>, JwtOptionsValidation>();
 builder.Services.AddOptions<JwtOptions>()
     .BindConfiguration("JWTSettings")
     .ValidateFluentValidation()
     .ValidateOnStart();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+
+builder.Services.AddIdentity<UserIdentity, RoleIdentity>()
+    .AddEntityFrameworkStores<WalletDbContext>()
+    .AddDefaultTokenProviders()
+    .AddUserStore<UserStore<UserIdentity, RoleIdentity, WalletDbContext, Guid>>()
+    .AddRoleStore<RoleStore<RoleIdentity, WalletDbContext, Guid>>();
+
+
 builder.Services.AddAuthorization();
 builder.Services.PostConfigure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, options =>
 {
@@ -50,17 +64,26 @@ builder.Services.ConfigureOptions<JwtOptionsSetup>();
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
-builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
-builder.Services.AddScoped<ICookieHelper, CookieHelper>();
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers(options =>
+{
+    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSingleton<
+    IAuthorizationMiddlewareResultHandler, AuthorizationMiddlewareResultHandler>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<ICookieHelper, CookieHelper>();
+builder.Services.AddAppAuthentication(builder.Configuration);
+
 var app = builder.Build();
 
-
 if (app.Environment.IsDevelopment())
+
 {
     app.UseSwagger();
     app.UseSwaggerUI();

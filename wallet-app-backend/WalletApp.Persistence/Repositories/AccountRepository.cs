@@ -29,11 +29,11 @@ public class AccountRepository : IAccountRepository
         return await _db.Accounts.SingleOrDefaultAsync(a => a.Email == email);
     }
 
-    public async Task<Account?> GetAccountByRefreshToken(string refreshToken)
+    public async Task<Account?> GetAccountByRefreshToken(string refreshToken, string ipAddress)
     {
         return await _db.Accounts
             .Include(x => x.Token)
-            .SingleOrDefaultAsync(a => a.Token.RefreshToken == refreshToken);
+            .SingleOrDefaultAsync(a => a.Token.RefreshToken == refreshToken && a.Token.IpAddress == ipAddress);
     }
 
     public async Task CreateAccount(Account account)

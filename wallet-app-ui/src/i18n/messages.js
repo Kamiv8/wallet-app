@@ -36,9 +36,9 @@ const messages = defineMessages({
     defaultMessage: 'Register',
   },
   //Login Page
-  loginEmail: {
-    id: 'loginPageEmail',
-    defaultMessage: 'Email',
+  loginUsername: {
+    id: 'loginPageUsername',
+    defaultMessage: 'Username',
   },
   loginPassword: {
     id: 'loginPagePassword',

@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WalletApp.Application.Interfaces;
@@ -12,22 +13,26 @@ namespace WalletApp.Infrastructure.JWT;
 
 public class JWTUtil : IJWTUtil
 {
+    private readonly UserManager<UserIdentity> _userManager;
     private readonly JwtOptions _options;
 
-    public JWTUtil(IOptions<JwtOptions> options)
+    public JWTUtil(IOptions<JwtOptions> options, UserManager<UserIdentity> userManager)
     {
+        _userManager = userManager;
         _options = options.Value;
     }
 
-    public string GenerateJwtToken(Account account)
+    public async Task<string> GenerateJwtToken(UserIdentity account)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(_options.Secret);
-        var claims = new Claim[]
+        var accountRoles = await _userManager.GetRolesAsync(account);
+        var claims = new List<Claim>
         {
             new(JwtRegisteredClaimNames.Sub, account.Id.ToString()),
             new(JwtRegisteredClaimNames.Email, account.Email)
         };
+        claims.AddRange(accountRoles.Select(role => new Claim(ClaimTypes.Role, role)));
 
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
@@ -44,42 +49,13 @@ public class JWTUtil : IJWTUtil
         return token;
     }
 
-    public Guid? ValidateJwtToken(string? token)
-    {
-        if (token is null) return null;
-
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_options.Secret);
-
-        try
-        {
-            tokenHandler.ValidateToken(token, new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ClockSkew = TimeSpan.Zero
-            }, out SecurityToken validationToken);
-
-            var jwtToken = (JwtSecurityToken)validationToken;
-            var userId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "id")?.Value ??
-                                    String.Empty);
-
-            return userId == Guid.Empty ? null : userId;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
-    public Token GenerateRefreshToken()
+    public Token GenerateRefreshToken(string ipAddress)
     {
         var refreshToken = new Token
         {
             RefreshToken = UniqueTokenGenerator.GetUniqueToken(),
-            RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_options.RefreshTokenTtl)
+            RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_options.RefreshTokenTtl),
+            IpAddress = ipAddress
         };
 
         return refreshToken;

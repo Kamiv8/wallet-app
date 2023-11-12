@@ -1,11 +1,11 @@
 using MediatR;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Identity;
 using WalletApp.Application.Common;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces.Repository;
-using WalletApp.Domain.Common;
 using WalletApp.Application.Interfaces;
-using WalletApp.Application.Options;
+using WalletApp.Domain.Entities;
 
 namespace WalletApp.Application.Account.Authenticate;
 
@@ -13,50 +13,65 @@ public class
     AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand,
         ApiResult<AuthenticateResponseDto>>
 {
-    private readonly IAccountRepository _accountRepository;
+    private readonly SignInManager<UserIdentity> _signInManager;
+    private readonly UserManager<UserIdentity> _userManager;
     private readonly ITokenRepository _tokenRepository;
     private readonly IJWTUtil _jwtUtil;
-    private readonly JwtOptions _options;
+    private readonly ICurrentUserService _userService;
 
 
     public AuthenticateCommandHandler(
-        IAccountRepository accountRepository,
+        SignInManager<UserIdentity> signInManager,
+        UserManager<UserIdentity> userManager,
         ITokenRepository tokenRepository,
-        IJWTUtil jwtUtil,
-        IOptions<JwtOptions> options
+        IJWTUtil jwtUtil
     )
     {
-        _accountRepository = accountRepository;
+        _signInManager = signInManager;
+        _userManager = userManager;
         _tokenRepository = tokenRepository;
         _jwtUtil = jwtUtil;
-        _options = options.Value;
     }
 
     public async Task<ApiResult<AuthenticateResponseDto>> Handle(AuthenticateCommand request,
         CancellationToken cancellationToken)
     {
-        var account = await _accountRepository.GetAccountByEmail(request.Email);
+        var signIn = await _signInManager.PasswordSignInAsync(request.Username, request.Password,
+            isPersistent: false, lockoutOnFailure: false);
 
-        if (account is null || !BCrypt.Net.BCrypt.Verify(request.Password, account.PasswordHash))
+        if (!signIn.Succeeded)
             return new ApiResult<AuthenticateResponseDto>(ApiResultStatus.Error, null,
-                "Email or password is incorrect");
+                AccountErrorMessages.IncorrectPassword);
 
-        if (account.IsDeleted)
+        var account = await _userManager.FindByNameAsync(request.Username);
+
+        if (account is null && await _userManager.CheckPasswordAsync(account, request.Password))
             return new ApiResult<AuthenticateResponseDto>(ApiResultStatus.Error, null,
-                "This account is deleted");
+                AccountErrorMessages.IncorrectPassword);
 
-        var newToken = _jwtUtil.GenerateJwtToken(account);
-        var refreshToken = _jwtUtil.GenerateRefreshToken();
+        if (!account.LockoutEnabled)
+            return new ApiResult<AuthenticateResponseDto>(ApiResultStatus.Error, null,
+                AccountErrorMessages.DeletedAccount);
 
-        var token = await _tokenRepository.GetTokenByUserId(account.Id);
-        if (token is null)
-            return new ApiResult<AuthenticateResponseDto>(ApiResultStatus.Success, null,
-                "Cannot find old token");
-        token.RefreshToken = refreshToken.RefreshToken;
-        token.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_options.RefreshTokenTtl);
+        var newAccessToken = await _jwtUtil.GenerateJwtToken(account);
+        var refreshToken = _jwtUtil.GenerateRefreshToken(request.IpAddress);
+        refreshToken.UserIdentityId = account.Id;
+        var token = await _tokenRepository.GetTokenByIp(account.Id, refreshToken.IpAddress);
 
-        await _accountRepository.Save(cancellationToken);
-        var dto = new AuthenticateResponseDto(newToken, token.RefreshToken);
+        if (token is not null)
+        {
+            token.RefreshToken = refreshToken.RefreshToken;
+            token.RefreshTokenExpiryTime = refreshToken.RefreshTokenExpiryTime;
+        }
+        else
+        {
+            await _tokenRepository.CreateTokenRow(refreshToken);
+        }
+
+        await _userManager.UpdateAsync(account);
+        await _tokenRepository.Save(cancellationToken);
+
+        var dto = new AuthenticateResponseDto(newAccessToken, token.RefreshToken);
 
         return new ApiResult<AuthenticateResponseDto>(ApiResultStatus.Success, dto, "");
     }

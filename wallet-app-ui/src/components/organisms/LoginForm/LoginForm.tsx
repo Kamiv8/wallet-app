@@ -14,16 +14,16 @@ import { RoutesName } from '../../../const/routesName';
 import { AuthApi } from '../../../api/auth.api';
 import { useNavigate } from 'react-router-dom';
 import { ApiStatus } from '../../../models/apiResult';
-import { UserApi } from '../../../api/user.api';
-import { useContext } from 'react';
-import ApplicationContext from '../../../contexts/application.context';
-import { ActionEnum } from '../../../contexts/application.reducer';
+// import { UserApi } from '../../../api/user.api';
+// import { useContext } from 'react';
+// import ApplicationContext from '../../../contexts/application.context';
+// import { ActionEnum } from '../../../contexts/application.reducer';
 
 export const LoginForm = () => {
-  const appContext = useContext(ApplicationContext);
+  //const appContext = useContext(ApplicationContext);
   const navigate = useNavigate();
   const initialValues = {
-    email: '',
+    username: '',
     password: '',
   };
   const { values, handleChange, isDisabled } =
@@ -32,18 +32,18 @@ export const LoginForm = () => {
   const onSubmit = async () => {
     const authenticate = await AuthApi.authenticate(values);
     if (authenticate.status === ApiStatus.SUCCESS) {
-      const userData = await UserApi.getUserData();
-      if (userData.data?.response.groupId !== null) {
-        localStorage.setItem('groupId', userData.data?.response.groupId);
-        localStorage.setItem('userRole', userData.data?.response.role);
-        appContext.dispatch({
-          type: ActionEnum.CHANGE_APPLICATION_TYPE,
-          payload: {
-            groupId: userData.data?.response.groupId,
-            userRole: userData.data?.response.role,
-          },
-        });
-      }
+      // const userData = await UserApi.getUserData();
+      // if (userData.data?.response.groupId !== null) {
+      //   localStorage.setItem('groupId', userData.data?.groupId);
+      //   localStorage.setItem('userRole', userData.data?.role);
+      //   appContext.dispatch({
+      //     type: ActionEnum.CHANGE_APPLICATION_TYPE,
+      //     payload: {
+      //       groupId: userData.data?.response.groupId,
+      //       userRole: userData.data?.response.role,
+      //     },
+      //   });
+      // }
       navigate(RoutesName.ROOT);
     }
   };
@@ -52,10 +52,10 @@ export const LoginForm = () => {
     <Wrapper>
       <StyledFormItem>
         <InputField
-          label={{ ...messages.loginEmail }}
+          label={{ ...messages.loginUsername }}
           variant={'light'}
-          name={'email'}
-          onChange={(e) => handleChange(e, 'email')}
+          name={'username'}
+          onChange={(e) => handleChange(e, 'username')}
         />
       </StyledFormItem>
       <StyledFormItem>
