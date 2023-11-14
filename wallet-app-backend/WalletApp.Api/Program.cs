@@ -5,14 +5,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Options;
 using Serilog;
 using WalletApp.Application;
 using WalletApp.Application.Authentication;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Options;
 using WalletApp.Application.Options.JwtOptionsSetup;
+using WalletApp.Application.Options.NbpApi;
 using WalletApp.Common.Helpers;
 using WalletApp.Domain.Entities;
 using WalletApp.Infrastructure;
@@ -43,6 +42,11 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<IValidator<JwtOptions>, JwtOptionsValidation>();
 builder.Services.AddOptions<JwtOptions>()
     .BindConfiguration("JWTSettings")
+    .ValidateFluentValidation()
+    .ValidateOnStart();
+
+builder.Services.AddOptions<NbpOptions>()
+    .BindConfiguration("NbpApi")
     .ValidateFluentValidation()
     .ValidateOnStart();
 

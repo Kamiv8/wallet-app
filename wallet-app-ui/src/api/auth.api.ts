@@ -22,7 +22,6 @@ export class AuthApi {
 
     const dataResult = BaseApiHandler.handleApi<AuthenticateDto>(data);
     if (dataResult.status === ApiStatus.SUCCESS) {
-      console.log(dataResult);
       localStorage.setItem('token', dataResult.data?.token ?? "");
       localStorage.setItem('type', 'SINGLE');
       CookieHelper.setCookie("refreshToken", dataResult.data?.refreshToken ?? "");

@@ -16,7 +16,6 @@ public static class DI
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped<IWalletDbContext, WalletDbContext>();
-        services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<ITokenRepository, TokenRepository>();
         services.AddScoped<ICurrencyRepository, CurrencyRepository>();
         services.AddScoped<IAccountDataRepository, AccountDataRepository>();

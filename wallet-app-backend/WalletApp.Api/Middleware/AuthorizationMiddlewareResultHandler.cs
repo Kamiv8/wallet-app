@@ -22,7 +22,6 @@ public class AuthorizationMiddlewareResultHandler : IAuthorizationMiddlewareResu
             && authorizeResult.AuthorizationFailure!.FailedRequirements
                 .OfType<Show404Requirement>().Any())
         {
-            // Return a 404 to make it appear as if the resource doesn't exist.
             context.Response.StatusCode = StatusCodes.Status403Forbidden;
             return;
         }

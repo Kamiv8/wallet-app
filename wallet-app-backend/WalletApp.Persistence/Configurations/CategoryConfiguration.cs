@@ -10,6 +10,6 @@ public class CategoryConfiguration : BaseConfiguration<Category>, IEntityTypeCon
     public void Configure(EntityTypeBuilder<Category> builder)
     {
         ConfigureBaseEntity(builder);
-        builder.Property(c => c.Name).IsRequired().HasColumnType("varchar").HasMaxLength(50);
+        builder.Property(c => c.Name).IsRequired().HasColumnType("nvarchar").HasMaxLength(50);
     }
 }

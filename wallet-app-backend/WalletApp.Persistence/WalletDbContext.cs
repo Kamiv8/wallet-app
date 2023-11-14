@@ -12,20 +12,21 @@ public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Gui
 {
     private readonly ICurrentUserService _userService;
 
-    public WalletDbContext(DbContextOptions<WalletDbContext> options): base(options) {}
-
     public WalletDbContext(DbContextOptions<WalletDbContext> options, ICurrentUserService userService) : base(options)
     {
         _userService = userService;
     }
     
-    public DbSet<Account> Accounts { get; set; }
     public DbSet<Token> Tokens { get; set; }
     public DbSet<Currency> Currencies { get; set; }
     public DbSet<AccountData> AccountData { get; set; }
     public DbSet<Note> Notes { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<Member> Members { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<NotificationTypeDictionary> NotificationTypeDictionaries { get; set; }
+    public DbSet<Group> Groups { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -36,7 +37,6 @@ public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Gui
         });
         
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        modelBuilder.CreateRelationship();
         modelBuilder.Seed();
 
     }

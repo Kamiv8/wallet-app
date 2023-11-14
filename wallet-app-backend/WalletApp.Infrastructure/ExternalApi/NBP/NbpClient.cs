@@ -1,27 +1,37 @@
+using Microsoft.Extensions.Options;
+using Refit;
 using WalletApp.Application.Common.Currency.Update;
 using WalletApp.Application.Interfaces;
+using WalletApp.Application.Options.NbpApi;
 using WalletApp.Domain.Common;
-using WalletApp.Domain.Models;
 
 namespace WalletApp.Infrastructure.ExternalApi.NBP;
 
 public class NbpClient : INbpClient
 {
     private readonly HttpClient _httpClient;
+    private readonly NbpOptions _npbOptions;
 
-    private const string baseUrl = "http://api.nbp.pl/api/exchangerates/tables/c";
 
-    public NbpClient(IHttpClientFactory factory)
+    public NbpClient(IOptions<NbpOptions> npbOptions, HttpClient httpClient)
     {
-        _httpClient = factory.CreateClient("NBPClient");
+        _httpClient = httpClient;
+        _npbOptions = npbOptions.Value;
     }
-
 
     public async Task<UpdateCurrencyResponseDto> GetCurrencies(CancellationToken cancellationToken)
     {
+
+        var nbpApi = RestService.For<INbpApi>(_npbOptions.BaseUrl);
+
+        var currencies = await nbpApi.GetCurrencies();
+        
+        
+        
+        
         using var request = new HttpRequestMessage();
         request.Method = new HttpMethod("GET");
-        request.RequestUri = new Uri(baseUrl, UriKind.RelativeOrAbsolute);
+        request.RequestUri = new Uri("", UriKind.RelativeOrAbsolute);
 
         var response =
             await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,

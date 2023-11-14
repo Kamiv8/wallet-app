@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\WalletApp.Application\WalletApp.Application.csproj" />
-      <ProjectReference Include="..\WalletApp.Common\WalletApp.Common.csproj" />
       <ProjectReference Include="..\WalletApp.Domain\WalletApp.Domain.csproj" />
     </ItemGroup>
 
@@ -19,6 +18,7 @@
       <PackageReference Include="Quartz.AspNetCore" Version="3.7.0" />
       <PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.7.0" />
       <PackageReference Include="Quartz.Extensions.Hosting" Version="3.7.0" />
+      <PackageReference Include="Refit" Version="7.0.0" />
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.24.0" />
     </ItemGroup>
 

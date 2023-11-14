@@ -12,7 +12,7 @@ using WalletApp.Persistence;
 namespace WalletApp.Persistance.Migrations
 {
     [DbContext(typeof(WalletDbContext))]
-    [Migration("20231111180614_Initial")]
+    [Migration("20231114113253_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -102,11 +102,19 @@ namespace WalletApp.Persistance.Migrations
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUserRole<Guid>");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -126,72 +134,6 @@ namespace WalletApp.Persistance.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("WalletApp.Domain.Entities.Account", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AccountDataId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CratedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .IsUnicode(true)
-                        .HasColumnType("varchar");
-
-                    b.Property<int>("Icon")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar");
-
-                    b.Property<Guid?>("TokenId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountDataId");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("TokenId");
-
-                    b.ToTable("Accounts");
                 });
 
             modelBuilder.Entity("WalletApp.Domain.Entities.AccountData", b =>
@@ -256,6 +198,9 @@ namespace WalletApp.Persistance.Migrations
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -268,16 +213,23 @@ namespace WalletApp.Persistance.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar");
+
+                    b.Property<Guid?>("UserIdentityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserIdentityId");
 
                     b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f2863d64-b144-44a0-9f29-e06ba9132fdf"),
+                            Id = new Guid("f445d681-0bac-4c15-a8d3-dcdbfe043c09"),
                             IsDeleted = false,
                             Name = "Rachunki"
                         });
@@ -336,18 +288,11 @@ namespace WalletApp.Persistance.Migrations
                     b.ToTable("Currencies");
                 });
 
-            modelBuilder.Entity("WalletApp.Domain.Entities.Note", b =>
+            modelBuilder.Entity("WalletApp.Domain.Entities.Group", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BackgroundColor")
-                        .HasMaxLength(7)
-                        .HasColumnType("varchar");
 
                     b.Property<Guid?>("CratedBy")
                         .HasColumnType("uniqueidentifier");
@@ -360,6 +305,108 @@ namespace WalletApp.Persistance.Migrations
 
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("IconType")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MaxMembers")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Money")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(15, 2)
+                        .HasColumnType("decimal")
+                        .HasDefaultValue(0m);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Group");
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.Member", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CratedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserIdentityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserRoleIdentityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserIdentityId")
+                        .IsUnique();
+
+                    b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.Note", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BackgroundColor")
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar");
+
+                    b.Property<Guid?>("CratedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -377,22 +424,113 @@ namespace WalletApp.Persistance.Migrations
 
                     b.Property<string>("Text")
                         .HasMaxLength(500)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("TextColor")
                         .HasMaxLength(7)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar");
+
+                    b.Property<Guid>("UserIdentityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserIdentityId");
 
                     b.ToTable("Notes");
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.Notification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CratedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("GuidId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("NotificationTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserIdentityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GuidId");
+
+                    b.HasIndex("NotificationTypeId");
+
+                    b.HasIndex("UserIdentityId");
+
+                    b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.NotificationTypeDictionary", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CratedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NotificationTypeDictionaries");
                 });
 
             modelBuilder.Entity("WalletApp.Domain.Entities.RoleIdentity", b =>
@@ -456,12 +594,9 @@ namespace WalletApp.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("BackgroundColor")
                         .HasMaxLength(7)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
@@ -484,6 +619,10 @@ namespace WalletApp.Persistance.Migrations
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("GroupId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDefault")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -504,20 +643,23 @@ namespace WalletApp.Persistance.Migrations
 
                     b.Property<string>("TextColor")
                         .HasMaxLength(7)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar");
+
+                    b.Property<Guid>("UserIdentityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("CurrencyId");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserIdentityId");
 
                     b.ToTable("Transactions");
                 });
@@ -591,6 +733,20 @@ namespace WalletApp.Persistance.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("WalletApp.Domain.Entities.UserRoleIdentity", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasIndex("MemberId")
+                        .IsUnique()
+                        .HasFilter("[MemberId] IS NOT NULL");
+
+                    b.HasDiscriminator().HasValue("UserRoleIdentity");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("WalletApp.Domain.Entities.RoleIdentity", null)
@@ -642,23 +798,6 @@ namespace WalletApp.Persistance.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WalletApp.Domain.Entities.Account", b =>
-                {
-                    b.HasOne("WalletApp.Domain.Entities.AccountData", "AccountData")
-                        .WithMany()
-                        .HasForeignKey("AccountDataId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WalletApp.Domain.Entities.Token", "Token")
-                        .WithMany()
-                        .HasForeignKey("TokenId");
-
-                    b.Navigation("AccountData");
-
-                    b.Navigation("Token");
-                });
-
             modelBuilder.Entity("WalletApp.Domain.Entities.AccountData", b =>
                 {
                     b.HasOne("WalletApp.Domain.Entities.UserIdentity", "UserIdentity")
@@ -670,15 +809,80 @@ namespace WalletApp.Persistance.Migrations
                     b.Navigation("UserIdentity");
                 });
 
-            modelBuilder.Entity("WalletApp.Domain.Entities.Note", b =>
+            modelBuilder.Entity("WalletApp.Domain.Entities.Category", b =>
                 {
-                    b.HasOne("WalletApp.Domain.Entities.Account", "Account")
-                        .WithMany("Notes")
-                        .HasForeignKey("AccountId")
+                    b.HasOne("WalletApp.Domain.Entities.Group", "Group")
+                        .WithMany("Categories")
+                        .HasForeignKey("GroupId");
+
+                    b.HasOne("WalletApp.Domain.Entities.UserIdentity", "UserIdentity")
+                        .WithMany("Categories")
+                        .HasForeignKey("UserIdentityId");
+
+                    b.Navigation("Group");
+
+                    b.Navigation("UserIdentity");
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.Member", b =>
+                {
+                    b.HasOne("WalletApp.Domain.Entities.Group", "Group")
+                        .WithMany("Members")
+                        .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.HasOne("WalletApp.Domain.Entities.UserIdentity", "UserIdentity")
+                        .WithOne("Member")
+                        .HasForeignKey("WalletApp.Domain.Entities.Member", "UserIdentityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+
+                    b.Navigation("UserIdentity");
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.Note", b =>
+                {
+                    b.HasOne("WalletApp.Domain.Entities.Group", "Group")
+                        .WithMany("Notes")
+                        .HasForeignKey("GroupId");
+
+                    b.HasOne("WalletApp.Domain.Entities.UserIdentity", "UserIdentity")
+                        .WithMany("Notes")
+                        .HasForeignKey("UserIdentityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+
+                    b.Navigation("UserIdentity");
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.Notification", b =>
+                {
+                    b.HasOne("WalletApp.Domain.Entities.Group", "Group")
+                        .WithMany("Notifications")
+                        .HasForeignKey("GuidId");
+
+                    b.HasOne("WalletApp.Domain.Entities.NotificationTypeDictionary", "NotificationType")
+                        .WithMany("Notifications")
+                        .HasForeignKey("NotificationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WalletApp.Domain.Entities.UserIdentity", "UserIdentity")
+                        .WithMany()
+                        .HasForeignKey("UserIdentityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+
+                    b.Navigation("NotificationType");
+
+                    b.Navigation("UserIdentity");
                 });
 
             modelBuilder.Entity("WalletApp.Domain.Entities.Token", b =>
@@ -694,41 +898,40 @@ namespace WalletApp.Persistance.Migrations
 
             modelBuilder.Entity("WalletApp.Domain.Entities.Transaction", b =>
                 {
-                    b.HasOne("WalletApp.Domain.Entities.Account", "Account")
-                        .WithMany("Transactions")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WalletApp.Domain.Entities.Category", "Category")
-                        .WithMany("Transactions")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WalletApp.Domain.Entities.Currency", "Currency")
                         .WithMany("Transactions")
                         .HasForeignKey("CurrencyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.HasOne("WalletApp.Domain.Entities.Group", "Group")
+                        .WithMany("Transactions")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Category");
+                    b.HasOne("WalletApp.Domain.Entities.UserIdentity", "UserIdentity")
+                        .WithMany("Transactions")
+                        .HasForeignKey("UserIdentityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Currency");
+
+                    b.Navigation("Group");
+
+                    b.Navigation("UserIdentity");
                 });
 
-            modelBuilder.Entity("WalletApp.Domain.Entities.Account", b =>
+            modelBuilder.Entity("WalletApp.Domain.Entities.UserRoleIdentity", b =>
                 {
-                    b.Navigation("Notes");
+                    b.HasOne("WalletApp.Domain.Entities.Member", "Member")
+                        .WithOne("UserRoleIdentity")
+                        .HasForeignKey("WalletApp.Domain.Entities.UserRoleIdentity", "MemberId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.Navigation("Transactions");
-                });
-
-            modelBuilder.Entity("WalletApp.Domain.Entities.Category", b =>
-                {
-                    b.Navigation("Transactions");
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("WalletApp.Domain.Entities.Currency", b =>
@@ -736,12 +939,44 @@ namespace WalletApp.Persistance.Migrations
                     b.Navigation("Transactions");
                 });
 
+            modelBuilder.Entity("WalletApp.Domain.Entities.Group", b =>
+                {
+                    b.Navigation("Categories");
+
+                    b.Navigation("Members");
+
+                    b.Navigation("Notes");
+
+                    b.Navigation("Notifications");
+
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.Member", b =>
+                {
+                    b.Navigation("UserRoleIdentity")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.NotificationTypeDictionary", b =>
+                {
+                    b.Navigation("Notifications");
+                });
+
             modelBuilder.Entity("WalletApp.Domain.Entities.UserIdentity", b =>
                 {
                     b.Navigation("AccountData")
                         .IsRequired();
 
+                    b.Navigation("Categories");
+
+                    b.Navigation("Member");
+
+                    b.Navigation("Notes");
+
                     b.Navigation("Tokens");
+
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

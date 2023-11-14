@@ -1,0 +1,1177 @@
+2023-11-14 12:15:40.408 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:15:40.455 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:15:40.457 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:15:40.520 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2023-11-14 12:15:40.522 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:15:40.524 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:15:40.534 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-11-14 12:15:40.547 +01:00 [INF] Applying migration '20231114111128_Initial'.
+2023-11-14 12:15:40.650 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);
+2023-11-14 12:15:40.654 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUsers] (
+    [Id] uniqueidentifier NOT NULL,
+    [IconType] int NOT NULL,
+    [UserName] nvarchar(256) NULL,
+    [NormalizedUserName] nvarchar(256) NULL,
+    [Email] nvarchar(256) NULL,
+    [NormalizedEmail] nvarchar(256) NULL,
+    [EmailConfirmed] bit NOT NULL,
+    [PasswordHash] nvarchar(max) NULL,
+    [SecurityStamp] nvarchar(max) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [PhoneNumberConfirmed] bit NOT NULL,
+    [TwoFactorEnabled] bit NOT NULL,
+    [LockoutEnd] datetimeoffset NULL,
+    [LockoutEnabled] bit NOT NULL,
+    [AccessFailedCount] int NOT NULL,
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
+);
+2023-11-14 12:15:40.657 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Currencies] (
+    [Id] uniqueidentifier NOT NULL,
+    [CurrencyName] varchar(30) NOT NULL,
+    [Code] varchar(3) NOT NULL,
+    [Bid] decimal(10,3) NOT NULL,
+    [Ask] decimal(10,3) NOT NULL,
+    [TradingDate] datetime NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Currencies] PRIMARY KEY ([Id])
+);
+2023-11-14 12:15:40.660 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Group] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(40) NOT NULL,
+    [IconType] int NOT NULL,
+    [MaxMembers] int NOT NULL,
+    [Money] decimal(15,2) NOT NULL DEFAULT 0.0,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Group] PRIMARY KEY ([Id])
+);
+2023-11-14 12:15:40.663 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [NotificationTypeDictionaries] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(max) NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_NotificationTypeDictionaries] PRIMARY KEY ([Id])
+);
+2023-11-14 12:15:40.666 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoleClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [RoleId] uniqueidentifier NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:15:40.670 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AccountData] (
+    [Id] uniqueidentifier NOT NULL,
+    [ActualMoney] decimal(15,2) NOT NULL DEFAULT 0.0,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_AccountData] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AccountData_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:15:40.673 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] uniqueidentifier NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:15:40.677 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserLogins] (
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [ProviderKey] nvarchar(450) NOT NULL,
+    [ProviderDisplayName] nvarchar(max) NULL,
+    [UserId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:15:40.681 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserTokens] (
+    [UserId] uniqueidentifier NOT NULL,
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [Name] nvarchar(450) NOT NULL,
+    [Value] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:15:40.684 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Tokens] (
+    [Id] uniqueidentifier NOT NULL,
+    [RefreshToken] nvarchar(max) NULL,
+    [RefreshTokenExpiryTime] datetime2 NULL,
+    [IpAddress] nvarchar(max) NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_Tokens] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Tokens_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:15:40.688 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Categories] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(50) NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Categories] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Categories_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Categories_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id])
+);
+2023-11-14 12:15:40.692 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Members] (
+    [Id] uniqueidentifier NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [UserRoleIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Members] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Members_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Members_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:15:40.695 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notes] (
+    [Id] uniqueidentifier NOT NULL,
+    [Title] nvarchar(50) NOT NULL,
+    [Text] nvarchar(500) NULL,
+    [IsDone] bit NOT NULL DEFAULT CAST(0 AS bit),
+    [TextColor] nvarchar(7) NULL,
+    [BackgroundColor] nvarchar(7) NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Notes] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Notes_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Notes_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id])
+);
+2023-11-14 12:15:40.699 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Transactions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Title] nvarchar(50) NOT NULL,
+    [Price] decimal(15,2) NOT NULL,
+    [Date] datetime2 NOT NULL,
+    [TextColor] nvarchar(7) NULL,
+    [BackgroundColor] nvarchar(7) NULL,
+    [IsDefault] bit NOT NULL DEFAULT CAST(0 AS bit),
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [CategoryId] uniqueidentifier NOT NULL,
+    [CurrencyId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Transactions] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Transactions_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_Currencies_CurrencyId] FOREIGN KEY ([CurrencyId]) REFERENCES [Currencies] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:15:40.704 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notifications] (
+    [Id] uniqueidentifier NOT NULL,
+    [Date] datetime2 NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GuidId] uniqueidentifier NULL,
+    [NotificationTypeId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Notifications] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Notifications_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Notifications_Group_GuidId] FOREIGN KEY ([GuidId]) REFERENCES [Group] ([Id]),
+    CONSTRAINT [FK_Notifications_NotificationTypeDictionaries_NotificationTypeId] FOREIGN KEY ([NotificationTypeId]) REFERENCES [NotificationTypeDictionaries] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:15:40.722 +01:00 [ERR] Failed executing DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserRoles] (
+    [UserId] uniqueidentifier NOT NULL,
+    [RoleId] uniqueidentifier NOT NULL,
+    [Discriminator] nvarchar(max) NOT NULL,
+    [MemberId] uniqueidentifier NULL,
+    CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_Members_MemberId] FOREIGN KEY ([MemberId]) REFERENCES [Members] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.272 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:21:32.317 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:21:32.320 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:21:32.372 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2023-11-14 12:21:32.374 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:21:32.376 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:21:32.385 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-11-14 12:21:32.398 +01:00 [INF] Applying migration '20231114112102_Initial'.
+2023-11-14 12:21:32.486 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);
+2023-11-14 12:21:32.490 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUsers] (
+    [Id] uniqueidentifier NOT NULL,
+    [IconType] int NOT NULL,
+    [UserName] nvarchar(256) NULL,
+    [NormalizedUserName] nvarchar(256) NULL,
+    [Email] nvarchar(256) NULL,
+    [NormalizedEmail] nvarchar(256) NULL,
+    [EmailConfirmed] bit NOT NULL,
+    [PasswordHash] nvarchar(max) NULL,
+    [SecurityStamp] nvarchar(max) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [PhoneNumberConfirmed] bit NOT NULL,
+    [TwoFactorEnabled] bit NOT NULL,
+    [LockoutEnd] datetimeoffset NULL,
+    [LockoutEnabled] bit NOT NULL,
+    [AccessFailedCount] int NOT NULL,
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
+);
+2023-11-14 12:21:32.492 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Currencies] (
+    [Id] uniqueidentifier NOT NULL,
+    [CurrencyName] varchar(30) NOT NULL,
+    [Code] varchar(3) NOT NULL,
+    [Bid] decimal(10,3) NOT NULL,
+    [Ask] decimal(10,3) NOT NULL,
+    [TradingDate] datetime NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Currencies] PRIMARY KEY ([Id])
+);
+2023-11-14 12:21:32.495 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Group] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(40) NOT NULL,
+    [IconType] int NOT NULL,
+    [MaxMembers] int NOT NULL,
+    [Money] decimal(15,2) NOT NULL DEFAULT 0.0,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Group] PRIMARY KEY ([Id])
+);
+2023-11-14 12:21:32.497 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [NotificationTypeDictionaries] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(max) NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_NotificationTypeDictionaries] PRIMARY KEY ([Id])
+);
+2023-11-14 12:21:32.500 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoleClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [RoleId] uniqueidentifier NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.503 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AccountData] (
+    [Id] uniqueidentifier NOT NULL,
+    [ActualMoney] decimal(15,2) NOT NULL DEFAULT 0.0,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_AccountData] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AccountData_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.506 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] uniqueidentifier NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.510 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserLogins] (
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [ProviderKey] nvarchar(450) NOT NULL,
+    [ProviderDisplayName] nvarchar(max) NULL,
+    [UserId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.514 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserTokens] (
+    [UserId] uniqueidentifier NOT NULL,
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [Name] nvarchar(450) NOT NULL,
+    [Value] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.516 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Tokens] (
+    [Id] uniqueidentifier NOT NULL,
+    [RefreshToken] nvarchar(max) NULL,
+    [RefreshTokenExpiryTime] datetime2 NULL,
+    [IpAddress] nvarchar(max) NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_Tokens] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Tokens_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.520 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Categories] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(50) NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Categories] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Categories_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Categories_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id])
+);
+2023-11-14 12:21:32.523 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Members] (
+    [Id] uniqueidentifier NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [UserRoleIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Members] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Members_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Members_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.527 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notes] (
+    [Id] uniqueidentifier NOT NULL,
+    [Title] nvarchar(50) NOT NULL,
+    [Text] nvarchar(500) NULL,
+    [IsDone] bit NOT NULL DEFAULT CAST(0 AS bit),
+    [TextColor] nvarchar(7) NULL,
+    [BackgroundColor] nvarchar(7) NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Notes] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Notes_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Notes_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id])
+);
+2023-11-14 12:21:32.531 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Transactions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Title] nvarchar(50) NOT NULL,
+    [Price] decimal(15,2) NOT NULL,
+    [Date] datetime2 NOT NULL,
+    [TextColor] nvarchar(7) NULL,
+    [BackgroundColor] nvarchar(7) NULL,
+    [IsDefault] bit NOT NULL DEFAULT CAST(0 AS bit),
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [CategoryId] uniqueidentifier NOT NULL,
+    [CurrencyId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Transactions] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Transactions_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_Currencies_CurrencyId] FOREIGN KEY ([CurrencyId]) REFERENCES [Currencies] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.535 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notifications] (
+    [Id] uniqueidentifier NOT NULL,
+    [Date] datetime2 NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GuidId] uniqueidentifier NULL,
+    [NotificationTypeId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Notifications] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Notifications_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Notifications_Group_GuidId] FOREIGN KEY ([GuidId]) REFERENCES [Group] ([Id]),
+    CONSTRAINT [FK_Notifications_NotificationTypeDictionaries_NotificationTypeId] FOREIGN KEY ([NotificationTypeId]) REFERENCES [NotificationTypeDictionaries] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:21:32.539 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserRoles] (
+    [UserId] uniqueidentifier NOT NULL,
+    [RoleId] uniqueidentifier NOT NULL,
+    [Discriminator] nvarchar(max) NOT NULL,
+    [MemberId] uniqueidentifier NULL,
+    CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_Members_MemberId] FOREIGN KEY ([MemberId]) REFERENCES [Members] ([Id]) ON DELETE NO ACTION
+);
+2023-11-14 12:21:32.579 +01:00 [ERR] Failed executing DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] ON;
+INSERT INTO [Categories] ([Id], [CratedBy], [CreatedTime], [DeletedBy], [DeletedTime], [GroupId], [IsDeleted], [ModifiedBy], [ModifiedTime], [Name], [UserIdentityId])
+VALUES ('aff67555-1395-4c86-906f-6f021382e6a1', NULL, NULL, NULL, NULL, NULL, CAST(0 AS bit), NULL, NULL, N'Rachunki', '00000000-0000-0000-0000-000000000000');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] OFF;
+2023-11-14 12:24:19.718 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:24:19.766 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:24:19.769 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:24:19.771 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:24:19.786 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-11-14 12:24:19.805 +01:00 [INF] Applying migration '20231114112102_Initial'.
+2023-11-14 12:24:20.199 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);
+2023-11-14 12:24:20.203 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUsers] (
+    [Id] uniqueidentifier NOT NULL,
+    [IconType] int NOT NULL,
+    [UserName] nvarchar(256) NULL,
+    [NormalizedUserName] nvarchar(256) NULL,
+    [Email] nvarchar(256) NULL,
+    [NormalizedEmail] nvarchar(256) NULL,
+    [EmailConfirmed] bit NOT NULL,
+    [PasswordHash] nvarchar(max) NULL,
+    [SecurityStamp] nvarchar(max) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [PhoneNumberConfirmed] bit NOT NULL,
+    [TwoFactorEnabled] bit NOT NULL,
+    [LockoutEnd] datetimeoffset NULL,
+    [LockoutEnabled] bit NOT NULL,
+    [AccessFailedCount] int NOT NULL,
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
+);
+2023-11-14 12:24:20.207 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Currencies] (
+    [Id] uniqueidentifier NOT NULL,
+    [CurrencyName] varchar(30) NOT NULL,
+    [Code] varchar(3) NOT NULL,
+    [Bid] decimal(10,3) NOT NULL,
+    [Ask] decimal(10,3) NOT NULL,
+    [TradingDate] datetime NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Currencies] PRIMARY KEY ([Id])
+);
+2023-11-14 12:24:20.211 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Group] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(40) NOT NULL,
+    [IconType] int NOT NULL,
+    [MaxMembers] int NOT NULL,
+    [Money] decimal(15,2) NOT NULL DEFAULT 0.0,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Group] PRIMARY KEY ([Id])
+);
+2023-11-14 12:24:20.214 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [NotificationTypeDictionaries] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(max) NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_NotificationTypeDictionaries] PRIMARY KEY ([Id])
+);
+2023-11-14 12:24:20.217 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoleClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [RoleId] uniqueidentifier NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:24:20.222 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AccountData] (
+    [Id] uniqueidentifier NOT NULL,
+    [ActualMoney] decimal(15,2) NOT NULL DEFAULT 0.0,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_AccountData] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AccountData_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:24:20.226 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] uniqueidentifier NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:24:20.230 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserLogins] (
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [ProviderKey] nvarchar(450) NOT NULL,
+    [ProviderDisplayName] nvarchar(max) NULL,
+    [UserId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:24:20.234 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserTokens] (
+    [UserId] uniqueidentifier NOT NULL,
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [Name] nvarchar(450) NOT NULL,
+    [Value] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:24:20.237 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Tokens] (
+    [Id] uniqueidentifier NOT NULL,
+    [RefreshToken] nvarchar(max) NULL,
+    [RefreshTokenExpiryTime] datetime2 NULL,
+    [IpAddress] nvarchar(max) NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_Tokens] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Tokens_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:24:20.241 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Categories] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(50) NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Categories] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Categories_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Categories_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id])
+);
+2023-11-14 12:24:20.245 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Members] (
+    [Id] uniqueidentifier NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [UserRoleIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Members] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Members_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Members_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:24:20.249 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notes] (
+    [Id] uniqueidentifier NOT NULL,
+    [Title] nvarchar(50) NOT NULL,
+    [Text] nvarchar(500) NULL,
+    [IsDone] bit NOT NULL DEFAULT CAST(0 AS bit),
+    [TextColor] nvarchar(7) NULL,
+    [BackgroundColor] nvarchar(7) NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Notes] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Notes_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Notes_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id])
+);
+2023-11-14 12:24:20.254 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Transactions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Title] nvarchar(50) NOT NULL,
+    [Price] decimal(15,2) NOT NULL,
+    [Date] datetime2 NOT NULL,
+    [TextColor] nvarchar(7) NULL,
+    [BackgroundColor] nvarchar(7) NULL,
+    [IsDefault] bit NOT NULL DEFAULT CAST(0 AS bit),
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [CategoryId] uniqueidentifier NOT NULL,
+    [CurrencyId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Transactions] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Transactions_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_Currencies_CurrencyId] FOREIGN KEY ([CurrencyId]) REFERENCES [Currencies] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:24:20.258 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notifications] (
+    [Id] uniqueidentifier NOT NULL,
+    [Date] datetime2 NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GuidId] uniqueidentifier NULL,
+    [NotificationTypeId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Notifications] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Notifications_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Notifications_Group_GuidId] FOREIGN KEY ([GuidId]) REFERENCES [Group] ([Id]),
+    CONSTRAINT [FK_Notifications_NotificationTypeDictionaries_NotificationTypeId] FOREIGN KEY ([NotificationTypeId]) REFERENCES [NotificationTypeDictionaries] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:24:20.263 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserRoles] (
+    [UserId] uniqueidentifier NOT NULL,
+    [RoleId] uniqueidentifier NOT NULL,
+    [Discriminator] nvarchar(max) NOT NULL,
+    [MemberId] uniqueidentifier NULL,
+    CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_Members_MemberId] FOREIGN KEY ([MemberId]) REFERENCES [Members] ([Id]) ON DELETE NO ACTION
+);
+2023-11-14 12:24:20.269 +01:00 [ERR] Failed executing DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] ON;
+INSERT INTO [Categories] ([Id], [CratedBy], [CreatedTime], [DeletedBy], [DeletedTime], [GroupId], [IsDeleted], [ModifiedBy], [ModifiedTime], [Name], [UserIdentityId])
+VALUES ('aff67555-1395-4c86-906f-6f021382e6a1', NULL, NULL, NULL, NULL, NULL, CAST(0 AS bit), NULL, NULL, N'Rachunki', '00000000-0000-0000-0000-000000000000');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] OFF;
+2023-11-14 12:33:21.728 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:33:21.768 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:33:21.770 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:33:21.825 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2023-11-14 12:33:21.827 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:33:21.830 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:33:21.839 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-11-14 12:33:21.853 +01:00 [INF] Applying migration '20231114113253_Initial'.
+2023-11-14 12:33:21.938 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);
+2023-11-14 12:33:21.941 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUsers] (
+    [Id] uniqueidentifier NOT NULL,
+    [IconType] int NOT NULL,
+    [UserName] nvarchar(256) NULL,
+    [NormalizedUserName] nvarchar(256) NULL,
+    [Email] nvarchar(256) NULL,
+    [NormalizedEmail] nvarchar(256) NULL,
+    [EmailConfirmed] bit NOT NULL,
+    [PasswordHash] nvarchar(max) NULL,
+    [SecurityStamp] nvarchar(max) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [PhoneNumberConfirmed] bit NOT NULL,
+    [TwoFactorEnabled] bit NOT NULL,
+    [LockoutEnd] datetimeoffset NULL,
+    [LockoutEnabled] bit NOT NULL,
+    [AccessFailedCount] int NOT NULL,
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
+);
+2023-11-14 12:33:21.943 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Currencies] (
+    [Id] uniqueidentifier NOT NULL,
+    [CurrencyName] varchar(30) NOT NULL,
+    [Code] varchar(3) NOT NULL,
+    [Bid] decimal(10,3) NOT NULL,
+    [Ask] decimal(10,3) NOT NULL,
+    [TradingDate] datetime NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Currencies] PRIMARY KEY ([Id])
+);
+2023-11-14 12:33:21.946 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Group] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(40) NOT NULL,
+    [IconType] int NOT NULL,
+    [MaxMembers] int NOT NULL,
+    [Money] decimal(15,2) NOT NULL DEFAULT 0.0,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Group] PRIMARY KEY ([Id])
+);
+2023-11-14 12:33:21.948 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [NotificationTypeDictionaries] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(max) NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_NotificationTypeDictionaries] PRIMARY KEY ([Id])
+);
+2023-11-14 12:33:21.952 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoleClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [RoleId] uniqueidentifier NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:33:21.955 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AccountData] (
+    [Id] uniqueidentifier NOT NULL,
+    [ActualMoney] decimal(15,2) NOT NULL DEFAULT 0.0,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_AccountData] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AccountData_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:33:21.958 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] uniqueidentifier NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:33:21.961 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserLogins] (
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [ProviderKey] nvarchar(450) NOT NULL,
+    [ProviderDisplayName] nvarchar(max) NULL,
+    [UserId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:33:21.963 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserTokens] (
+    [UserId] uniqueidentifier NOT NULL,
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [Name] nvarchar(450) NOT NULL,
+    [Value] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:33:21.967 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Tokens] (
+    [Id] uniqueidentifier NOT NULL,
+    [RefreshToken] nvarchar(max) NULL,
+    [RefreshTokenExpiryTime] datetime2 NULL,
+    [IpAddress] nvarchar(max) NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_Tokens] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Tokens_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:33:21.970 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Categories] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(50) NOT NULL,
+    [UserIdentityId] uniqueidentifier NULL,
+    [GroupId] uniqueidentifier NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Categories] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Categories_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]),
+    CONSTRAINT [FK_Categories_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id])
+);
+2023-11-14 12:33:21.973 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Members] (
+    [Id] uniqueidentifier NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [UserRoleIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Members] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Members_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Members_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:33:21.976 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notes] (
+    [Id] uniqueidentifier NOT NULL,
+    [Title] nvarchar(50) NOT NULL,
+    [Text] nvarchar(500) NULL,
+    [IsDone] bit NOT NULL DEFAULT CAST(0 AS bit),
+    [TextColor] nvarchar(7) NULL,
+    [BackgroundColor] nvarchar(7) NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Notes] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Notes_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Notes_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id])
+);
+2023-11-14 12:33:21.980 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Transactions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Title] nvarchar(50) NOT NULL,
+    [Price] decimal(15,2) NOT NULL,
+    [Date] datetime2 NOT NULL,
+    [TextColor] nvarchar(7) NULL,
+    [BackgroundColor] nvarchar(7) NULL,
+    [IsDefault] bit NOT NULL DEFAULT CAST(0 AS bit),
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [CategoryId] uniqueidentifier NOT NULL,
+    [CurrencyId] uniqueidentifier NOT NULL,
+    [GroupId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Transactions] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Transactions_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_Currencies_CurrencyId] FOREIGN KEY ([CurrencyId]) REFERENCES [Currencies] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_Group_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Group] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:33:21.987 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notifications] (
+    [Id] uniqueidentifier NOT NULL,
+    [Date] datetime2 NOT NULL,
+    [UserIdentityId] uniqueidentifier NOT NULL,
+    [GuidId] uniqueidentifier NULL,
+    [NotificationTypeId] uniqueidentifier NOT NULL,
+    [CratedBy] uniqueidentifier NULL,
+    [CreatedTime] datetime2 NULL,
+    [ModifiedBy] uniqueidentifier NULL,
+    [ModifiedTime] datetime2 NULL,
+    [DeletedBy] uniqueidentifier NULL,
+    [DeletedTime] datetime2 NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Notifications] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Notifications_AspNetUsers_UserIdentityId] FOREIGN KEY ([UserIdentityId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Notifications_Group_GuidId] FOREIGN KEY ([GuidId]) REFERENCES [Group] ([Id]),
+    CONSTRAINT [FK_Notifications_NotificationTypeDictionaries_NotificationTypeId] FOREIGN KEY ([NotificationTypeId]) REFERENCES [NotificationTypeDictionaries] ([Id]) ON DELETE CASCADE
+);
+2023-11-14 12:33:21.991 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserRoles] (
+    [UserId] uniqueidentifier NOT NULL,
+    [RoleId] uniqueidentifier NOT NULL,
+    [Discriminator] nvarchar(max) NOT NULL,
+    [MemberId] uniqueidentifier NULL,
+    CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_Members_MemberId] FOREIGN KEY ([MemberId]) REFERENCES [Members] ([Id]) ON DELETE NO ACTION
+);
+2023-11-14 12:33:22.045 +01:00 [INF] Executed DbCommand (54ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] ON;
+INSERT INTO [Categories] ([Id], [CratedBy], [CreatedTime], [DeletedBy], [DeletedTime], [GroupId], [IsDeleted], [ModifiedBy], [ModifiedTime], [Name], [UserIdentityId])
+VALUES ('f445d681-0bac-4c15-a8d3-dcdbfe043c09', NULL, NULL, NULL, NULL, NULL, CAST(0 AS bit), NULL, NULL, N'Rachunki', NULL);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] OFF;
+2023-11-14 12:33:22.048 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_AccountData_UserIdentityId] ON [AccountData] ([UserIdentityId]);
+2023-11-14 12:33:22.051 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [AspNetRoleClaims] ([RoleId]);
+2023-11-14 12:33:22.053 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL;
+2023-11-14 12:33:22.055 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_AspNetUserClaims_UserId] ON [AspNetUserClaims] ([UserId]);
+2023-11-14 12:33:22.057 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_AspNetUserLogins_UserId] ON [AspNetUserLogins] ([UserId]);
+2023-11-14 12:33:22.060 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_AspNetUserRoles_MemberId] ON [AspNetUserRoles] ([MemberId]) WHERE [MemberId] IS NOT NULL;
+2023-11-14 12:33:22.061 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_AspNetUserRoles_RoleId] ON [AspNetUserRoles] ([RoleId]);
+2023-11-14 12:33:22.063 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [EmailIndex] ON [AspNetUsers] ([NormalizedEmail]);
+2023-11-14 12:33:22.065 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL;
+2023-11-14 12:33:22.073 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Categories_GroupId] ON [Categories] ([GroupId]);
+2023-11-14 12:33:22.077 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Categories_UserIdentityId] ON [Categories] ([UserIdentityId]);
+2023-11-14 12:33:22.079 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Members_GroupId] ON [Members] ([GroupId]);
+2023-11-14 12:33:22.080 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Members_UserIdentityId] ON [Members] ([UserIdentityId]);
+2023-11-14 12:33:22.082 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Notes_GroupId] ON [Notes] ([GroupId]);
+2023-11-14 12:33:22.084 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Notes_UserIdentityId] ON [Notes] ([UserIdentityId]);
+2023-11-14 12:33:22.085 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Notifications_GuidId] ON [Notifications] ([GuidId]);
+2023-11-14 12:33:22.087 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Notifications_NotificationTypeId] ON [Notifications] ([NotificationTypeId]);
+2023-11-14 12:33:22.088 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Notifications_UserIdentityId] ON [Notifications] ([UserIdentityId]);
+2023-11-14 12:33:22.090 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Tokens_UserIdentityId] ON [Tokens] ([UserIdentityId]);
+2023-11-14 12:33:22.092 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Transactions_CurrencyId] ON [Transactions] ([CurrencyId]);
+2023-11-14 12:33:22.093 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Transactions_GroupId] ON [Transactions] ([GroupId]);
+2023-11-14 12:33:22.095 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Transactions_UserIdentityId] ON [Transactions] ([UserIdentityId]);
+2023-11-14 12:33:22.097 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20231114113253_Initial', N'7.0.12');
+2023-11-14 12:39:41.159 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:39:41.207 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:39:41.211 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-14 12:39:41.213 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-14 12:39:41.225 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-11-14 12:39:41.240 +01:00 [INF] Applying migration '20231114113916_group'.
+2023-11-14 12:39:41.316 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Categories] DROP CONSTRAINT [FK_Categories_Group_GroupId];
+2023-11-14 12:39:41.318 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Members] DROP CONSTRAINT [FK_Members_Group_GroupId];
+2023-11-14 12:39:41.321 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Notes] DROP CONSTRAINT [FK_Notes_Group_GroupId];
+2023-11-14 12:39:41.324 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Notifications] DROP CONSTRAINT [FK_Notifications_Group_GuidId];
+2023-11-14 12:39:41.326 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Transactions] DROP CONSTRAINT [FK_Transactions_Group_GroupId];
+2023-11-14 12:39:41.328 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Group] DROP CONSTRAINT [PK_Group];
+2023-11-14 12:39:41.331 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM [Categories]
+WHERE [Id] = 'f445d681-0bac-4c15-a8d3-dcdbfe043c09';
+SELECT @@ROWCOUNT;
+2023-11-14 12:39:41.553 +01:00 [INF] Executed DbCommand (222ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Group]', N'Groups';
+2023-11-14 12:39:41.557 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Groups] ADD CONSTRAINT [PK_Groups] PRIMARY KEY ([Id]);
+2023-11-14 12:39:41.568 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] ON;
+INSERT INTO [Categories] ([Id], [CratedBy], [CreatedTime], [DeletedBy], [DeletedTime], [GroupId], [IsDeleted], [ModifiedBy], [ModifiedTime], [Name], [UserIdentityId])
+VALUES ('9f5836f5-8ca6-47bc-a399-3acfabdaa36c', NULL, NULL, NULL, NULL, NULL, CAST(0 AS bit), NULL, NULL, N'Rachunki', NULL);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] OFF;
+2023-11-14 12:39:41.573 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Categories] ADD CONSTRAINT [FK_Categories_Groups_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Groups] ([Id]);
+2023-11-14 12:39:41.576 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Members] ADD CONSTRAINT [FK_Members_Groups_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Groups] ([Id]) ON DELETE CASCADE;
+2023-11-14 12:39:41.578 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Notes] ADD CONSTRAINT [FK_Notes_Groups_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Groups] ([Id]);
+2023-11-14 12:39:41.580 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Notifications] ADD CONSTRAINT [FK_Notifications_Groups_GuidId] FOREIGN KEY ([GuidId]) REFERENCES [Groups] ([Id]);
+2023-11-14 12:39:41.581 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Transactions] ADD CONSTRAINT [FK_Transactions_Groups_GroupId] FOREIGN KEY ([GroupId]) REFERENCES [Groups] ([Id]) ON DELETE CASCADE;
+2023-11-14 12:39:41.582 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20231114113916_group', N'7.0.12');

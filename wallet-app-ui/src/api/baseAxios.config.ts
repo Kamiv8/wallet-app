@@ -1,6 +1,7 @@
 import axios from "axios";
 import { TokenApi } from "./token.api";
 import { devConfig } from "../const/config";
+import { ApiStatus } from "../models/apiResult";
 
 
 export const api = axios.create();
@@ -19,7 +20,7 @@ api.interceptors.response.use(async response => {
   return response;
 }, async error => {
   const originalRequest = error.config;
-  if (error.response.status === 403 && !originalRequest._retry) {
+  if (error.response.status === ApiStatus.UNAUTHORIZED && !originalRequest._retry) {
     originalRequest._retry = true;
     const token = await TokenApi.getAccessToken();
     axios.defaults.headers.common.Authorization = `Bearer ${token.data?.jwtToken}`;
@@ -37,4 +38,12 @@ noAuthApi.interceptors.request.use(async config => {
   return config;
 }, error => {
   Promise.reject(error)
+})
+
+
+noAuthApi.interceptors.response.use(async response => {
+  return response;
+}, (e) => {
+  console.log("dsa");
+  Promise.reject(e);
 })
