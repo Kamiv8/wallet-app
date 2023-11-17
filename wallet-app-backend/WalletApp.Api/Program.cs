@@ -64,6 +64,10 @@ builder.Services.PostConfigure<JwtBearerOptions>(JwtBearerDefaults.Authenticatio
     options.SecurityTokenValidators.Clear();
     options.SecurityTokenValidators.Add(new JwtSecurityTokenHandler());
 });
+builder.Services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+builder.Services
+    .AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+
 builder.Services.ConfigureOptions<JwtOptionsSetup>();
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();

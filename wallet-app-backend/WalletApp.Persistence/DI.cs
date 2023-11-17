@@ -15,10 +15,10 @@ public static class DI
         services.AddDbContext<WalletDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-        services.AddScoped<IWalletDbContext, WalletDbContext>();
         services.AddScoped<ITokenRepository, TokenRepository>();
         services.AddScoped<ICurrencyRepository, CurrencyRepository>();
         services.AddScoped<IAccountDataRepository, AccountDataRepository>();
+        services.AddScoped<IPermissionRepository, PermissionRepository>();
         
         return services;
     }

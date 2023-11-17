@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Account.Authenticate;
 using WalletApp.Application.Account.GetAccountData;
 using WalletApp.Application.Account.Register;
+using WalletApp.Application.Authentication;
 using WalletApp.Application.Common;
+using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Controllers;
@@ -45,7 +47,7 @@ public class AccountController : BaseController
         return CreateResponse(res);
     }
 
-    [Authorize]
+    [HasPermission(Permission.ReadValue)]
     [HttpGet("data")]
     public async Task<ActionResult<ApiResult<GetAccountDataDto>>> GetAccountData(
         CancellationToken cancellationToken)

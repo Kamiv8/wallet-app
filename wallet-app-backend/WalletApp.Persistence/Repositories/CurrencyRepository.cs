@@ -7,9 +7,9 @@ namespace WalletApp.Persistence.Repositories;
 
 public class CurrencyRepository : ICurrencyRepository
 {
-    private readonly IWalletDbContext _db;
+    private readonly WalletDbContext _db;
 
-    public CurrencyRepository(IWalletDbContext db)
+    public CurrencyRepository(WalletDbContext db)
     {
         _db = db;
     }

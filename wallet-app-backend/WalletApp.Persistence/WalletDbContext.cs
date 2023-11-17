@@ -8,7 +8,7 @@ using WalletApp.Domain.Entities;
 
 namespace WalletApp.Persistence;
 
-public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Guid>, IWalletDbContext
+public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Guid>
 {
     private readonly ICurrentUserService _userService;
 
@@ -27,6 +27,8 @@ public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Gui
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<NotificationTypeDictionary> NotificationTypeDictionaries { get; set; }
     public DbSet<Group> Groups { get; set; }
+    public DbSet<Permission> Permissions { get; set; }
+    public DbSet<RolePermission> RolePermissions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

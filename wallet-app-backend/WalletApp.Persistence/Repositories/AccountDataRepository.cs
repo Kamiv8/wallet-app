@@ -8,9 +8,9 @@ namespace WalletApp.Persistence.Repositories;
 
 public class AccountDataRepository : IAccountDataRepository
 {
-    private readonly IWalletDbContext _db;
+    private readonly WalletDbContext _db;
 
-    public AccountDataRepository(IWalletDbContext db)
+    public AccountDataRepository(WalletDbContext db)
     {
         _db = db;
     }
