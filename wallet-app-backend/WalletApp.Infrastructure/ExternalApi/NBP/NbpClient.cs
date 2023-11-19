@@ -21,22 +21,13 @@ public class NbpClient : INbpClient
 
     public async Task<UpdateCurrencyResponseDto> GetCurrencies(CancellationToken cancellationToken)
     {
-
-        var nbpApi = RestService.For<INbpApi>(_npbOptions.BaseUrl);
-
-        var currencies = await nbpApi.GetCurrencies();
-        
-        
-        
-        
         using var request = new HttpRequestMessage();
         request.Method = new HttpMethod("GET");
-        request.RequestUri = new Uri("", UriKind.RelativeOrAbsolute);
-
+        request.RequestUri = new Uri(_npbOptions.BaseUrl + "/api/exchangerates/tables/c",
+            UriKind.RelativeOrAbsolute);
         var response =
             await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,
                 cancellationToken);
-
         if (!response.IsSuccessStatusCode) throw new ErrorDetails("Bad request to NBP API");
         var data = await response.Content.ReadAsStringAsync(cancellationToken)
             .ConfigureAwait(false);

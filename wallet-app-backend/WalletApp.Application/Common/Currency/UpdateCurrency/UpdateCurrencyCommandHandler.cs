@@ -16,35 +16,20 @@ public class UpdateCurrencyCommandHandler : IRequestHandler<UpdateCurrencyComman
         _client = client;
     }
 
-
     public async Task Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken)
     {
         var response = await _client.GetCurrencies(cancellationToken);
-        var enabledCurrencies = new[]
-        {
-            Enum.GetName(EnabledCurrency.EUR),
-            Enum.GetName(EnabledCurrency.CHF),
-            Enum.GetName(EnabledCurrency.GBP),
-            Enum.GetName(EnabledCurrency.USD),
-        };
-
-        response.Rates = response.Rates.Where(x => enabledCurrencies.Contains(x.Code)).ToList();
-        var entityCurrencyList = response.Rates.Select(item => new Domain.Entities.Currency()
-            {
-                Ask = item.Ask,
-                CurrencyName = item.Currency,
-                Bid = item.Bid,
-                Code = item.Code,
-                TradingDate = DateTime.Parse(response.TradingDate)
-            })
-            .ToList();
 
         var entityCurrencies = await _currencyRepository.GetCurrencies(cancellationToken);
 
-        _currencyRepository.RemoveRange(entityCurrencies);
+        foreach (var currency in entityCurrencies)
+        {
+            var responseCurrency = response.Rates.FirstOrDefault(x => x.Code == currency.Code)!;
+            currency.Ask = responseCurrency.Ask;
+            currency.Bid = responseCurrency.Bid;
+            currency.TradingDate = response.TradingDate;
+        }
 
-        await _currencyRepository.AddRange(entityCurrencyList);
-        
         await _currencyRepository.Save(cancellationToken);
     }
 }

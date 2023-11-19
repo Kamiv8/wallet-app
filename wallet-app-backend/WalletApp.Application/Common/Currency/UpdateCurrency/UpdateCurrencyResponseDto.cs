@@ -10,7 +10,7 @@ public sealed class UpdateCurrencyResponseDto
     [JsonPropertyName("no")]
     public string No { get; set; }
     [JsonPropertyName("tradingDate")]
-    public string TradingDate { get; set; }
+    public DateTime TradingDate { get; set; }
     [JsonPropertyName("effectiveDate")]
     public string EffectiveDate { get; set; }
     [JsonPropertyName("rates")]

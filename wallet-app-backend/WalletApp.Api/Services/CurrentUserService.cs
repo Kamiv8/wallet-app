@@ -1,5 +1,4 @@
 using System.Security.Claims;
-using Microsoft.IdentityModel.JsonWebTokens;
 using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Services;

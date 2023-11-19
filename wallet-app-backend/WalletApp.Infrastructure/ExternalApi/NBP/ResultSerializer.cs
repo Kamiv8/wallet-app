@@ -7,6 +7,8 @@ public static class ResultSerializer
 {
     public static UpdateCurrencyResponseDto Deserialize(string json)
     {
-        return JsonConvert.DeserializeObject<List<UpdateCurrencyResponseDto>>(json)?[0];
+
+        var list = JsonConvert.DeserializeObject<List<UpdateCurrencyResponseDto>>(json)?[0];
+        return list;
     }
 }
