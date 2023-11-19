@@ -25,7 +25,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ApiResult
     {
         var entityUser = await _userManager.FindByEmailAsync(request.Email);
         if (entityUser is not null)
-            return new ApiResult(ApiResultStatus.Error, AccountErrorMessages.EmailNotExist);
+            return ApiResult.Error(AccountErrorMessages.EmailNotExist);
 
         var newUser = new UserIdentity
         {
@@ -42,6 +42,6 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ApiResult
 
         await _accountDataRepository.CreateAsync(accountData);
         await _userManager.CreateAsync(newUser, request.Password);
-        return new ApiResult(ApiResultStatus.Success, null);
+        return ApiResult.Success();
     }
 }

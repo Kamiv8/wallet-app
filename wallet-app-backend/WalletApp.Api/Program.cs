@@ -64,9 +64,9 @@ builder.Services.PostConfigure<JwtBearerOptions>(JwtBearerDefaults.Authenticatio
     options.SecurityTokenValidators.Clear();
     options.SecurityTokenValidators.Add(new JwtSecurityTokenHandler());
 });
-builder.Services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+builder.Services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
 builder.Services
-    .AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+    .AddTransient<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
 
 builder.Services.ConfigureOptions<JwtOptionsSetup>();
 builder.Services.AddPersistence(builder.Configuration);

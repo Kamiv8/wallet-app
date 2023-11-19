@@ -13,9 +13,10 @@ public class CurrentUserService : ICurrentUserService
         _accessor = accessor;
     }
 
-    public Guid? Id => _accessor.HttpContext?.User?.FindFirstValue(JwtRegisteredClaimNames.Sub) != null
-        ? Guid.Parse(_accessor.HttpContext?.User?.FindFirstValue(JwtRegisteredClaimNames.Sub)!)
-        : null;
+    public Guid? Id =>
+        _accessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier) is not null
+            ? Guid.Parse(_accessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)!.Value!)
+            : null;
 
     public string? Email => _accessor.HttpContext!.User.FindFirstValue(ClaimTypes.Email);
 }

@@ -19,7 +19,7 @@ public class PermissionAuthorizationHandler : AuthorizationHandler<PermissionReq
     {
         var userId = context.User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub)
             ?.Value;
-        if (!Guid.TryParse(userId, out Guid parsedUserId)) return;
+        if (!Guid.TryParse(userId, out var parsedUserId)) return;
 
         var permissions = await _permissionRepository.GetPermissionAsync(parsedUserId);
 

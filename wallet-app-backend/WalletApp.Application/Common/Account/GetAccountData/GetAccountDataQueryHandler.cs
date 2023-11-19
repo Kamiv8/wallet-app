@@ -14,9 +14,7 @@ public class GetAccountDataQueryHandler : IRequestHandler<GetAccountDataQuery, A
     {
         _repository = repository;
         _userService = userService;
-        
     }
-    
     
     public Task<ApiResult<GetAccountDataDto>> Handle(GetAccountDataQuery request, CancellationToken cancellationToken)
     {
