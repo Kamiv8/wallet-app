@@ -1,5 +1,6 @@
 using FluentValidation;
 using MediatR;
+using WalletApp.Application.Common;
 
 namespace WalletApp.Application.Behaviours;
 
@@ -16,15 +17,23 @@ public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
     {
         if (!_validators.Any()) return await next();
         var context = new ValidationContext<TRequest>(request);
-        var failures = _validators
-            .Select(v => v.Validate(context))
-            .SelectMany(res => res.Errors)
-            .Where(f => f is not null)
-            .ToList();
+        var errorsDictionary = _validators
+            .Select(x => x.Validate(context))
+            .SelectMany(x => x.Errors)
+            .Where(x => x != null)
+            .GroupBy(
+                x => x.PropertyName,
+                x => x.ErrorMessage,
+                (propertyName, errorMessages) => new
+                {
+                    Key = propertyName,
+                    Values = errorMessages.Distinct().ToArray()
+                })
+            .ToDictionary(x => x.Key, x => x.Values);
 
-        if (failures.Count != 0)
+        if (errorsDictionary.Any())
         {
-            throw new ValidationException(failures);
+            throw new ValidationException(errorsDictionary.ToString());
         }
 
         return await next();

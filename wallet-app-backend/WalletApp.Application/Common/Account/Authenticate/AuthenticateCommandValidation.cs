@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace WalletApp.Application.Account.Authenticate;
 
-public class AuthenticateCommandValidation : AbstractValidator<AuthenticateDto>
+public class AuthenticateCommandValidation : AbstractValidator<AuthenticateCommand>
 {
     public AuthenticateCommandValidation()
     {

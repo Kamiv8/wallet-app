@@ -29,14 +29,11 @@ public class
         CancellationToken cancellationToken)
     {
         if (request.RefreshToken is null)
-            return new ApiResult<RefreshTokenResponseDto>(ApiResultStatus.Error, null,
-                TokenErrorMessages.EmptyToken
-            );
+            return ApiResult<RefreshTokenResponseDto>.Error(TokenErrorMessages.EmptyToken);
         var oldToken = await _tokenRepository.GetTokenByRefreshToken(request.RefreshToken);
 
         if (oldToken is null || oldToken.RefreshTokenExpiryTime <= DateTime.Now)
-            return new ApiResult<RefreshTokenResponseDto>(ApiResultStatus.Error, null,
-                TokenErrorMessages.CannotFindToken);
+            return ApiResult<RefreshTokenResponseDto>.Error(TokenErrorMessages.CannotFindToken);
 
         var user = await _userManager.FindByIdAsync(oldToken.UserIdentityId.ToString());
 
@@ -50,6 +47,6 @@ public class
 
         var response = new RefreshTokenResponseDto(jwtToken, newRefreshToken.RefreshToken);
 
-        return new ApiResult<RefreshTokenResponseDto>(ApiResultStatus.Success, response, null);
+        return ApiResult<RefreshTokenResponseDto>.Success(response);
     }
 }
