@@ -1,11 +1,10 @@
-using MediatR;
+using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
-using WalletApp.Domain.Enums;
 
-namespace WalletApp.Application.Common.Currency.Update;
+namespace WalletApp.Application.Common.Currency.UpdateCurrency;
 
-public class UpdateCurrencyCommandHandler : IRequestHandler<UpdateCurrencyCommand>
+public class UpdateCurrencyCommandHandler : ICommandHandler<UpdateCurrencyCommand>
 {
     private readonly ICurrencyRepository _currencyRepository;
     private readonly INbpClient _client;
@@ -16,7 +15,7 @@ public class UpdateCurrencyCommandHandler : IRequestHandler<UpdateCurrencyComman
         _client = client;
     }
 
-    public async Task Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResult> Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken)
     {
         var response = await _client.GetCurrencies(cancellationToken);
 
@@ -31,5 +30,7 @@ public class UpdateCurrencyCommandHandler : IRequestHandler<UpdateCurrencyComman
         }
 
         await _currencyRepository.Save(cancellationToken);
+
+        return ApiResult.Success();
     }
 }

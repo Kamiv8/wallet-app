@@ -1,12 +1,12 @@
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
+using WalletApp.Persistance.Repositories;
 using WalletApp.Persistence.Repositories;
 
-namespace WalletApp.Persistence;
+namespace WalletApp.Persistance;
 
 public static class DI
 {
@@ -21,6 +21,8 @@ public static class DI
         services.AddScoped<IPermissionRepository, PermissionRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ITransactionRepository, TransactionRepository>();
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         
         return services;
     }

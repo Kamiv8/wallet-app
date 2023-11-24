@@ -1,13 +1,9 @@
-using System.Net;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using WalletApp.Application.Options;
 
 namespace WalletApp.Application.Authentication;
 
@@ -32,7 +28,7 @@ public static class AppAuthentication
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey =
                     new SymmetricSecurityKey(
-                        System.Text.Encoding.UTF8.GetBytes(configuration["JWTSettings:Secret"]))
+                        Encoding.UTF8.GetBytes(configuration["JWTSettings:Secret"]!))
             };
         });
 

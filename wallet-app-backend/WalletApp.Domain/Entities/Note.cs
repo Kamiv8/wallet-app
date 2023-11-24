@@ -12,6 +12,6 @@ public class Note : BaseEntity
     public Guid UserIdentityId { get; set; }
     public virtual UserIdentity UserIdentity { get; set; } = default!;
     public Guid? GroupId { get; set; }
-    public virtual Group? Group { get; set; } = default!;
+    public virtual Group? Group { get; set; }
 
 }

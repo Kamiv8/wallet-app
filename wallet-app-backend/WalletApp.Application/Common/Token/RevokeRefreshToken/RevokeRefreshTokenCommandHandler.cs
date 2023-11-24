@@ -1,24 +1,23 @@
-using MediatR;
-using WalletApp.Application.Common;
+using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Consts;
-using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
-using WalletApp.Domain.Common;
 
-namespace WalletApp.Application.Token.RevokeRefreshToken;
+namespace WalletApp.Application.Common.Token.RevokeRefreshToken;
 
 public class
-    RevokeRefreshTokenCommandHandler : IRequestHandler<RevokeRefreshTokenCommand, ApiResult>
+    RevokeRefreshTokenCommandHandler : ICommandHandler<RevokeRefreshTokenCommand>
 {
     private readonly ITokenRepository _tokenRepository;
     private readonly ICurrentUserService _userService;
+    private readonly IUnitOfWork _unitOfWork;
 
     public RevokeRefreshTokenCommandHandler(ITokenRepository tokenRepository,
-        ICurrentUserService userService)
+        ICurrentUserService userService, IUnitOfWork unitOfWork)
     {
         _tokenRepository = tokenRepository;
         _userService = userService;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<ApiResult> Handle(RevokeRefreshTokenCommand request,
@@ -28,7 +27,7 @@ public class
         if (user is null) return ApiResult.Error(TokenErrorMessages.CannotFindUser);
 
         await _tokenRepository.RevokeToken((Guid)user);
-        await _tokenRepository.Save(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return ApiResult.Success();
     }

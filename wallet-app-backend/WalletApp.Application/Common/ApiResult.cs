@@ -14,9 +14,19 @@ public class ApiResult
         Message = message;
     }
 
+    public static ApiResult Success(string message)
+    {
+        return new ApiResult(ApiResultStatus.Success, message);
+    }
+    
     public static ApiResult Success()
     {
         return new ApiResult(ApiResultStatus.Success);
+    }
+
+    public static ApiResult NoContent()
+    {
+        return new ApiResult(ApiResultStatus.NoContent);
     }
 
     public static ApiResult Error(string? message = null)

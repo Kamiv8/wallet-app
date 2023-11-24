@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Entities;
 
-namespace WalletApp.Persistence.Repositories;
+namespace WalletApp.Persistance.Repositories;
 
 public class CategoryRepository : ICategoryRepository
 {
@@ -13,7 +13,7 @@ public class CategoryRepository : ICategoryRepository
         _db = db;
     }
 
-    public async Task<List<Category>> GetUserCategoriesById(Guid? id,
+    public async Task<IEnumerable<Category>> GetUserCategoriesById(Guid? id,
         CancellationToken cancellationToken)
     {
         return await _db.Categories

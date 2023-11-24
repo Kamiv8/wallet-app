@@ -1,5 +1,4 @@
-using WalletApp.Application.Common.Currency.Update;
-using WalletApp.Domain.Models;
+using WalletApp.Application.Common.Currency.UpdateCurrency;
 
 namespace WalletApp.Application.Interfaces;
 

@@ -1,28 +1,26 @@
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using WalletApp.Application.Common;
+using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Consts;
-using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
-using WalletApp.Domain.Entities;
 
-namespace WalletApp.Application.Token.UpdateRefreshToken;
+namespace WalletApp.Application.Common.Token.UpdateRefreshToken;
 
 public class
-    UpdateRefreshTokenCommandHandler : IRequestHandler<UpdateRefreshTokenCommand,
-        ApiResult<RefreshTokenResponseDto>>
+    UpdateRefreshTokenCommandHandler : ICommandHandler<UpdateRefreshTokenCommand,
+        RefreshTokenResponseDto>
 {
-    private readonly UserManager<UserIdentity> _userManager;
+    private readonly IUserManager _userManager;
     private readonly ITokenRepository _tokenRepository;
     private readonly IJWTUtil _jwtUtil;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public UpdateRefreshTokenCommandHandler(UserManager<UserIdentity> userManager,
-        ITokenRepository tokenRepository, IJWTUtil jwtUtil)
+    public UpdateRefreshTokenCommandHandler(IUserManager userManager,
+        ITokenRepository tokenRepository, IJWTUtil jwtUtil, IUnitOfWork unitOfWork)
     {
         _userManager = userManager;
         _tokenRepository = tokenRepository;
         _jwtUtil = jwtUtil;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<ApiResult<RefreshTokenResponseDto>> Handle(UpdateRefreshTokenCommand request,
@@ -41,7 +39,7 @@ public class
 
         oldToken.RefreshToken = newRefreshToken.RefreshToken;
         oldToken.RefreshTokenExpiryTime = newRefreshToken.RefreshTokenExpiryTime;
-        await _tokenRepository.Save(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var jwtToken = await _jwtUtil.GenerateJwtToken(user);
 

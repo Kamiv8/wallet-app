@@ -1,21 +1,17 @@
-using MediatR;
-using Microsoft.AspNetCore.Identity;
+using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Interfaces.Repository;
-using WalletApp.Domain.Entities;
 using EntityTransaction = WalletApp.Domain.Entities.Transaction;
 
 namespace WalletApp.Application.Common.Transaction.AddUserTransaction;
 
 public class
-    AddUserTransactionCommandHandler : IRequestHandler<AddUserTransactionCommand, ApiResult>
+    AddUserTransactionCommandHandler : ICommandHandler<AddUserTransactionCommand>
 {
     private readonly ITransactionRepository _repository;
-    private readonly UserManager<UserIdentity> _userManager;
 
-    public AddUserTransactionCommandHandler(ITransactionRepository repository, UserManager<UserIdentity> userManager)
+    public AddUserTransactionCommandHandler(ITransactionRepository repository)
     {
         _repository = repository;
-        _userManager = userManager;
     }
 
     public async Task<ApiResult> Handle(AddUserTransactionCommand request,
@@ -23,7 +19,7 @@ public class
     {
         var entityTransaction = new EntityTransaction
         {
-            UserIdentityId = request.UserId!.Value,
+            UserIdentityId = request.UserId,
             Title = request.Title,
             Price = request.Price,
             CategoryId = request.CategoryId,

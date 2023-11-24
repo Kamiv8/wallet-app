@@ -2,9 +2,9 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
+using WalletApp.Application.Common.Token.RevokeRefreshToken;
+using WalletApp.Application.Common.Token.UpdateRefreshToken;
 using WalletApp.Application.Interfaces;
-using WalletApp.Application.Token.RevokeRefreshToken;
-using WalletApp.Application.Token.UpdateRefreshToken;
 
 namespace WalletApp.Controllers;
 
@@ -37,11 +37,5 @@ public class TokenController : BaseController
         var command = new RevokeRefreshTokenCommand();
         var res = await _mediator.Send(command, cancellationToken);
         return CreateResponse(res);
-    }
-    private string IpAddress()
-    {
-        if (Request.Headers.ContainsKey("X-Forwarded-For"))
-            return Request.Headers["X-Forwarded-For"];
-        return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
     }
 }

@@ -12,14 +12,16 @@ public class AddUserTransactionCommandValidation : AbstractValidator<AddUserTran
         RuleFor(x => x.Title).Cascade(CascadeMode.Stop)
             .NotEmpty().MinimumLength(3)
             .MaximumLength(50);
-        RuleFor(x => x.Price).NotEmpty().GreaterThanOrEqualTo(0).PrecisionScale(15, 2, false);
-        RuleFor(x => x.Date).NotEmpty().LessThanOrEqualTo(DateTime.Today);
-        RuleFor(x => x.CurrencyId).NotEmpty();
-        RuleFor(x => x.CategoryId).NotEmpty();
+        RuleFor(x => x.Price).Cascade(CascadeMode.Stop).NotEmpty().GreaterThanOrEqualTo(0)
+            .PrecisionScale(15, 2, false);
+        RuleFor(x => x.Date).Cascade(CascadeMode.Stop).NotEmpty().LessThanOrEqualTo(DateTime.Today);
+        RuleFor(x => x.CurrencyId).Cascade(CascadeMode.Stop).NotEmpty();
+        RuleFor(x => x.CategoryId).Cascade(CascadeMode.Stop).NotEmpty();
         When(x => x.IsDefault, () =>
         {
-            RuleFor(x => x.TextColor).NotEmpty().Matches(HexColorRegex);
-            RuleFor(x => x.BackgroundColor).NotEmpty().Matches(HexColorRegex);
+            RuleFor(x => x.TextColor).Cascade(CascadeMode.Stop).NotEmpty().Matches(HexColorRegex);
+            RuleFor(x => x.BackgroundColor).Cascade(CascadeMode.Stop).NotEmpty()
+                .Matches(HexColorRegex);
         }).Otherwise(() =>
         {
             RuleFor(x => x.TextColor).Null();

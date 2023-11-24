@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Account.Authenticate;
 using WalletApp.Application.Account.GetAccountData;
-using WalletApp.Application.Account.Register;
 using WalletApp.Application.Authentication;
 using WalletApp.Application.Common;
+using WalletApp.Application.Common.Account.Authenticate;
+using WalletApp.Application.Common.Account.ConfirmRegisterEmail;
+using WalletApp.Application.Common.Account.Register;
 using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 
@@ -47,6 +49,16 @@ public class AccountController : BaseController
         return CreateResponse(res);
     }
 
+    [AllowAnonymous]
+    [HttpGet("confirmEmail")]
+    public async Task<ActionResult<ApiResult>> EmailConfirmation(string token, string email, CancellationToken cancellationToken)
+    {
+        var command = new ConfirmRegisterEmailCommand(email, token);
+        var res = await _mediator.Send(command, cancellationToken);
+        return CreateResponse(res);
+    }
+    
+    
     [HasPermission(Permission.ReadValue)]
     [HttpGet("data")]
     public async Task<ActionResult<ApiResult<GetAccountDataDto>>> GetAccountData(
@@ -56,13 +68,5 @@ public class AccountController : BaseController
         var query = new GetAccountDataQuery();
         var res = await _mediator.Send(query, cancellationToken);
         return CreateResponse(res);
-    }
-
-
-    private string IpAddress()
-    {
-        if (Request.Headers.ContainsKey("X-Forwarded-For"))
-            return Request.Headers["X-Forwarded-For"];
-        return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
     }
 }

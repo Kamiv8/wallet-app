@@ -6,10 +6,9 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Options;
-using WalletApp.Common.Helpers;
 using WalletApp.Domain.Entities;
 
-namespace WalletApp.Infrastructure.JWT;
+namespace WalletApp.Infractructure.JWT;
 
 public class JWTUtil : IJWTUtil
 {
@@ -30,7 +29,7 @@ public class JWTUtil : IJWTUtil
         var claims = new List<Claim>
         {
             new(JwtRegisteredClaimNames.Sub, account.Id.ToString()),
-            new(JwtRegisteredClaimNames.Email, account.Email)
+            new(JwtRegisteredClaimNames.Email, account.Email ?? string.Empty)
         };
         claims.AddRange(accountRoles.Select(role => new Claim(ClaimTypes.Role, role)));
 

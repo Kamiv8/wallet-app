@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using WalletApp.Domain.Common;
 
 namespace WalletApp.Domain.Entities;

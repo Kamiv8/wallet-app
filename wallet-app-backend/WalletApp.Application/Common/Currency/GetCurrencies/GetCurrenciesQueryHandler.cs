@@ -1,21 +1,19 @@
-using MediatR;
+using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Interfaces.Repository;
 
-namespace WalletApp.Application.Common.Currency.GetCurrency;
+namespace WalletApp.Application.Common.Currency.GetCurrencies;
 
-public class GetCurrenciesQueryHandler : IRequestHandler<GetCurrenciesQuery,
-    ApiResult<List<GetCurrenciesQueryResponseDto>>>
+public class GetCurrenciesQueryHandler : IQueryHandler<GetCurrenciesQuery,
+    IEnumerable<GetCurrenciesQueryResponseDto>>
 {
     private readonly ICurrencyRepository _repository;
-
 
     public GetCurrenciesQueryHandler(ICurrencyRepository repository)
     {
         _repository = repository;
     }
 
-
-    public async Task<ApiResult<List<GetCurrenciesQueryResponseDto>>> Handle(
+    public async Task<ApiResult<IEnumerable<GetCurrenciesQueryResponseDto>>> Handle(
         GetCurrenciesQuery request,
         CancellationToken cancellationToken)
     {
@@ -26,6 +24,6 @@ public class GetCurrenciesQueryHandler : IRequestHandler<GetCurrenciesQuery,
                     currency.Code))
             .ToList();
 
-        return ApiResult<List<GetCurrenciesQueryResponseDto>>.Success(response);
+        return ApiResult<IEnumerable<GetCurrenciesQueryResponseDto>>.Success(response);
     }
 }

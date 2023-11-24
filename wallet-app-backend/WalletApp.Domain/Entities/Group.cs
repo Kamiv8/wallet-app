@@ -10,9 +10,9 @@ public class Group : BaseEntity
     public GroupIconType IconType { get; set; }
     public int MaxMembers { get; set; }
     public decimal Money { get; set; }
-    public Collection<Member> Members { get; set; } = default!;
-    public Collection<Transaction> Transactions { get; set; } = default!;
-    public Collection<Category> Categories { get; set; } = default!;
-    public Collection<Note> Notes { get; set; } = default!;
-    public Collection<Notification> Notifications { get; set; } = default!;
+    public ICollection<Member> Members { get; set; } = default!;
+    public ICollection<Transaction> Transactions { get; set; } = default!;
+    public ICollection<Category> Categories { get; set; } = default!;
+    public ICollection<Note> Notes { get; set; } = default!;
+    public ICollection<Notification> Notifications { get; set; } = default!;
 }

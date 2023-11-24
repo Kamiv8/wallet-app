@@ -1,10 +1,10 @@
-using MediatR;
+using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces.Repository;
 
 namespace WalletApp.Application.Common.Category.DeleteUserCategory;
 
-public class DeleteUserCategoryCommandHandler : IRequestHandler<DeleteUserCategoryCommand, ApiResult>
+public class DeleteUserCategoryCommandHandler : ICommandHandler<DeleteUserCategoryCommand>
 {
     private readonly ICategoryRepository _repository;
 
@@ -22,6 +22,6 @@ public class DeleteUserCategoryCommandHandler : IRequestHandler<DeleteUserCatego
         _repository.DeleteUserCategory(category);
         await _repository.SaveAsync(cancellationToken);
 
-        return ApiResult.Success();
+        return ApiResult.NoContent();
     }
 }

@@ -1,11 +1,10 @@
 using Microsoft.Extensions.Options;
-using Refit;
-using WalletApp.Application.Common.Currency.Update;
+using WalletApp.Application.Common.Currency.UpdateCurrency;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Options.NbpApi;
 using WalletApp.Domain.Common;
 
-namespace WalletApp.Infrastructure.ExternalApi.NBP;
+namespace WalletApp.Infractructure.ExternalApi.NBP;
 
 public class NbpClient : INbpClient
 {
@@ -31,7 +30,7 @@ public class NbpClient : INbpClient
         if (!response.IsSuccessStatusCode) throw new ErrorDetails("Bad request to NBP API");
         var data = await response.Content.ReadAsStringAsync(cancellationToken)
             .ConfigureAwait(false);
-        var deserializerData = ResultSerializer.Deserialize(data);
-        return deserializerData;
+
+        return ResultSerializer.Deserialize(data)[0];
     }
 }

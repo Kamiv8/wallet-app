@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Entities;
+using WalletApp.Persistance;
 
 namespace WalletApp.Persistence.Repositories;
 

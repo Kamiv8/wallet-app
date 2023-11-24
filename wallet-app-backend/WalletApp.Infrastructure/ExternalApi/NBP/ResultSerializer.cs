@@ -1,14 +1,18 @@
-using Newtonsoft.Json;
-using WalletApp.Application.Common.Currency.Update;
+using System.Text.Json;
+using WalletApp.Application.Common.Currency.UpdateCurrency;
 
-namespace WalletApp.Infrastructure.ExternalApi.NBP;
+namespace WalletApp.Infractructure.ExternalApi.NBP;
 
 public static class ResultSerializer
 {
-    public static UpdateCurrencyResponseDto Deserialize(string json)
+    public static List<UpdateCurrencyResponseDto> Deserialize(string json)
     {
+        var options = new JsonSerializerOptions()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
 
-        var list = JsonConvert.DeserializeObject<List<UpdateCurrencyResponseDto>>(json)?[0];
-        return list;
+        return JsonSerializer.Deserialize<List<UpdateCurrencyResponseDto>>(json, options) ??
+               new List<UpdateCurrencyResponseDto>();
     }
 }

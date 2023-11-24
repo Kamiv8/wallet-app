@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
-using WalletApp.Application.Common.Currency.GetCurrency;
+using WalletApp.Application.Common.Currency.GetCurrencies;
 
 namespace WalletApp.Controllers;
 
@@ -19,7 +19,7 @@ public class CurrencyController : BaseController
 
 
     [HttpGet]
-    public async Task<ActionResult<ApiResult<List<GetCurrenciesQueryResponseDto>>>> GetCurrencies(
+    public async Task<ActionResult<ApiResult<IEnumerable<GetCurrenciesQueryResponseDto>>>> GetCurrencies(
         CancellationToken cancellationToken)
     {
         var query = new GetCurrenciesQuery();

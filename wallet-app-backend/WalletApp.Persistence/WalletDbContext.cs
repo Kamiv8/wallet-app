@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using WalletApp.Application.Interfaces;
 using WalletApp.Domain.Common;
 using WalletApp.Domain.Entities;
+using WalletApp.Persistence;
 
-namespace WalletApp.Persistence;
+namespace WalletApp.Persistance;
 
 public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Guid>
 {
@@ -33,10 +34,7 @@ public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Gui
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<IdentityUserLogin<Guid>>(entity =>
-        {
-            entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
-        });
+
         
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         modelBuilder.Seed();
@@ -64,6 +62,12 @@ public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Gui
                     entry.Entity.IsDeleted = true;
                     entry.State = EntityState.Modified;
                     break;
+                case EntityState.Detached:
+                    break;
+                case EntityState.Unchanged:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 

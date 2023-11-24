@@ -1,6 +1,5 @@
-using MediatR;
-using WalletApp.Application.Common;
+using WalletApp.Application.Abstractions.Messaging;
 
-namespace WalletApp.Application.Token.RevokeRefreshToken;
+namespace WalletApp.Application.Common.Token.RevokeRefreshToken;
 
-public sealed record RevokeRefreshTokenCommand : IRequest<ApiResult>;
+public sealed record RevokeRefreshTokenCommand : ICommand;

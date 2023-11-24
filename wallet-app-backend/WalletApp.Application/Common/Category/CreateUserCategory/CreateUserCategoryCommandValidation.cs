@@ -1,11 +1,12 @@
 using FluentValidation;
 
-namespace WalletApp.Application.Common.Category.CreateCategory;
+namespace WalletApp.Application.Common.Category.CreateUserCategory;
 
-public class CreateUserCategoryCommandValidation : AbstractValidator<CreateUserCategoryDto>
+public class CreateUserCategoryCommandValidation : AbstractValidator<CreateUserCategoryCommand>
 {
     public CreateUserCategoryCommandValidation()
     {
-        RuleFor(x => x.Name).NotEmpty().MinimumLength(3).MaximumLength(50);
+        RuleFor(x => x.Name).Cascade(CascadeMode.Stop).NotEmpty().MinimumLength(3)
+            .MaximumLength(50);
     }
 }

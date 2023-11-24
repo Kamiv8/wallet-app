@@ -1,8 +1,9 @@
 using MediatR;
-using WalletApp.Application.Common;
+using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Enums;
+using WalletApp.Domain.Enums;
 
-namespace WalletApp.Application.Account.Register;
+namespace WalletApp.Application.Common.Account.Register;
 
 public record RegisterCommand(string Username, string Email, string Password,
-    string ConfirmPassword, IconType IconType) : IRequest<ApiResult>;
+    string ConfirmPassword, IconType IconType) : ICommand;

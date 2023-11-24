@@ -1,5 +1,5 @@
-using MediatR;
+using WalletApp.Application.Abstractions.Messaging;
 
-namespace WalletApp.Application.Common.Currency.Update;
+namespace WalletApp.Application.Common.Currency.UpdateCurrency;
 
-public sealed record UpdateCurrencyCommand : IRequest;
+public sealed record UpdateCurrencyCommand : ICommand;

@@ -1,51 +1,48 @@
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using WalletApp.Application.Common;
+using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Account.Authenticate;
 using WalletApp.Application.Consts;
-using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Application.Interfaces;
-using WalletApp.Domain.Entities;
+using WalletApp.Application.Interfaces.Repository;
 
-namespace WalletApp.Application.Account.Authenticate;
+namespace WalletApp.Application.Common.Account.Authenticate;
 
 public class
-    AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand,
-        ApiResult<AuthenticateResponseDto>>
+    AuthenticateCommandHandler : ICommandHandler<AuthenticateCommand,
+        AuthenticateResponseDto>
 {
-    private readonly SignInManager<UserIdentity> _signInManager;
-    private readonly UserManager<UserIdentity> _userManager;
+    private readonly IAppSignInManager _signInManager;
+    private readonly IUserManager _userManager;
     private readonly ITokenRepository _tokenRepository;
     private readonly IJWTUtil _jwtUtil;
+    private readonly IUnitOfWork _unitOfWork;
 
     public AuthenticateCommandHandler(
-        SignInManager<UserIdentity> signInManager,
-        UserManager<UserIdentity> userManager,
+        IAppSignInManager signInManager,
+        IUserManager userManager,
         ITokenRepository tokenRepository,
-        IJWTUtil jwtUtil
+        IJWTUtil jwtUtil,
+        IUnitOfWork unitOfWork
     )
     {
         _signInManager = signInManager;
         _userManager = userManager;
         _tokenRepository = tokenRepository;
         _jwtUtil = jwtUtil;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<ApiResult<AuthenticateResponseDto>> Handle(AuthenticateCommand request,
         CancellationToken cancellationToken)
     {
-        var signIn = await _signInManager.PasswordSignInAsync(request.Username, request.Password,
-            isPersistent: false, lockoutOnFailure: false);
+        var signIn = await _signInManager.PasswordSignInAsync(request.Username, request.Password);
 
         if (!signIn.Succeeded)
             return ApiResult<AuthenticateResponseDto>.Error(AccountErrorMessages.IncorrectPassword);
 
         var account = await _userManager.FindByNameAsync(request.Username);
 
-        if (account is null && await _userManager.CheckPasswordAsync(account, request.Password))
-            return ApiResult<AuthenticateResponseDto>.Error(AccountErrorMessages.IncorrectPassword);
-
-        if (!account.LockoutEnabled)
-            return ApiResult<AuthenticateResponseDto>.Error(AccountErrorMessages.DeletedAccount);
+        if (account is null)
+            return ApiResult<AuthenticateResponseDto>.Error(AccountErrorMessages.UserNotExist);
 
         var newAccessToken = await _jwtUtil.GenerateJwtToken(account);
         var refreshToken = _jwtUtil.GenerateRefreshToken(request.IpAddress);
@@ -63,9 +60,9 @@ public class
         }
 
         await _userManager.UpdateAsync(account);
-        await _tokenRepository.Save(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        var dto = new AuthenticateResponseDto(newAccessToken, token.RefreshToken);
+        var dto = new AuthenticateResponseDto(newAccessToken, token!.RefreshToken!);
 
         return ApiResult<AuthenticateResponseDto>.Success(dto);
     }

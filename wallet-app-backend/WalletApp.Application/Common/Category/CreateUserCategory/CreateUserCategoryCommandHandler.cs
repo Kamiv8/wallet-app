@@ -1,12 +1,12 @@
-using MediatR;
+using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces.Repository;
 using DomainCategory = WalletApp.Domain.Entities.Category;
 
-namespace WalletApp.Application.Common.Category.CreateCategory;
+namespace WalletApp.Application.Common.Category.CreateUserCategory;
 
 public class
-    CreateUserCategoryCommandHandler : IRequestHandler<CreateUserCategoryCommand, ApiResult>
+    CreateUserCategoryCommandHandler : ICommandHandler<CreateUserCategoryCommand>
 {
     private readonly ICategoryRepository _repository;
 

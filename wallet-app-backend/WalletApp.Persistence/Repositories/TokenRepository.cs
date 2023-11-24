@@ -3,6 +3,7 @@ using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Common;
 using WalletApp.Domain.Entities;
+using WalletApp.Persistance;
 
 namespace WalletApp.Persistence.Repositories;
 
@@ -55,9 +56,5 @@ public class TokenRepository : ITokenRepository
         token.RefreshTokenExpiryTime = null;
         _db.Tokens.Update(token);
     }
-
-    public async Task Save(CancellationToken cancellationToken)
-    {
-       await _db.SaveChangesAsync(cancellationToken);
-    }
+    
 }

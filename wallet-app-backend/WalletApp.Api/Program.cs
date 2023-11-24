@@ -10,12 +10,14 @@ using WalletApp.Application;
 using WalletApp.Application.Authentication;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Options;
+using WalletApp.Application.Options.EmailOptions;
 using WalletApp.Application.Options.JwtOptionsSetup;
 using WalletApp.Application.Options.NbpApi;
 using WalletApp.Common.Helpers;
 using WalletApp.Domain.Entities;
 using WalletApp.Infrastructure;
 using WalletApp.Middleware;
+using WalletApp.Persistance;
 using WalletApp.Persistence;
 using WalletApp.Services;
 
@@ -40,6 +42,12 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IValidator<JwtOptions>, JwtOptionsValidation>();
+
+builder.Services.AddOptions<EmailOptions>()
+    .BindConfiguration("EmailService")
+    .ValidateFluentValidation()
+    .ValidateOnStart();
+
 builder.Services.AddOptions<JwtOptions>()
     .BindConfiguration("JWTSettings")
     .ValidateFluentValidation()
@@ -50,7 +58,10 @@ builder.Services.AddOptions<NbpOptions>()
     .ValidateFluentValidation()
     .ValidateOnStart();
 
-builder.Services.AddIdentity<UserIdentity, RoleIdentity>()
+builder.Services.AddIdentity<UserIdentity, RoleIdentity>(opt =>
+    {
+        opt.SignIn.RequireConfirmedEmail = true;
+    })
     .AddEntityFrameworkStores<WalletDbContext>()
     .AddDefaultTokenProviders()
     .AddUserStore<UserStore<UserIdentity, RoleIdentity, WalletDbContext, Guid>>()

@@ -1,5 +1,5 @@
-using MediatR;
+using WalletApp.Application.Abstractions.Messaging;
 
-namespace WalletApp.Application.Common.Currency.GetCurrency;
+namespace WalletApp.Application.Common.Currency.GetCurrencies;
 
-public sealed record GetCurrenciesQuery() : IRequest<ApiResult<List<GetCurrenciesQueryResponseDto>>>;
+public sealed record GetCurrenciesQuery : IQuery<IEnumerable<GetCurrenciesQueryResponseDto>>;

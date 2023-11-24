@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using WalletApp.Application.Enums;
+using WalletApp.Domain.Enums;
 
 namespace WalletApp.Domain.Entities;
 

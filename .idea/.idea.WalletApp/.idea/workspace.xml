@@ -9,46 +9,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a179f98f-edf1-4d8e-8a31-04bfaa381188" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Authentication/AppAuthentication.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Domain/Entities/RoleIdentity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Domain/Entities/UserIdentity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Configurations/UserIdentityConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Dtos/EmailClientDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Interfaces/IEmailClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Options/EmailOptions/EmailOptions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Options/EmailOptions/EmailOptionsValidation.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Infrastructure/EmailClient/EmailClient.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WalletApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/WalletApp/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/WalletApp/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/WalletApp/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/WalletApp/v17/.futdcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/WalletApp/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/WalletApp/v17/.suo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Controllers/AccountController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Controllers/BaseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Controllers/BaseController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Controllers/CategoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Controllers/CategoryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Controllers/TokenController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Controllers/TokenController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Logs/log20231120.txt" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Logs/log20231120.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Services/CurrentUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/Services/CurrentUserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Account/Authenticate/AuthenticateCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Account/Authenticate/AuthenticateCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Account/Authenticate/AuthenticateCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Account/Authenticate/AuthenticateCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Account/Register/RegisterCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Account/Register/RegisterCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Token/RevokeRefreshToken/RevokeRefreshTokenCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Token/RevokeRefreshToken/RevokeRefreshTokenCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Token/UpdateRefreshToken/UpdateRefreshTokenCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Token/UpdateRefreshToken/UpdateRefreshTokenCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/DI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/DI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Enums/IconType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Domain/Enums/IconType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Authentication/AppAuthentication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Authentication/AppAuthentication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/ApiResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/ApiResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/CreateUserCategory/CreateUserCategoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/CreateUserCategory/CreateUserCategoryCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/CreateUserCategory/CreateUserCategoryCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/CreateUserCategory/CreateUserCategoryCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/DeleteUserCategory/DeleteUserCategoryCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/DeleteUserCategory/DeleteUserCategoryCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/GetUserCategories/GetUserCategoriesQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/GetUserCategories/GetUserCategoriesQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/UpdateUserCategory/UpdateUserCategoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Category/UpdateUserCategory/UpdateUserCategoryCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Transaction/AddUserTransaction/AddUserTransactionCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Transaction/AddUserTransaction/AddUserTransactionCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Transaction/AddUserTransaction/AddUserTransactionCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Common/Transaction/AddUserTransaction/AddUserTransactionCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Consts/CommonErrorMessages.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Consts/CommonErrorMessages.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Enums/ApiResultStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Enums/ApiResultStatus.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Interfaces/ICurrentUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Interfaces/ICurrentUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Interfaces/IJWTUtil.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Interfaces/IJWTUtil.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Interfaces/Repository/ITokenRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/Interfaces/Repository/ITokenRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/WalletApp.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Application/WalletApp.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Domain/Entities/AccountData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Domain/Entities/AccountData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Domain/Entities/Token.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Domain/Entities/Token.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Domain/WalletApp.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Domain/WalletApp.Domain.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Infrastructure/JWT/JWTUtil.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Infrastructure/JWT/JWTUtil.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Migrations/20231023130207_Initial.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Migrations/20231023130207_Initial.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Migrations/20231024110027_fluentApi.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Migrations/20231024110027_fluentApi.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Migrations/20231027231607_Added-currency-table.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Migrations/20231027231607_Added-currency-table.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Migrations/20231106171045_new-tables.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Migrations/20231106171045_new-tables.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Migrations/WalletDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/RelationshipConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/RelationshipConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Repositories/TokenRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/Repositories/TokenRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/WalletApp.Persistence.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/WalletApp.Persistence.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/WalletDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Persistence/WalletDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Infrastructure/WalletApp.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-app-backend/WalletApp.Infrastructure/WalletApp.Infrastructure.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,6 +320,7 @@
       <workItem from="1698761359811" duration="646000" />
       <workItem from="1698777135936" duration="602000" />
       <workItem from="1699731737955" duration="1873000" />
+      <workItem from="1700564508320" duration="2946000" />
     </task>
     <servers />
   </component>
@@ -356,16 +344,6 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WalletApp.API/Handlers/User/RegisterCommandHandler.cs</url>
-          <line>68</line>
-          <properties documentPath="C:\Users\maste\Desktop\WalletApp\WalletApp.API\Handlers\User\RegisterCommandHandler.cs" initialLine="68" containingFunctionPresentation="method 'SendVerificationEmail'" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#System.IdentityModel.Tokens.Jwt.JwtSecurityToken" memberName="Claims" />

@@ -1,8 +1,6 @@
 using System.Security.Cryptography;
 
-namespace WalletApp.Common.Helpers;
-
-
+namespace WalletApp.Infractructure.JWT;
 
 public static class UniqueTokenGenerator
 {

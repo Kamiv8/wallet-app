@@ -1,9 +1,9 @@
-using MediatR;
+using WalletApp.Application.Abstractions.Messaging;
 
 namespace WalletApp.Application.Common.Transaction.AddUserTransaction;
 
 public sealed record AddUserTransactionCommand(
-    Guid? UserId,
+    Guid UserId,
     string Title,
     decimal Price,
     Guid CurrencyId,
@@ -12,4 +12,4 @@ public sealed record AddUserTransactionCommand(
     bool IsDefault,
     string? TextColor,
     string? BackgroundColor
-) : IRequest<ApiResult>;
+) : ICommand;

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Entities;
+using WalletApp.Persistance;
 using Permission = WalletApp.Application.Enums.Permission;
 
 namespace WalletApp.Persistence.Repositories;

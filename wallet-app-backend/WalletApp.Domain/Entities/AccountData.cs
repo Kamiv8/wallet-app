@@ -6,5 +6,5 @@ public class AccountData : BaseEntity
 {
     public decimal ActualMoney { get; set; }
     public Guid UserIdentityId { get; set; }
-    public virtual UserIdentity UserIdentity { get; init; } = default!;
+    public virtual UserIdentity UserIdentity { get; set; } = default!;
 }

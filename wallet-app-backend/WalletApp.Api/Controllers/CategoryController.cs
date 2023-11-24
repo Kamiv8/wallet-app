@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
-using WalletApp.Application.Common.Category.CreateCategory;
+using WalletApp.Application.Common.Category.CreateUserCategory;
 using WalletApp.Application.Common.Category.DeleteUserCategory;
 using WalletApp.Application.Common.Category.GetUserCategories;
 using WalletApp.Application.Common.Category.UpdateUserCategory;
@@ -24,7 +24,7 @@ public class CategoryController : BaseController
     }
 
     [HttpGet("userCategories")]
-    public async Task<ActionResult<ApiResult<List<GetUserCategoriesResponseDto>>>>
+    public async Task<ActionResult<ApiResult<IEnumerable<GetUserCategoriesResponseDto>>>>
         GetUserCategories(CancellationToken cancellationToken)
     {
         var query = new GetUserCategoriesQuery(_userService.Id);

@@ -1,18 +1,6 @@
-using System.Text.Json.Serialization;
-using WalletApp.Domain.Models;
+using WalletApp.Domain.Common;
 
-namespace WalletApp.Application.Common.Currency.Update;
+namespace WalletApp.Application.Common.Currency.UpdateCurrency;
 
-public sealed class UpdateCurrencyResponseDto
-{
-    [JsonPropertyName("table")]
-    public string Table { get; set; }
-    [JsonPropertyName("no")]
-    public string No { get; set; }
-    [JsonPropertyName("tradingDate")]
-    public DateTime TradingDate { get; set; }
-    [JsonPropertyName("effectiveDate")]
-    public string EffectiveDate { get; set; }
-    [JsonPropertyName("rates")]
-    public List<NbpCurrency> Rates { get; set; }
-}
+public sealed record UpdateCurrencyResponseDto(string Table, string No, DateTime TradingDate,
+    string EffectiveDate, List<NbpCurrency> Rates);

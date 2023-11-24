@@ -1,7 +1,8 @@
 using MediatR;
-using WalletApp.Application.Common;
+using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Account.Authenticate;
 
-namespace WalletApp.Application.Account.Authenticate;
+namespace WalletApp.Application.Common.Account.Authenticate;
 
 public sealed record AuthenticateCommand
-    (string Username, string Password,string IpAddress) : IRequest<ApiResult<AuthenticateResponseDto>>;
+    (string Username, string Password,string IpAddress) : ICommand<AuthenticateResponseDto>;

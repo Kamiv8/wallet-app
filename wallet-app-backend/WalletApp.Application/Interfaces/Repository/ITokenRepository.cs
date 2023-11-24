@@ -10,5 +10,4 @@ public interface ITokenRepository
     Task<DomainToken?> GetTokenByRefreshToken(string refreshToken);
     Task CreateTokenRow(DomainToken token);
     Task RevokeToken(Guid id);
-    Task Save(CancellationToken cancellationToken);
 }

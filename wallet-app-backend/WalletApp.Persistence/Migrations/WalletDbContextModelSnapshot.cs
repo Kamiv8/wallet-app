@@ -226,7 +226,7 @@ namespace WalletApp.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("78adf0ca-9d91-4f95-8ebe-803133056425"),
+                            Id = new Guid("fce4de9f-45af-42f9-98b9-94b602d88238"),
                             IsDeleted = false,
                             Name = "Rachunki"
                         });
@@ -287,43 +287,43 @@ namespace WalletApp.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f608d049-bc63-4018-9f73-2f63ed709bac"),
+                            Id = new Guid("dcce1c57-4eb0-44cc-b3e2-2060321842b2"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "USD",
                             CurrencyName = "dolar amerykanski",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2023, 11, 20, 15, 40, 19, 241, DateTimeKind.Local).AddTicks(2384)
+                            TradingDate = new DateTime(2023, 11, 22, 10, 47, 32, 880, DateTimeKind.Local).AddTicks(1363)
                         },
                         new
                         {
-                            Id = new Guid("636a6aa2-04c7-4729-9b3b-acc26748c576"),
+                            Id = new Guid("c0b84ee7-9845-4f07-87e6-dfd18148915f"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "EUR",
                             CurrencyName = "euro",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2023, 11, 20, 15, 40, 19, 241, DateTimeKind.Local).AddTicks(2429)
+                            TradingDate = new DateTime(2023, 11, 22, 10, 47, 32, 880, DateTimeKind.Local).AddTicks(1416)
                         },
                         new
                         {
-                            Id = new Guid("d477eede-7883-466e-9100-2548f1f6afc7"),
+                            Id = new Guid("142169e3-2c32-46ec-8c6d-773e0768deb4"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "CHF",
                             CurrencyName = "frank szwajcarski",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2023, 11, 20, 15, 40, 19, 241, DateTimeKind.Local).AddTicks(2432)
+                            TradingDate = new DateTime(2023, 11, 22, 10, 47, 32, 880, DateTimeKind.Local).AddTicks(1420)
                         },
                         new
                         {
-                            Id = new Guid("5abc9602-4079-480b-89b9-49a1aca75cd8"),
+                            Id = new Guid("ede48a0c-6b70-46a8-a323-0433bc8a03a0"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "GBP",
                             CurrencyName = "funt szterling",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2023, 11, 20, 15, 40, 19, 241, DateTimeKind.Local).AddTicks(2449)
+                            TradingDate = new DateTime(2023, 11, 22, 10, 47, 32, 880, DateTimeKind.Local).AddTicks(1423)
                         });
                 });
 

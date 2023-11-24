@@ -1,4 +1,4 @@
-namespace WalletApp.Application.Enums;
+namespace WalletApp.Domain.Enums;
 
 public enum IconType
 {

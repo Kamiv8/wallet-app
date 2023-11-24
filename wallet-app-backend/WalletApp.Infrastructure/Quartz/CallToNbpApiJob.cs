@@ -1,31 +1,22 @@
 using MediatR;
-using Microsoft.Extensions.Logging;
 using Quartz;
-using WalletApp.Application.Common.Currency.Update;
-using WalletApp.Application.Interfaces;
-using WalletApp.Application.Interfaces.Repository;
-using WalletApp.Domain.Entities;
-using WalletApp.Infrastructure.ExternalApi.NBP;
+using WalletApp.Application.Common.Currency.UpdateCurrency;
 
-namespace WalletApp.Infrastructure.Quartz;
+namespace WalletApp.Infractructure.Quartz;
 
 [DisallowConcurrentExecution]
 public class CallToNbpApiJob : IJob
 {
     private readonly IMediator _mediator;
-    private readonly ICurrencyRepository _currencyRepository;
-    private readonly INbpClient _client;
 
-    public CallToNbpApiJob(IMediator mediator, ICurrencyRepository currencyRepository, INbpClient client)
+    public CallToNbpApiJob(IMediator mediator)
     {
         _mediator = mediator;
-        _currencyRepository = currencyRepository;
-        _client = client;
     }
-    
+
     public async Task Execute(IJobExecutionContext context)
     {
         var command = new UpdateCurrencyCommand();
-        await _mediator.Send(command, new CancellationToken());
+        await _mediator.Send(command, context.CancellationToken);
     }
 }

@@ -1,3 +1,3 @@
-namespace WalletApp.Application.Token.UpdateRefreshToken;
+namespace WalletApp.Application.Common.Token.UpdateRefreshToken;
 
-public record RefreshTokenResponseDto(string JwtToken, string RefreshToken);
+public sealed record RefreshTokenResponseDto(string JwtToken, string RefreshToken);
