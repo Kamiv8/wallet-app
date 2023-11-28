@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
+import { ApiStatus, IApiResult } from "../models/apiResult";
+import { useMapValidationMessages } from "./useMapValidationMessages";
 
 export enum FieldType {
   Text = 1,
@@ -18,7 +20,9 @@ type TValidValues = {
   [key: string]: boolean;
 };
 
-const useForm = <T,>(initialValues: T) => {
+const useForm = <T, >(initialValues: T) => {
+  const { loadMessages, getMessageByFieldName } = useMapValidationMessages();
+
   const [values, setValues] = useState<TInitialValues>(initialValues);
 
   const [validValues, setValidValues] = useState<TValidValues | null>(null);
@@ -54,7 +58,7 @@ const useForm = <T,>(initialValues: T) => {
   const handleValidValues = useCallback((fieldName: string, value: boolean) => {
     setValidValues((prevState) => ({
       ...prevState,
-      [fieldName]: value,
+      [fieldName]: value
     }));
   }, []);
 
@@ -75,31 +79,45 @@ const useForm = <T,>(initialValues: T) => {
           break;
         case FieldType.Email:
           typedValue = event.target.value;
-          handleValidValues(fieldName, event.target.value === '');
+          handleValidValues(fieldName, event.target.value === "");
           break;
         case FieldType.Select:
           typedValue = event;
-          handleValidValues(fieldName, event === '');
+          handleValidValues(fieldName, event === "");
           break;
         case FieldType.Date:
           typedValue = new Date(event.target.value);
           break;
         default:
           typedValue = event.target.value;
-          handleValidValues(fieldName, event.target.value === '');
+          handleValidValues(fieldName, event.target.value === "");
           break;
       }
 
       setValues((prevState) => ({
         ...prevState,
-        [fieldName]: typedValue,
+        [fieldName]: typedValue
       }));
     },
-    [values],
+    [values]
   );
 
-  const isError = useCallback(() => {}, []);
+  const isError = useCallback(() => {
+  }, []);
 
-  return { values, handleChange, isError, isDisabled, resetForm };
+
+  const onSubmit = useCallback(async <K = any, >(api: (value: TInitialValues) => Promise<IApiResult<K>>) => {
+    try {
+      return await api(values);
+    } catch (e: any) {
+      loadMessages(e?.validationMessages);
+      return {
+        data: null,
+        status: ApiStatus.ERROR
+      } as IApiResult
+    }
+  }, [values]);
+
+  return { values, handleChange, isError, isDisabled, resetForm, onSubmit, getMessageByFieldName };
 };
 export default useForm;

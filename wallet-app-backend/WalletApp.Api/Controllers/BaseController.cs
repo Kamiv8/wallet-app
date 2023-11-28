@@ -14,6 +14,7 @@ public abstract class BaseController : ControllerBase
         {
             { Status: ApiResultStatus.Error } => NotFound(actionResult),
             { Status: ApiResultStatus.Success } => Ok(actionResult),
+            { Status: ApiResultStatus.BadRequest } => BadRequest(actionResult),
             _ => throw new ArgumentOutOfRangeException("actionResult.Status", actionResult.Status,
                 $"Unknown value of {nameof(ApiResultStatus)}")
         };
@@ -26,6 +27,7 @@ public abstract class BaseController : ControllerBase
             { Status: ApiResultStatus.Error } => NotFound(actionResult),
             { Status: ApiResultStatus.NoContent } => NoContent(),
             { Status: ApiResultStatus.Success } => Ok(actionResult),
+            { Status: ApiResultStatus.BadRequest } => BadRequest(actionResult),
             _ => throw new ArgumentOutOfRangeException("actionResult.Status", actionResult.Status,
                 $"Unknown value of {nameof(ApiResultStatus)}")
         };

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Globalization;
+using System.Reflection;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,8 @@ public static class DI
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        ValidatorOptions.Global.LanguageManager.Enabled = false;
+        ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en-US");
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         return services;

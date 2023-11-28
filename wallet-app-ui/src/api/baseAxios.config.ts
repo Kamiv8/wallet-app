@@ -43,7 +43,6 @@ noAuthApi.interceptors.request.use(async config => {
 
 noAuthApi.interceptors.response.use(async response => {
   return response;
-}, (e) => {
-  console.log("dsa");
-  Promise.reject(e);
+}, (error) => {
+  return Promise.reject(error.response.data);
 })

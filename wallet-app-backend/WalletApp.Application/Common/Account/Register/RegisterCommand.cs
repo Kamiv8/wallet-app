@@ -1,6 +1,4 @@
-using MediatR;
 using WalletApp.Application.Abstractions.Messaging;
-using WalletApp.Application.Enums;
 using WalletApp.Domain.Enums;
 
 namespace WalletApp.Application.Common.Account.Register;

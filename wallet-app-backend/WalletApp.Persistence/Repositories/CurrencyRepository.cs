@@ -1,10 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Entities;
-using WalletApp.Persistance;
 
-namespace WalletApp.Persistence.Repositories;
+namespace WalletApp.Persistance.Repositories;
 
 public class CurrencyRepository : ICurrencyRepository
 {
@@ -40,9 +38,9 @@ public class CurrencyRepository : ICurrencyRepository
         return await _db.Currencies.ToListAsync(cancellationToken);
     }
 
-    public Task<Currency?> GetCurrencyById(Guid id)
+    public Task<Currency?> GetCurrencyById(Guid id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _db.Currencies.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 
     public async Task Save(CancellationToken cancellationToken)

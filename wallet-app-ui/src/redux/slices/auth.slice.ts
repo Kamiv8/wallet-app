@@ -1,13 +1,11 @@
 import {
   createAsyncThunk,
   createSlice,
-  isRejectedWithValue,
 } from '@reduxjs/toolkit';
 import { TInitialState } from '../common.types';
 import { RegisterCommand } from '../../models/commands/auth/register.command';
 import { extraReducerHelper } from '../../helpers/extraReducer.helper';
 import { ModalEnum } from '../../types/enums/modal.enum';
-import { VerifyAccountCommand } from '../../models/commands/auth/verifyAccount.command';
 import { AuthenticateCommand } from '../../models/commands/auth/authenticate.command';
 import { api } from '../../helpers/fetch.helper';
 import { ResetPasswordCommand } from '../../models/commands/auth/resetPassword.command';
@@ -36,16 +34,6 @@ export const registerUser = createAsyncThunk(
   },
 );
 
-export const verifyAccount = createAsyncThunk(
-  'auth/verify',
-  async (value: any) => {
-    const command = new VerifyAccountCommand(value.token);
-
-    const data = await api.post(`/User/verify-email/${command.token}`, {});
-
-    return isRejectedWithValue(data);
-  },
-);
 
 export const authenticate = createAsyncThunk(
   'auth/authenticate',

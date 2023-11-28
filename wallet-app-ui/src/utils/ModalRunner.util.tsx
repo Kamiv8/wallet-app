@@ -19,6 +19,17 @@ const ModalRunnerUtil = () => {
     });
   }
 
+  function closeRegisterModal() {
+    appContext.dispatch({
+      type: ActionEnum.CHANGE_MODAL_STATE,
+      payload: {
+        type: ModalEnum.REGISTER_SUCCESS,
+        isActive: false,
+      },
+    });
+  }
+
+
   const selectModal = useMemo(() => {
     switch (appContext.state.modalState.type) {
       case ModalEnum.LOADING:
@@ -48,13 +59,13 @@ const ModalRunnerUtil = () => {
         return (
           <BlurBackgroundTemplate
             content={<RegisterSuccess text={'Please check your email'} />}
-            isOpen={appContext.state.modalState.isOpen}
-            closeModal={closeModal}
+            isOpen={appContext.state.modalState.isActive}
+            closeModal={closeRegisterModal}
             type={ModalEnum.REGISTER_SUCCESS}
           />
         );
     }
-  }, [appContext.state.modalState.type, appContext.state.modalState.isOpen]);
+  }, [appContext.state.modalState.type, appContext.state.modalState.isActive]);
 
   return <>{selectModal}</>;
 };

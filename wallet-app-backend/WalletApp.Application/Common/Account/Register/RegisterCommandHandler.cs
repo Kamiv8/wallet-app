@@ -10,7 +10,7 @@ using WalletApp.Domain.Entities;
 
 namespace WalletApp.Application.Common.Account.Register;
 
-public class RegisterCommandHandler :  ICommandHandler<RegisterCommand>
+public class RegisterCommandHandler : ICommandHandler<RegisterCommand>
 {
     private readonly IUserManager _userManager;
     private readonly IAccountDataRepository _accountDataRepository;
@@ -28,7 +28,7 @@ public class RegisterCommandHandler :  ICommandHandler<RegisterCommand>
         CancellationToken cancellationToken)
     {
         using var transactionsScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
-        
+
         var entityUser = await _userManager.FindByEmailAsync(request.Email);
         if (entityUser is not null)
             return ApiResult.Error(AccountErrorMessages.EmailNotExist);
@@ -37,28 +37,34 @@ public class RegisterCommandHandler :  ICommandHandler<RegisterCommand>
         {
             Email = request.Email,
             UserName = request.Username,
-            IconType = request.IconType
+            IconType = request.IconType,
         };
 
         var accountData = new AccountData
         {
             UserIdentity = newUser,
-            ActualMoney = 0,
+            ActualMoneyUsd = 0,
+            ActualMoneyEur = 0,
+            ActualMoneyGbp = 0,
+            ActualMoneyChf = 0,
+            ActualMoneyPln = 0,
         };
 
         await _accountDataRepository.CreateAsync(accountData);
-        await _userManager.CreateAsync(newUser, request.Password);
+        var result = await _userManager.CreateAsync(newUser, request.Password);
+        if (!result.Succeeded) return ApiResult.Error(AccountErrorMessages.EmailExist);
 
         var registerToken = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
-        
+
         var encodedEmailToken = Encoding.UTF8.GetBytes(registerToken);
         var validEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
-        
-        await _emailClient.SendMailAsync(new EmailClientDto("dsa", "dsada", validEmailToken,
+
+        await _emailClient.SendMailAsync(new EmailClientDto("dsa", "dsada",
+            $"""<a href="http://localhost:3000/verify/{request.Email}/{validEmailToken}">Click link</a>""",
             newUser.Email));
-        
+
         transactionsScope.Complete();
-        
-        return ApiResult.Success();
+
+        return ApiResult.Success(AccountErrorMessages.RegisterSuccess);
     }
 }

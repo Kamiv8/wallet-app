@@ -1,11 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
-using WalletApp.Domain.Common;
 using WalletApp.Domain.Entities;
-using WalletApp.Persistance;
 
-namespace WalletApp.Persistence.Repositories;
+namespace WalletApp.Persistance.Repositories;
 
 public class AccountDataRepository : IAccountDataRepository
 {
@@ -21,9 +18,9 @@ public class AccountDataRepository : IAccountDataRepository
     {
         await _db.AccountData.AddAsync(accountData);
     }
-    
-    public async Task Save(CancellationToken cancellationToken)
+
+    public async Task<AccountData?> GetUserById(Guid userId, CancellationToken cancellationToken)
     {
-        await _db.SaveChangesAsync(cancellationToken);
+        return await _db.AccountData.FirstOrDefaultAsync(x => x.UserIdentityId == userId, cancellationToken);
     }
 }

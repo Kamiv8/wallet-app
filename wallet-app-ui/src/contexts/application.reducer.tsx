@@ -18,6 +18,7 @@ type TInitialState = {
   modalState: {
     type: ModalEnum;
     isActive: boolean;
+    message?: string
   };
 };
 
@@ -34,6 +35,7 @@ export const initialContextState: any = {
   modalState: {
     type: ModalEnum.NONE,
     isActive: false,
+    message: undefined
   },
 };
 
@@ -65,6 +67,7 @@ export const applicationReducer = (
         modalState: {
           type: action.payload.type,
           isActive: action.payload.isActive,
+          message: action.payload?.message
         },
       };
     default:

@@ -9,7 +9,7 @@ public interface ICurrencyRepository
     void RemoveRange(List<Currency> currencies);
     Task<Currency?> GetCurrencyByCode(string code);
     Task<List<Currency>> GetCurrencies(CancellationToken cancellationToken);
-    Task<Currency?> GetCurrencyById(Guid id);
+    Task<Currency?> GetCurrencyById(Guid id, CancellationToken cancellationToken);
     Task Save(CancellationToken cancellationToken);
 
 

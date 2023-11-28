@@ -18,7 +18,6 @@ using WalletApp.Domain.Entities;
 using WalletApp.Infrastructure;
 using WalletApp.Middleware;
 using WalletApp.Persistance;
-using WalletApp.Persistence;
 using WalletApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -111,6 +110,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(allowOrigins);
 app.UseAuthentication();
+app.UseMiddleware<ValidationErrorsMiddleware>();
 
 app.UseAuthorization();
 app.MapControllers();

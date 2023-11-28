@@ -9,18 +9,18 @@ namespace WalletApp.Controllers;
 
 [Authorize]
 [Route("api/[controller]")]
-public class TransactionController : BaseController
+public class TransactionUserController : BaseController
 {
     private readonly IMediator _mediator;
     private readonly ICurrentUserService _currentUserService;
 
-    public TransactionController(IMediator mediator, ICurrentUserService currentUserService)
+    public TransactionUserController(IMediator mediator, ICurrentUserService currentUserService)
     {
         _mediator = mediator;
         _currentUserService = currentUserService;
     }
 
-    [HttpPost("addUserTransaction")]
+    [HttpPost("addTransaction")]
     public async Task<ActionResult<ApiResult>> AddUserTransaction(
         [FromBody] AddUserTransactionCommandDto dto, CancellationToken cancellationToken)
     {

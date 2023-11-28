@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WalletApp.Domain.Entities;
 
-namespace WalletApp.Persistence.Configurations;
+namespace WalletApp.Persistance.Configurations;
 
 public class UserIdentityConfiguration : IEntityTypeConfiguration<UserIdentity>
 {

@@ -8,5 +8,11 @@ export enum ApiStatus {
 export interface IApiResult<T = any> {
   status: ApiStatus;
   message: string;
-  data?: T
+  data?: T,
+  validationMessages?: Array<TError>
+}
+
+export type TError = {
+  fieldName: string,
+  message: string
 }

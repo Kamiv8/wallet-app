@@ -7,17 +7,22 @@ import Typography from '../../atoms/Typography/Typography';
 import { StyledLink } from '../../../styles/override/Link.styles';
 import { RoutesName } from '../../../const/routesName';
 import { AuthApi } from '../../../api/auth.api';
+import { useFetch } from "../../../hooks/useFetch";
 
 const VerificationSuccessfulPage = () => {
   const location = useLocation();
+  const {callToApi} = useFetch();
+  const tokenIndex = 3;
+  const emailIndex = 2;
 
   useEffect(() => {
     const controller = new AbortController();
     (async () => {
-      const { token } = {
-        token: createPathArray(location.pathname)[2],
+      const { token, email } = {
+        token: createPathArray(location.pathname)[tokenIndex],
+        email: createPathArray(location.pathname)[emailIndex]
       };
-      await AuthApi.verifyAccount({ token }, controller);
+      await callToApi(AuthApi.verifyAccount({ token, email }, controller))
     })();
 
     return () => {

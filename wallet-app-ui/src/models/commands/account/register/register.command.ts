@@ -5,6 +5,6 @@ export class RegisterCommand {
     public email: string,
     public password: string,
     public confirmPassword: string,
-    public icon: number
+    public iconType: number
   ) {}
 }

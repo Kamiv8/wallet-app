@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Account.Authenticate;
 using WalletApp.Application.Account.GetAccountData;
-using WalletApp.Application.Authentication;
 using WalletApp.Application.Common;
 using WalletApp.Application.Common.Account.Authenticate;
+using WalletApp.Application.Common.Account.ChangeForgotPassword;
 using WalletApp.Application.Common.Account.ConfirmRegisterEmail;
+using WalletApp.Application.Common.Account.ForgotPassword;
 using WalletApp.Application.Common.Account.Register;
-using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Controllers;
@@ -51,20 +51,39 @@ public class AccountController : BaseController
 
     [AllowAnonymous]
     [HttpGet("confirmEmail")]
-    public async Task<ActionResult<ApiResult>> EmailConfirmation(string token, string email, CancellationToken cancellationToken)
+    public async Task<ActionResult<ApiResult>> EmailConfirmation(string token, string email,
+        CancellationToken cancellationToken)
     {
         var command = new ConfirmRegisterEmailCommand(email, token);
         var res = await _mediator.Send(command, cancellationToken);
         return CreateResponse(res);
     }
-    
-    
-    [HasPermission(Permission.ReadValue)]
+
+    [AllowAnonymous]
+    [HttpPost("forgotPassword")]
+    public async Task<ActionResult<ApiResult>> ForgotPassword([FromBody] ForgotPasswordDto dto,
+        CancellationToken cancellationToken)
+    {
+        var command = new ForgotPasswordCommand(dto.Email);
+        var res = await _mediator.Send(command, cancellationToken);
+        return CreateResponse(res);
+    }
+
+    [AllowAnonymous]
+    [HttpPost("changeForgotPassword")]
+    public async Task<ActionResult<ApiResult>> ChangeForgotPassword(
+        [FromBody] ChangeForgotPasswordDto dto, CancellationToken cancellationToken)
+    {
+        var command = new ChangeForgotPasswordCommand(dto.Email, dto.Token, dto.Password, dto.ConfirmPassword);
+        var res = await _mediator.Send(command, cancellationToken);
+        return CreateResponse(res);
+    }
+
+
     [HttpGet("data")]
     public async Task<ActionResult<ApiResult<GetAccountDataDto>>> GetAccountData(
         CancellationToken cancellationToken)
     {
-        var user = HttpContext.User;
         var query = new GetAccountDataQuery();
         var res = await _mediator.Send(query, cancellationToken);
         return CreateResponse(res);

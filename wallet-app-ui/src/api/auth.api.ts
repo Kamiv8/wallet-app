@@ -3,9 +3,9 @@ import { AuthenticateCommand } from "../models/commands/auth/authenticate.comman
 import { BaseApiHandler } from "./baseApiHandler";
 import axios from "axios";
 import { ResetPasswordCommand } from "../models/commands/auth/resetPassword.command";
-import { VerifyAccountCommand } from "../models/commands/auth/verifyAccount.command";
+import { VerifyAccountCommand } from "../models/commands/account/verifyEmail/verifyAccount.command";
 import { devConfig } from "../const/config";
-import { api, noAuthApi } from "./baseAxios.config";
+import { noAuthApi } from "./baseAxios.config";
 import { CookieHelper } from "../helpers/cookie.helper";
 import { AuthenticateDto } from "../models/commands/account/authenticate/authenticate.dto";
 import { RegisterCommand } from "../models/commands/account/register/register.command";
@@ -30,7 +30,7 @@ export class AuthApi {
     return dataResult;
   }
 
-  public static async register(value: any): Promise<IApiResult> {
+  public static async register(value: any): Promise<IApiResult<null>> {
     const command = new RegisterCommand(
       value.username,
       value.email,
@@ -38,12 +38,12 @@ export class AuthApi {
       value.confirmPassword,
       value.icon,
     );
-    const data = await api.post(
+    const data = await noAuthApi.post(
       '/account/register',
       command,
     );
 
-    return BaseApiHandler.handleApi(data);
+    return BaseApiHandler.handleApi<null>(data);
   }
 
   public static async resetPassword(value: any): Promise<IApiResult> {
@@ -60,11 +60,14 @@ export class AuthApi {
     value: any,
     controller: AbortController,
   ): Promise<IApiResult> {
-    const command = new VerifyAccountCommand(value.token);
-    const data = await axios.post(
-      `/auth/verify-email/${command.token}`,
-      {},
+    const command = new VerifyAccountCommand(value.token, value.email);
+    const data = await noAuthApi.get(
+      `/account/confirmEmail`,
       {
+        params: {
+          token: command.token,
+          email: command.email
+        },
         signal: controller.signal,
         ...AuthApi.apiOptions(),
       },

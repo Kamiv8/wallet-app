@@ -1,23 +1,19 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useCallback } from "react";
+import { IApiResult } from "../models/apiResult";
+import { useModalAction } from "./useModalAction";
 
-export const useGetFetch = (url: string) => {
-  const [state, setState] = useState(null);
+export const useFetch = () => {
+  const { openErrorModal } = useModalAction();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await axios.get(url);
+  const callToApi = useCallback(async(api: Promise<IApiResult>) => {
+    try {
+      return await api;
+    } catch (e) {
+      openErrorModal()
+    }
+  }, [])
 
-        if (data.status >= 400 || data.data === null) {
-          console.log('coś poszło nie tak');
-        }
-        setState(data.data);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, []);
-
-  return { state };
+  return {
+    callToApi
+  }
 };

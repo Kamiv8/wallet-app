@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace WalletApp.Persistance.Migrations
 {
     /// <inheritdoc />
@@ -56,11 +58,11 @@ namespace WalletApp.Persistance.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CurrencyName = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
-                    Code = table.Column<string>(type: "varchar(3)", maxLength: 3, nullable: false),
+                    CurrencyName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     Bid = table.Column<decimal>(type: "decimal(10,3)", precision: 10, scale: 3, nullable: false),
                     Ask = table.Column<decimal>(type: "decimal(10,3)", precision: 10, scale: 3, nullable: false),
-                    TradingDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    TradingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CratedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -75,7 +77,7 @@ namespace WalletApp.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Group",
+                name: "Groups",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -93,7 +95,7 @@ namespace WalletApp.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Group", x => x.Id);
+                    table.PrimaryKey("PK_Groups", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,6 +115,18 @@ namespace WalletApp.Persistance.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NotificationTypeDictionaries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Permissions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Permissions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,7 +155,11 @@ namespace WalletApp.Persistance.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ActualMoney = table.Column<decimal>(type: "decimal(15,2)", precision: 15, scale: 2, nullable: false, defaultValue: 0m),
+                    ActualMoneyPln = table.Column<decimal>(type: "decimal(15,2)", precision: 15, scale: 2, nullable: false, defaultValue: 0m),
+                    ActualMoneyUsd = table.Column<decimal>(type: "decimal(15,2)", precision: 15, scale: 2, nullable: false, defaultValue: 0m),
+                    ActualMoneyEur = table.Column<decimal>(type: "decimal(15,2)", precision: 15, scale: 2, nullable: false, defaultValue: 0m),
+                    ActualMoneyChf = table.Column<decimal>(type: "decimal(15,2)", precision: 15, scale: 2, nullable: false, defaultValue: 0m),
+                    ActualMoneyGbp = table.Column<decimal>(type: "decimal(15,2)", precision: 15, scale: 2, nullable: false, defaultValue: 0m),
                     UserIdentityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CratedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -269,9 +287,9 @@ namespace WalletApp.Persistance.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Categories_Group_GroupId",
+                        name: "FK_Categories_Groups_GroupId",
                         column: x => x.GroupId,
-                        principalTable: "Group",
+                        principalTable: "Groups",
                         principalColumn: "Id");
                 });
 
@@ -301,9 +319,9 @@ namespace WalletApp.Persistance.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Members_Group_GroupId",
+                        name: "FK_Members_Groups_GroupId",
                         column: x => x.GroupId,
-                        principalTable: "Group",
+                        principalTable: "Groups",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -338,9 +356,9 @@ namespace WalletApp.Persistance.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Notes_Group_GroupId",
+                        name: "FK_Notes_Groups_GroupId",
                         column: x => x.GroupId,
-                        principalTable: "Group",
+                        principalTable: "Groups",
                         principalColumn: "Id");
                 });
 
@@ -358,7 +376,7 @@ namespace WalletApp.Persistance.Migrations
                     UserIdentityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CurrencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GroupId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GroupId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CratedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -383,11 +401,10 @@ namespace WalletApp.Persistance.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Transactions_Group_GroupId",
+                        name: "FK_Transactions_Groups_GroupId",
                         column: x => x.GroupId,
-                        principalTable: "Group",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalTable: "Groups",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -417,14 +434,38 @@ namespace WalletApp.Persistance.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Notifications_Group_GuidId",
+                        name: "FK_Notifications_Groups_GuidId",
                         column: x => x.GuidId,
-                        principalTable: "Group",
+                        principalTable: "Groups",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Notifications_NotificationTypeDictionaries_NotificationTypeId",
                         column: x => x.NotificationTypeId,
                         principalTable: "NotificationTypeDictionaries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RolePermissions",
+                columns: table => new
+                {
+                    RoleIdentityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PermissionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RolePermissions", x => new { x.RoleIdentityId, x.PermissionId });
+                    table.ForeignKey(
+                        name: "FK_RolePermissions_AspNetRoles_RoleIdentityId",
+                        column: x => x.RoleIdentityId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RolePermissions_Permissions_PermissionId",
+                        column: x => x.PermissionId,
+                        principalTable: "Permissions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -464,7 +505,19 @@ namespace WalletApp.Persistance.Migrations
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CratedBy", "CreatedTime", "DeletedBy", "DeletedTime", "GroupId", "IsDeleted", "ModifiedBy", "ModifiedTime", "Name", "UserIdentityId" },
-                values: new object[] { new Guid("f445d681-0bac-4c15-a8d3-dcdbfe043c09"), null, null, null, null, null, false, null, null, "Rachunki", null });
+                values: new object[] { new Guid("9d7961ba-79fe-4da4-b83a-7111662463b0"), null, null, null, null, null, false, null, null, "Rachunki", null });
+
+            migrationBuilder.InsertData(
+                table: "Currencies",
+                columns: new[] { "Id", "Ask", "Bid", "Code", "CratedBy", "CreatedTime", "CurrencyName", "DeletedBy", "DeletedTime", "IsDeleted", "ModifiedBy", "ModifiedTime", "TradingDate" },
+                values: new object[,]
+                {
+                    { new Guid("183ebb9d-b76b-4e7f-86d6-f75d99c734f3"), 4.055m, 3.972m, "EUR", null, null, "euro", null, null, false, null, null, new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4129) },
+                    { new Guid("4d8ad3c9-5ec4-4158-8017-7be9479c5388"), 4.055m, 3.972m, "GBP", null, null, "funt szterling", null, null, false, null, null, new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4134) },
+                    { new Guid("c016dc74-b0b6-44d1-adab-6d690429c3cd"), 4.055m, 3.972m, "USD", null, null, "dolar amerykanski", null, null, false, null, null, new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4087) },
+                    { new Guid("c4f35223-dc53-4755-913c-ea32d2aeb1b4"), 1m, 1m, "PLN", null, null, "polski złoty", null, null, false, null, null, new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4137) },
+                    { new Guid("dc6bc8c4-13ec-4bba-8529-a7cedab84065"), 4.055m, 3.972m, "CHF", null, null, "frank szwajcarski", null, null, false, null, null, new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4132) }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccountData_UserIdentityId",
@@ -565,6 +618,11 @@ namespace WalletApp.Persistance.Migrations
                 column: "UserIdentityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RolePermissions_PermissionId",
+                table: "RolePermissions",
+                column: "PermissionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tokens_UserIdentityId",
                 table: "Tokens",
                 column: "UserIdentityId");
@@ -616,13 +674,13 @@ namespace WalletApp.Persistance.Migrations
                 name: "Notifications");
 
             migrationBuilder.DropTable(
+                name: "RolePermissions");
+
+            migrationBuilder.DropTable(
                 name: "Tokens");
 
             migrationBuilder.DropTable(
                 name: "Transactions");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Members");
@@ -631,13 +689,19 @@ namespace WalletApp.Persistance.Migrations
                 name: "NotificationTypeDictionaries");
 
             migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Permissions");
+
+            migrationBuilder.DropTable(
                 name: "Currencies");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Group");
+                name: "Groups");
         }
     }
 }

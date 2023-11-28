@@ -1,0 +1,64 @@
+2023-11-25 00:29:10.863 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-25 00:29:10.905 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-25 00:29:10.908 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-11-25 00:29:10.910 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-11-25 00:29:10.940 +01:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-11-25 00:29:10.954 +01:00 [INF] Applying migration '20231124232759_extends_userData'.
+2023-11-25 00:29:11.036 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM [Categories]
+WHERE [Id] = 'fce4de9f-45af-42f9-98b9-94b602d88238';
+SELECT @@ROWCOUNT;
+2023-11-25 00:29:11.048 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM [Currencies]
+WHERE [Id] = '142169e3-2c32-46ec-8c6d-773e0768deb4';
+SELECT @@ROWCOUNT;
+2023-11-25 00:29:11.052 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM [Currencies]
+WHERE [Id] = 'c0b84ee7-9845-4f07-87e6-dfd18148915f';
+SELECT @@ROWCOUNT;
+2023-11-25 00:29:11.055 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM [Currencies]
+WHERE [Id] = 'dcce1c57-4eb0-44cc-b3e2-2060321842b2';
+SELECT @@ROWCOUNT;
+2023-11-25 00:29:11.059 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM [Currencies]
+WHERE [Id] = 'ede48a0c-6b70-46a8-a323-0433bc8a03a0';
+SELECT @@ROWCOUNT;
+2023-11-25 00:29:11.381 +01:00 [INF] Executed DbCommand (322ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[AccountData].[ActualMoney]', N'ActualMoneyUsd', N'COLUMN';
+2023-11-25 00:29:11.395 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [AccountData] ADD [ActualMoneyChf] decimal(15,2) NOT NULL DEFAULT 0.0;
+2023-11-25 00:29:11.398 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [AccountData] ADD [ActualMoneyEur] decimal(15,2) NOT NULL DEFAULT 0.0;
+2023-11-25 00:29:11.400 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [AccountData] ADD [ActualMoneyGbp] decimal(15,2) NOT NULL DEFAULT 0.0;
+2023-11-25 00:29:11.402 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [AccountData] ADD [ActualMoneyPln] decimal(15,2) NOT NULL DEFAULT 0.0;
+2023-11-25 00:29:11.417 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] ON;
+INSERT INTO [Categories] ([Id], [CratedBy], [CreatedTime], [DeletedBy], [DeletedTime], [GroupId], [IsDeleted], [ModifiedBy], [ModifiedTime], [Name], [UserIdentityId])
+VALUES ('70e3919c-06bb-4c24-8588-75c61438d1a0', NULL, NULL, NULL, NULL, NULL, CAST(0 AS bit), NULL, NULL, N'Rachunki', NULL);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CratedBy', N'CreatedTime', N'DeletedBy', N'DeletedTime', N'GroupId', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'Name', N'UserIdentityId') AND [object_id] = OBJECT_ID(N'[Categories]'))
+    SET IDENTITY_INSERT [Categories] OFF;
+2023-11-25 00:29:11.431 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Ask', N'Bid', N'Code', N'CratedBy', N'CreatedTime', N'CurrencyName', N'DeletedBy', N'DeletedTime', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'TradingDate') AND [object_id] = OBJECT_ID(N'[Currencies]'))
+    SET IDENTITY_INSERT [Currencies] ON;
+INSERT INTO [Currencies] ([Id], [Ask], [Bid], [Code], [CratedBy], [CreatedTime], [CurrencyName], [DeletedBy], [DeletedTime], [IsDeleted], [ModifiedBy], [ModifiedTime], [TradingDate])
+VALUES ('55171b29-aec8-466f-9d72-c025d3abe94f', 4.055, 3.972, N'EUR', NULL, NULL, N'euro', NULL, NULL, CAST(0 AS bit), NULL, NULL, '2023-11-25T00:27:59.3431017+01:00'),
+('6ebca5e9-9d71-4011-a10a-ca29fdc6b006', 4.055, 3.972, N'CHF', NULL, NULL, N'frank szwajcarski', NULL, NULL, CAST(0 AS bit), NULL, NULL, '2023-11-25T00:27:59.3431020+01:00'),
+('773e0207-606a-4dc4-b47d-22de399e9759', 4.055, 3.972, N'GBP', NULL, NULL, N'funt szterling', NULL, NULL, CAST(0 AS bit), NULL, NULL, '2023-11-25T00:27:59.3431024+01:00'),
+('85569b48-f808-4f50-8aea-3199cf88ec26', 1.0, 1.0, N'PLN', NULL, NULL, N'polski złoty', NULL, NULL, CAST(0 AS bit), NULL, NULL, '2023-11-25T00:27:59.3431028+01:00'),
+('908d3c4d-0704-4111-941c-d734dee5df14', 4.055, 3.972, N'USD', NULL, NULL, N'dolar amerykanski', NULL, NULL, CAST(0 AS bit), NULL, NULL, '2023-11-25T00:27:59.3430969+01:00');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Ask', N'Bid', N'Code', N'CratedBy', N'CreatedTime', N'CurrencyName', N'DeletedBy', N'DeletedTime', N'IsDeleted', N'ModifiedBy', N'ModifiedTime', N'TradingDate') AND [object_id] = OBJECT_ID(N'[Currencies]'))
+    SET IDENTITY_INSERT [Currencies] OFF;
+2023-11-25 00:29:11.434 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20231124232759_extends_userData', N'7.0.12');

@@ -1,8 +1,9 @@
 import StyledInput from './Input.style';
 import { ChangeEvent } from 'react';
+import { TColor } from "../../../types/types";
 
 type TProps = {
-  color: 'orange' | 'darkBlue' | 'error';
+  color: TColor;
   name: string;
   placeholder?: string;
   type?: 'text' | 'password' | 'email' | 'date' | 'number';

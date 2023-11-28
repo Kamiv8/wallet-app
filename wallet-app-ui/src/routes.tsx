@@ -59,7 +59,7 @@ export const Routes = () => (
     <Route path={RoutesName.REGISTER} element={<RegisterPage />} />
     <Route path={RoutesName.LOGIN} element={<LoginPage />} />
     <Route
-      path={RoutesName.VERIFY + '/:id'}
+      path={RoutesName.VERIFY + '/:email' + '/:id'}
       element={<VerificationSuccessfulPage />}
     />
     <Route path={RoutesName.RESET_PASSWORD} element={<ResetPasswordPage />} />

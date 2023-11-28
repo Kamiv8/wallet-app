@@ -7,6 +7,7 @@ export class BaseApiHandler {
       return {
         status: ApiStatus.ERROR,
         message: response.data.message,
+        validationMessages: response.data.validationMessages
       };
     }
 

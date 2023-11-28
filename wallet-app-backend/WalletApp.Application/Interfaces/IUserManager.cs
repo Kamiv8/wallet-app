@@ -14,4 +14,7 @@ public interface IUserManager
     Task<UserIdentity?> FindByIdAsync(string userId);
     Task UpdateAsync(UserIdentity userIdentity);
     Task<AppIdentityResult> ConfirmEmail(UserIdentity userIdentity, string token);
+    Task<string> GeneratePasswordResetTokenAsync(UserIdentity userIdentity);
+    Task<AppIdentityResult> ResetPasswordAsync(UserIdentity userIdentity, string token,
+        string password);
 }

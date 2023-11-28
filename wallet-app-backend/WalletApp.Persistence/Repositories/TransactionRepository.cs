@@ -1,8 +1,7 @@
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Entities;
-using WalletApp.Persistance;
 
-namespace WalletApp.Persistence.Repositories;
+namespace WalletApp.Persistance.Repositories;
 
 public class TransactionRepository : ITransactionRepository
 {
@@ -17,9 +16,5 @@ public class TransactionRepository : ITransactionRepository
     {
         await _db.Transactions.AddAsync(transaction, cancellationToken);
     }
-
-    public async Task SaveAsync(CancellationToken cancellationToken)
-    {
-        await _db.SaveChangesAsync(cancellationToken);
-    }
+    
 }

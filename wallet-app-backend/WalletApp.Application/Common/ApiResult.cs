@@ -6,12 +6,19 @@ public class ApiResult
 {
     public ApiResultStatus Status { get; }
     public string? Message { get; }
+    public object ValidationMessages { get; set; }
 
 
     public ApiResult(ApiResultStatus status, string? message = null)
     {
         Status = status;
         Message = message;
+    }
+
+    private ApiResult(ApiResultStatus status, object value)
+    {
+        Status = status;
+        ValidationMessages = value;
     }
 
     public static ApiResult Success(string message)
@@ -33,6 +40,12 @@ public class ApiResult
     {
         return new ApiResult(ApiResultStatus.Error, message);
     }
+
+    public static ApiResult BadRequest(object message)
+    {
+        return new ApiResult(ApiResultStatus.BadRequest, message);
+    }
+    
 }
 
 public class ApiResult<T>
@@ -42,7 +55,7 @@ public class ApiResult<T>
     public T? Data { get; }
 
 
-    public ApiResult(ApiResultStatus status,T? data, string? message = null)
+    private ApiResult(ApiResultStatus status,T? data, string? message = null)
     {
         Status = status;
         Data = data;
