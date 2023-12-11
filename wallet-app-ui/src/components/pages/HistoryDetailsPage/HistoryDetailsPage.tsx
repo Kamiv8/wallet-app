@@ -1,15 +1,15 @@
-import Typography from '../../atoms/Typography/Typography';
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import HistoryCardDetails from '../../organisms/HistoryCardDetails/HistoryCardDetails';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Currency } from '../../../models/resources/currency';
 import { TransactionDetails } from '../../../models/resources/TransactionDetails';
 import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
-import { TransactionApi } from '../../../api/transaction.api';
+import { TransactionApi } from '../../../api';
 import { Category } from '../../../models/resources/category';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { HistoryCardDetails } from '../../organisms';
 
-const HistoryDetailsPage = () => {
+export const HistoryDetailsPage = () => {
   const location = useLocation();
 
   const [state, setState] = useState<TransactionDetails>({
@@ -56,5 +56,3 @@ const HistoryDetailsPage = () => {
     </MainTemplate>
   );
 };
-
-export default HistoryDetailsPage;

@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
 using WalletApp.Application.Common.Transaction.AddUserTransaction;
+using WalletApp.Application.Common.Transaction.GetCostByCategory;
+using WalletApp.Application.Common.Transaction.GetIncomeByCategory;
+using WalletApp.Application.Common.Transaction.GetSumTransactions;
+using WalletApp.Application.Common.Transaction.GetTransactionDetails;
+using WalletApp.Application.Common.Transaction.GetTransactionList;
 using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Controllers;
@@ -32,10 +37,58 @@ public class TransactionUserController : BaseController
             dto.CategoryId,
             dto.Date,
             dto.IsDefault,
+            dto.Description,
             dto.TextColor,
             dto.BackgroundColor
         );
         var res = await _mediator.Send(command, cancellationToken);
         return CreateResponse(res);
     }
+    
+    // add transaction by default action
+    
+    
+    
+    [HttpGet("transactionList")]
+    public async Task<ActionResult<ApiResult<GetTransactionListResponseDto>>> GetAllTransactions(
+        [FromQuery] GetTransactionListDto dto, CancellationToken cancellationToken)
+    {
+        var query = new GetTransactionListQuery(_currentUserService.Id, dto.PaginationParamsDto);
+        var res = await _mediator.Send(query, cancellationToken);
+        return CreateResponse(res);
+    }
+
+    [HttpGet("transactionsByCurrency")]
+    public async Task<ActionResult<ApiResult<IEnumerable<GetSumTransactionsResponseDto>>>>
+        GetSumTransactions(
+            [FromQuery] GetSumTransactionsDto dto, CancellationToken cancellationToken)
+    {
+        var query = new GetSumTransactionsQuery(_currentUserService.Id, dto.CurrencyId);
+        var res = await _mediator.Send(query, cancellationToken);
+        return CreateResponse(res);
+    }
+
+    [HttpGet("getIncomeByCategory")]
+    public async Task<ActionResult<ApiResult<IEnumerable<GetIncomeByCategoryResponseDto>>>>
+        GetIncomeByCategory([FromQuery] GetIncomeByCategoryDto dto,
+            CancellationToken cancellationToken)
+    {
+        var query = new GetIncomeByCategoryQuery(_currentUserService.Id, dto.CurrencyId);
+        var res = await _mediator.Send(query, cancellationToken);
+        return CreateResponse(res);
+    }
+
+    [HttpGet("getCostByCategory")]
+    public async Task<ActionResult<ApiResult<IEnumerable<GetCostByCategoryResponseDto>>>>
+        GetCostByCategory([FromQuery] GetCostByCategoryDto dto,
+            CancellationToken cancellationToken) => CreateResponse(
+        await _mediator.Send(new GetCostByCategoryQuery(_currentUserService.Id, dto.CurrencyId),
+            cancellationToken));
+
+    [HttpGet("details")]
+    public async Task<ActionResult<ApiResult<GetTransactionDetailsResponseDto>>>
+        GetTransactionDetails([FromQuery] GetTransactionDetailsDto dto, CancellationToken cancellationToken) =>
+        CreateResponse(await _mediator.Send(
+            new GetTransactionDetailsQuery(_currentUserService.Id, dto.TransactionId),
+            cancellationToken));
 }

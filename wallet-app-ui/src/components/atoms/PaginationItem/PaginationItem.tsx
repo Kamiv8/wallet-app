@@ -6,12 +6,10 @@ export type TProps = {
   onClick: (page: number) => void;
 };
 
-const PaginationItem = ({ index, isCurrent, onClick }: TProps) => {
+export const PaginationItem = ({ index, isCurrent, onClick }: TProps) => {
   return (
     <StyledLi isCurrent={isCurrent === index} onClick={() => onClick(index)}>
       {index + 1}
     </StyledLi>
   );
 };
-
-export default PaginationItem;

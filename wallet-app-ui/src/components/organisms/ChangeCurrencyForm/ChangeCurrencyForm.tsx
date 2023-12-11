@@ -1,19 +1,17 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
+import { CardWrapper, Button } from '../../atoms';
 import messages from '../../../i18n/messages';
-import SelectField from '../../molecules/SelectField/SelectField';
-import Button from '../../atoms/Button/Button';
+import { SelectField } from '../../molecules';
 import { FormattedMessage } from 'react-intl';
 import { ButtonWrapper } from './ChangeCurrencyForm.styles';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { useEffect, useState } from 'react';
 import { CurrencyDto } from '../../../models/dtos/currencyDto';
-import { CurrencyApi } from '../../../api/currency.api';
 import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
 import useForm from '../../../hooks/useForm';
-import { UserApi } from '../../../api/user.api';
+import { UserApi, CurrencyApi } from '../../../api';
 
-const ChangeCurrencyForm = () => {
+export const ChangeCurrencyForm = () => {
   const navigate = useNavigate();
   const [state, setState] = useState<CurrencyDto[]>([]);
   const initialValues = {
@@ -59,5 +57,3 @@ const ChangeCurrencyForm = () => {
     </>
   );
 };
-
-export default ChangeCurrencyForm;

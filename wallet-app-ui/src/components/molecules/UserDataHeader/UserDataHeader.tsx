@@ -1,5 +1,4 @@
-import { Avatar } from '../../atoms/Avatar/Avatar';
-import Typography from '../../atoms/Typography/Typography';
+import { Avatar, Typography } from '../../atoms';
 import { ReactNode } from 'react';
 import { Wrapper } from './UserDataHeader.styles';
 
@@ -9,7 +8,7 @@ export type TProps = {
   fullName: ReactNode;
 };
 
-const UserDataHeader = (props: TProps) => {
+export const UserDataHeader = (props: TProps) => {
   return (
     <Wrapper>
       <Avatar onClick={props.avatarClick} image={props.avatarNumber} />
@@ -19,5 +18,3 @@ const UserDataHeader = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default UserDataHeader;

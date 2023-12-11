@@ -8,8 +8,6 @@ export type TProps = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Checkbox = (props: TProps) => {
+export const Checkbox = (props: TProps) => {
   return <StyledCheckbox {...props} type={'checkbox'} />;
 };
-
-export default Checkbox;

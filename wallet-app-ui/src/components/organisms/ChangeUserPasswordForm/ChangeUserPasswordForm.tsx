@@ -1,15 +1,14 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
+import { CardWrapper, Button } from '../../atoms';
 import { ButtonWrapper, Wrapper } from './ChangeUserPasswordForm.styles';
-import InputField from '../../molecules/InputField/InputField';
-import Button from '../../atoms/Button/Button';
+import { InputField } from '../../molecules';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import useForm from '../../../hooks/useForm';
-import { UserApi } from '../../../api/user.api';
+import { UserApi } from '../../../api';
 
-const ChangeUserPasswordForm = () => {
+export const ChangeUserPasswordForm = () => {
   const navigate = useNavigate();
 
   const initialValues = {
@@ -58,5 +57,3 @@ const ChangeUserPasswordForm = () => {
     </CardWrapper>
   );
 };
-
-export default ChangeUserPasswordForm;

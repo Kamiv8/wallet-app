@@ -1,6 +1,5 @@
 import { ChangeEvent } from 'react';
-import ColorPicker from '../../atoms/ColorPicker/ColorPicker';
-import Typography from '../../atoms/Typography/Typography';
+import { ColorPicker, Typography } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 import { TColor, TFormattedMessage } from '../../../types/types';
 import { Wrapper } from './ColorPickerField.styles';
@@ -12,7 +11,7 @@ export type TProps = {
   defaultValue?: string;
 };
 
-const ColorPickerField = (props: TProps) => {
+export const ColorPickerField = (props: TProps) => {
   return (
     <Wrapper>
       <ColorPicker {...props} />
@@ -24,5 +23,3 @@ const ColorPickerField = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default ColorPickerField;

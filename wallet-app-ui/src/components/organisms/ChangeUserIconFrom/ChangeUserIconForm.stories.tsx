@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import ChangeUserIconForm from './ChangeUserIconForm';
+import { ChangeUserIconForm } from './ChangeUserIconForm';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

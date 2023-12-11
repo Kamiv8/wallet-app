@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import HomePage from './HomePage';
+import { HomePage } from './HomePage';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

@@ -1,11 +1,11 @@
-import RegisterTemplate from '../../templates/RegisterTemplate/RegisterTemplate';
 import { ReactComponent as ForgotPassword } from '../../../assets/images/forgot_password.svg';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import Typography from '../../atoms/Typography/Typography';
-import ResetPasswordForm from '../../organisms/ResetPasswordForm/ResetPasswordForm';
+import { RegisterTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { ResetPasswordForm } from '../../organisms';
 
-const ResetPasswordPage = () => {
+export const ResetPasswordPage = () => {
   return (
     <RegisterTemplate
       Image={ForgotPassword}
@@ -18,5 +18,3 @@ const ResetPasswordPage = () => {
     />
   );
 };
-
-export default ResetPasswordPage;

@@ -1,6 +1,6 @@
 import { Transaction } from '../../../models/resources/transaction';
 import { ContentWrapper, Wrapper } from './TransactionItem.styles';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography } from '../../atoms';
 import { cutString } from '../../../utils/utils';
 import { useHref } from 'react-router-dom';
 import { StyledLink } from '../../../styles/override/Link.styles';
@@ -10,7 +10,7 @@ export type TProps = {
   data: Transaction;
 };
 
-const TransactionItem = (props: TProps) => {
+export const TransactionItem = (props: TProps) => {
   const href = useHref(`${RoutesName.HISTORY}/${props.data.id}`);
   return (
     <StyledLink to={href}>
@@ -51,5 +51,3 @@ const TransactionItem = (props: TProps) => {
     </StyledLink>
   );
 };
-
-export default TransactionItem;

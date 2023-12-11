@@ -1,5 +1,5 @@
 import { TFormattedMessage } from '../../../types/types';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 import { TitleWrapper, Wrapper } from './CreateFindGroupCard.styles';
 
@@ -9,7 +9,7 @@ export type TProps = {
   description: TFormattedMessage;
 };
 
-const CreateFindGroupCard = (props: TProps) => {
+export const CreateFindGroupCard = (props: TProps) => {
   return (
     <Wrapper onClick={props.onClick}>
       <TitleWrapper>
@@ -23,5 +23,3 @@ const CreateFindGroupCard = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default CreateFindGroupCard;

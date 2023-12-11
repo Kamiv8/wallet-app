@@ -9,7 +9,6 @@ using WalletApp.Application.Interfaces;
 namespace WalletApp.Controllers;
 
 
-[Authorize]
 [Route("api/[controller]")]
 public class TokenController : BaseController
 {
@@ -21,7 +20,7 @@ public class TokenController : BaseController
         _mediator = mediator;
         _cookieHelper = cookieHelper;
     }
-    
+    [AllowAnonymous]
     [HttpGet("{oldToken}")]
     public async Task<ActionResult<ApiResult<RefreshTokenResponseDto>>> GetTokens([FromRoute] string oldToken, CancellationToken cancellationToken)
     {
@@ -31,6 +30,7 @@ public class TokenController : BaseController
         return CreateResponse(res);
     }
 
+    [Authorize]
     [HttpDelete]
     public async Task<ActionResult<ApiResult>> RevokeToken(CancellationToken cancellationToken)
     {

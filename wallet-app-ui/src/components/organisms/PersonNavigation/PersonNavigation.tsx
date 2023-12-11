@@ -1,5 +1,5 @@
 import { Wrapper } from './PersonNavigation.styles';
-import NavigationBox from '../../molecules/NavigationBox/NavigationBox';
+import { NavigationBox } from '../../molecules';
 import { ReactComponent as TransactionIcon } from '../../../assets/images/navigationIcons/transaction.svg';
 import { ReactComponent as HistoryIcon } from '../../../assets/images/navigationIcons/history.svg';
 import { ReactComponent as TableIcon } from '../../../assets/images/navigationIcons/table.svg';
@@ -18,7 +18,7 @@ export type TBoxes = {
   action: () => void;
 };
 
-const PersonNavigation = () => {
+export const PersonNavigation = () => {
   const applicationContext = useContext(ApplicationContext);
 
   const boxes: TBoxes[] = [
@@ -106,5 +106,3 @@ const PersonNavigation = () => {
     </Wrapper>
   );
 };
-
-export default PersonNavigation;

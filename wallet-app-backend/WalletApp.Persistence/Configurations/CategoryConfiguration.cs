@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WalletApp.Domain.Entities;
+using WalletApp.Persistence.Configurations;
 
-namespace WalletApp.Persistence.Configurations;
+namespace WalletApp.Persistance.Configurations;
 
 public class CategoryConfiguration : BaseConfiguration<Category>, IEntityTypeConfiguration<Category>
 {

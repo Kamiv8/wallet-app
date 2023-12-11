@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import ChangeUserPasswordForm from './ChangeUserPasswordForm';
+import { ChangeUserPasswordForm } from './ChangeUserPasswordForm';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

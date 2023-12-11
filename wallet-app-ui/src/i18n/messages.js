@@ -94,6 +94,23 @@ const messages = defineMessages({
     id: 'resetPasswordPageSent',
     defaultMessage: 'Sent',
   },
+  // Change reset password
+  changeResetPasswordPagePassword: {
+    id: 'changeResetPasswordPagePassword',
+    defaultMessage: 'New Password',
+  },
+  changeResetPasswordPageConfirmPassword: {
+    id: 'changeResetPasswordPageConfirmPassword',
+    defaultMessage: 'Confirm New Password',
+  },
+  changeResetPasswordPageCancel: {
+    id: 'resetPasswordPageCancel',
+    defaultMessage: 'Cancel',
+  },
+  changeResetPasswordPageSent: {
+    id: 'resetPasswordPageSent',
+    defaultMessage: 'Sent',
+  },
   // Main page
   mainPageAllPrices: {
     id: 'mainPageAllPrices',

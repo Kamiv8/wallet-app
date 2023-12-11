@@ -1,7 +1,3 @@
-import MainTemplate from '../../../templates/MainTemplate/MainTemplate';
-import Typography from '../../../atoms/Typography/Typography';
-import { Avatar } from '../../../atoms/Avatar/Avatar';
-import Button from '../../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import { ReactComponent as ChangeUserIcon } from '../../../../assets/images/EditUser.svg';
 
@@ -12,12 +8,13 @@ import {
   NameWrapper,
 } from './GroupSettingsPage.styles';
 import { useEffect, useState } from 'react';
-import { GroupApi } from '../../../../api/group.api';
-import SettingsTemplate from '../../../templates/SettingsTemplate/SettingsTemplate';
-import NavigationBox from '../../../molecules/NavigationBox/NavigationBox';
+import { GroupApi } from '../../../../api';
 import { GroupRoutesName, RoutesName } from '../../../../const/routesName';
+import { MainTemplate, SettingsTemplate } from '../../../templates';
+import { Avatar, Button, Typography } from '../../../atoms';
+import { NavigationBox } from '../../../molecules';
 
-const GroupSettingsPage = () => {
+export const GroupSettingsPage = () => {
   const [state, setState] = useState({
     id: '',
     iconId: 1,
@@ -117,5 +114,3 @@ const GroupSettingsPage = () => {
     </MainTemplate>
   );
 };
-
-export default GroupSettingsPage;

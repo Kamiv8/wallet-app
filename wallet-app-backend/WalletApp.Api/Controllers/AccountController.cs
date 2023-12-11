@@ -2,12 +2,12 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Account.Authenticate;
-using WalletApp.Application.Account.GetAccountData;
 using WalletApp.Application.Common;
 using WalletApp.Application.Common.Account.Authenticate;
 using WalletApp.Application.Common.Account.ChangeForgotPassword;
 using WalletApp.Application.Common.Account.ConfirmRegisterEmail;
 using WalletApp.Application.Common.Account.ForgotPassword;
+using WalletApp.Application.Common.Account.GetAccountData;
 using WalletApp.Application.Common.Account.Register;
 using WalletApp.Application.Interfaces;
 
@@ -18,11 +18,13 @@ public class AccountController : BaseController
 {
     private readonly IMediator _mediator;
     private readonly ICookieHelper _cookieHelper;
+    private readonly ICurrentUserService _currentUserService;
 
-    public AccountController(IMediator mediator, ICookieHelper cookieHelper)
+    public AccountController(IMediator mediator, ICookieHelper cookieHelper, ICurrentUserService currentUserService)
     {
         _mediator = mediator;
         _cookieHelper = cookieHelper;
+        _currentUserService = currentUserService;
     }
 
     [AllowAnonymous]
@@ -79,12 +81,12 @@ public class AccountController : BaseController
         return CreateResponse(res);
     }
 
-
+    [Authorize]
     [HttpGet("data")]
-    public async Task<ActionResult<ApiResult<GetAccountDataDto>>> GetAccountData(
+    public async Task<ActionResult<ApiResult<GetAccountDataResponseDto>>> GetAccountData(
         CancellationToken cancellationToken)
     {
-        var query = new GetAccountDataQuery();
+        var query = new GetAccountDataQuery(_currentUserService.Id);
         var res = await _mediator.Send(query, cancellationToken);
         return CreateResponse(res);
     }

@@ -1,16 +1,15 @@
 import { TBoxes } from '../PersonNavigation/PersonNavigation';
 import { ReactComponent as SettingsIcon } from '../../../assets/images/navigationIcons/settings.svg';
 import { ReactComponent as NotificationIcon } from '../../../assets/images/navigationIcons/notification.svg';
-
 import { GroupRoutesName } from '../../../const/routesName';
-import NavigationBox from '../../molecules/NavigationBox/NavigationBox';
+import { NavigationBox } from '../../molecules';
 import { useContext, useEffect, useState } from 'react';
 import ApplicationContext from '../../../contexts/application.context';
 import { RoleEnum } from '../../../types/enums/role.enum';
 import { Wrapper } from './GroupNavigation.styles';
-import { GroupApi } from '../../../api/group.api';
+import { GroupApi } from '../../../api';
 
-const GroupNavigation = () => {
+export const GroupNavigation = () => {
   const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<number | undefined>(undefined);
   const boxes: TBoxes[] = [];
@@ -50,5 +49,3 @@ const GroupNavigation = () => {
     </Wrapper>
   );
 };
-
-export default GroupNavigation;

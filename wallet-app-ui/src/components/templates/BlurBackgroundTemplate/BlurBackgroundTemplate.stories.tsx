@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BlurBackgroundTemplate from './BlurBackgroundTemplate';
-import ErrorModal from '../../molecules/ErrorModal/ErrorModal';
+import { BlurBackgroundTemplate } from './BlurBackgroundTemplate';
+import { ErrorModal } from '../../molecules';
 
 export default {
   title: 'Templates/BlurBackgroundTemplate',

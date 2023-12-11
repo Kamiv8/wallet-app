@@ -5,9 +5,8 @@ import {
   StyledEditIcon,
   Wrapper,
 } from './SavedTransaction.styles';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography, Button } from '../../atoms';
 import { cutString } from '../../../utils/utils';
-import Button from '../../atoms/Button/Button';
 import { Currency } from '../../../models/resources/currency';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
@@ -25,7 +24,7 @@ export type TProps = {
   addTransaction: (id: string) => void;
 };
 
-const SavedTransaction = (props: TProps) => {
+export const SavedTransaction = (props: TProps) => {
   return (
     <Wrapper backgroundColor={props.backgroundColor}>
       <FirstRow>
@@ -67,5 +66,3 @@ const SavedTransaction = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default SavedTransaction;

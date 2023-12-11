@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import NavigationPage from './NavigationPage';
+import { NavigationPage } from './NavigationPage';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

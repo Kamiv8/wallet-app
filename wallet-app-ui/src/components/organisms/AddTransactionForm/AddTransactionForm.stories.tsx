@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import AddTransactionForm from './AddTransactionForm';
+import { AddTransactionForm } from './AddTransactionForm';
 
 export default {
   title: 'Organisms/AddTransactionForm',

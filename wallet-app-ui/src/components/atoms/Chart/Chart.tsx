@@ -31,7 +31,7 @@ ChartJS.register(
   ArcElement,
 );
 
-const Chart = (props: TProps) => {
+export const Chart = (props: TProps) => {
   const chartRef = useRef<ChartJS>(null);
 
   return (
@@ -45,5 +45,3 @@ const Chart = (props: TProps) => {
     />
   );
 };
-
-export default Chart;

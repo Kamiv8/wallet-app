@@ -1,20 +1,19 @@
 import { ModalEnum } from '../types/enums/modal.enum';
 import { useContext, useMemo } from 'react';
-import BlurBackgroundTemplate from '../components/templates/BlurBackgroundTemplate/BlurBackgroundTemplate';
 import { HashLoader } from 'react-spinners';
-import ErrorModal from '../components/molecules/ErrorModal/ErrorModal';
-import RegisterSuccess from '../components/molecules/RegisterSuccess/RegisterSuccess';
 import ApplicationContext from '../contexts/application.context';
 import { ActionEnum } from '../contexts/application.reducer';
+import { BlurBackgroundTemplate } from '../components/templates';
+import { ErrorModal, RegisterSuccess } from '../components/molecules';
 
 const ModalRunnerUtil = () => {
   const appContext = useContext(ApplicationContext);
   function closeModal() {
     appContext.dispatch({
-      type: ActionEnum.CHANGE_APPLICATION_TYPE,
+      type: ActionEnum.CHANGE_MODAL_STATE,
       payload: {
-        type: ModalEnum.NONE,
-        isOpen: false,
+        type: ModalEnum.ERROR,
+        isActive: false,
       },
     });
   }
@@ -28,7 +27,6 @@ const ModalRunnerUtil = () => {
       },
     });
   }
-
 
   const selectModal = useMemo(() => {
     switch (appContext.state.modalState.type) {
@@ -48,8 +46,8 @@ const ModalRunnerUtil = () => {
       case ModalEnum.ERROR:
         return (
           <BlurBackgroundTemplate
-            content={<ErrorModal text={'' as string} />}
-            isOpen={appContext.state.modalState.isOpen}
+            content={<ErrorModal text={appContext.state.modalState?.message} />}
+            isOpen={appContext.state.modalState.isActive}
             closeModal={closeModal}
             type={ModalEnum.ERROR}
           />

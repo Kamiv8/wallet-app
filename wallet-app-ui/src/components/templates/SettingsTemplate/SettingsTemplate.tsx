@@ -5,8 +5,6 @@ type TProps = {
   children: ReactNode | ReactNode[];
 };
 
-const SettingsTemplate = (props: TProps) => {
+export const SettingsTemplate = (props: TProps) => {
   return <Wrapper>{props.children}</Wrapper>;
 };
-
-export default SettingsTemplate;

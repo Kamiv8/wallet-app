@@ -1,24 +1,22 @@
-import MainTemplate from '../../../templates/MainTemplate/MainTemplate';
-import { Avatar } from '../../../atoms/Avatar/Avatar';
-import Typography from '../../../atoms/Typography/Typography';
 import { useContext, useEffect, useState } from 'react';
-import { GroupApi } from '../../../../api/group.api';
+import { GroupApi } from '../../../../api';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../../i18n/messages';
 import { Transaction } from '../../../../models/resources/transaction';
-import { TransactionApi } from '../../../../api/transaction.api';
+import { TransactionApi } from '../../../../api';
 import { getApplicationType } from '../../../../helpers/checkIsGroup.helper';
 import ApplicationContext from '../../../../contexts/application.context';
-import TransactionItem from '../../../molecules/TransactionItem/TransactionItem';
 import { ToMoneyChartDto } from '../../../../models/dtos/toMoneyChartDto';
 import { ToPieChartDto } from '../../../../models/dtos/toPieChartDto';
-import Chart from '../../../atoms/Chart/Chart';
 import {
   lineChartMapper,
   pieChartMapper,
 } from '../../../../helpers/chartDataMapper.helper';
 import { ChartTypeEnum } from '../../../../types/enums/chartType.enum';
 import { GroupDataWrapper } from './GroupHomePage.styles';
+import { MainTemplate } from '../../../templates';
+import { Avatar, Chart, Typography } from '../../../atoms';
+import { TransactionItem } from '../../../molecules';
 
 interface IState {
   iconId: number;
@@ -33,7 +31,7 @@ interface IState {
   userCostChart: Array<ToPieChartDto>;
 }
 
-const GroupHomePage = () => {
+export const GroupHomePage = () => {
   const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<IState>({
     iconId: 1,
@@ -131,7 +129,6 @@ const GroupHomePage = () => {
     })();
   }, []);
 
-
   return (
     <MainTemplate isGroup>
       <GroupDataWrapper>
@@ -222,5 +219,3 @@ const GroupHomePage = () => {
     </MainTemplate>
   );
 };
-
-export default GroupHomePage;

@@ -7,7 +7,7 @@ export type TProps = {
   onClick: (open: boolean) => void;
 };
 
-const NavigationItem = (props: TProps) => {
+export const NavigationItem = (props: TProps) => {
   return (
     <Wrapper onClick={() => props.onClick(true)}>
       <IconContainer icon={props.icon} />
@@ -15,5 +15,3 @@ const NavigationItem = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default NavigationItem;

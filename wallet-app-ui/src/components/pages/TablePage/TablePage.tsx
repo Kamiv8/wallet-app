@@ -1,19 +1,18 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { useContext, useEffect, useState } from 'react';
 import { Note } from '../../../models/resources/note';
-import { TableApi } from '../../../api/table.api';
-import GridTemplate from '../../templates/GridTemplate/GridTemplate';
-import TableCard from '../../molecules/TableCard/TableCard';
+import { TableApi } from '../../../api';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import ApplicationContext from '../../../contexts/application.context';
 import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
+import { TableCard } from '../../molecules';
+import { GridTemplate, MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
 
-const TablePage = () => {
+export const TablePage = () => {
   const appContext = useContext(ApplicationContext);
   const navigate = useNavigate();
   const [state, setState] = useState<Note[]>([]);
@@ -52,5 +51,3 @@ const TablePage = () => {
     </MainTemplate>
   );
 };
-
-export default TablePage;

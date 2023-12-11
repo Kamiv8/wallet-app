@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import NavigationBox from './NavigationBox';
+import { NavigationBox } from './NavigationBox';
 import { ReactComponent as History } from '../../../assets/images/navigationIcons/history.svg';
 import { withRouter } from 'storybook-addon-react-router-v6';
 

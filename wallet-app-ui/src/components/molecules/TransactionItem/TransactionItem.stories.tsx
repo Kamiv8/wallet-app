@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import TransactionItem from './TransactionItem';
+import { TransactionItem } from './TransactionItem';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

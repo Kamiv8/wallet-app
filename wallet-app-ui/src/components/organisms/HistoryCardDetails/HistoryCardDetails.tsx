@@ -5,11 +5,10 @@ import {
   Header,
   Wrapper,
 } from './HistoryCardDetails.styles';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography, Chart } from '../../atoms';
 import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
-import Chart from '../../atoms/Chart/Chart';
 import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
 import { cutString } from '../../../utils/utils';
 import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
@@ -26,7 +25,7 @@ export type TProps = {
   toChart?: ToPieChartDto[];
 };
 
-const HistoryCardDetails = (props: TProps) => {
+export const HistoryCardDetails = (props: TProps) => {
   const navigate = useNavigate();
 
   return (
@@ -84,5 +83,3 @@ const HistoryCardDetails = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default HistoryCardDetails;

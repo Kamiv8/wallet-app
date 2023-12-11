@@ -1,6 +1,6 @@
-import MainTemplate from '../../../templates/MainTemplate/MainTemplate';
-import Typography from '../../../atoms/Typography/Typography';
-import ManageUsersFrom from '../../../organisms/ManageUsersFrom/ManageUsersFrom';
+import { MainTemplate } from '../../../templates';
+import { Typography } from '../../../atoms';
+import { ManageUsersFrom } from '../../../organisms';
 
 export const ManageUsersPage = () => {
   return (

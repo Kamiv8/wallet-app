@@ -1,7 +1,7 @@
-import RegisterTemplate from './RegisterTemplate';
+import { RegisterTemplate } from './RegisterTemplate';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ReactComponent as WireframeElement } from '../../../assets/images/WireframeElement.svg';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography } from '../../atoms';
 
 export default {
   title: 'Templates/Register',

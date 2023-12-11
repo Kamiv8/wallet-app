@@ -1,11 +1,11 @@
-import RegisterTemplate from '../../templates/RegisterTemplate/RegisterTemplate';
 import { ReactComponent as LoginImage } from '../../../assets/images/login.svg';
-import { LoginForm } from '../../organisms/LoginForm/LoginForm';
-import Typography from '../../atoms/Typography/Typography';
+import { LoginForm } from '../../organisms';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
+import { RegisterTemplate } from '../../templates';
+import { Typography } from '../../atoms';
 
-const LoginPage = () => {
+export const LoginPage = () => {
   return (
     <>
       <RegisterTemplate
@@ -20,5 +20,3 @@ const LoginPage = () => {
     </>
   );
 };
-
-export default LoginPage;

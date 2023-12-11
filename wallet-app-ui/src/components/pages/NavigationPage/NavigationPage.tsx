@@ -1,15 +1,14 @@
-import NavigationTemplate from '../../templates/NavigationTemplate/NavigationTemplate';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg';
 import { ReactComponent as LogoutIcon } from '../../../assets/images/logout.svg';
-import UserDataHeader from '../../molecules/UserDataHeader/UserDataHeader';
-import PersonNavigation from '../../organisms/PersonNavigation/PersonNavigation';
 import { useContext, useLayoutEffect, useState } from 'react';
 import { RoleEnum } from '../../../types/enums/role.enum';
-import { UserApi } from '../../../api/user.api';
+import { UserApi } from '../../../api';
 import ApplicationContext from '../../../contexts/application.context';
-import GroupNavigation from '../../organisms/GroupNavigation/GroupNavigation';
+import { NavigationTemplate } from '../../templates';
+import { UserDataHeader } from '../../molecules';
+import { GroupNavigation, PersonNavigation } from '../../organisms';
 
 type TProps = {
   closeNav: (open: boolean) => void;
@@ -23,7 +22,7 @@ type TState = {
   role: RoleEnum;
 };
 
-const NavigationPage = (props: TProps) => {
+export const NavigationPage = (props: TProps) => {
   const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<TState>({
     username: '',
@@ -67,5 +66,3 @@ const NavigationPage = (props: TProps) => {
     />
   );
 };
-
-export default NavigationPage;

@@ -1,5 +1,4 @@
-import Typography from '../../atoms/Typography/Typography';
-import Button from '../../atoms/Button/Button';
+import { Typography, Button } from '../../atoms';
 import { TFormattedMessage } from '../../../types/types';
 import { FormattedMessage } from 'react-intl';
 import { ListHeader, ListItem, ListWrapper, Wrapper } from './List.styles';
@@ -18,7 +17,7 @@ type TListItem = {
   name: string;
 };
 
-const List = (props: TProps) => {
+export const List = (props: TProps) => {
   return (
     <Wrapper>
       {props.headerText && (
@@ -50,5 +49,3 @@ const List = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default List;

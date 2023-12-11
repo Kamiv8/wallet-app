@@ -2,16 +2,16 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { createPathArray } from '../../../utils/utils';
 import { ReactComponent as VerifyDone } from '../../../assets/images/verifyDone.svg';
-import VerificationAccountTemplate from '../../templates/VerificationAccountTemplate/VerificationAccountTemplate';
-import Typography from '../../atoms/Typography/Typography';
 import { StyledLink } from '../../../styles/override/Link.styles';
 import { RoutesName } from '../../../const/routesName';
-import { AuthApi } from '../../../api/auth.api';
-import { useFetch } from "../../../hooks/useFetch";
+import { AuthApi } from '../../../api';
+import { useFetch } from '../../../hooks/useFetch';
+import { VerificationAccountTemplate } from '../../templates';
+import { Typography } from '../../atoms';
 
-const VerificationSuccessfulPage = () => {
+export const VerificationSuccessfulPage = () => {
   const location = useLocation();
-  const {callToApi} = useFetch();
+  const { callToApi } = useFetch();
   const tokenIndex = 3;
   const emailIndex = 2;
 
@@ -20,9 +20,9 @@ const VerificationSuccessfulPage = () => {
     (async () => {
       const { token, email } = {
         token: createPathArray(location.pathname)[tokenIndex],
-        email: createPathArray(location.pathname)[emailIndex]
+        email: createPathArray(location.pathname)[emailIndex],
       };
-      await callToApi(AuthApi.verifyAccount({ token, email }, controller))
+      await callToApi(AuthApi.verifyAccount({ token, email }, controller));
     })();
 
     return () => {
@@ -50,5 +50,3 @@ const VerificationSuccessfulPage = () => {
     </VerificationAccountTemplate>
   );
 };
-
-export default VerificationSuccessfulPage;

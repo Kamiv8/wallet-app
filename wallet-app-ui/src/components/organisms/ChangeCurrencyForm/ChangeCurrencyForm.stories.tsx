@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import ChangeCurrencyForm from './ChangeCurrencyForm';
+import { ChangeCurrencyForm } from './ChangeCurrencyForm';
 
 export default {
   title: 'Organisms/ChangeCurrencyForm',

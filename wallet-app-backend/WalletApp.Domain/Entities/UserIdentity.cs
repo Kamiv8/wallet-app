@@ -1,3 +1,4 @@
+using System.Collections;
 using Microsoft.AspNetCore.Identity;
 using WalletApp.Domain.Enums;
 
@@ -11,6 +12,7 @@ public class UserIdentity : IdentityUser<Guid>
     public ICollection<Token> Tokens { get; set; } = default!;
     public ICollection<Category> Categories { get; set; } = default!;
     public ICollection<Transaction> Transactions { get; set; } = default!;
+    public ICollection<DefaultTransaction> DefaultTransactions { get; set; } = default!;
     public ICollection<Note> Notes { get; set; } = default!;
 
 }

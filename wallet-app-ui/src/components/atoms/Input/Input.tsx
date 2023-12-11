@@ -1,6 +1,6 @@
 import StyledInput from './Input.style';
 import { ChangeEvent } from 'react';
-import { TColor } from "../../../types/types";
+import { TColor } from '../../../types/types';
 
 type TProps = {
   color: TColor;
@@ -10,7 +10,6 @@ type TProps = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Input = (props: TProps) => {
+export const Input = (props: TProps) => {
   return <StyledInput {...props} />;
 };
-export default Input;

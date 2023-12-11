@@ -1,108 +1,109 @@
-import InputField from "../../molecules/InputField/InputField";
-import AvatarPicker from "../../molecules/avatarPicker/AvatarPicker";
-import messages from "../../../i18n/messages";
-import Typography from "../../atoms/Typography/Typography";
-import { FormattedMessage } from "react-intl";
-import Button from "../../atoms/Button/Button";
-import useForm from "../../../hooks/useForm";
-import { StyledButtonWrapper, StyledFormItem, Wrapper } from "./RegisterForm.styles";
-import { useMemo } from "react";
-import { StyledLink } from "../../../styles/override/Link.styles";
-import { RoutesName } from "../../../const/routesName";
-import { AuthApi } from "../../../api/auth.api";
-import { ApiStatus } from "../../../models/apiResult";
-import { useModalAction } from "../../../hooks/useModalAction";
+import { InputField, AvatarPicker } from '../../molecules';
+import messages from '../../../i18n/messages';
+import { Typography, Button } from '../../atoms';
+import { FormattedMessage } from 'react-intl';
+import useForm from '../../../hooks/useForm';
+import {
+  StyledButtonWrapper,
+  StyledFormItem,
+  Wrapper,
+} from './RegisterForm.styles';
+import { useMemo } from 'react';
+import { StyledLink } from '../../../styles/override/Link.styles';
+import { RoutesName } from '../../../const/routesName';
+import { AuthApi } from '../../../api';
+import { ApiStatus } from '../../../models/apiResult';
+import { useModalAction } from '../../../hooks/useModalAction';
+import { TRegisterForm } from '../../../models/apiTypes/account/register/register.form';
+import { registerSchema } from '../../../validators/account/register.validator';
 
 export type TSelectedIcon = 0 | 1 | 2 | 3 | 4;
 
-const RegisterForm = () => {
-  const {openRegisterModal} = useModalAction();
+export const RegisterForm = () => {
+  const { openRegisterModal } = useModalAction();
   const initialValues = useMemo(
     () => ({
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      iconId: 1 as TSelectedIcon
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      iconId: 1 as TSelectedIcon,
     }),
-    []
+    [],
   );
 
-  const { values, handleChange, isDisabled, onSubmit, getMessageByFieldName, resetForm } =
-    useForm<typeof initialValues>(initialValues);
+  const { values, handleChange, onSubmit, getValidationMessage, resetForm } =
+    useForm<TRegisterForm>(initialValues, registerSchema);
 
   const onSubmitEvent = async () => {
     const result = await onSubmit<null>(AuthApi.register);
 
     if (result?.status === ApiStatus.SUCCESS) {
-      openRegisterModal()
+      openRegisterModal();
       resetForm();
     }
   };
-
 
   return (
     <Wrapper>
       <StyledFormItem>
         <InputField
           label={{ ...messages.username }}
-          variant={"light"}
-          name={"username"}
-          error={getMessageByFieldName("Username")}
-          onChange={(e) => handleChange(e, "username")}
+          variant={'light'}
+          name={'username'}
+          error={getValidationMessage('username')}
+          onChange={(e) => handleChange(e, 'username')}
         />
       </StyledFormItem>
       <StyledFormItem>
         <InputField
           label={{ ...messages.email }}
-          variant={"light"}
-          name={"email"}
-          error={getMessageByFieldName("Email")}
-          type={"email"}
-          onChange={(e) => handleChange(e, "email")}
+          variant={'light'}
+          name={'email'}
+          error={getValidationMessage('email')}
+          type={'email'}
+          onChange={(e) => handleChange(e, 'email')}
         />
       </StyledFormItem>
       <StyledFormItem>
         <InputField
           label={{ ...messages.password }}
-          variant={"light"}
-          error={getMessageByFieldName("Password")}
-          type={"password"}
-          name={"password"}
-          onChange={(e) => handleChange(e, "password")}
+          variant={'light'}
+          error={getValidationMessage('password')}
+          type={'password'}
+          name={'password'}
+          onChange={(e) => handleChange(e, 'password')}
         />
       </StyledFormItem>
       <StyledFormItem>
         <InputField
           label={{ ...messages.confirmPassword }}
-          variant={"light"}
-          name={"confirmPassword"}
-          error={getMessageByFieldName("ConfirmPassword")}
-          type={"password"}
-          onChange={(e) => handleChange(e, "confirmPassword")}
+          variant={'light'}
+          name={'confirmPassword'}
+          error={getValidationMessage('confirmPassword')}
+          type={'password'}
+          onChange={(e) => handleChange(e, 'confirmPassword')}
         />
       </StyledFormItem>
       <StyledFormItem>
         <AvatarPicker
-          variant={"single"}
-          selected={values.icon}
+          variant={'single'}
+          selected={values.iconId}
           onClick={handleChange}
         />
       </StyledFormItem>
       <StyledFormItem>
-        <Typography size={"xs"} underline color={"lightBlue"}>
+        <Typography size={'xs'} underline color={'lightBlue'}>
           <StyledLink to={RoutesName.LOGIN}>
             <FormattedMessage {...messages.redirectLogin} />
           </StyledLink>
         </Typography>
       </StyledFormItem>
       <StyledButtonWrapper>
-        <Button type={"button"} disabled={isDisabled} onClick={onSubmitEvent}>
+        <Button type={'button'} onClick={onSubmitEvent}>
           <FormattedMessage {...messages.register} />
         </Button>
       </StyledButtonWrapper>
     </Wrapper>
   );
 };
-
-export default RegisterForm;

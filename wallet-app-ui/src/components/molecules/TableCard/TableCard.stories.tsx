@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import TableCard from './TableCard';
+import { TableCard } from './TableCard';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

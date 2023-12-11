@@ -1,8 +1,8 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
-import ChangeCurrencyForm from '../../organisms/ChangeCurrencyForm/ChangeCurrencyForm';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { ChangeCurrencyForm } from '../../organisms';
 
-const ChangeCurrencyPage = () => {
+export const ChangeCurrencyPage = () => {
   return (
     <MainTemplate>
       <Typography size={'xxl'} weight={700} color={'lightBlue'}>
@@ -12,5 +12,3 @@ const ChangeCurrencyPage = () => {
     </MainTemplate>
   );
 };
-
-export default ChangeCurrencyPage;

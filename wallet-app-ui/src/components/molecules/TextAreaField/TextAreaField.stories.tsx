@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import TextAreaField from './TextAreaField';
+import { TextAreaField } from './TextAreaField';
 
 export default {
   title: 'Molecules/TextAreaField',

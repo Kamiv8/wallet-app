@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import HistoryDetailsPage from './HistoryDetailsPage';
+import { HistoryDetailsPage } from './HistoryDetailsPage';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

@@ -1,22 +1,20 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import Chart from '../../atoms/Chart/Chart';
 import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
-import TransactionItem from '../../molecules/TransactionItem/TransactionItem';
 import { useContext, useEffect, useState } from 'react';
 import {
   lineChartMapper,
   pieChartMapper,
 } from '../../../helpers/chartDataMapper.helper';
-import { TransactionApi } from '../../../api/transaction.api';
+import { TransactionApi, UserApi } from '../../../api';
 import { Transaction } from '../../../models/resources/transaction';
 import { ToMoneyChartDto } from '../../../models/dtos/toMoneyChartDto';
 import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
-import { UserApi } from '../../../api/user.api';
 import ApplicationContext from '../../../contexts/application.context';
 import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
+import { MainTemplate } from '../../templates';
+import { Chart, Typography } from '../../atoms';
+import { TransactionItem } from '../../molecules';
 
 type TActualMoney = {
   money: number;
@@ -30,7 +28,7 @@ interface IState {
   actualMoney: TActualMoney;
 }
 
-const HomePage = () => {
+export const HomePage = () => {
   const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<IState>({
     lastTransactions: [],
@@ -176,5 +174,3 @@ const HomePage = () => {
     </MainTemplate>
   );
 };
-
-export default HomePage;

@@ -1,4 +1,4 @@
-import LoginPage from './LoginPage';
+import { LoginPage } from './LoginPage';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {

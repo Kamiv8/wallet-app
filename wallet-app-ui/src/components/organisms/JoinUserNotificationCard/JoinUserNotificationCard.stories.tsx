@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import JoinUserNotificationCard from './JoinUserNotificationCard';
+import { JoinUserNotificationCard } from './JoinUserNotificationCard';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

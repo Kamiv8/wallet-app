@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import HistoryCardDetails from './HistoryCardDetails';
+import { HistoryCardDetails } from './HistoryCardDetails';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

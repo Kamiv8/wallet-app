@@ -1,8 +1,8 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
-import ChangeCategoryForm from '../../organisms/ChangeCategoryForm/ChangeCategoryForm';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { ChangeCategoryForm } from '../../organisms';
 
-const ChangeCategoryPage = () => {
+export const ChangeCategoryPage = () => {
   return (
     <MainTemplate>
       <Typography size={'xxl'} weight={700} color={'lightBlue'}>
@@ -12,5 +12,3 @@ const ChangeCategoryPage = () => {
     </MainTemplate>
   );
 };
-
-export default ChangeCategoryPage;

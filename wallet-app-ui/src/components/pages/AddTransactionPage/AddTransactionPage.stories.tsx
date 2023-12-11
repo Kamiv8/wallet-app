@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import AddTransactionPage from './AddTransactionPage';
+import { AddTransactionPage } from './AddTransactionPage';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

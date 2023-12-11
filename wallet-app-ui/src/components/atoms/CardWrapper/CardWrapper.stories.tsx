@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import CardWrapper from './CardWrapper';
+import { CardWrapper } from './CardWrapper';
 
 export default {
   title: 'Atoms/CardWrapper',

@@ -1,6 +1,6 @@
 import { Wrapper } from './MainTemplate.styles';
 import { ReactNode, useContext } from 'react';
-import Footer from '../../organisms/Footer/Footer';
+import { Footer } from '../../organisms';
 import ApplicationContext from '../../../contexts/application.context';
 
 export type TProps = {
@@ -8,7 +8,7 @@ export type TProps = {
   isGroup?: boolean;
 };
 
-const MainTemplate = (props: TProps) => {
+export const MainTemplate = (props: TProps) => {
   const appContext = useContext(ApplicationContext);
   const checkIsGroupType = (): boolean => {
     return appContext.state.type === 'GROUP';
@@ -21,5 +21,3 @@ const MainTemplate = (props: TProps) => {
     </>
   );
 };
-
-export default MainTemplate;

@@ -1,20 +1,19 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
-import InputField from '../../molecules/InputField/InputField';
+import { CardWrapper, Button } from '../../atoms';
+import {
+  InputField,
+  SelectField,
+  CheckboxField,
+  ColorPickerField,
+  TextAreaField,
+} from '../../molecules';
 import messages from '../../../i18n/messages';
-import SelectField from '../../molecules/SelectField/SelectField';
-import CheckboxField from '../../molecules/CheckboxField/CheckboxField';
 import { useContext, useEffect, useState } from 'react';
-import ColorPickerField from '../../molecules/ColorPickerField/ColorPickerField';
-import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import { FormWrapper, SavedInputsWrapper } from './AddTransactionForm.styles';
 import useForm, { FieldType } from '../../../hooks/useForm';
 import { CurrencyDto } from '../../../models/dtos/currencyDto';
 import { Category } from '../../../models/resources/category';
-import { CurrencyApi } from '../../../api/currency.api';
-import { CategoryApi } from '../../../api/category.api';
-import { TransactionApi } from '../../../api/transaction.api';
-import TextAreaField from '../../molecules/TextAreaField/TextAreaField';
+import { CurrencyApi, CategoryApi, TransactionApi } from '../../../api';
 import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
 import ApplicationContext from '../../../contexts/application.context';
 import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
@@ -23,7 +22,7 @@ export type TProps = {
   onClose: () => void;
 };
 
-const AddTransactionForm = (props: TProps) => {
+export const AddTransactionForm = (props: TProps) => {
   const appContext = useContext(ApplicationContext);
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [state, setState] = useState({
@@ -150,5 +149,3 @@ const AddTransactionForm = (props: TProps) => {
     </CardWrapper>
   );
 };
-
-export default AddTransactionForm;

@@ -1,25 +1,35 @@
-using MediatR;
-using WalletApp.Application.Common;
+using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces;
-using WalletApp.Application.Interfaces.Repository;
 
-namespace WalletApp.Application.Account.GetAccountData;
+namespace WalletApp.Application.Common.Account.GetAccountData;
 
-public class GetAccountDataQueryHandler : IRequestHandler<GetAccountDataQuery, ApiResult<GetAccountDataDto>>
+public class
+    GetAccountDataQueryHandler : IQueryHandler<GetAccountDataQuery, GetAccountDataResponseDto>
 {
-    private readonly IAccountDataRepository _repository;
-    private readonly ICurrentUserService _userService;
+    private readonly IUserManager _userManager;
 
-    public GetAccountDataQueryHandler(IAccountDataRepository repository, ICurrentUserService userService)
+    public GetAccountDataQueryHandler(IUserManager userManager)
     {
-        _repository = repository;
-        _userService = userService;
+        _userManager = userManager;
     }
-    
-    public Task<ApiResult<GetAccountDataDto>> Handle(GetAccountDataQuery request, CancellationToken cancellationToken)
+
+    public async Task<ApiResult<GetAccountDataResponseDto>> Handle(GetAccountDataQuery request,
+        CancellationToken cancellationToken)
     {
+        var user = await _userManager.FindUserAndDataByIdAsync(request.UserId);
+        if (user is null)
+            return ApiResult<GetAccountDataResponseDto>.Error(AccountErrorMessages.UserNotExist);
+
+        var dto = new GetAccountDataResponseDto(
+            user.AccountData.ActualMoneyPln,
+            user.AccountData.ActualMoneyUsd,
+            user.AccountData.ActualMoneyChf,
+            user.AccountData.ActualMoneyGbp,
+            user.AccountData.ActualMoneyEur,
+            user.Member?.GroupId
+        );
         
-        
-        throw new NotImplementedException();
+        return ApiResult<GetAccountDataResponseDto>.Success(dto);
     }
 }

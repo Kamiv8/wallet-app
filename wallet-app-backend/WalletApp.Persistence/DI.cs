@@ -21,6 +21,7 @@ public static class DI
         services.AddScoped<IPermissionRepository, PermissionRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ITransactionRepository, TransactionRepository>();
+        services.AddScoped<IDefaultTransactionRepository, DefaultTransactionRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         

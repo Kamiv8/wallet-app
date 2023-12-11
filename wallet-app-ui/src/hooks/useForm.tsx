@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
-import { ApiStatus, IApiResult } from "../models/apiResult";
-import { useMapValidationMessages } from "./useMapValidationMessages";
+import { useCallback, useState } from 'react';
+import { ApiStatus, IApiResult } from '../models/apiResult';
+import { useMapValidationMessages } from './useMapValidationMessages';
+import * as yup from 'yup';
+import { useFetch } from './useFetch';
 
 export enum FieldType {
   Text = 1,
@@ -12,54 +14,30 @@ export enum FieldType {
   Select = 7,
 }
 
-type TInitialValues = {
-  [key: string]: any;
-};
+const useForm = <T,>(
+  initialValues: T,
+  validationSchema?: yup.ObjectSchema<T>,
+) => {
+  const { getMessageByFieldName } = useMapValidationMessages();
+  const { callToApi } = useFetch();
 
-type TValidValues = {
-  [key: string]: boolean;
-};
+  const [values, setValues] = useState<T>(initialValues);
 
-const useForm = <T, >(initialValues: T) => {
-  const { loadMessages, getMessageByFieldName } = useMapValidationMessages();
+  const [validValues, setValidValues] = useState<Record<keyof T, string>>(
+    {} as Record<keyof T, string>,
+  );
 
-  const [values, setValues] = useState<TInitialValues>(initialValues);
-
-  const [validValues, setValidValues] = useState<TValidValues | null>(null);
-
-  const [isDisabled, setIsDisabled] = useState(true);
-
-  useEffect(() => {
-    if (validValues !== null) {
-      if (
-        Object.keys(initialValues).length !== Object.keys(validValues).length
-      ) {
-        setIsDisabled(true);
-        return;
-      }
-      for (const item in validValues) {
-        if (
-          validValues[item] &&
-          Object.keys(initialValues).length !== Object.keys(validValues).length
-        ) {
-          setIsDisabled(true);
-          return;
-        }
-      }
-      setIsDisabled(false);
-    }
-  }, [values]);
+  const getValidationMessage = useCallback(
+    (field: keyof T) => {
+      if (!validValues) return undefined;
+      return validValues[field];
+    },
+    [validValues],
+  );
 
   const resetForm = useCallback(() => {
     setValues(initialValues);
-    setValidValues(null);
-  }, []);
-
-  const handleValidValues = useCallback((fieldName: string, value: boolean) => {
-    setValidValues((prevState) => ({
-      ...prevState,
-      [fieldName]: value
-    }));
+    setValidValues({} as Record<keyof T, string>);
   }, []);
 
   const handleChange = useCallback(
@@ -68,56 +46,69 @@ const useForm = <T, >(initialValues: T) => {
       switch (type) {
         case FieldType.Number:
           typedValue = +event.target.value;
-          handleValidValues(fieldName, +event.target.value === 0);
           break;
         case FieldType.Checkbox:
           typedValue = event.target.checked;
           break;
         case FieldType.Icon:
           typedValue = event;
-          handleValidValues(fieldName, event === 0);
           break;
         case FieldType.Email:
           typedValue = event.target.value;
-          handleValidValues(fieldName, event.target.value === "");
           break;
         case FieldType.Select:
           typedValue = event;
-          handleValidValues(fieldName, event === "");
           break;
         case FieldType.Date:
           typedValue = new Date(event.target.value);
           break;
         default:
           typedValue = event.target.value;
-          handleValidValues(fieldName, event.target.value === "");
           break;
       }
 
       setValues((prevState) => ({
         ...prevState,
-        [fieldName]: typedValue
+        [fieldName]: typedValue,
       }));
     },
-    [values]
+    [values],
   );
 
-  const isError = useCallback(() => {
-  }, []);
+  const isError = useCallback(() => {}, []);
 
+  const onSubmit = useCallback(
+    async <K = any,>(api: (value: T) => Promise<IApiResult<K>>) => {
+      try {
+        await validationSchema?.validate(values, {
+          abortEarly: false,
+        });
 
-  const onSubmit = useCallback(async <K = any, >(api: (value: TInitialValues) => Promise<IApiResult<K>>) => {
-    try {
-      return await api(values);
-    } catch (e: any) {
-      loadMessages(e?.validationMessages);
-      return {
-        data: null,
-        status: ApiStatus.ERROR
-      } as IApiResult
-    }
-  }, [values]);
+        return await callToApi(api(values));
+      } catch (e: any) {
+        console.log(e, e.inner);
+        const newErrors = {} as Record<keyof T, string>;
+        e.inner.forEach((error: any) => {
+          newErrors[error.path as keyof T] = error.message;
+        });
+        setValidValues(newErrors);
+        return {
+          data: null,
+          status: ApiStatus.ERROR,
+        } as IApiResult;
+      }
+    },
+    [values],
+  );
 
-  return { values, handleChange, isError, isDisabled, resetForm, onSubmit, getMessageByFieldName };
+  return {
+    values,
+    handleChange,
+    isError,
+    resetForm,
+    onSubmit,
+    getMessageByFieldName,
+    getValidationMessage,
+  };
 };
 export default useForm;

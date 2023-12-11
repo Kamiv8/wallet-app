@@ -1,19 +1,18 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { PaginationWrapper } from './HistoryPage.styles';
-import TransactionItem from '../../molecules/TransactionItem/TransactionItem';
-import Pagination from '../../molecules/Pagination/Pagination';
 import { useContext, useEffect, useState } from 'react';
 import { PageResult } from '../../../models/resources/pageResult';
 import { Transaction } from '../../../models/resources/transaction';
 import { usePagination } from 'react-use-pagination';
-import { TransactionApi } from '../../../api/transaction.api';
+import { TransactionApi } from '../../../api';
 import ApplicationContext from '../../../contexts/application.context';
 import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { Pagination, TransactionItem } from '../../molecules';
 
-const HistoryPage = () => {
+export const HistoryPage = () => {
   const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<PageResult<Transaction> | null>();
   const pagination = usePagination({
@@ -57,5 +56,3 @@ const HistoryPage = () => {
     </MainTemplate>
   );
 };
-
-export default HistoryPage;

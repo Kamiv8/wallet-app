@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import ColorPickerField from './ColorPickerField';
+import { ColorPickerField } from './ColorPickerField';
 
 export default {
   title: 'Molecules/ColorPickerField',

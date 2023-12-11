@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import NoteDetailsCard from './NoteDetailsCard';
+import { NoteDetailsCard } from './NoteDetailsCard';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

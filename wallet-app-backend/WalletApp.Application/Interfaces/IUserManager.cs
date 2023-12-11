@@ -13,6 +13,7 @@ public interface IUserManager
     Task<UserIdentity?> FindByNameAsync(string username);
     Task<UserIdentity?> FindByIdAsync(string userId);
     Task UpdateAsync(UserIdentity userIdentity);
+    Task<UserIdentity?> FindUserAndDataByIdAsync(Guid userId);
     Task<AppIdentityResult> ConfirmEmail(UserIdentity userIdentity, string token);
     Task<string> GeneratePasswordResetTokenAsync(UserIdentity userIdentity);
     Task<AppIdentityResult> ResetPasswordAsync(UserIdentity userIdentity, string token,

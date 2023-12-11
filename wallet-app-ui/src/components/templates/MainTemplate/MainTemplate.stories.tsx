@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import MainTemplate from './MainTemplate';
+import { MainTemplate } from './MainTemplate';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

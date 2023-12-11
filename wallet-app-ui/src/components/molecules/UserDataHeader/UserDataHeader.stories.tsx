@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import UserDataHeader from './UserDataHeader';
+import { UserDataHeader } from './UserDataHeader';
 
 export default {
   title: 'Molecules/UserDataHeader',

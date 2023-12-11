@@ -1,17 +1,17 @@
-import Typography from '../../atoms/Typography/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import FindGroupForm from '../../organisms/FindGroupForm/FindGroupForm';
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import { Wrapper } from './FindGroupPage.styles';
 import { useCallback, useState } from 'react';
 import { FoundedGroupType } from '../../../models/resources/foundedGroupType';
-import FoundedGroup from '../../molecules/FoundedGroup/FoundedGroup';
-import { GroupApi } from '../../../api/group.api';
+import { GroupApi } from '../../../api';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { FindGroupForm } from '../../organisms';
+import { FoundedGroup } from '../../molecules';
 
-const FindGroupPage = () => {
+export const FindGroupPage = () => {
   const navigate = useNavigate();
   const [state, setState] = useState<FoundedGroupType | null>(null);
 
@@ -42,5 +42,3 @@ const FindGroupPage = () => {
     </MainTemplate>
   );
 };
-
-export default FindGroupPage;

@@ -1,19 +1,14 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
-import InputField from '../../molecules/InputField/InputField';
-import SelectField from '../../molecules/SelectField/SelectField';
-import Button from '../../atoms/Button/Button';
+import { CardWrapper, Button, Typography } from '../../atoms';
+import { InputField, SelectField, AvatarPicker } from '../../molecules';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import Typography from '../../atoms/Typography/Typography';
-import AvatarPicker from '../../molecules/avatarPicker/AvatarPicker';
 import { FormWrapper } from './CreateGroupForm.styles';
 import { TSelectItem } from '../../atoms/Select/Select';
 import useForm from '../../../hooks/useForm';
 import { useEffect, useState } from 'react';
 import { CurrencyDto } from '../../../models/dtos/currencyDto';
-import { CurrencyApi } from '../../../api/currency.api';
+import { CurrencyApi, GroupApi } from '../../../api';
 import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
-import { GroupApi } from '../../../api/group.api';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 
@@ -36,13 +31,13 @@ const maxGroupMember: TSelectItem[] = [
   },
 ];
 
-const CreateGroupForm = () => {
+export const CreateGroupForm = () => {
   const [currencies, setCurrencies] = useState<CurrencyDto[]>([]);
   const navigate = useNavigate();
   const initialValues = {
     name: '',
     maxMembers: 2,
-    icon: 1,
+    icon: 1 as 1 | 2 | 3 | 4,
     currencyId: '',
   };
 
@@ -103,5 +98,3 @@ const CreateGroupForm = () => {
     </CardWrapper>
   );
 };
-
-export default CreateGroupForm;

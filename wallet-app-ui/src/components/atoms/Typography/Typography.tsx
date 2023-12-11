@@ -17,5 +17,3 @@ export type TProps = {
 export const Typography = (props: TProps) => (
   <StyledTypography {...props}>{props.children}</StyledTypography>
 );
-
-export default Typography;

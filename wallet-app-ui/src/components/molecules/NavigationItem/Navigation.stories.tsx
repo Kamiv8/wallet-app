@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import NavigationItem from './NavigationItem';
+import { NavigationItem } from './NavigationItem';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import HistoryIcon from '../../../assets/images/navigationIcons/history.svg';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography } from '../../atoms';
 
 export default {
   title: 'Molecules/NavigationItem',

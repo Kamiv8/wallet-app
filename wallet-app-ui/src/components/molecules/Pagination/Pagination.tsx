@@ -3,7 +3,7 @@ import { ReactComponent as FirstPageIcon } from '../../../assets/images/paginati
 import { ReactComponent as NextPageIcon } from '../../../assets/images/pagination/NextPage.svg';
 import { ReactComponent as PreviousPageIcon } from '../../../assets/images/pagination/PreviousPage.svg';
 import { ReactComponent as LastPageIcon } from '../../../assets/images/pagination/LastPage.svg';
-import PaginationItem from '../../atoms/PaginationItem/PaginationItem';
+import { PaginationItem } from '../../atoms';
 import {
   displayFivePages,
   generatePageButtons,
@@ -13,7 +13,7 @@ export type TProps = {
   pagination: any;
 };
 
-const Pagination = ({ pagination }: TProps) => {
+export const Pagination = ({ pagination }: TProps) => {
   return (
     <Wrapper>
       <StyledSVGWrapper>
@@ -44,5 +44,3 @@ const Pagination = ({ pagination }: TProps) => {
     </Wrapper>
   );
 };
-
-export default Pagination;

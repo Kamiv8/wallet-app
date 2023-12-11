@@ -1,4 +1,4 @@
-import Input from './Input';
+import { Input } from './Input';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {

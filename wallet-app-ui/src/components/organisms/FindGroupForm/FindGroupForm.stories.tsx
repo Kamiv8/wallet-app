@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import FindGroupForm from './FindGroupForm';
+import { FindGroupForm } from './FindGroupForm';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

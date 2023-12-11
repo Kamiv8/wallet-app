@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import GroupPage from './GroupPage';
+import { GroupPage } from './GroupPage';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

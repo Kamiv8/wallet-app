@@ -1,15 +1,15 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import NoteDetailsCard from '../../organisms/NoteDetailsCard/NoteDetailsCard';
 import { useCallback, useEffect, useState } from 'react';
 import { Note } from '../../../models/resources/note';
-import { TableApi } from '../../../api/table.api';
+import { TableApi } from '../../../api';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { NoteDetailsCard } from '../../organisms';
 
-const NoteDetailsPage = () => {
+export const NoteDetailsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [state, setState] = useState<Note>({} as Note);
@@ -49,5 +49,3 @@ const NoteDetailsPage = () => {
     </MainTemplate>
   );
 };
-
-export default NoteDetailsPage;

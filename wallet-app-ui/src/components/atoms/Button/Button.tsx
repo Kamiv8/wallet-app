@@ -14,7 +14,7 @@ export type TProps = {
   onClick?: () => any;
 };
 
-const Button = (props: TProps) => (
+export const Button = (props: TProps) => (
   <>
     {props.variant === 'add' ? (
       <StyledButton {...props}>
@@ -25,5 +25,3 @@ const Button = (props: TProps) => (
     )}
   </>
 );
-
-export default Button;

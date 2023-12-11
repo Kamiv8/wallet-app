@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../atoms/Button/Button';
+import { Button } from '../../atoms';
 
 export const ButtonsWrapper = styled.div`
   display: flex;

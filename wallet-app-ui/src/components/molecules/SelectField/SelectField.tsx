@@ -1,6 +1,6 @@
-import Select, { TSelectItem } from '../../atoms/Select/Select';
+import { TSelectItem } from '../../atoms/Select/Select';
 import { TFormattedMessage } from '../../../types/types';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography, Select } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 
 export type TProps = {
@@ -10,7 +10,7 @@ export type TProps = {
   onChange?: any;
 };
 
-const SelectField = (props: TProps) => {
+export const SelectField = (props: TProps) => {
   return (
     <div>
       <label>
@@ -27,5 +27,3 @@ const SelectField = (props: TProps) => {
     </div>
   );
 };
-
-export default SelectField;

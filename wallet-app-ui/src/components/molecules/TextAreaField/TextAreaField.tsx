@@ -1,8 +1,7 @@
-import Typography from '../../atoms/Typography/Typography';
 import { TFormattedMessage } from '../../../types/types';
 import { ChangeEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
-import TextArea from '../../atoms/TextArea/TextArea';
+import { TextArea, Typography } from '../../atoms';
 import { StyledErrorMessage } from './TextAreaField.style';
 
 type TProps = {
@@ -14,7 +13,7 @@ type TProps = {
   error?: string;
 };
 
-const TextAreaField = (props: TProps) => {
+export const TextAreaField = (props: TProps) => {
   return (
     <div>
       <label>
@@ -40,5 +39,3 @@ const TextAreaField = (props: TProps) => {
     </div>
   );
 };
-
-export default TextAreaField;

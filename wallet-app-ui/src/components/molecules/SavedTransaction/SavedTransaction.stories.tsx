@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import SavedTransaction from './SavedTransaction';
+import { SavedTransaction } from './SavedTransaction';
 
 export default {
   title: 'Molecules/SavedTransaction',

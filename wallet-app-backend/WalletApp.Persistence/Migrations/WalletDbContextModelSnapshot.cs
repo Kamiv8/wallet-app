@@ -250,7 +250,7 @@ namespace WalletApp.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9d7961ba-79fe-4da4-b83a-7111662463b0"),
+                            Id = new Guid("9da87981-6a51-44ed-82c9-a438a8d8ae19"),
                             IsDeleted = false,
                             Name = "Rachunki"
                         });
@@ -311,54 +311,134 @@ namespace WalletApp.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c016dc74-b0b6-44d1-adab-6d690429c3cd"),
+                            Id = new Guid("a633b81d-af79-49dd-a2f7-a081243c80b9"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "USD",
                             CurrencyName = "dolar amerykanski",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4087)
+                            TradingDate = new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2709)
                         },
                         new
                         {
-                            Id = new Guid("183ebb9d-b76b-4e7f-86d6-f75d99c734f3"),
+                            Id = new Guid("ddc21f83-1c9e-497e-acbd-b42d1f778c48"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "EUR",
                             CurrencyName = "euro",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4129)
+                            TradingDate = new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2751)
                         },
                         new
                         {
-                            Id = new Guid("dc6bc8c4-13ec-4bba-8529-a7cedab84065"),
+                            Id = new Guid("00148c90-1589-48eb-9bbc-1c0887c0ffdc"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "CHF",
                             CurrencyName = "frank szwajcarski",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4132)
+                            TradingDate = new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2754)
                         },
                         new
                         {
-                            Id = new Guid("4d8ad3c9-5ec4-4158-8017-7be9479c5388"),
+                            Id = new Guid("e2e2ad53-e1bf-4c8f-b14c-26fa8118f12e"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "GBP",
                             CurrencyName = "funt szterling",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4134)
+                            TradingDate = new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2757)
                         },
                         new
                         {
-                            Id = new Guid("c4f35223-dc53-4755-913c-ea32d2aeb1b4"),
+                            Id = new Guid("e629e2fd-b008-4758-a8dc-89a39e082eef"),
                             Ask = 1m,
                             Bid = 1m,
                             Code = "PLN",
                             CurrencyName = "polski złoty",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2023, 11, 28, 12, 40, 58, 450, DateTimeKind.Local).AddTicks(4137)
+                            TradingDate = new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2760)
                         });
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.DefaultTransaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BackgroundColor")
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CratedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CurrencyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDefault")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(15, 2)
+                        .HasColumnType("decimal");
+
+                    b.Property<string>("TextColor")
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar");
+
+                    b.Property<Guid>("UserIdentityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CurrencyId");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserIdentityId");
+
+                    b.ToTable("DefaultTransactions");
                 });
 
             modelBuilder.Entity("WalletApp.Domain.Entities.Group", b =>
@@ -697,10 +777,6 @@ namespace WalletApp.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("BackgroundColor")
-                        .HasMaxLength(7)
-                        .HasColumnType("nvarchar");
-
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -716,11 +792,18 @@ namespace WalletApp.Persistance.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("DefaultTransactionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar");
 
                     b.Property<Guid?>("GroupId")
                         .HasColumnType("uniqueidentifier");
@@ -743,10 +826,6 @@ namespace WalletApp.Persistance.Migrations
                         .HasPrecision(15, 2)
                         .HasColumnType("decimal");
 
-                    b.Property<string>("TextColor")
-                        .HasMaxLength(7)
-                        .HasColumnType("nvarchar");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -757,7 +836,11 @@ namespace WalletApp.Persistance.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("CurrencyId");
+
+                    b.HasIndex("DefaultTransactionId");
 
                     b.HasIndex("GroupId");
 
@@ -926,6 +1009,39 @@ namespace WalletApp.Persistance.Migrations
                     b.Navigation("UserIdentity");
                 });
 
+            modelBuilder.Entity("WalletApp.Domain.Entities.DefaultTransaction", b =>
+                {
+                    b.HasOne("WalletApp.Domain.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WalletApp.Domain.Entities.Currency", "Currency")
+                        .WithMany("DefaultTransactions")
+                        .HasForeignKey("CurrencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WalletApp.Domain.Entities.Group", "Group")
+                        .WithMany("DefaultTransactions")
+                        .HasForeignKey("GroupId");
+
+                    b.HasOne("WalletApp.Domain.Entities.UserIdentity", "UserIdentity")
+                        .WithMany("DefaultTransactions")
+                        .HasForeignKey("UserIdentityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Currency");
+
+                    b.Navigation("Group");
+
+                    b.Navigation("UserIdentity");
+                });
+
             modelBuilder.Entity("WalletApp.Domain.Entities.Member", b =>
                 {
                     b.HasOne("WalletApp.Domain.Entities.Group", "Group")
@@ -1019,11 +1135,21 @@ namespace WalletApp.Persistance.Migrations
 
             modelBuilder.Entity("WalletApp.Domain.Entities.Transaction", b =>
                 {
+                    b.HasOne("WalletApp.Domain.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WalletApp.Domain.Entities.Currency", "Currency")
                         .WithMany("Transactions")
                         .HasForeignKey("CurrencyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WalletApp.Domain.Entities.DefaultTransaction", "DefaultTransaction")
+                        .WithMany("Transactions")
+                        .HasForeignKey("DefaultTransactionId");
 
                     b.HasOne("WalletApp.Domain.Entities.Group", "Group")
                         .WithMany("Transactions")
@@ -1035,7 +1161,11 @@ namespace WalletApp.Persistance.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Category");
+
                     b.Navigation("Currency");
+
+                    b.Navigation("DefaultTransaction");
 
                     b.Navigation("Group");
 
@@ -1055,12 +1185,21 @@ namespace WalletApp.Persistance.Migrations
 
             modelBuilder.Entity("WalletApp.Domain.Entities.Currency", b =>
                 {
+                    b.Navigation("DefaultTransactions");
+
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("WalletApp.Domain.Entities.DefaultTransaction", b =>
+                {
                     b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("WalletApp.Domain.Entities.Group", b =>
                 {
                     b.Navigation("Categories");
+
+                    b.Navigation("DefaultTransactions");
 
                     b.Navigation("Members");
 
@@ -1088,6 +1227,8 @@ namespace WalletApp.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("Categories");
+
+                    b.Navigation("DefaultTransactions");
 
                     b.Navigation("Member");
 

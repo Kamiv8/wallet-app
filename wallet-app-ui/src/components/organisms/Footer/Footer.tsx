@@ -2,16 +2,16 @@ import { Circle, NavColumn, NavigationContent, Wrapper } from './Footer.styles';
 import { Link, useHref, useNavigate } from 'react-router-dom';
 import { GroupRoutesName, RoutesName } from '../../../const/routesName';
 import { ReactNode, useCallback, useState } from 'react';
-import NavigationItem from '../../molecules/NavigationItem/NavigationItem';
+import { NavigationItem } from '../../molecules';
 import { StyledLink } from '../../../styles/override/Link.styles';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 import TransactionIcon from '../../../assets/images/navigationIcons/transaction.svg';
 import HistoryIcon from '../../../assets/images/navigationIcons/history.svg';
 import TableIcon from '../../../assets/images/navigationIcons/table.svg';
 import MoreIcon from '../../../assets/images/navigationIcons/more.svg';
 import messages from '../../../i18n/messages';
-import NavigationPage from '../../pages/NavigationPage/NavigationPage';
+import { NavigationPage } from '../../pages';
 
 export type TNavigationItems = {
   route: string;
@@ -23,7 +23,7 @@ export type TProps = {
   isGroup?: boolean;
 };
 
-const Footer = (props: TProps) => {
+export const Footer = (props: TProps) => {
   const [isOpenNav, setIsOpenNav] = useState(false);
   const navigate = useNavigate();
 
@@ -124,5 +124,3 @@ const Footer = (props: TProps) => {
     </>
   );
 };
-
-export default Footer;

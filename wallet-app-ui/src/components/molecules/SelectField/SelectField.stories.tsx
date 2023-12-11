@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import SelectField from './SelectField';
+import { SelectField } from './SelectField';
 
 export default {
   title: 'Molecules/SelectField',

@@ -11,7 +11,11 @@ export type TProps = {
   children?: ReactNode | ReactNode[];
 };
 
-const VerificationAccountTemplate = ({ Image, children, heading }: TProps) => {
+export const VerificationAccountTemplate = ({
+  Image,
+  children,
+  heading,
+}: TProps) => {
   return (
     <Wrapper>
       <Image />
@@ -20,5 +24,3 @@ const VerificationAccountTemplate = ({ Image, children, heading }: TProps) => {
     </Wrapper>
   );
 };
-
-export default VerificationAccountTemplate;

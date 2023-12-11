@@ -1,14 +1,11 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
-import { Avatar } from '../../atoms/Avatar/Avatar';
-import Typography from '../../atoms/Typography/Typography';
-import Button from '../../atoms/Button/Button';
+import { CardWrapper, Typography, Avatar, Button } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import {
   ButtonWrapper,
   ContentWrapper,
   HeaderWrapper,
-} from '../../organisms/FindGroupForm/FindGroupForm.styles';
+} from '../../organisms/FindGroupForm/FindGroupForm.styles'; // TODO use custom style no export from organisms
 import { FoundedGroupType } from '../../../models/resources/foundedGroupType';
 
 type TProps = {
@@ -46,5 +43,3 @@ export const FoundedGroup = (props: TProps) => {
     </CardWrapper>
   );
 };
-
-export default FoundedGroup;

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import AddNoteForm from './AddNoteForm';
+import { AddNoteForm } from './AddNoteForm';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

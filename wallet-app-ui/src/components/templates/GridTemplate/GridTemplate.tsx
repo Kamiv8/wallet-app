@@ -5,8 +5,6 @@ type TProps = {
   children: ReactNode | ReactNode[];
 };
 
-const GridTemplate = (props: TProps) => {
+export const GridTemplate = (props: TProps) => {
   return <Wrapper>{props.children}</Wrapper>;
 };
-
-export default GridTemplate;

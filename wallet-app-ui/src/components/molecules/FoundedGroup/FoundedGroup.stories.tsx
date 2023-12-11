@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import FoundedGroup from './FoundedGroup';
+import { FoundedGroup } from './FoundedGroup';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

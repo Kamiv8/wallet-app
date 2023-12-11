@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WalletApp.Domain.Entities;
 
-namespace WalletApp.Persistence.Configurations;
+namespace WalletApp.Persistance.Configurations;
 
 public class GroupConfiguration : IEntityTypeConfiguration<Group>
 {
@@ -15,7 +15,10 @@ public class GroupConfiguration : IEntityTypeConfiguration<Group>
             .HasPrecision(15, 2);
 
         builder.HasMany(x => x.Members).WithOne(x => x.Group).HasForeignKey(x => x.GroupId);
-        builder.HasMany(x => x.Transactions).WithOne(x => x.Group).HasForeignKey(x => x.GroupId).IsRequired(false);
+        builder.HasMany(x => x.Transactions).WithOne(x => x.Group).HasForeignKey(x => x.GroupId)
+            .IsRequired(false);
+        builder.HasMany(x => x.DefaultTransactions).WithOne(x => x.Group)
+            .HasForeignKey(x => x.GroupId).IsRequired(false);
         builder.HasMany(x => x.Categories).WithOne(x => x.Group).HasForeignKey(x => x.GroupId);
         builder.HasMany(x => x.Notes).WithOne(x => x.Group).HasForeignKey(x => x.GroupId);
         builder.HasMany(x => x.Notifications).WithOne(x => x.Group).HasForeignKey(x => x.GuidId);

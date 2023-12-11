@@ -1,8 +1,7 @@
-import Checkbox from '../../atoms/Checkbox/Checkbox';
 import { ChangeEvent } from 'react';
 import { TColor, TFormattedMessage } from '../../../types/types';
 import { Wrapper } from './CheckboxField.styles';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography, Checkbox } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 
 export type TProps = {
@@ -12,7 +11,7 @@ export type TProps = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const CheckboxField = (props: TProps) => {
+export const CheckboxField = (props: TProps) => {
   return (
     <Wrapper>
       <Checkbox {...props} />
@@ -24,4 +23,3 @@ const CheckboxField = (props: TProps) => {
     </Wrapper>
   );
 };
-export default CheckboxField;

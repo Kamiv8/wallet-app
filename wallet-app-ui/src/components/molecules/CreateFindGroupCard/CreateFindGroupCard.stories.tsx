@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import CreateFindGroupCard from './CreateFindGroupCard';
+import { CreateFindGroupCard } from './CreateFindGroupCard';
 
 export default {
   title: 'Molecules/CreateFindGroupCard',

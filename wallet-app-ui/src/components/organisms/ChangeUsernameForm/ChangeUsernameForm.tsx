@@ -1,15 +1,14 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
-import InputField from '../../molecules/InputField/InputField';
+import { CardWrapper, Button } from '../../atoms';
+import { InputField } from '../../molecules';
 import { ButtonWrapper, Wrapper } from './ChangeUsernameForm.styles';
 import messages from '../../../i18n/messages';
-import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import useForm from '../../../hooks/useForm';
-import { UserApi } from '../../../api/user.api';
+import { UserApi } from '../../../api';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 
-const ChangeUsernameForm = () => {
+export const ChangeUsernameForm = () => {
   const navigate = useNavigate();
   const initialValues = {
     newUsername: '',
@@ -29,7 +28,7 @@ const ChangeUsernameForm = () => {
           label={{ ...messages.changeUsernameFormUsername }}
           variant={'dark'}
           name={'username'}
-          onChange={(e) => handleChange(e, 'newUsername')}
+          onChange={(e: any) => handleChange(e, 'newUsername')}
         />
         <ButtonWrapper>
           <Button color={'darkBlue'} type={'button'} onClick={handleSubmit}>
@@ -40,5 +39,3 @@ const ChangeUsernameForm = () => {
     </CardWrapper>
   );
 };
-
-export default ChangeUsernameForm;

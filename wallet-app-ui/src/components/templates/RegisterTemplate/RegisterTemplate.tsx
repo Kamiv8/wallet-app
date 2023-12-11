@@ -12,7 +12,7 @@ type TProps = {
   Form: ReactElement;
 };
 
-const RegisterTemplate = ({ Image, Heading, Form }: TProps) => (
+export const RegisterTemplate = ({ Image, Heading, Form }: TProps) => (
   <Wrapper>
     <ImageElement>
       <Image />
@@ -21,5 +21,3 @@ const RegisterTemplate = ({ Image, Heading, Form }: TProps) => (
     <FormElement>{Form}</FormElement>
   </Wrapper>
 );
-
-export default RegisterTemplate;

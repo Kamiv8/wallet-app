@@ -1,11 +1,9 @@
 ﻿using System.Reflection;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WalletApp.Application.Interfaces;
 using WalletApp.Domain.Common;
 using WalletApp.Domain.Entities;
-using WalletApp.Persistence;
 
 namespace WalletApp.Persistance;
 
@@ -24,6 +22,7 @@ public class WalletDbContext : IdentityDbContext<UserIdentity, RoleIdentity, Gui
     public DbSet<Note> Notes { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<DefaultTransaction> DefaultTransactions { get; set; }
     public DbSet<Member> Members { get; set; }
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<NotificationTypeDictionary> NotificationTypeDictionaries { get; set; }

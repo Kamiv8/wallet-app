@@ -8,7 +8,7 @@ export type TProps = {
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-const TextArea = (props: TProps) => {
+export const TextArea = (props: TProps) => {
   return (
     <StyledTextArea
       color={props.color}
@@ -18,5 +18,3 @@ const TextArea = (props: TProps) => {
     />
   );
 };
-
-export default TextArea;

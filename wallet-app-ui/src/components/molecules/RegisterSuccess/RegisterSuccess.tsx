@@ -1,12 +1,12 @@
 import { Wrapper } from './RegisterSuccess.styles';
 import { ReactComponent as MailIcon } from '../../../assets/images/sentMail.svg';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography } from '../../atoms';
 
 export type TProps = {
   text: string;
 };
 
-const RegisterSuccess = (props: TProps) => {
+export const RegisterSuccess = (props: TProps) => {
   return (
     <Wrapper>
       <MailIcon />
@@ -19,5 +19,3 @@ const RegisterSuccess = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default RegisterSuccess;

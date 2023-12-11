@@ -1,22 +1,21 @@
 import useForm from '../../../hooks/useForm';
-import InputField from '../../molecules/InputField/InputField';
+import { InputField } from '../../molecules';
 import messages from '../../../i18n/messages';
 import { FormattedMessage } from 'react-intl';
-import Button from '../../atoms/Button/Button';
+import { Button } from '../../atoms';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { ButtonsWrapper, LastButton } from './ResetPassword.styles';
-import { AuthApi } from '../../../api/auth.api';
+import { AuthApi } from '../../../api';
 
-const ResetPasswordForm = () => {
+export const ResetPasswordForm = () => {
   const navigate = useNavigate();
   const initialValues = {
     email: '',
   };
 
-  const { handleChange, values, isDisabled } =
-    useForm<typeof initialValues>(initialValues);
+  const { handleChange, values } = useForm<typeof initialValues>(initialValues);
 
   const onSubmit = useCallback(async () => {
     await AuthApi.resetPassword(values);
@@ -39,12 +38,10 @@ const ResetPasswordForm = () => {
         <Button type={'button'} onClick={onCancel}>
           <FormattedMessage {...messages.resetPasswordPageCancel} />
         </Button>
-        <LastButton type={'button'} onClick={onSubmit} disabled={isDisabled}>
+        <LastButton type={'button'} onClick={onSubmit}>
           <FormattedMessage {...messages.resetPasswordPageSent} />
         </LastButton>
       </ButtonsWrapper>
     </div>
   );
 };
-
-export default ResetPasswordForm;

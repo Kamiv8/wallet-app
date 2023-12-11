@@ -12,7 +12,7 @@ export type TProps = {
   close?: () => void;
 };
 
-const CardWrapper = (props: TProps) => {
+export const CardWrapper = (props: TProps) => {
   return (
     <StyledWrapper color={props.color} gradientColor={props.gradientColor}>
       {props.close && (
@@ -25,5 +25,3 @@ const CardWrapper = (props: TProps) => {
     </StyledWrapper>
   );
 };
-
-export default CardWrapper;

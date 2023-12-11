@@ -1,10 +1,10 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import AddNoteForm from '../../organisms/AddNoteForm/AddNoteForm';
+import { AddNoteForm } from '../../organisms';
 
-const AddNotePage = () => {
+export const AddNotePage = () => {
   return (
     <MainTemplate>
       <Typography size={'xxl'} weight={700} color={'lightBlue'} uppercase>
@@ -14,5 +14,3 @@ const AddNotePage = () => {
     </MainTemplate>
   );
 };
-
-export default AddNotePage;

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import CheckboxField from './CheckboxField';
+import { CheckboxField } from './CheckboxField';
 
 export default {
   title: 'Molecules/CheckboxField',

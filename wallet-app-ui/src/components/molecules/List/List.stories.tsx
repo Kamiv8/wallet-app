@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import List from './List';
+import { List } from './List';
 import messages from '../../../i18n/messages';
 
 export default {

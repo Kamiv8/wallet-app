@@ -16,7 +16,7 @@ export type TProps = {
   onChange?: any;
 };
 
-const Select = (props: TProps) => {
+export const Select = (props: TProps) => {
   const [selected, setSelected] = useState<TSelectItem>({
     key: '',
     description: (props.name as string) || '',
@@ -78,5 +78,3 @@ const Select = (props: TProps) => {
     </>
   );
 };
-
-export default Select;

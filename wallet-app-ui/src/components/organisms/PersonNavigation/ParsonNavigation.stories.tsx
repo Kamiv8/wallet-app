@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import PersonNavigation from './PersonNavigation';
+import { PersonNavigation } from './PersonNavigation';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

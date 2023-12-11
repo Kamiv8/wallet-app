@@ -14,7 +14,7 @@ export type TProps = {
   type: ModalEnum;
 };
 
-const BlurBackgroundTemplate = (props: TProps) => {
+export const BlurBackgroundTemplate = (props: TProps) => {
   return (
     <Portal
       children={
@@ -34,5 +34,3 @@ const BlurBackgroundTemplate = (props: TProps) => {
     />
   );
 };
-
-export default BlurBackgroundTemplate;

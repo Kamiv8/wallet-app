@@ -10,4 +10,5 @@ public class Currency : BaseEntity
     public decimal Ask { get; set; }
     public DateTime TradingDate { get; set; }
     public ICollection<Transaction> Transactions { get; set; } = default!;
+    public ICollection<DefaultTransaction> DefaultTransactions { get; set; } = default!;
 }

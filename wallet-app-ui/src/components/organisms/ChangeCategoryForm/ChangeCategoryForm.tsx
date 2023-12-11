@@ -1,4 +1,4 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
+import { CardWrapper, Button, Typography } from '../../atoms';
 import {
   ButtonWrapper,
   EmptyArrayWrapper,
@@ -7,19 +7,16 @@ import {
 } from './ChangeCategoryForm.styles';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
-import InputField from '../../molecules/InputField/InputField';
+import { InputField, List } from '../../molecules';
 import messages from '../../../i18n/messages';
-import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
-import List from '../../molecules/List/List';
-import { CategoryApi } from '../../../api/category.api';
+import { CategoryApi } from '../../../api';
 import { useContext, useEffect, useState } from 'react';
 import useForm from '../../../hooks/useForm';
-import Typography from '../../atoms/Typography/Typography';
 import ApplicationContext from '../../../contexts/application.context';
 import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
 
-const ChangeCategoryForm = () => {
+export const ChangeCategoryForm = () => {
   const appContext = useContext(ApplicationContext);
   const navigate = useNavigate();
   const [state, setState] = useState([]);
@@ -89,5 +86,3 @@ const ChangeCategoryForm = () => {
     </CardWrapper>
   );
 };
-
-export default ChangeCategoryForm;

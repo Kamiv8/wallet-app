@@ -8,8 +8,6 @@ export type TProps = {
   defaultValue?: string;
 };
 
-const ColorPicker = (props: TProps) => {
+export const ColorPicker = (props: TProps) => {
   return <StyledInput value={props.defaultValue} {...props} type={'color'} />;
 };
-
-export default ColorPicker;

@@ -1,4 +1,4 @@
-import RegisterPage from './RegisterPage';
+import { RegisterPage } from './RegisterPage';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {

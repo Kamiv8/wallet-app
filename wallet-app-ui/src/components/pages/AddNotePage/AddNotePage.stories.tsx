@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import AddNotePage from './AddNotePage';
+import { AddNotePage } from './AddNotePage';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

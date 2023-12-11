@@ -1,8 +1,8 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
-import ChangeUserPasswordForm from '../../organisms/ChangeUserPasswordForm/ChangeUserPasswordForm';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { ChangeUserPasswordForm } from '../../organisms';
 
-const ChangeUserPasswordPage = () => {
+export const ChangeUserPasswordPage = () => {
   return (
     <MainTemplate>
       <Typography size={'xxl'} weight={700} color={'lightBlue'}>
@@ -12,5 +12,3 @@ const ChangeUserPasswordPage = () => {
     </MainTemplate>
   );
 };
-
-export default ChangeUserPasswordPage;

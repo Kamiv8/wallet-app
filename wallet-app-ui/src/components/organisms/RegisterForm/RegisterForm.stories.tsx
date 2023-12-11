@@ -1,4 +1,4 @@
-import RegisterForm from './RegisterForm';
+import { RegisterForm } from './RegisterForm';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 

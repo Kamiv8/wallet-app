@@ -1,11 +1,11 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import SavedTransaction from '../../molecules/SavedTransaction/SavedTransaction';
-import Typography from '../../atoms/Typography/Typography';
+import { MainTemplate } from '../../templates';
+import { SavedTransaction } from '../../molecules';
+import { Typography } from '../../atoms';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Transaction } from '../../../models/resources/transaction';
-import AddTransactionForm from '../../organisms/AddTransactionForm/AddTransactionForm';
-import { TransactionApi } from '../../../api/transaction.api';
+import { AddTransactionForm } from '../../organisms';
+import { TransactionApi } from '../../../api';
 import ApplicationContext from '../../../contexts/application.context';
 import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
 
@@ -14,7 +14,7 @@ type TState = {
   isNew: boolean;
 };
 
-const AddTransactionPage = () => {
+export const AddTransactionPage = () => {
   const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<TState>({
     transactions: [],
@@ -102,5 +102,3 @@ const AddTransactionPage = () => {
     </MainTemplate>
   );
 };
-
-export default AddTransactionPage;

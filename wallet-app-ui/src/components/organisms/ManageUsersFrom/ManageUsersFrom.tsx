@@ -1,11 +1,9 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
+import { CardWrapper, Button } from '../../atoms';
 import messages from '../../../i18n/messages';
-import SelectField from '../../molecules/SelectField/SelectField';
-import List from '../../molecules/List/List';
-import Button from '../../atoms/Button/Button';
+import { SelectField, List } from '../../molecules';
 import { FormattedMessage } from 'react-intl';
 import { ButtonWrapper } from './ManageUsersForm.styles';
-import { GroupApi } from '../../../api/group.api';
+import { GroupApi } from '../../../api';
 import { useEffect, useState } from 'react';
 import { TSelectItem } from '../../atoms/Select/Select';
 import { RoleEnum } from '../../../types/enums/role.enum';
@@ -21,7 +19,7 @@ const roles: TSelectItem[] = [
   },
 ];
 
-const ManageUsersFrom = () => {
+export const ManageUsersFrom = () => {
   const [state, setState] = useState({
     users: [],
   });
@@ -75,5 +73,3 @@ const ManageUsersFrom = () => {
     </>
   );
 };
-
-export default ManageUsersFrom;

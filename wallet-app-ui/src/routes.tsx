@@ -4,48 +4,38 @@ import {
   Route,
   Routes as RoutesWrapper,
 } from 'react-router-dom';
-import RegisterPage from './components/pages/RegisterPage/RegisterPage';
-import HomePage from './components/pages/HomePage/HomePage';
-import VerificationSuccessfulPage from './components/pages/VerificationSuccessfulPage/VerificationSuccessfulPage';
-import LoginPage from './components/pages/LoginPage/LoginPage';
 import { GroupRoutesName, RoutesName } from './const/routesName';
-import ResetPasswordPage from './components/pages/ResetPasswordPage/ResetPasswordPage';
-import AddTransactionPage from './components/pages/AddTransactionPage/AddTransactionPage';
-import HistoryPage from './components/pages/HistoryPage/HistoryPage';
-import FindGroupPage from './components/pages/FindGroupPage/FindGroupPage';
-import HistoryDetailsPage from './components/pages/HistoryDetailsPage/HistoryDetailsPage';
-import jwtDecode from 'jwt-decode';
-import SettingsPage from './components/pages/SettingsPage/SettingsPage';
-import GroupPage from './components/pages/GroupPage/GroupPage';
-import ChangeCurrencyPage from './components/pages/ChangeCurrencyPage/ChangeCurrencyPage';
-import ChangeLanguagePage from './components/pages/ChangeLanguagePage/ChangeLanguagePage';
-import ChangeUserIconPage from './components/pages/ChangeUserIconPage/ChangeUserIconPage';
-import ChangeUsernamePage from './components/pages/ChangeUsernamePage/ChangeUsernamePage';
-import ChangeUserPasswordPage from './components/pages/ChangeUserPasswordPage/ChangeUserPasswordPage';
-import ChangeCategoryPage from './components/pages/ChangeCategoryPage/ChangeCategoryPage';
-import TablePage from './components/pages/TablePage/TablePage';
-import NoteDetailsPage from './components/pages/NoteDetailsPage/NoteDetailsPage';
-import AddNotePage from './components/pages/AddNotePage/AddNotePage';
-import GroupHomePage from './components/pages/groupPages/GroupHomePage/GroupHomePage';
-import NotificationPanelPage from './components/pages/groupPages/NotificationPanel/NotificationPanelPage';
-import CreateGroupPage from './components/pages/CreateGroupPage/CreateGroupPage';
-import GroupSettingsPage from './components/pages/groupPages/GroupSettingsPage/GroupSettingsPage';
-import { ManageUsersPage } from './components/pages/groupPages/ManageUsersPage/ManageUsersPage';
-
-const GuardedRoute = () => {
-  const token = localStorage.getItem('token');
-  const now = new Date();
-  if (!token) {
-    return <Navigate to={RoutesName.LOGIN} />;
-  }
-  const decodedToken = jwtDecode(token) as any;
-
-  if (decodedToken.exp * 1000 < now.getTime()) {
-    return <Navigate to={RoutesName.LOGIN} />;
-  }
-
-  return <Outlet />;
-};
+import GuardedRoute from './GuardedRoute';
+import {
+  AddNotePage,
+  AddTransactionPage,
+  ChangeCategoryPage,
+  ChangeCurrencyPage,
+  ChangeForgotPasswordPage,
+  ChangeLanguagePage,
+  ChangeUserIconPage,
+  ChangeUsernamePage,
+  ChangeUserPasswordPage,
+  CreateGroupPage,
+  FindGroupPage,
+  GroupPage,
+  HistoryDetailsPage,
+  HistoryPage,
+  HomePage,
+  LoginPage,
+  NoteDetailsPage,
+  RegisterPage,
+  ResetPasswordPage,
+  SettingsPage,
+  TablePage,
+  VerificationSuccessfulPage,
+} from './components/pages';
+import {
+  GroupHomePage,
+  GroupSettingsPage,
+  ManageUsersPage,
+  NotificationPanelPage,
+} from './components/pages/groupPages';
 
 const GroupRoute = () => {
   const userGroup = localStorage.getItem('groupId');
@@ -62,6 +52,11 @@ export const Routes = () => (
       path={RoutesName.VERIFY + '/:email' + '/:id'}
       element={<VerificationSuccessfulPage />}
     />
+    <Route
+      path={RoutesName.RESET_PASSWORD + '/:email' + '/:token'}
+      element={<ChangeForgotPasswordPage />}
+    />
+
     <Route path={RoutesName.RESET_PASSWORD} element={<ResetPasswordPage />} />
     <Route element={<GuardedRoute />}>
       <Route path={RoutesName.ROOT} element={<HomePage />} />

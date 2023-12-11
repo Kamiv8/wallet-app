@@ -1,21 +1,18 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
+import { CardWrapper, Button } from '../../atoms';
 import { FormWrapper } from './AddNoteForm.styles';
-import InputField from '../../molecules/InputField/InputField';
-import TextAreaField from '../../molecules/TextAreaField/TextAreaField';
-import ColorPickerField from '../../molecules/ColorPickerField/ColorPickerField';
+import { InputField, TextAreaField, ColorPickerField } from '../../molecules';
 import messages from '../../../i18n/messages';
 import useForm from '../../../hooks/useForm';
-import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
-import { TableApi } from '../../../api/table.api';
+import { TableApi } from '../../../api';
 import { RoutesName } from '../../../const/routesName';
 import { colorPicker } from '../../../const/colorPicker';
 import { useContext } from 'react';
 import ApplicationContext from '../../../contexts/application.context';
 import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
 
-const AddNoteForm = () => {
+export const AddNoteForm = () => {
   const appContext = useContext(ApplicationContext);
   const navigate = useNavigate();
   const initialValues = {
@@ -73,5 +70,3 @@ const AddNoteForm = () => {
     </CardWrapper>
   );
 };
-
-export default AddNoteForm;

@@ -1,5 +1,5 @@
 import { FunctionComponent, SVGProps } from 'react';
-import { Typography } from '../../atoms/Typography/Typography';
+import { Typography } from '../../atoms';
 import {
   ImageContainer,
   StyledLink,
@@ -16,7 +16,7 @@ export type TProps = {
   action?: () => void;
 };
 
-const NavigationBox = ({
+export const NavigationBox = ({
   Image,
   name,
   notificationsNumber,
@@ -39,5 +39,3 @@ const NavigationBox = ({
     </StyledLink>
   );
 };
-
-export default NavigationBox;

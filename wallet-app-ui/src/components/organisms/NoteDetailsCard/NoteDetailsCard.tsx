@@ -1,5 +1,4 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
-import Typography from '../../atoms/Typography/Typography';
+import { CardWrapper, Typography } from '../../atoms';
 import {
   ButtonWrapper,
   Li,
@@ -20,7 +19,7 @@ type TProps = {
   doneNote: () => void;
 };
 
-const NoteDetailsCard = (props: TProps) => {
+export const NoteDetailsCard = (props: TProps) => {
   const navigate = useNavigate();
   return (
     <>
@@ -52,5 +51,3 @@ const NoteDetailsCard = (props: TProps) => {
     </>
   );
 };
-
-export default NoteDetailsCard;

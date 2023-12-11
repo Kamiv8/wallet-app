@@ -1,8 +1,8 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
-import ChangeUserIconForm from '../../organisms/ChangeUserIconFrom/ChangeUserIconForm';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { ChangeUserIconForm } from '../../organisms';
 
-const ChangeUserIconPage = () => {
+export const ChangeUserIconPage = () => {
   return (
     <MainTemplate>
       <Typography size={'xxl'} weight={700} color={'lightBlue'}>
@@ -12,5 +12,3 @@ const ChangeUserIconPage = () => {
     </MainTemplate>
   );
 };
-
-export default ChangeUserIconPage;

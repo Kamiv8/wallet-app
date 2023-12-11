@@ -1,11 +1,10 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
+import { CardWrapper, Button } from '../../atoms';
 import { ButtonWrapper, Wrapper } from './ChangeLanguageForm.styles';
-import SelectField from '../../molecules/SelectField/SelectField';
+import { SelectField } from '../../molecules';
 import messages from '../../../i18n/messages';
 import { useContext } from 'react';
 import { ActionEnum } from '../../../contexts/application.reducer';
 import { Languages } from '../../../i18n/intlUtils';
-import Button from '../../atoms/Button/Button';
 import applicationContext from '../../../contexts/application.context';
 import useForm from '../../../hooks/useForm';
 import { TSelectItem } from '../../atoms/Select/Select';
@@ -23,7 +22,7 @@ const languages: TSelectItem[] = [
     description: 'English',
   },
 ];
-const ChangeLanguageForm = () => {
+export const ChangeLanguageForm = () => {
   const appContext = useContext(applicationContext);
   const navigate = useNavigate();
   const initialValue = {
@@ -58,5 +57,3 @@ const ChangeLanguageForm = () => {
     </CardWrapper>
   );
 };
-
-export default ChangeLanguageForm;

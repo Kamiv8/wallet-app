@@ -1,5 +1,5 @@
 import { Li, ListWrapper, TitleWrapper, Ul, Wrapper } from './TableCard.styles';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography } from '../../atoms';
 
 type TProps = {
   backgroundColor: string;
@@ -9,7 +9,7 @@ type TProps = {
   onClick: () => void;
 };
 
-const TableCard = (props: TProps) => {
+export const TableCard = (props: TProps) => {
   return (
     <Wrapper onClick={props.onClick} backgroundColor={props.backgroundColor}>
       <TitleWrapper>
@@ -31,5 +31,3 @@ const TableCard = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default TableCard;

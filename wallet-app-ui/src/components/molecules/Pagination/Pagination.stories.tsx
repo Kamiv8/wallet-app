@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Pagination from './Pagination';
+import { Pagination } from './Pagination';
 
 export default {
   title: 'Molecules/Pagination',

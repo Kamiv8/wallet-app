@@ -8,7 +8,7 @@ import {
   UserDataWrapper,
   Wrapper,
 } from './NavigationTemplate.styles';
-import Typography from '../../atoms/Typography/Typography';
+import { Typography } from '../../atoms';
 
 export type TProps = {
   title: ReactNode;
@@ -20,7 +20,7 @@ export type TProps = {
   hasGroup?: boolean;
 };
 
-const NavigationTemplate = (props: TProps) => {
+export const NavigationTemplate = (props: TProps) => {
   return (
     <Wrapper>
       <Header>
@@ -50,5 +50,3 @@ const NavigationTemplate = (props: TProps) => {
     </Wrapper>
   );
 };
-
-export default NavigationTemplate;

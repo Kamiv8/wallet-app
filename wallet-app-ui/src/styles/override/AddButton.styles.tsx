@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../components/atoms/Button/Button';
+import { Button } from '../../components/atoms';
 
 export const StyledButton = styled(Button)`
   position: fixed;

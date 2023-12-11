@@ -1,6 +1,6 @@
 using MediatR;
-using WalletApp.Application.Common;
+using WalletApp.Application.Abstractions.Messaging;
 
-namespace WalletApp.Application.Account.GetAccountData;
+namespace WalletApp.Application.Common.Account.GetAccountData;
 
-public sealed record GetAccountDataQuery : IRequest<ApiResult<GetAccountDataDto>>;
+public sealed record GetAccountDataQuery(Guid UserId) : IQuery<GetAccountDataResponseDto>;

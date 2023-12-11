@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import ChangeCategoryForm from './ChangeCategoryForm';
+import { ChangeCategoryForm } from './ChangeCategoryForm';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

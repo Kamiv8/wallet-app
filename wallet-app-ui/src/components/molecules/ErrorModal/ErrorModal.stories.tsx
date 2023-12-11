@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import ErrorModal from './ErrorModal';
+import { ErrorModal } from './ErrorModal';
 
 export default {
   title: 'Molecules/ErrorModal',

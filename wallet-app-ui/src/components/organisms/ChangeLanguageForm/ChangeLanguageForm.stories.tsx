@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import ChangeLanguageForm from './ChangeLanguageForm';
+import { ChangeLanguageForm } from './ChangeLanguageForm';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {

@@ -1,0 +1,3 @@
+namespace WalletApp.Application.Common.DefaultTransaction.DeleteDefaultUserTransaction;
+
+public sealed record DeleteDefaultUserTransactionDto(Guid TransactionId);

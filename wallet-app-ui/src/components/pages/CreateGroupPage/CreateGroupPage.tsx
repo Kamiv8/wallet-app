@@ -1,8 +1,8 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import CreateGroupForm from '../../organisms/CreateGroupFrom/CreateGroupForm';
-import Typography from '../../atoms/Typography/Typography';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { CreateGroupForm } from '../../organisms';
 
-const CreateGroupPage = () => {
+export const CreateGroupPage = () => {
   return (
     <MainTemplate>
       <Typography size={'xl'} color={'lightBlue'} weight={700} uppercase>
@@ -12,5 +12,3 @@ const CreateGroupPage = () => {
     </MainTemplate>
   );
 };
-
-export default CreateGroupPage;

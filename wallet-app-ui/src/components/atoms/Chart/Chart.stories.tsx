@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Chart from './Chart';
+import { Chart } from './Chart';
 import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
 
 export default {

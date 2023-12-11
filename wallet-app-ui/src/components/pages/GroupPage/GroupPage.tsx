@@ -1,14 +1,14 @@
 import { ReactComponent as GroupIcon } from '../../../assets/images/groupImage.svg';
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import { Wrapper } from './GroupPage.styles';
-import CreateFindGroupCard from '../../molecules/CreateFindGroupCard/CreateFindGroupCard';
-import Typography from '../../atoms/Typography/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { CreateFindGroupCard } from '../../molecules';
 
-const GroupPage = () => {
+export const GroupPage = () => {
   const navigate = useNavigate();
   return (
     <MainTemplate>
@@ -37,5 +37,3 @@ const GroupPage = () => {
     </MainTemplate>
   );
 };
-
-export default GroupPage;

@@ -1,8 +1,8 @@
-import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import Typography from '../../atoms/Typography/Typography';
-import ChangeLanguageForm from '../../organisms/ChangeLanguageForm/ChangeLanguageForm';
+import { MainTemplate } from '../../templates';
+import { Typography } from '../../atoms';
+import { ChangeLanguageForm } from '../../organisms';
 
-const ChangeLanguagePage = () => {
+export const ChangeLanguagePage = () => {
   return (
     <MainTemplate>
       <Typography size={'xxl'} weight={700}>
@@ -12,5 +12,3 @@ const ChangeLanguagePage = () => {
     </MainTemplate>
   );
 };
-
-export default ChangeLanguagePage;

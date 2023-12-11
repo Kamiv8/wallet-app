@@ -1,20 +1,19 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
+import { CardWrapper, Button } from '../../atoms';
 import { FormWrapper } from './FindGroupForm.styles';
-import InputField from '../../molecules/InputField/InputField';
+import { InputField } from '../../molecules';
 import messages from '../../../i18n/messages';
-import Button from '../../atoms/Button/Button';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import useForm from '../../../hooks/useForm';
-import { GroupApi } from '../../../api/group.api';
+import { GroupApi } from '../../../api';
 import { ApiStatus } from '../../../models/apiResult';
 
 type TProps = {
   foundedGroup: (data: any) => void;
 };
 
-const FindGroupForm = (props: TProps) => {
+export const FindGroupForm = (props: TProps) => {
   const navigate = useNavigate();
 
   const initialValues = {
@@ -49,5 +48,3 @@ const FindGroupForm = (props: TProps) => {
     </CardWrapper>
   );
 };
-
-export default FindGroupForm;

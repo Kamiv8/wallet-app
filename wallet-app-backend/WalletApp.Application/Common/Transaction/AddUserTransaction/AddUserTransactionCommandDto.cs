@@ -7,6 +7,7 @@ public sealed record AddUserTransactionCommandDto(
     Guid CategoryId,
     DateTime Date,
     bool IsDefault,
+    string? Description,
     string? TextColor,
     string? BackgroundColor
 );

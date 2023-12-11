@@ -1,6 +1,4 @@
-import CardWrapper from '../../atoms/CardWrapper/CardWrapper';
-import Typography from '../../atoms/Typography/Typography';
-import { Avatar } from '../../atoms/Avatar/Avatar';
+import { Avatar, Typography, CardWrapper } from '../../atoms';
 import { ReactComponent as AcceptIcon } from '../../../assets/images/doneTask.svg';
 import { ReactComponent as RejectIcon } from '../../../assets/images/close.svg';
 import {
@@ -20,7 +18,7 @@ type TProps = {
   reject: (userId: string, notificationId: string) => void;
 };
 
-const JoinUserNotificationCard = (props: TProps) => {
+export const JoinUserNotificationCard = (props: TProps) => {
   return (
     <CardWrapper gradientColor>
       <Wrapper>
@@ -50,5 +48,3 @@ const JoinUserNotificationCard = (props: TProps) => {
     </CardWrapper>
   );
 };
-
-export default JoinUserNotificationCard;

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using WalletApp.Application.Dtos;
 using WalletApp.Application.Interfaces;
 using WalletApp.Domain.Entities;
@@ -44,6 +45,14 @@ public class AppUserManager : IUserManager
         return await _userManager.FindByIdAsync(userId);
     }
 
+    public async Task<UserIdentity?> FindUserAndDataByIdAsync(Guid userId)
+    {
+        return await _userManager.Users
+            .Include(x => x.AccountData)
+            .Include(x => x.Member)
+            .FirstOrDefaultAsync(x => x.Id == userId);
+    }
+
     public async Task UpdateAsync(UserIdentity userIdentity)
     {
         await _userManager.UpdateAsync(userIdentity);
@@ -62,14 +71,14 @@ public class AppUserManager : IUserManager
     public async Task<AppIdentityResult> ResetPasswordAsync(UserIdentity userIdentity, string token,
         string password)
     {
-        return CreateIdentityResponse(await _userManager.ResetPasswordAsync(userIdentity, token, password));
+        return CreateIdentityResponse(
+            await _userManager.ResetPasswordAsync(userIdentity, token, password));
     }
-    
-    
+
+
     private static AppIdentityResult CreateIdentityResponse(IdentityResult result)
     {
         var errors = result.Errors.Select(x => new AppIdentityError(x.Code, x.Description));
         return new AppIdentityResult { Succeeded = result.Succeeded, Errors = errors };
     }
-    
 }
