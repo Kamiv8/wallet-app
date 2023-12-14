@@ -9,7 +9,7 @@ public class Transaction : BaseEntity
     public DateTime Date { get; set; }
     public string? Description { get; set; }
     public bool IsDefault { get; set; }
-    public Guid DefaultTransactionId { get; set; }
+    public Guid? DefaultTransactionId { get; set; }
     public virtual DefaultTransaction DefaultTransaction { get; set; } = default!;
     public Guid UserIdentityId { get; set; }
     public virtual UserIdentity UserIdentity { get; set; } = default!;

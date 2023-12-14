@@ -8,7 +8,7 @@ import AvatarG3 from '../../../assets/images/avatars/AvatarG-3.svg';
 import AvatarG4 from '../../../assets/images/avatars/AvatarG-4.svg';
 import { useCallback } from 'react';
 import { TSelectedIcon } from '../../organisms/RegisterForm/RegisterForm';
-import { FieldType } from '../../../hooks/useForm';
+import { FieldType } from '../../../hooks';
 import { Avatar } from '../../atoms';
 import { StyledWrapper } from './AvatarPicker.styles';
 

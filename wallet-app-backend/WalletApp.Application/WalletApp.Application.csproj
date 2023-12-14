@@ -29,7 +29,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Common\Transaction\AddUserTransactionFromDefault\" />
       <Folder Include="Mapper\" />
     </ItemGroup>
 

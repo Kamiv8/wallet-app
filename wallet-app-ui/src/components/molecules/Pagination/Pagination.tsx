@@ -10,36 +10,45 @@ import {
 } from '../../../helpers/pagination.helper';
 
 export type TProps = {
-  pagination: any;
+  setPage: (pageIndex: number) => void;
+  setPreviousPage: () => void;
+  setNextPage: () => void;
+  totalPages: number;
+  currentPage: number;
+  hasNext: boolean;
+  hasPrevious: boolean;
 };
 
-export const Pagination = ({ pagination }: TProps) => {
+export const Pagination = ({
+  setPage,
+  totalPages,
+  setPreviousPage,
+  setNextPage,
+  currentPage,
+}: TProps) => {
   return (
     <Wrapper>
       <StyledSVGWrapper>
-        <FirstPageIcon onClick={() => pagination.setPage(1)} />
+        <FirstPageIcon onClick={() => setPage(1)} />
       </StyledSVGWrapper>
       <StyledSVGWrapper>
-        <PreviousPageIcon onClick={() => pagination.setPreviousPage()} />
+        <PreviousPageIcon onClick={() => setPreviousPage()} />
       </StyledSVGWrapper>
-      {displayFivePages(
-        generatePageButtons(pagination.totalPages),
-        pagination.currentPage,
-      ).map((p) => (
-        <PaginationItem
-          key={p}
-          index={p}
-          isCurrent={pagination.currentPage}
-          onClick={pagination.setPage}
-        />
-      ))}
+      {displayFivePages(generatePageButtons(totalPages), currentPage).map(
+        (p) => (
+          <PaginationItem
+            key={p}
+            index={p}
+            isCurrent={currentPage - 1}
+            onClick={() => setPage(p + 1)}
+          />
+        ),
+      )}
       <StyledSVGWrapper>
-        <NextPageIcon onClick={() => pagination.setNextPage()} />
+        <NextPageIcon onClick={() => setNextPage()} />
       </StyledSVGWrapper>
       <StyledSVGWrapper>
-        <LastPageIcon
-          onClick={() => pagination.setPage(pagination.totalPages + 1)}
-        />
+        <LastPageIcon onClick={() => setPage(totalPages + 1)} />
       </StyledSVGWrapper>
     </Wrapper>
   );

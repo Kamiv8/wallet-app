@@ -2,7 +2,7 @@ import { InputField, AvatarPicker } from '../../molecules';
 import messages from '../../../i18n/messages';
 import { Typography, Button } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
-import useForm from '../../../hooks/useForm';
+import { useForm, useModalAction } from '../../../hooks';
 import {
   StyledButtonWrapper,
   StyledFormItem,
@@ -13,7 +13,6 @@ import { StyledLink } from '../../../styles/override/Link.styles';
 import { RoutesName } from '../../../const/routesName';
 import { AuthApi } from '../../../api';
 import { ApiStatus } from '../../../models/apiResult';
-import { useModalAction } from '../../../hooks/useModalAction';
 import { TRegisterForm } from '../../../models/apiTypes/account/register/register.form';
 import { registerSchema } from '../../../validators/account/register.validator';
 
@@ -34,6 +33,8 @@ export const RegisterForm = () => {
 
   const { values, handleChange, onSubmit, getValidationMessage, resetForm } =
     useForm<TRegisterForm>(initialValues, registerSchema);
+
+  console.log(values);
 
   const onSubmitEvent = async () => {
     const result = await onSubmit<null>(AuthApi.register);

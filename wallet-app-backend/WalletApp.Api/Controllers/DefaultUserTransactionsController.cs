@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
 using WalletApp.Application.Common.DefaultTransaction.DeleteDefaultUserTransaction;
@@ -8,6 +9,8 @@ using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Controllers;
 
+[Authorize]
+[Route("/api/[controller]")]
 public class DefaultUserTransactionsController : BaseController
 {
     private readonly IMediator _mediator;
@@ -19,7 +22,7 @@ public class DefaultUserTransactionsController : BaseController
         _userService = userService;
     }
 
-    [HttpGet("userDefaultTransactions")]
+    [HttpGet]
     public async
         Task<ActionResult<ApiResult<IReadOnlyCollection<GetDefaultUserTransactionResponseDto>>>>
         GetDefaultUserTransactions(CancellationToken cancellationToken)
@@ -29,7 +32,7 @@ public class DefaultUserTransactionsController : BaseController
         return CreateResponse(res);
     }
 
-    [HttpPut("editUserTransaction")]
+    [HttpPut]
     public async Task<ActionResult<ApiResult>> EditDefaultUserTransaction(
         [FromBody] EditDefaultUserTransactionDto dto, CancellationToken cancellationToken)
     {
@@ -39,7 +42,7 @@ public class DefaultUserTransactionsController : BaseController
         return CreateResponse(res);
     }
 
-    [HttpDelete("removeUserTransaction/{id:guid}")]
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult<ApiResult>> DeleteDefaultUserTransaction(Guid id,
         CancellationToken cancellationToken)
     {

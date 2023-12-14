@@ -8,8 +8,8 @@ import { RoutesName } from '../../../const/routesName';
 import { useEffect, useState } from 'react';
 import { CurrencyDto } from '../../../models/dtos/currencyDto';
 import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
-import useForm from '../../../hooks/useForm';
-import { UserApi, CurrencyApi } from '../../../api';
+import { useForm } from '../../../hooks';
+import { UserApi } from '../../../api';
 
 export const ChangeCurrencyForm = () => {
   const navigate = useNavigate();
@@ -21,9 +21,9 @@ export const ChangeCurrencyForm = () => {
   const { values, handleChange } = useForm<typeof initialValues>(initialValues);
 
   async function getCurrencyData() {
-    const currencyData = await CurrencyApi.getCurrency();
+    // const currencyData = await CurrencyApi.getCurrency();
 
-    setState(currencyData.data?.response);
+    setState([]);
   }
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
-import useForm from '../../../hooks/useForm';
+import { useForm } from '../../../hooks';
 import { UserApi } from '../../../api';
 
 export const ChangeUserPasswordForm = () => {

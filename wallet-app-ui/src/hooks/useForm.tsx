@@ -14,7 +14,7 @@ export enum FieldType {
   Select = 7,
 }
 
-const useForm = <T,>(
+export const useForm = <T,>(
   initialValues: T,
   validationSchema?: yup.ObjectSchema<T>,
 ) => {
@@ -86,9 +86,9 @@ const useForm = <T,>(
 
         return await callToApi(api(values));
       } catch (e: any) {
-        console.log(e, e.inner);
+        console.log(e.inner);
         const newErrors = {} as Record<keyof T, string>;
-        e.inner.forEach((error: any) => {
+        e.inner?.forEach((error: any) => {
           newErrors[error.path as keyof T] = error.message;
         });
         setValidValues(newErrors);
@@ -111,4 +111,3 @@ const useForm = <T,>(
     getValidationMessage,
   };
 };
-export default useForm;

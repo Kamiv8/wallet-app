@@ -18,17 +18,9 @@ Primary.args = {
   data: {
     id: '',
     title: 'Lorem ipsum ipsum ipsum',
-    category: {
-      id: '',
-      name: 'Ticket',
-    },
+    categoryName: 'Ticket',
     date: new Date(),
-    currency: {
-      id: '',
-      name: '',
-      exchangeRate: 2,
-      mark: 'PLN',
-    },
+    currencyCode: 'PLN',
     description:
       'Lorem imsum dolor sit Lorem imsum dolor sitLorem imsum dolor sit Lorem imsum dolor sit Lorem imsum dolor sit Lorem imsum dolor sit Lorem imsum dolor sit',
     price: 32,

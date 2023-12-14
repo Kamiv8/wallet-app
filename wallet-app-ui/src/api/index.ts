@@ -6,3 +6,4 @@ export * from './table.api';
 export * from './token.api';
 export * from './transaction.api';
 export * from './user.api';
+export * from './defaultTransaction';

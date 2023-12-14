@@ -7,66 +7,73 @@ import {
   TextAreaField,
 } from '../../molecules';
 import messages from '../../../i18n/messages';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { FormWrapper, SavedInputsWrapper } from './AddTransactionForm.styles';
-import useForm, { FieldType } from '../../../hooks/useForm';
-import { CurrencyDto } from '../../../models/dtos/currencyDto';
-import { Category } from '../../../models/resources/category';
-import { CurrencyApi, CategoryApi, TransactionApi } from '../../../api';
-import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
-import ApplicationContext from '../../../contexts/application.context';
-import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
+import { useForm, FieldType, useFetch } from '../../../hooks';
+import { CategoryApi, CurrencyApi, TransactionApi } from '../../../api';
+import {
+  parseDataToSelect,
+  parseToCurrencySelect,
+} from '../../../helpers/parseDataToSelect.helper';
+import { TGetCurrenciesResponse } from '../../../models/apiTypes/currency/getCurrencies/getCurrencies.response';
+import { TGetUserCategoriesResponse } from '../../../models/apiTypes/category/getUserCategories/getUserCategories.response';
+import { TAddUserTransactionForm } from '../../../models/apiTypes/transaction/addUserTransaction/addUserTransaction.form';
+// import { addUserTransactionSchema } from '../../../validators/transaction/addUserTransaction.validator';
 
 export type TProps = {
   onClose: () => void;
 };
 
 export const AddTransactionForm = (props: TProps) => {
-  const appContext = useContext(ApplicationContext);
+  const { callToApi } = useFetch();
+
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [state, setState] = useState({
-    currency: [] as CurrencyDto[],
-    category: [] as Category[],
+    currency: [] as Array<TGetCurrenciesResponse>,
+    category: [] as Array<TGetUserCategoriesResponse>,
   });
 
   const initialValues = {
     title: '',
-    price: '',
+    price: 0,
     currencyId: '',
     categoryId: '',
     date: new Date(),
     isDefault: false,
-    textColor: '',
-    backgroundColor: '',
-    description: '',
-    type: getApplicationType(appContext.state.type),
+    textColor: undefined,
+    backgroundColor: undefined,
+    description: undefined,
   };
 
-  const { values, handleChange } = useForm<typeof initialValues>(initialValues);
+  const { values, handleChange, getValidationMessage, onSubmit } =
+    useForm<TAddUserTransactionForm>(initialValues);
 
   const handleIsSaved = (e: any) => {
     setIsSaved(e.target.checked);
     handleChange(e, 'isDefault', FieldType.Checkbox);
+    if (!e.target.checked) {
+      setState((prev) => ({
+        ...prev,
+        backgroundColor: undefined,
+        textColor: undefined,
+      }));
+    }
   };
 
   async function getCurrencyData() {
-    const currencyData = await CurrencyApi.getCurrency();
-
+    const currencyData = await callToApi(CurrencyApi.addCurrencies());
     setState((prev) => ({
       ...prev,
-      currency: currencyData.data?.response,
+      currency: currencyData.data ?? [],
     }));
   }
 
   async function getUserCategoryData() {
-    const userCategoryData = await CategoryApi.getUserCategory(
-      getApplicationType(appContext.state.type),
-    );
-
+    const data = await callToApi(CategoryApi.getUserCategories());
     setState((prev) => ({
       ...prev,
-      category: userCategoryData.data?.response,
+      category: data.data ?? [],
     }));
   }
 
@@ -76,8 +83,9 @@ export const AddTransactionForm = (props: TProps) => {
     })();
   }, []);
 
-  const onSubmit = async () => {
-    await TransactionApi.addTransaction(values);
+  const handleSubmit = async () => {
+    console.log(values);
+    await onSubmit(TransactionApi.addTransaction);
   };
 
   return (
@@ -87,25 +95,29 @@ export const AddTransactionForm = (props: TProps) => {
           label={{ ...messages.addTransactionPageTitle }}
           variant={'dark'}
           name={'title'}
+          error={getValidationMessage('title')}
           onChange={(e) => handleChange(e, 'title')}
         />
         <InputField
           label={{ ...messages.addTransactionPagePrice }}
           variant={'dark'}
           name={'title'}
+          error={getValidationMessage('price')}
           type={'number'}
           onChange={(e) => handleChange(e, 'price', FieldType.Number)}
         />
         <SelectField
-          selectItems={parseDataToSelect(state.currency)}
+          selectItems={parseToCurrencySelect(state.currency)}
           label={{ ...messages.addTransactionPageCurrencies }}
           name={'currencyId'}
+          error={getValidationMessage('currencyId')}
           onChange={handleChange}
         />
         <SelectField
           selectItems={parseDataToSelect(state.category)}
           label={{ ...messages.addTransactionPageCategory }}
           name={'categoryId'}
+          error={getValidationMessage('categoryId')}
           onChange={handleChange}
         />
         <InputField
@@ -113,11 +125,13 @@ export const AddTransactionForm = (props: TProps) => {
           variant={'dark'}
           name={'date'}
           type={'date'}
+          error={getValidationMessage('date')}
           onChange={(e) => handleChange(e, 'date', FieldType.Date)}
         />
         <TextAreaField
           label={{ ...messages.addTransactionPageDescription }}
           variant={'dark'}
+          error={getValidationMessage('description')}
           onChange={(e) => handleChange(e, 'description')}
           name={'description'}
         />
@@ -142,7 +156,7 @@ export const AddTransactionForm = (props: TProps) => {
           </SavedInputsWrapper>
         )}
 
-        <Button color={'darkBlue'} type={'button'} onClick={onSubmit}>
+        <Button color={'darkBlue'} type={'button'} onClick={handleSubmit}>
           <FormattedMessage {...messages.buttonAdd} />
         </Button>
       </FormWrapper>

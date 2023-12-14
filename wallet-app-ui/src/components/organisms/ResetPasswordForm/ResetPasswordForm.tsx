@@ -1,4 +1,4 @@
-import useForm from '../../../hooks/useForm';
+import { useForm } from '../../../hooks';
 import { InputField } from '../../molecules';
 import messages from '../../../i18n/messages';
 import { FormattedMessage } from 'react-intl';

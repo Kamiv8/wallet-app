@@ -8,6 +8,7 @@ import { AuthenticateDto } from '../models/apiTypes/account/authenticate/authent
 import { RegisterCommand } from '../models/apiTypes/account/register/register.command';
 import { ChangeForgotPasswordCommand } from '../models/apiTypes/account/changeForgotPassword/changeForgotPassword.command';
 import { TAuthenticateForm } from '../models/apiTypes/account/authenticate/authenticate.form';
+import { TRegisterForm } from '../models/apiTypes/account/register/register.form';
 
 export class AuthApi {
   public static async authenticate(
@@ -27,13 +28,15 @@ export class AuthApi {
     return dataResult;
   }
 
-  public static async register(value: any): Promise<IApiResult<null>> {
+  public static async register(
+    value: TRegisterForm,
+  ): Promise<IApiResult<null>> {
     const command = new RegisterCommand(
       value.username,
       value.email,
       value.password,
       value.confirmPassword,
-      value.icon,
+      value.iconId,
     );
     const data = await noAuthApi.post('/account/register', command);
 

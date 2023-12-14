@@ -14,7 +14,7 @@ export const Background = styled.div`
 
 export const Wrapper = styled.div`
   position: absolute;
-  height: 45%;
+  height: 60%;
   top: 50%;
   left: 50%;
   translate: -50% -50%;

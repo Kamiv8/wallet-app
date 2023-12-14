@@ -432,11 +432,9 @@ namespace WalletApp.Persistance.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(15,2)", precision: 15, scale: 2, nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     TextColor = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true),
                     BackgroundColor = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true),
-                    IsDefault = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     UserIdentityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CurrencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -519,7 +517,7 @@ namespace WalletApp.Persistance.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     IsDefault = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    DefaultTransactionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DefaultTransactionId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     UserIdentityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CurrencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -568,18 +566,18 @@ namespace WalletApp.Persistance.Migrations
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CratedBy", "CreatedTime", "DeletedBy", "DeletedTime", "GroupId", "IsDeleted", "ModifiedBy", "ModifiedTime", "Name", "UserIdentityId" },
-                values: new object[] { new Guid("9da87981-6a51-44ed-82c9-a438a8d8ae19"), null, null, null, null, null, false, null, null, "Rachunki", null });
+                values: new object[] { new Guid("13932146-a884-4d87-8311-51eb097c3d68"), null, null, null, null, null, false, null, null, "Rachunki", null });
 
             migrationBuilder.InsertData(
                 table: "Currencies",
                 columns: new[] { "Id", "Ask", "Bid", "Code", "CratedBy", "CreatedTime", "CurrencyName", "DeletedBy", "DeletedTime", "IsDeleted", "ModifiedBy", "ModifiedTime", "TradingDate" },
                 values: new object[,]
                 {
-                    { new Guid("00148c90-1589-48eb-9bbc-1c0887c0ffdc"), 4.055m, 3.972m, "CHF", null, null, "frank szwajcarski", null, null, false, null, null, new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2754) },
-                    { new Guid("a633b81d-af79-49dd-a2f7-a081243c80b9"), 4.055m, 3.972m, "USD", null, null, "dolar amerykanski", null, null, false, null, null, new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2709) },
-                    { new Guid("ddc21f83-1c9e-497e-acbd-b42d1f778c48"), 4.055m, 3.972m, "EUR", null, null, "euro", null, null, false, null, null, new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2751) },
-                    { new Guid("e2e2ad53-e1bf-4c8f-b14c-26fa8118f12e"), 4.055m, 3.972m, "GBP", null, null, "funt szterling", null, null, false, null, null, new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2757) },
-                    { new Guid("e629e2fd-b008-4758-a8dc-89a39e082eef"), 1m, 1m, "PLN", null, null, "polski złoty", null, null, false, null, null, new DateTime(2023, 12, 9, 13, 8, 10, 308, DateTimeKind.Local).AddTicks(2760) }
+                    { new Guid("1037796d-a4d5-4afb-a873-ae19025ae654"), 4.055m, 3.972m, "CHF", null, null, "frank szwajcarski", null, null, false, null, null, new DateTime(2023, 12, 13, 18, 57, 20, 288, DateTimeKind.Local).AddTicks(8600) },
+                    { new Guid("331a4fd2-b4dc-43cd-8eed-6dd7f7192091"), 4.055m, 3.972m, "EUR", null, null, "euro", null, null, false, null, null, new DateTime(2023, 12, 13, 18, 57, 20, 288, DateTimeKind.Local).AddTicks(8597) },
+                    { new Guid("401f4fe1-d949-4c73-8455-bf133c6461a5"), 4.055m, 3.972m, "GBP", null, null, "funt szterling", null, null, false, null, null, new DateTime(2023, 12, 13, 18, 57, 20, 288, DateTimeKind.Local).AddTicks(8604) },
+                    { new Guid("d18771fe-5a2a-4723-a8df-534b43acb5ef"), 1m, 1m, "PLN", null, null, "polski złoty", null, null, false, null, null, new DateTime(2023, 12, 13, 18, 57, 20, 288, DateTimeKind.Local).AddTicks(8607) },
+                    { new Guid("f67f295b-a92a-4e4f-9f12-bc9165636373"), 4.055m, 3.972m, "USD", null, null, "dolar amerykanski", null, null, false, null, null, new DateTime(2023, 12, 13, 18, 57, 20, 288, DateTimeKind.Local).AddTicks(8551) }
                 });
 
             migrationBuilder.CreateIndex(

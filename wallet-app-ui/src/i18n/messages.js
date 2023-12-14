@@ -364,6 +364,14 @@ const messages = defineMessages({
     id: 'buttonDelete',
     defaultMessage: 'Delete',
   },
+  buttonYes: {
+    id: 'buttonYes',
+    defaultMessage: 'Yes',
+  },
+  buttonNo: {
+    id: 'buttonNo',
+    defaultMessage: 'No',
+  },
 });
 
 export default messages;

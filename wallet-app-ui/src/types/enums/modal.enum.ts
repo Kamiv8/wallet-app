@@ -4,4 +4,5 @@ export enum ModalEnum {
   SUCCESS,
   LOADING,
   REGISTER_SUCCESS,
+  CONFIRM_ACTION,
 }

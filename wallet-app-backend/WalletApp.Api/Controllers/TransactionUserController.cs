@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
 using WalletApp.Application.Common.Transaction.AddUserTransaction;
+using WalletApp.Application.Common.Transaction.AddUserTxDefault;
 using WalletApp.Application.Common.Transaction.GetCostByCategory;
 using WalletApp.Application.Common.Transaction.GetIncomeByCategory;
 using WalletApp.Application.Common.Transaction.GetSumTransactions;
@@ -25,7 +26,7 @@ public class TransactionUserController : BaseController
         _currentUserService = currentUserService;
     }
 
-    [HttpPost("addTransaction")]
+    [HttpPost("add")]
     public async Task<ActionResult<ApiResult>> AddUserTransaction(
         [FromBody] AddUserTransactionCommandDto dto, CancellationToken cancellationToken)
     {
@@ -45,8 +46,13 @@ public class TransactionUserController : BaseController
         return CreateResponse(res);
     }
     
-    // add transaction by default action
-    
+    [HttpPost("addDefault")]
+    public async Task<ActionResult<ApiResult>> AddUserTransactionDefault(AddUserTxDefaultDto dto, CancellationToken cancellationToken)
+    {
+        var command = new AddUserTxDefaultCommand(_currentUserService.Id, dto.DefaultTransactionId);
+        var res = await _mediator.Send(command, cancellationToken);
+        return CreateResponse(res);
+    }
     
     
     [HttpGet("transactionList")]

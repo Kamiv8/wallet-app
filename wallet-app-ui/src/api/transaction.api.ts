@@ -3,19 +3,14 @@ import { BaseApiHandler } from './baseApiHandler';
 import axios from 'axios';
 import { BaseApiConfig } from './baseApiConfig';
 import { AppTypeEnum } from '../types/enums/appType.enum';
+import { AddUserTransactionCommand } from '../models/apiTypes/transaction/addUserTransaction/addUserTransaction.command';
+import { TAddUserTransactionForm } from '../models/apiTypes/transaction/addUserTransaction/addUserTransaction.form';
+import { api } from './baseAxios.config';
+import { AddUserTransactionDefaultCommand } from '../models/apiTypes/transaction/addUserTransactionDefault/addUserTransactionDefault.command';
+import { TPagination } from '../models/pagination';
+import { GetUserTransactionListResponse } from '../models/apiTypes/transaction/getUserTransactionList/getUserTransactionList.response';
 
 export class TransactionApi extends BaseApiConfig {
-  public static async getDefaultTransactions(type: any): Promise<IApiResult> {
-    const data = await axios.get('/transaction/default', {
-      ...this.apiOptions(),
-      params: {
-        type,
-      },
-    });
-
-    return BaseApiHandler.handleApi(data);
-  }
-
   public static async getLastTransactions(
     type: AppTypeEnum,
   ): Promise<IApiResult> {
@@ -93,12 +88,41 @@ export class TransactionApi extends BaseApiConfig {
     return BaseApiHandler.handleApi(data);
   }
 
-  public static async addTransaction(values: any): Promise<IApiResult> {
-    const data = await axios.post(
-      '/transaction/add',
-      values,
-      TransactionApi.apiOptions(),
+  public static async addTransaction(
+    values: TAddUserTransactionForm,
+  ): Promise<IApiResult> {
+    const command = new AddUserTransactionCommand(
+      values.title,
+      values.price,
+      values.currencyId,
+      values.categoryId,
+      values.date,
+      values.isDefault,
+      values.description,
+      values.textColor,
+      values.backgroundColor,
     );
+    const data = await api.post('/transactionUser/add', command);
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async addTransactionDefault(
+    transactionId: string,
+  ): Promise<IApiResult> {
+    const command = new AddUserTransactionDefaultCommand(transactionId);
+    const data = await api.post('/transactionUser/addDefault', command);
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getAllTransactions(
+    pagination: TPagination,
+  ): Promise<IApiResult<GetUserTransactionListResponse>> {
+    const data = await api.get('/transactionUser/transactionList', {
+      params: {
+        'PaginationParamsDto.PageNumber': pagination.pageNumber,
+        'PaginationParamsDto.PageSize': pagination.pageSize,
+      },
+    });
     return BaseApiHandler.handleApi(data);
   }
 }

@@ -85,10 +85,9 @@ public class
                 Price = request.Price,
                 CategoryId = request.CategoryId,
                 CurrencyId = request.CurrencyId,
-                Date = request.Date,
                 Description = request.Description,
-                BackgroundColor = request.BackgroundColor,
-                TextColor = request.TextColor
+                BackgroundColor = request.BackgroundColor!,
+                TextColor = request.TextColor!
             };
             await _defaultTransactionRepository.CreateDefaultUserRepository(defaultTransaction,
                 cancellationToken);

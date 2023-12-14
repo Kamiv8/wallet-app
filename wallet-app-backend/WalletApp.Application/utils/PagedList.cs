@@ -35,7 +35,7 @@ public class PagedList<T> : List<T>
             .Take(paginationParamsDto.PageSize);
 
 
-        return new PagedList<T>(await items.Reverse().ToListAsync(cancellationToken), source.Count(),
+        return new PagedList<T>(await items.ToListAsync(cancellationToken), source.Count(),
             paginationParamsDto.PageNumber,
             paginationParamsDto.PageSize);
     }

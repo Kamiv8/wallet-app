@@ -3,7 +3,7 @@ import { InputField } from '../../molecules';
 import { ButtonWrapper, Wrapper } from './ChangeUsernameForm.styles';
 import messages from '../../../i18n/messages';
 import { FormattedMessage } from 'react-intl';
-import useForm from '../../../hooks/useForm';
+import { useForm } from '../../../hooks';
 import { UserApi } from '../../../api';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';

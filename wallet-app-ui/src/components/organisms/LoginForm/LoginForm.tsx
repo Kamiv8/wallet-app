@@ -1,4 +1,4 @@
-import useForm from '../../../hooks/useForm';
+import { useForm, useMapValidationMessages } from '../../../hooks';
 import { InputField } from '../../molecules';
 import messages from '../../../i18n/messages';
 import {
@@ -13,7 +13,6 @@ import { RoutesName } from '../../../const/routesName';
 import { AuthApi } from '../../../api';
 import { useNavigate } from 'react-router-dom';
 import { ApiStatus } from '../../../models/apiResult';
-import { useMapValidationMessages } from '../../../hooks/useMapValidationMessages';
 import { TAuthenticateForm } from '../../../models/apiTypes/account/authenticate/authenticate.form';
 import { authenticateSchema } from '../../../validators/account/authenticate.validator';
 // import { UserApi } from '../../../api/user.api';

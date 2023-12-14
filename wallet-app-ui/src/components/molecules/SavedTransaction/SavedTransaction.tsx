@@ -7,17 +7,15 @@ import {
 } from './SavedTransaction.styles';
 import { Typography, Button } from '../../atoms';
 import { cutString } from '../../../utils/utils';
-import { Currency } from '../../../models/resources/currency';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import { Category } from '../../../models/resources/category';
 
 export type TProps = {
   id: string;
   title: string;
-  category: Category;
+  category: string;
   price: number;
-  currency: Currency;
+  currency: string;
   backgroundColor?: string;
   textColor?: string;
   description?: string;
@@ -39,11 +37,11 @@ export const SavedTransaction = (props: TProps) => {
           size={'m'}
           uppercase
         >
-          {props.category.name}
+          {props.category}
         </Typography>
         <Typography customColor={props.textColor} size={'m'} weight={700}>
           {props.price}
-          {props.currency.mark}
+          {props.currency}
         </Typography>
       </SecondRow>
       {props.description && (

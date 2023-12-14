@@ -13,16 +13,8 @@ const Template: ComponentStory<typeof SavedTransaction> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  category: {
-    id: '',
-    name: 'Ticket',
-  },
+  category: 'Ticket',
   price: 12.34,
-  currency: {
-    id: 'guid',
-    name: 'Polski złoty',
-    mark: 'PLN',
-    exchangeRate: 1,
-  },
+  currency: 'PLN',
   description: 'Lorem ipsum dolor sit Lorem ipsum dolor sit',
 };

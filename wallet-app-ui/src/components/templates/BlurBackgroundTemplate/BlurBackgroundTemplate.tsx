@@ -22,7 +22,8 @@ export const BlurBackgroundTemplate = (props: TProps) => {
           <Background onClick={() => props.closeModal()} />
           {(props.type === ModalEnum.SUCCESS ||
             props.type === ModalEnum.ERROR ||
-            props.type === ModalEnum.REGISTER_SUCCESS) && (
+            props.type === ModalEnum.REGISTER_SUCCESS ||
+            props.type === ModalEnum.CONFIRM_ACTION) && (
             <Wrapper>{props.content}</Wrapper>
           )}
           {props.type === ModalEnum.LOADING && (

@@ -2,7 +2,7 @@ import { CardWrapper, Button } from '../../atoms';
 import { FormWrapper } from './AddNoteForm.styles';
 import { InputField, TextAreaField, ColorPickerField } from '../../molecules';
 import messages from '../../../i18n/messages';
-import useForm from '../../../hooks/useForm';
+import { useForm } from '../../../hooks';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { TableApi } from '../../../api';

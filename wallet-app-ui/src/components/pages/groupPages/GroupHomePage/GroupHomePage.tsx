@@ -16,7 +16,7 @@ import { ChartTypeEnum } from '../../../../types/enums/chartType.enum';
 import { GroupDataWrapper } from './GroupHomePage.styles';
 import { MainTemplate } from '../../../templates';
 import { Avatar, Chart, Typography } from '../../../atoms';
-import { TransactionItem } from '../../../molecules';
+// import { TransactionItem } from '../../../molecules';
 
 interface IState {
   iconId: number;
@@ -152,9 +152,9 @@ export const GroupHomePage = () => {
           {state.currencyMark}
         </Typography>
       </div>
-      {state.lastTransactions.slice(0, 2).map((t: Transaction) => (
-        <TransactionItem data={t} />
-      ))}
+      {/*{state.lastTransactions.slice(0, 2).map((t: Transaction) => (*/}
+      {/*  <TransactionItem data={t} />*/}
+      {/*))}*/}
 
       {state.moneyChart.length && (
         <>

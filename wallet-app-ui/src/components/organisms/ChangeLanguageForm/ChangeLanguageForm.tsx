@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { ActionEnum } from '../../../contexts/application.reducer';
 import { Languages } from '../../../i18n/intlUtils';
 import applicationContext from '../../../contexts/application.context';
-import useForm from '../../../hooks/useForm';
+import { useForm } from '../../../hooks';
 import { TSelectItem } from '../../atoms/Select/Select';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';

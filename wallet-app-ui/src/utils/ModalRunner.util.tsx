@@ -2,53 +2,53 @@ import { ModalEnum } from '../types/enums/modal.enum';
 import { useContext, useMemo } from 'react';
 import { HashLoader } from 'react-spinners';
 import ApplicationContext from '../contexts/application.context';
-import { ActionEnum } from '../contexts/application.reducer';
 import { BlurBackgroundTemplate } from '../components/templates';
 import { ErrorModal, RegisterSuccess } from '../components/molecules';
+import { ConfirmActionModal } from '../components/molecules/ConfirmActionModal/ConfirmActionModal';
+import { useModalAction } from '../hooks';
 
 const ModalRunnerUtil = () => {
   const appContext = useContext(ApplicationContext);
-  function closeModal() {
-    appContext.dispatch({
-      type: ActionEnum.CHANGE_MODAL_STATE,
-      payload: {
-        type: ModalEnum.ERROR,
-        isActive: false,
-      },
-    });
-  }
-
-  function closeRegisterModal() {
-    appContext.dispatch({
-      type: ActionEnum.CHANGE_MODAL_STATE,
-      payload: {
-        type: ModalEnum.REGISTER_SUCCESS,
-        isActive: false,
-      },
-    });
-  }
+  const { closeRegisterModal, closeErrorModal, closeConfirmActionModal } =
+    useModalAction();
 
   const selectModal = useMemo(() => {
     switch (appContext.state.modalState.type) {
       case ModalEnum.LOADING:
+        console.log('loading');
         return (
           <BlurBackgroundTemplate
             type={ModalEnum.LOADING}
             content={
               <HashLoader size={150} color={'#6ADDDD'} speedMultiplier={1.5} />
             }
-            isOpen={appContext.state.modalState.isOpen}
+            isOpen={appContext.state.modalState.isActive}
             closeModal={() => {}}
           />
         );
       case ModalEnum.SUCCESS:
         return <></>;
+      case ModalEnum.CONFIRM_ACTION:
+        return (
+          <BlurBackgroundTemplate
+            content={
+              <ConfirmActionModal
+                title={appContext.state.modalState?.message}
+                yesAction={appContext.state.modalState?.yesAction}
+                noAction={appContext.state.modalState?.noAction}
+              />
+            }
+            isOpen={appContext.state.modalState.isActive}
+            closeModal={closeConfirmActionModal}
+            type={ModalEnum.CONFIRM_ACTION}
+          />
+        );
       case ModalEnum.ERROR:
         return (
           <BlurBackgroundTemplate
             content={<ErrorModal text={appContext.state.modalState?.message} />}
             isOpen={appContext.state.modalState.isActive}
-            closeModal={closeModal}
+            closeModal={closeErrorModal}
             type={ModalEnum.ERROR}
           />
         );

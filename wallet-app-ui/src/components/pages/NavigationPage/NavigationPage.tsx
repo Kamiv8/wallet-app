@@ -24,7 +24,7 @@ type TState = {
 
 export const NavigationPage = (props: TProps) => {
   const appContext = useContext(ApplicationContext);
-  const [state, setState] = useState<TState>({
+  const [state] = useState<TState>({
     username: '',
     avatarNumber: 0,
     groupId: null,
@@ -33,13 +33,14 @@ export const NavigationPage = (props: TProps) => {
 
   async function getUserData() {
     const userData = await UserApi.getUserData();
-    setState((prev) => ({
-      ...prev,
-      username: userData.data?.response.username,
-      avatarNumber: userData.data?.response.iconId,
-      role: userData.data?.response.role,
-      groupId: userData.data?.response.groupId,
-    }));
+    // setState((prev) => ({
+    //   ...prev,
+    //   username: userData.data?.response.username,
+    //   avatarNumber: userData.data?.response.iconId,
+    //   role: userData.data?.response.role,
+    //   groupId: userData.data?.response.groupId,
+    // }));
+    console.log(userData);
   }
 
   useLayoutEffect(() => {

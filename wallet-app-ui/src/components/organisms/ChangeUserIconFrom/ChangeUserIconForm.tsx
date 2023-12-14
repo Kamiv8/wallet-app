@@ -1,7 +1,7 @@
 import { CardWrapper, Typography, Button } from '../../atoms';
 import { ButtonWrapper, Wrapper } from './ChangeUserIconForm.styles';
 import { AvatarPicker } from '../../molecules';
-import useForm from '../../../hooks/useForm';
+import { useForm } from '../../../hooks';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { UserApi } from '../../../api';

@@ -11,7 +11,3 @@ const Template: ComponentStory<typeof Pagination> = (args) => (
 );
 
 export const Primary = Template.bind({});
-
-Primary.args = {
-  pagination: {},
-};

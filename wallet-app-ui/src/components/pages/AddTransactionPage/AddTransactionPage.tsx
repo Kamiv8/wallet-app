@@ -2,33 +2,34 @@ import { MainTemplate } from '../../templates';
 import { SavedTransaction } from '../../molecules';
 import { Typography } from '../../atoms';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
-import { useCallback, useContext, useEffect, useState } from 'react';
-import { Transaction } from '../../../models/resources/transaction';
+import { useCallback, useEffect, useState } from 'react';
 import { AddTransactionForm } from '../../organisms';
-import { TransactionApi } from '../../../api';
-import ApplicationContext from '../../../contexts/application.context';
-import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
+import { DefaultTransaction, TransactionApi } from '../../../api';
+import { GetDefaultTransactionResponse } from '../../../models/apiTypes/defaultTransaction/getDefaultTransaction/getDefaultTransaction.response';
+import { useFetch } from '../../../hooks';
 
 type TState = {
-  transactions: Transaction[];
+  transactions: Array<GetDefaultTransactionResponse>;
   isNew: boolean;
 };
 
 export const AddTransactionPage = () => {
-  const appContext = useContext(ApplicationContext);
+  const { callToApi } = useFetch();
+
   const [state, setState] = useState<TState>({
     transactions: [],
     isNew: false,
   });
 
   const getSavedTransactions = async () => {
-    const data = await TransactionApi.getDefaultTransactions(
-      getApplicationType(appContext.state.type),
+    const data = await callToApi(
+      DefaultTransaction.getDefaultUserTransaction(),
     );
-    setState({
-      ...state,
-      transactions: data.data?.response,
-    });
+
+    setState((prev) => ({
+      ...prev,
+      transactions: data.data ?? [],
+    }));
   };
 
   useEffect(() => {
@@ -53,21 +54,7 @@ export const AddTransactionPage = () => {
 
   const addTransaction = useCallback(
     async (id: string) => {
-      const transaction = state.transactions.find((x) => x.id === id);
-
-      if (!transaction) return;
-
-      const values = {
-        title: transaction.title,
-        price: transaction.price,
-        description: transaction.description,
-        categoryId: transaction.category.id,
-        currencyId: transaction.currency.id,
-        isDefault: false,
-        date: new Date(),
-      };
-
-      await TransactionApi.addTransaction(values);
+      await callToApi(TransactionApi.addTransactionDefault(id));
     },
     [state],
   );
@@ -83,11 +70,11 @@ export const AddTransactionPage = () => {
             key={item.id}
             id={item.id}
             title={item.title}
-            category={item.category}
+            category={item.categoryName}
             price={item.price}
             textColor={item.textColor}
             backgroundColor={item.backgroundColor}
-            currency={item.currency}
+            currency={item.currencyCode}
             description={item.description}
             addTransaction={addTransaction}
           />

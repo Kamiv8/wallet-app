@@ -17,7 +17,6 @@ public class CurrencyController : BaseController
         _mediator = mediator;
     }
 
-
     [HttpGet]
     public async Task<ActionResult<ApiResult<IEnumerable<GetCurrenciesQueryResponseDto>>>> GetCurrencies(
         CancellationToken cancellationToken)

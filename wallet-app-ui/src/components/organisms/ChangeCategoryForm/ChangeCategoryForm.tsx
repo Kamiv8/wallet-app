@@ -11,26 +11,24 @@ import { InputField, List } from '../../molecules';
 import messages from '../../../i18n/messages';
 import { FormattedMessage } from 'react-intl';
 import { CategoryApi } from '../../../api';
-import { useContext, useEffect, useState } from 'react';
-import useForm from '../../../hooks/useForm';
-import ApplicationContext from '../../../contexts/application.context';
-import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
+import { useEffect, useState } from 'react';
+import { useFetch, useForm, useModalAction } from '../../../hooks';
+import { TCreateUserCategoryForm } from '../../../models/apiTypes/category/createUserCategory/createUserCategory.form';
+import { createCategorySchema } from '../../../validators/category/createCategory.validator';
+import { TGetUserCategoriesResponse } from '../../../models/apiTypes/category/getUserCategories/getUserCategories.response';
 
 export const ChangeCategoryForm = () => {
-  const appContext = useContext(ApplicationContext);
   const navigate = useNavigate();
-  const [state, setState] = useState([]);
+  const { callToApi } = useFetch();
+  const { openConfirmActionModal, closeConfirmActionModal } = useModalAction();
+
+  const [state, setState] = useState<Array<TGetUserCategoriesResponse>>([]);
   const [refresher, setRefresher] = useState(false);
-  async function getCategories() {
-    return CategoryApi.getUserCategory(
-      getApplicationType(appContext.state.type),
-    );
-  }
 
   useEffect(() => {
     (async () => {
-      const data = await getCategories();
-      setState(data.data?.response);
+      const data = await callToApi(CategoryApi.getUserCategories());
+      setState(data.data ?? []);
       setRefresher(false);
     })();
   }, [refresher]);
@@ -39,15 +37,25 @@ export const ChangeCategoryForm = () => {
     name: '',
   };
 
-  const { values, handleChange, resetForm } =
-    useForm<typeof initialValues>(initialValues);
+  const { handleChange, resetForm, onSubmit, getValidationMessage } =
+    useForm<TCreateUserCategoryForm>(initialValues, createCategorySchema);
 
   const handleDelete = async (id: string) => {
-    await CategoryApi.deleteCategory(id);
+    await callToApi(CategoryApi.deleteUserCategory(id));
     setRefresher(true);
+    closeConfirmActionModal();
+  };
+
+  const onClickDelete = (id: string) => {
+    console.log('dsa');
+    openConfirmActionModal(
+      'Do you want to delete the category?',
+      () => handleDelete(id),
+      () => closeConfirmActionModal(),
+    );
   };
   const handleSubmit = async () => {
-    await CategoryApi.addNewCategory(values);
+    onSubmit(CategoryApi.createUserCategory);
     setRefresher(true);
     resetForm();
   };
@@ -59,6 +67,7 @@ export const ChangeCategoryForm = () => {
           label={{ ...messages.changeCategoryFormAddNewCategory }}
           variant={'dark'}
           name={'newCategory'}
+          error={getValidationMessage('name')}
           onChange={(e) => handleChange(e, 'name')}
         />
         <ButtonWrapper>
@@ -68,12 +77,12 @@ export const ChangeCategoryForm = () => {
         </ButtonWrapper>
       </Wrapper>
       <ListWrapper>
-        {state.length ? (
+        {state?.length ? (
           <List
             headerText={messages.changeCategoryFormYourCategory}
             listItem={state}
             hasButton
-            buttonAction={handleDelete}
+            buttonAction={onClickDelete}
             color={'darkBlue'}
             buttonText={messages.buttonDelete}
           />

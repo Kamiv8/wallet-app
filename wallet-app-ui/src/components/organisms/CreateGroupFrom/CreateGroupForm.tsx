@@ -4,10 +4,10 @@ import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { FormWrapper } from './CreateGroupForm.styles';
 import { TSelectItem } from '../../atoms/Select/Select';
-import useForm from '../../../hooks/useForm';
+import { useForm } from '../../../hooks';
 import { useEffect, useState } from 'react';
 import { CurrencyDto } from '../../../models/dtos/currencyDto';
-import { CurrencyApi, GroupApi } from '../../../api';
+import { GroupApi } from '../../../api';
 import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
@@ -45,8 +45,8 @@ export const CreateGroupForm = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await CurrencyApi.getCurrency();
-      setCurrencies(data.data?.response);
+      // const data = await CurrencyApi.getCurrency();
+      setCurrencies([]);
     })();
   }, []);
 

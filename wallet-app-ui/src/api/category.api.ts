@@ -1,11 +1,40 @@
-import axios from 'axios';
 import { BaseApiHandler } from './baseApiHandler';
 import { IApiResult } from '../models/apiResult';
 import { BaseApiConfig } from './baseApiConfig';
+import { api } from './baseAxios.config';
+import { CreateUserCategoryCommand } from '../models/apiTypes/category/createUserCategory/createUserCategory.command';
+import { TCreateUserCategoryForm } from '../models/apiTypes/category/createUserCategory/createUserCategory.form';
+import axios from 'axios';
+import { DeleteUserCategoryCommand } from '../models/apiTypes/category/deleteUserCategory/deleteUserCategory.command';
+import { TGetUserCategoriesResponse } from '../models/apiTypes/category/getUserCategories/getUserCategories.response';
 
 export class CategoryApi extends BaseApiConfig {
+  public static async getUserCategories(): Promise<
+    IApiResult<Array<TGetUserCategoriesResponse>>
+  > {
+    const data = await api.get('/category/userCategories');
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async createUserCategory(
+    values: TCreateUserCategoryForm,
+  ): Promise<IApiResult> {
+    const command = new CreateUserCategoryCommand(values.name);
+    const data = await api.post('/category/createUserCategory', command);
+    return BaseApiHandler.handleApi(data);
+  }
+
+  // TODO update user category
+
+  public static async deleteUserCategory(
+    categoryId: string,
+  ): Promise<IApiResult> {
+    const command = new DeleteUserCategoryCommand(categoryId);
+    const data = await api.delete(`/category/deleteUserCategory/${command.id}`);
+    return BaseApiHandler.handleApi(data);
+  }
+
   public static async getUserCategory(type: any): Promise<IApiResult> {
-    console.log(type);
     const data = await axios.get('/category', {
       params: { type },
       ...CategoryApi.apiOptions(),
@@ -16,19 +45,6 @@ export class CategoryApi extends BaseApiConfig {
 
   public static async getDefaultCategory(): Promise<IApiResult> {
     const data = await axios.get('/category/default', CategoryApi.apiOptions());
-    return BaseApiHandler.handleApi(data);
-  }
-
-  public static async deleteCategory(value: any): Promise<IApiResult> {
-    const data = await axios.delete(
-      `/category/${value}`,
-      CategoryApi.apiOptions(),
-    );
-    return BaseApiHandler.handleApi(data);
-  }
-
-  public static async addNewCategory(value: any): Promise<IApiResult> {
-    const data = await axios.post('/category', value, CategoryApi.apiOptions());
     return BaseApiHandler.handleApi(data);
   }
 }

@@ -13,7 +13,6 @@ public class DefaultTransactionConfiguration : BaseConfiguration<DefaultTransact
         ConfigureBaseEntity(builder);
         builder.Property(t => t.Title).IsRequired().HasColumnType("nvarchar").HasMaxLength(50);
         builder.Property(t => t.Price).IsRequired().HasColumnType("decimal").HasPrecision(15, 2);
-        builder.Property(t => t.Date).IsRequired();
         builder.Property(t => t.TextColor).IsRequired(false).HasColumnType("nvarchar")
             .HasMaxLength(7);
         builder.Property(t => t.BackgroundColor).IsRequired(false).HasColumnType("nvarchar")

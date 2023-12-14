@@ -1,13 +1,13 @@
-import { Transaction } from '../../../models/resources/transaction';
 import { ContentWrapper, Wrapper } from './TransactionItem.styles';
 import { Typography } from '../../atoms';
 import { cutString } from '../../../utils/utils';
 import { useHref } from 'react-router-dom';
 import { StyledLink } from '../../../styles/override/Link.styles';
 import { RoutesName } from '../../../const/routesName';
+import { TransactionResponse } from '../../../models/apiTypes/transaction/getUserTransactionList/transaction.response';
 
 export type TProps = {
-  data: Transaction;
+  data: TransactionResponse;
 };
 
 export const TransactionItem = (props: TProps) => {
@@ -25,17 +25,17 @@ export const TransactionItem = (props: TProps) => {
         </ContentWrapper>
         <ContentWrapper>
           <Typography size={'m'} weight={700}>
-            {props.data.category.name}
+            {props.data.categoryName}
           </Typography>
           {props.data.price <= 0 ? (
             <Typography size={'m'} weight={700} color={'red'}>
               {props.data.price}
-              {props.data.currency.mark}
+              {props.data.currencyCode}
             </Typography>
           ) : (
             <Typography size={'m'} weight={700} color={'green'}>
               {props.data.price}
-              {props.data.currency.mark}
+              {props.data.currencyCode}
             </Typography>
           )}
         </ContentWrapper>
