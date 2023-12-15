@@ -52,7 +52,7 @@ export const SavedTransaction = (props: TProps) => {
         </div>
       )}
       <ButtonWrapper>
-        <StyledEditIcon onClick={() => {}} />
+        <StyledEditIcon color={props.textColor} onClick={() => {}} />
         <Button
           customColor={props.textColor}
           type={'button'}

@@ -10,8 +10,6 @@ export default (props: TProps) => {
   const modal = useMemo(() => document.createElement('div'), []);
 
   useEffect(() => {
-    console.log(props.isOpen, "wahhdsa");
-
     document.body.appendChild(modal);
     modal.style.display = props.isOpen ? 'block' : 'none';
     modal.style.position = 'absolute';

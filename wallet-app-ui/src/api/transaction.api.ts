@@ -2,38 +2,19 @@ import { IApiResult } from '../models/apiResult';
 import { BaseApiHandler } from './baseApiHandler';
 import axios from 'axios';
 import { BaseApiConfig } from './baseApiConfig';
-import { AppTypeEnum } from '../types/enums/appType.enum';
 import { AddUserTransactionCommand } from '../models/apiTypes/transaction/addUserTransaction/addUserTransaction.command';
 import { TAddUserTransactionForm } from '../models/apiTypes/transaction/addUserTransaction/addUserTransaction.form';
 import { api } from './baseAxios.config';
 import { AddUserTransactionDefaultCommand } from '../models/apiTypes/transaction/addUserTransactionDefault/addUserTransactionDefault.command';
 import { TPagination } from '../models/pagination';
 import { GetUserTransactionListResponse } from '../models/apiTypes/transaction/getUserTransactionList/getUserTransactionList.response';
+import { GetUserTransactionDetailsResponse } from '../models/apiTypes/transaction/getUserTransactionDetails/getUserTransactionDetails.response';
+import { GetIncomeByCategoryResponse } from '../models/apiTypes/transaction/getIcomeByCategory/getIncomeByCategory.response';
+import { GetIncomeByCategoryCommand } from '../models/apiTypes/transaction/getIcomeByCategory/getIncomeByCategory.command';
+import { GetCostByCategoryResponse } from '../models/apiTypes/transaction/getCostByCategory/getCostByCategory.response';
+import { GetCostByCategoryCommand } from '../models/apiTypes/transaction/getCostByCategory/getCostByCategory.command';
 
 export class TransactionApi extends BaseApiConfig {
-  public static async getLastTransactions(
-    type: AppTypeEnum,
-  ): Promise<IApiResult> {
-    const data = await axios.get('/transaction', {
-      params: {
-        type,
-        pageSize: 2,
-        pageNumber: 1,
-      },
-      ...TransactionApi.apiOptions(),
-    });
-    return BaseApiHandler.handleApi(data);
-  }
-
-  public static async getTransactionDetails(transactionId: string) {
-    const data = await axios.get(
-      `/transaction/${transactionId}`,
-      TransactionApi.apiOptions(),
-    );
-
-    return BaseApiHandler.handleApi(data);
-  }
-
   public static async getMoneyChartData(type: any): Promise<IApiResult> {
     const data = await axios.get('/transaction/moneyChart', {
       ...TransactionApi.apiOptions(),
@@ -122,6 +103,49 @@ export class TransactionApi extends BaseApiConfig {
         'PaginationParamsDto.PageNumber': pagination.pageNumber,
         'PaginationParamsDto.PageSize': pagination.pageSize,
       },
+    });
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getLastTransactions(): Promise<
+    IApiResult<GetUserTransactionListResponse>
+  > {
+    const data = await api.get('/transactionUser/transactionList', {
+      params: {
+        'PaginationParamsDto.PageNumber': 1,
+        'PaginationParamsDto.PageSize': 2,
+      },
+    });
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getTransactionDetails(
+    transactionId: string,
+  ): Promise<IApiResult<GetUserTransactionDetailsResponse>> {
+    const data = await api.get('/transactionUser/details', {
+      params: {
+        transactionId: transactionId,
+      },
+    });
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getIncomeByCategory(
+    currencyId: string,
+  ): Promise<IApiResult<Array<GetIncomeByCategoryResponse>>> {
+    const command = new GetIncomeByCategoryCommand(currencyId);
+    const data = await api.get('/transactionUser/getIncomeByCategory', {
+      params: command,
+    });
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getCostByCategory(
+    currencyId: string,
+  ): Promise<IApiResult<Array<GetCostByCategoryResponse>>> {
+    const command = new GetCostByCategoryCommand(currencyId);
+    const data = await api.get('/transactionUser/getCostByCategory', {
+      params: command,
     });
     return BaseApiHandler.handleApi(data);
   }

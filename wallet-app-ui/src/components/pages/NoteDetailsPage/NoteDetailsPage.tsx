@@ -1,27 +1,29 @@
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { useCallback, useEffect, useState } from 'react';
-import { Note } from '../../../models/resources/note';
-import { TableApi } from '../../../api';
+import { NoteApi, TableApi } from '../../../api';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { MainTemplate } from '../../templates';
 import { Typography } from '../../atoms';
 import { NoteDetailsCard } from '../../organisms';
+import { useFetch } from '../../../hooks';
+import { GetUserNoteDetailsResponse } from '../../../models/apiTypes/note/getUserNoteDetails/getUserNoteDetails.response';
 
 export const NoteDetailsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [state, setState] = useState<Note>({} as Note);
+  const { callToApi } = useFetch();
+  const [state, setState] = useState<GetUserNoteDetailsResponse>(
+    {} as GetUserNoteDetailsResponse,
+  );
 
   useEffect(() => {
     (async () => {
-      const data = await TableApi.getNoteDetails(
-        location.pathname.split('/').pop()!,
+      const data = await callToApi(
+        NoteApi.getUserNoteDetails(location.pathname.split('/').pop()!),
       );
-      if (data.status) {
-        setState(data.data?.response);
-      }
+      setState(data.data || ({} as GetUserNoteDetailsResponse));
     })();
   }, []);
 
@@ -41,7 +43,7 @@ export const NoteDetailsPage = () => {
       </Typography>
       <NoteDetailsCard
         title={state.title}
-        text={state.text}
+        text={state.textList}
         backgroundColor={state.backgroundColor}
         textColor={state.textColor}
         doneNote={doneNote}

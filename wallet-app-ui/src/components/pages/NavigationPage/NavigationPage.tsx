@@ -3,12 +3,13 @@ import messages from '../../../i18n/messages';
 import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg';
 import { ReactComponent as LogoutIcon } from '../../../assets/images/logout.svg';
 import { useContext, useLayoutEffect, useState } from 'react';
-import { RoleEnum } from '../../../types/enums/role.enum';
 import { UserApi } from '../../../api';
 import ApplicationContext from '../../../contexts/application.context';
 import { NavigationTemplate } from '../../templates';
 import { UserDataHeader } from '../../molecules';
 import { GroupNavigation, PersonNavigation } from '../../organisms';
+import { useFetch } from '../../../hooks';
+import { UserIconTypeEnum } from '../../../types/enums/userIconType.enum';
 
 type TProps = {
   closeNav: (open: boolean) => void;
@@ -17,30 +18,35 @@ type TProps = {
 
 type TState = {
   username: string;
-  avatarNumber: 0 | 1 | 2 | 3;
-  groupId: number | null;
-  role: RoleEnum;
+  avatarNumber: UserIconTypeEnum;
+  groupId?: string | null;
 };
 
 export const NavigationPage = (props: TProps) => {
   const appContext = useContext(ApplicationContext);
-  const [state] = useState<TState>({
-    username: '',
-    avatarNumber: 0,
+  const { callToApi } = useFetch();
+  const username = localStorage.getItem('username') ?? '';
+  const iconType =
+    localStorage.getItem('iconType') !== null
+      ? +localStorage.getItem('iconType')!
+      : 0;
+  const [state, setState] = useState<TState>({
+    username,
+    avatarNumber: iconType,
     groupId: null,
-    role: RoleEnum.NONE,
   });
 
   async function getUserData() {
-    const userData = await UserApi.getUserData();
-    // setState((prev) => ({
-    //   ...prev,
-    //   username: userData.data?.response.username,
-    //   avatarNumber: userData.data?.response.iconId,
-    //   role: userData.data?.response.role,
-    //   groupId: userData.data?.response.groupId,
-    // }));
-    console.log(userData);
+    if (username && iconType) return;
+    const userData = await callToApi(UserApi.getUserData());
+    localStorage.setItem('username', userData.data?.username || ''); // TODO move storage name into another file
+    localStorage.setItem('iconType', userData.data?.iconType.toString() || '');
+    setState((prev) => ({
+      ...prev,
+      username: userData.data?.username ?? '',
+      avatarNumber: userData.data?.iconType ?? 0,
+      groupId: userData.data?.groupId,
+    }));
   }
 
   useLayoutEffect(() => {
@@ -54,7 +60,7 @@ export const NavigationPage = (props: TProps) => {
       title={<FormattedMessage {...messages.navigationPage} />}
       userData={
         <UserDataHeader
-          avatarClick={() => console.log('x')}
+          avatarClick={() => {}}
           avatarNumber={state.avatarNumber}
           fullName={state.username}
         />

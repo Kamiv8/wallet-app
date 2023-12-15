@@ -1,10 +1,11 @@
 import { Avatar, Typography } from '../../atoms';
 import { ReactNode } from 'react';
 import { Wrapper } from './UserDataHeader.styles';
+import { UserIconTypeEnum } from '../../../types/enums/userIconType.enum';
 
 export type TProps = {
   avatarClick: () => void;
-  avatarNumber: 0 | 1 | 2 | 3;
+  avatarNumber: UserIconTypeEnum;
   fullName: ReactNode;
 };
 

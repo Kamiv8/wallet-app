@@ -1,4 +1,3 @@
-import { Currency } from '../../../models/resources/currency';
 import {
   ChartWrapper,
   Content,
@@ -11,28 +10,36 @@ import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
 import { cutString } from '../../../utils/utils';
-import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
-import { pieChartMapper } from '../../../helpers/chartDataMapper.helper';
-import { Category } from '../../../models/resources/category';
+import { detailsPieChartMapper } from '../../../helpers/chartDataMapper.helper';
 
 export type TProps = {
   title: string;
-  category: Category;
+  category: string;
   price: number;
-  currency: Currency;
+  currency: string;
   date: Date;
   description?: string;
-  toChart?: ToPieChartDto[];
+  toChart: {
+    all: number;
+    currentCategory: number;
+  };
 };
 
-export const HistoryCardDetails = (props: TProps) => {
+export const HistoryCardDetails = ({
+  title,
+  category,
+  price,
+  currency,
+  description,
+  date,
+  toChart,
+}: TProps) => {
   const navigate = useNavigate();
-
   return (
     <Wrapper>
       <Header>
         <Typography size={'l'} uppercase weight={700}>
-          {cutString(props.title, 27)}
+          {cutString(title, 27)}
         </Typography>
         <CloseIcon onClick={() => navigate(RoutesName.HISTORY)} />
       </Header>
@@ -41,7 +48,7 @@ export const HistoryCardDetails = (props: TProps) => {
           Category
         </Typography>
         <Typography weight={700} size={'m'}>
-          {props.category.name}
+          {category}
         </Typography>
       </Content>
       <Content>
@@ -49,8 +56,8 @@ export const HistoryCardDetails = (props: TProps) => {
           Price
         </Typography>
         <Typography weight={700} size={'m'}>
-          {props.price}
-          {props.currency.mark}
+          {price}
+          {currency}
         </Typography>
       </Content>
       <Content>
@@ -58,24 +65,25 @@ export const HistoryCardDetails = (props: TProps) => {
           Date
         </Typography>
         <Typography weight={700} size={'m'}>
-          {props.date.toLocaleDateString()}
+          {date.toLocaleDateString()}
         </Typography>
       </Content>
+      {}
       <Content>
         <Typography weight={700} size={'m'}>
           Description
         </Typography>
         <Typography weight={700} size={'m'}>
-          {props.description}
+          {description}
         </Typography>
       </Content>
       <div>
         <Typography size={'l'} weight={700}>
-          Percentage by {props.category.name} category:
+          Percentage by {category} category:
         </Typography>
         <ChartWrapper>
           <Chart
-            data={pieChartMapper(props.toChart as ToPieChartDto[])}
+            data={detailsPieChartMapper(toChart)}
             type={ChartTypeEnum.PIE}
           />
         </ChartWrapper>

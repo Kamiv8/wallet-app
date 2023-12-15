@@ -12,6 +12,7 @@ export type TProps = {
   disabled?: boolean;
   variant?: TVariantButton;
   onClick?: () => any;
+  isActive?: boolean;
 };
 
 export const Button = (props: TProps) => (

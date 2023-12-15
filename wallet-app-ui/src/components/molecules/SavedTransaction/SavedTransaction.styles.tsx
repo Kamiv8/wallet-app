@@ -6,6 +6,9 @@ type TWrapper = {
   backgroundColor?: string;
 };
 
+type TSvgProps = {
+  color?: string;
+};
 export const Wrapper = styled.div<TWrapper>`
   background-color: ${({
     backgroundColor,
@@ -36,4 +39,8 @@ export const ButtonWrapper = styled.div`
 
 export const StyledEditIcon = styled(EditIcon)`
   cursor: pointer;
+  path {
+    fill: ${({ color, theme }: TSvgProps & { theme: TTheme }) =>
+      color ? color : theme.colors.darkBlue};
+  }
 `;

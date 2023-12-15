@@ -1,4 +1,4 @@
 export type ToPieChartDto = {
-  name: string;
+  key: string;
   value: number;
 };

@@ -1,42 +1,37 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Currency } from '../../../models/resources/currency';
-import { TransactionDetails } from '../../../models/resources/TransactionDetails';
-import { ToPieChartDto } from '../../../models/dtos/toPieChartDto';
 import { TransactionApi } from '../../../api';
-import { Category } from '../../../models/resources/category';
 import { MainTemplate } from '../../templates';
 import { Typography } from '../../atoms';
 import { HistoryCardDetails } from '../../organisms';
+import { useFetch } from '../../../hooks';
+import { GetUserTransactionDetailsResponse } from '../../../models/apiTypes/transaction/getUserTransactionDetails/getUserTransactionDetails.response';
 
 export const HistoryDetailsPage = () => {
   const location = useLocation();
+  const { callToApi } = useFetch();
 
-  const [state, setState] = useState<TransactionDetails>({
+  const [state, setState] = useState<GetUserTransactionDetailsResponse>({
     id: '',
     title: '',
-    category: {
-      id: '',
-      name: '',
-    } as Category,
+    categoryName: '',
     price: 0,
     date: new Date(),
-    currency: {
-      id: '',
-      name: '',
-      exchangeRate: 0,
-      mark: 'PLN',
-    } as Currency,
-    percentage: {
-      byCategory: [] as ToPieChartDto[],
+    currencyCode: '',
+    chartData: {
+      all: 0,
+      currentCategory: 0,
     },
   });
 
   useEffect(() => {
     (async () => {
       const parsedId = location.pathname.split('/');
-      const data = await TransactionApi.getTransactionDetails(parsedId[2]);
-      setState(data?.data?.response);
+      const data = await callToApi(
+        TransactionApi.getTransactionDetails(parsedId[2]),
+      );
+      if (!data.data) return;
+      setState(data.data);
     })();
   }, []);
 
@@ -47,11 +42,11 @@ export const HistoryDetailsPage = () => {
       </Typography>
       <HistoryCardDetails
         title={state.title}
-        category={state.category}
+        category={state.categoryName}
         price={state.price}
-        currency={state.currency}
+        currency={state.currencyCode}
         date={new Date(state.date)}
-        toChart={state?.percentage.byCategory}
+        toChart={state.chartData}
       />
     </MainTemplate>
   );

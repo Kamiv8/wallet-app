@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import { TProps } from './CardWrapper';
 import { TTheme } from '../../../styles/theme';
-import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg';
 
 export const StyledWrapper = styled.div<
   Pick<TProps, 'color' | 'gradientColor'>
@@ -27,8 +26,4 @@ export const StyledWrapper = styled.div<
 export const CloseWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
-
-export const StyledCloseIcon = styled(CloseIcon)`
-  cursor: pointer;
 `;

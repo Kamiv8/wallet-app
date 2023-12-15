@@ -1,11 +1,12 @@
 using FluentValidation;
 using WalletApp.Application.Account.Authenticate;
+using WalletApp.Application.Consts;
 
 namespace WalletApp.Application.Common.Transaction.AddUserTransaction;
 
 public class AddUserTransactionCommandValidation : AbstractValidator<AddUserTransactionCommand>
 {
-    private const string HexColorRegex = @"^#(?:[0-9a-fA-F]{3}){1,2}$";
+    
 
     public AddUserTransactionCommandValidation()
     {
@@ -20,9 +21,9 @@ public class AddUserTransactionCommandValidation : AbstractValidator<AddUserTran
         RuleFor(x => x.Description).Cascade(CascadeMode.Stop).MinimumLength(1).MaximumLength(500);
         When(x => x.IsDefault, () =>
         {
-            RuleFor(x => x.TextColor).Cascade(CascadeMode.Stop).NotEmpty().Matches(HexColorRegex);
+            RuleFor(x => x.TextColor).Cascade(CascadeMode.Stop).NotEmpty().Matches(Regexes.HexColorRegex);
             RuleFor(x => x.BackgroundColor).Cascade(CascadeMode.Stop).NotEmpty()
-                .Matches(HexColorRegex);
+                .Matches(Regexes.HexColorRegex);
         }).Otherwise(() =>
         {
             RuleFor(x => x.TextColor).Null();

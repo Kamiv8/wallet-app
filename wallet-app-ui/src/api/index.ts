@@ -7,3 +7,4 @@ export * from './token.api';
 export * from './transaction.api';
 export * from './user.api';
 export * from './defaultTransaction';
+export * from './note.api';

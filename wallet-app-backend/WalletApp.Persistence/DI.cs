@@ -22,6 +22,7 @@ public static class DI
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ITransactionRepository, TransactionRepository>();
         services.AddScoped<IDefaultTransactionRepository, DefaultTransactionRepository>();
+        services.AddScoped<INoteRepository, NoteRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         

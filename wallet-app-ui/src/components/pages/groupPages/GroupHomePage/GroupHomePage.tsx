@@ -58,15 +58,15 @@ export const GroupHomePage = () => {
     }));
   };
 
-  const getLastTransactions = async () => {
-    const { data } = await TransactionApi.getLastTransactions(
-      getApplicationType(appContext.state.type),
-    );
-    setState((prev) => ({
-      ...prev,
-      lastTransactions: data?.response.items,
-    }));
-  };
+  // const getLastTransactions = async () => {
+  //   const { data } = await TransactionApi.getLastTransactions(
+  //     getApplicationType(appContext.state.type),
+  //   );
+  //   setState((prev) => ({
+  //     ...prev,
+  //     lastTransactions: data?.response.items,
+  //   }));
+  // };
 
   async function getMoneyChartData() {
     const moneyChartData = await TransactionApi.getMoneyChartData(
@@ -119,7 +119,7 @@ export const GroupHomePage = () => {
     (async () => {
       await Promise.all([
         getActualMoneyData(),
-        getLastTransactions(),
+        // getLastTransactions(),
         getMoneyChartData(),
         getIncomeChartData(),
         getCostChartData(),

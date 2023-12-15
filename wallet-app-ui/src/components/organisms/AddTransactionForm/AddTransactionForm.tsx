@@ -19,13 +19,12 @@ import {
 import { TGetCurrenciesResponse } from '../../../models/apiTypes/currency/getCurrencies/getCurrencies.response';
 import { TGetUserCategoriesResponse } from '../../../models/apiTypes/category/getUserCategories/getUserCategories.response';
 import { TAddUserTransactionForm } from '../../../models/apiTypes/transaction/addUserTransaction/addUserTransaction.form';
-// import { addUserTransactionSchema } from '../../../validators/transaction/addUserTransaction.validator';
 
 export type TProps = {
   onClose: () => void;
 };
 
-export const AddTransactionForm = (props: TProps) => {
+export const AddTransactionForm = ({ onClose }: TProps) => {
   const { callToApi } = useFetch();
 
   const [isSaved, setIsSaved] = useState<boolean>(false);
@@ -46,12 +45,13 @@ export const AddTransactionForm = (props: TProps) => {
     description: undefined,
   };
 
-  const { values, handleChange, getValidationMessage, onSubmit } =
+  const { handleChange, getValidationMessage, onSubmit } =
     useForm<TAddUserTransactionForm>(initialValues);
 
   const handleIsSaved = (e: any) => {
     setIsSaved(e.target.checked);
     handleChange(e, 'isDefault', FieldType.Checkbox);
+
     if (!e.target.checked) {
       setState((prev) => ({
         ...prev,
@@ -60,7 +60,6 @@ export const AddTransactionForm = (props: TProps) => {
       }));
     }
   };
-
   async function getCurrencyData() {
     const currencyData = await callToApi(CurrencyApi.addCurrencies());
     setState((prev) => ({
@@ -84,12 +83,12 @@ export const AddTransactionForm = (props: TProps) => {
   }, []);
 
   const handleSubmit = async () => {
-    console.log(values);
     await onSubmit(TransactionApi.addTransaction);
+    onClose();
   };
 
   return (
-    <CardWrapper gradientColor close={props.onClose}>
+    <CardWrapper gradientColor close={onClose}>
       <FormWrapper>
         <InputField
           label={{ ...messages.addTransactionPageTitle }}
@@ -155,7 +154,6 @@ export const AddTransactionForm = (props: TProps) => {
             />
           </SavedInputsWrapper>
         )}
-
         <Button color={'darkBlue'} type={'button'} onClick={handleSubmit}>
           <FormattedMessage {...messages.buttonAdd} />
         </Button>

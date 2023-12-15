@@ -32,6 +32,35 @@ const StyledButton = styled.button<TProps>`
       background-color: ${({ theme }: { theme: TTheme }) =>
         theme.colors.orange};
     `}
+  ${({ isActive }: TProps) =>
+    isActive &&
+    css`
+      color: ${({
+        theme,
+        color = 'orange',
+        customColor,
+      }: TProps & { theme: TTheme }) =>
+        !customColor
+          ? theme.colors[color === 'orange' ? 'darkBlue' : 'orange']
+          : customColor};
+      border-radius: 5px;
+      border: 2px solid
+        ${({
+          theme,
+          color = 'orange',
+          customColor,
+        }: TProps & { theme: TTheme }) =>
+          !customColor ? theme.colors[color] : customColor};
+      background-color: ${({
+        theme,
+        color = 'orange',
+        customColor,
+      }: TProps & { theme: TTheme }) =>
+        !customColor ? theme.colors[color] : customColor};
+      font-weight: ${({ theme }) => theme.weight[700]};
+      cursor: pointer;
+      padding: 10px 15px;
+    `}
 `;
 
 export default StyledButton;

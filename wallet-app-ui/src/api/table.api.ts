@@ -4,23 +4,6 @@ import { BaseApiHandler } from './baseApiHandler';
 import { BaseApiConfig } from './baseApiConfig';
 
 export class TableApi extends BaseApiConfig {
-  public static async createNote(values: any): Promise<IApiResult> {
-    const data = await axios.post('/table', values, this.apiOptions());
-
-    return BaseApiHandler.handleApi(data);
-  }
-
-  public static async getAllNotes(type: any): Promise<IApiResult> {
-    const data = await axios.get('/table', {
-      ...this.apiOptions(),
-      params: {
-        type,
-      },
-    });
-
-    return BaseApiHandler.handleApi(data);
-  }
-
   public static async getNoteDetails(id: string): Promise<IApiResult> {
     const data = await axios.get(`/table/${id}`, this.apiOptions());
     return BaseApiHandler.handleApi(data);

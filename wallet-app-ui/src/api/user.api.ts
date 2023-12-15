@@ -2,10 +2,13 @@ import { IApiResult } from '../models/apiResult';
 import { devConfig } from '../const/config';
 import axios from 'axios';
 import { BaseApiHandler } from './baseApiHandler';
-import { api } from "./baseAxios.config";
+import { api } from './baseAxios.config';
+import { GetAccountDataResponse } from '../models/apiTypes/account/getAccountData/getAccountData.response';
 
 export class UserApi {
-  public static async getUserData(): Promise<IApiResult> {
+  public static async getUserData(): Promise<
+    IApiResult<GetAccountDataResponse>
+  > {
     const data = await api.get('/account/data');
     return BaseApiHandler.handleApi(data);
   }

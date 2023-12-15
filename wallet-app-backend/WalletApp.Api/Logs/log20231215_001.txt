@@ -1,0 +1,369 @@
+2023-12-15 19:11:20.956 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api) in 5.363ms
+2023-12-15 19:11:20.962 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:20.963 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=331a4fd2-b4dc-43cd-8eed-6dd7f7192091 - - - 200 - application/json;+charset=utf-8 15.9093ms
+2023-12-15 19:11:21.307 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:21.311 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:21.312 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:21.313 +01:00 [INF] Route matched with {action = "GetCostByCategory", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IEnumerable`1[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto]]]] GetCostByCategory(WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:21.317 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__currencyId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c0].[Name], COALESCE(SUM([t].[Price]), 0.0)
+FROM [Transactions] AS [t]
+INNER JOIN [Currencies] AS [c] ON [t].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t].[CategoryId] = [c0].[Id]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [c].[Id] = @__currencyId_1 AND [t].[Price] < 0.0
+GROUP BY [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+2023-12-15 19:11:21.319 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IEnumerable`1[[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:21.320 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api) in 5.9376ms
+2023-12-15 19:11:21.321 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:21.323 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 200 - application/json;+charset=utf-8 15.0505ms
+2023-12-15 19:11:22.452 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=331a4fd2-b4dc-43cd-8eed-6dd7f7192091 - -
+2023-12-15 19:11:22.452 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:22.453 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:22.454 +01:00 [INF] Route matched with {action = "GetCostByCategory", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IEnumerable`1[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto]]]] GetCostByCategory(WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:22.459 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__currencyId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c0].[Name], COALESCE(SUM([t].[Price]), 0.0)
+FROM [Transactions] AS [t]
+INNER JOIN [Currencies] AS [c] ON [t].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t].[CategoryId] = [c0].[Id]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [c].[Id] = @__currencyId_1 AND [t].[Price] < 0.0
+GROUP BY [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+2023-12-15 19:11:22.462 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IEnumerable`1[[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:22.463 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api) in 7.23ms
+2023-12-15 19:11:22.464 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:22.465 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=331a4fd2-b4dc-43cd-8eed-6dd7f7192091 - - - 200 - application/json;+charset=utf-8 13.1808ms
+2023-12-15 19:11:24.109 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:24.109 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:24.111 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:24.112 +01:00 [INF] Route matched with {action = "GetCostByCategory", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IEnumerable`1[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto]]]] GetCostByCategory(WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:24.116 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__currencyId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c0].[Name], COALESCE(SUM([t].[Price]), 0.0)
+FROM [Transactions] AS [t]
+INNER JOIN [Currencies] AS [c] ON [t].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t].[CategoryId] = [c0].[Id]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [c].[Id] = @__currencyId_1 AND [t].[Price] < 0.0
+GROUP BY [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+2023-12-15 19:11:24.119 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IEnumerable`1[[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:24.120 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api) in 6.2199ms
+2023-12-15 19:11:24.121 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:24.122 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 200 - application/json;+charset=utf-8 13.7031ms
+2023-12-15 19:11:36.089 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=5 - -
+2023-12-15 19:11:36.090 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.091 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=5 - - - 204 - - 2.3642ms
+2023-12-15 19:11:36.092 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=5 - -
+2023-12-15 19:11:36.093 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.094 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api)'
+2023-12-15 19:11:36.096 +01:00 [INF] Route matched with {action = "GetAllTransactions", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListResponseDto]]] GetAllTransactions(WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:36.101 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Transactions] AS [t]
+        WHERE [t].[UserIdentityId] = @__userId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2023-12-15 19:11:36.105 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[Id], [t0].[CategoryId], [t0].[CratedBy], [t0].[CreatedTime], [t0].[CurrencyId], [t0].[Date], [t0].[DefaultTransactionId], [t0].[DeletedBy], [t0].[DeletedTime], [t0].[Description], [t0].[GroupId], [t0].[IsDefault], [t0].[IsDeleted], [t0].[ModifiedBy], [t0].[ModifiedTime], [t0].[Price], [t0].[Title], [t0].[UserIdentityId], [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate], [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+FROM (
+    SELECT [t].[Id], [t].[CategoryId], [t].[CratedBy], [t].[CreatedTime], [t].[CurrencyId], [t].[Date], [t].[DefaultTransactionId], [t].[DeletedBy], [t].[DeletedTime], [t].[Description], [t].[GroupId], [t].[IsDefault], [t].[IsDeleted], [t].[ModifiedBy], [t].[ModifiedTime], [t].[Price], [t].[Title], [t].[UserIdentityId]
+    FROM [Transactions] AS [t]
+    WHERE [t].[UserIdentityId] = @__userId_0
+    ORDER BY [t].[Date] DESC
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [t0]
+INNER JOIN [Currencies] AS [c] ON [t0].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t0].[CategoryId] = [c0].[Id]
+ORDER BY [t0].[Date] DESC
+2023-12-15 19:11:36.109 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0
+2023-12-15 19:11:36.110 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-12-15 19:11:36.112 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api) in 14.915ms
+2023-12-15 19:11:36.113 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api)'
+2023-12-15 19:11:36.114 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=5 - - - 200 - application/json;+charset=utf-8 21.7496ms
+2023-12-15 19:11:36.542 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/account/data - -
+2023-12-15 19:11:36.543 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=2 - -
+2023-12-15 19:11:36.543 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/currency - -
+2023-12-15 19:11:36.544 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.545 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.545 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.546 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/account/data - - - 204 - - 4.1109ms
+2023-12-15 19:11:36.547 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=2 - - - 204 - - 4.3340ms
+2023-12-15 19:11:36.548 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=2 - -
+2023-12-15 19:11:36.548 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/currency - - - 204 - - 5.1597ms
+2023-12-15 19:11:36.550 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/currency - -
+2023-12-15 19:11:36.548 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/account/data - -
+2023-12-15 19:11:36.555 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.556 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.556 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.557 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api)'
+2023-12-15 19:11:36.558 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.CurrencyController.GetCurrencies (WalletApp.Api)'
+2023-12-15 19:11:36.559 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.GetAccountData (WalletApp.Api)'
+2023-12-15 19:11:36.560 +01:00 [INF] Route matched with {action = "GetAllTransactions", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListResponseDto]]] GetAllTransactions(WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:36.561 +01:00 [INF] Route matched with {action = "GetCurrencies", controller = "Currency"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IEnumerable`1[WalletApp.Application.Common.Currency.GetCurrencies.GetCurrenciesQueryResponseDto]]]] GetCurrencies(System.Threading.CancellationToken) on controller WalletApp.Controllers.CurrencyController (WalletApp.Api).
+2023-12-15 19:11:36.562 +01:00 [INF] Route matched with {action = "GetAccountData", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Common.Account.GetAccountData.GetAccountDataResponseDto]]] GetAccountData(System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2023-12-15 19:11:36.566 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Transactions] AS [t]
+        WHERE [t].[UserIdentityId] = @__userId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2023-12-15 19:11:36.568 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+2023-12-15 19:11:36.571 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a0].[Id], [a0].[ActualMoneyChf], [a0].[ActualMoneyEur], [a0].[ActualMoneyGbp], [a0].[ActualMoneyPln], [a0].[ActualMoneyUsd], [a0].[CratedBy], [a0].[CreatedTime], [a0].[DeletedBy], [a0].[DeletedTime], [a0].[IsDeleted], [a0].[ModifiedBy], [a0].[ModifiedTime], [a0].[UserIdentityId], [m].[Id], [m].[CratedBy], [m].[CreatedTime], [m].[DeletedBy], [m].[DeletedTime], [m].[GroupId], [m].[IsDeleted], [m].[ModifiedBy], [m].[ModifiedTime], [m].[UserIdentityId], [m].[UserRoleIdentityId]
+FROM [AspNetUsers] AS [a]
+LEFT JOIN [AccountData] AS [a0] ON [a].[Id] = [a0].[UserIdentityId]
+LEFT JOIN [Members] AS [m] ON [a].[Id] = [m].[UserIdentityId]
+WHERE [a].[Id] = @__userId_0
+2023-12-15 19:11:36.572 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[Id], [t0].[CategoryId], [t0].[CratedBy], [t0].[CreatedTime], [t0].[CurrencyId], [t0].[Date], [t0].[DefaultTransactionId], [t0].[DeletedBy], [t0].[DeletedTime], [t0].[Description], [t0].[GroupId], [t0].[IsDefault], [t0].[IsDeleted], [t0].[ModifiedBy], [t0].[ModifiedTime], [t0].[Price], [t0].[Title], [t0].[UserIdentityId], [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate], [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+FROM (
+    SELECT [t].[Id], [t].[CategoryId], [t].[CratedBy], [t].[CreatedTime], [t].[CurrencyId], [t].[Date], [t].[DefaultTransactionId], [t].[DeletedBy], [t].[DeletedTime], [t].[Description], [t].[GroupId], [t].[IsDefault], [t].[IsDeleted], [t].[ModifiedBy], [t].[ModifiedTime], [t].[Price], [t].[Title], [t].[UserIdentityId]
+    FROM [Transactions] AS [t]
+    WHERE [t].[UserIdentityId] = @__userId_0
+    ORDER BY [t].[Date] DESC
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [t0]
+INNER JOIN [Currencies] AS [c] ON [t0].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t0].[CategoryId] = [c0].[Id]
+ORDER BY [t0].[Date] DESC
+2023-12-15 19:11:36.573 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IEnumerable`1[[WalletApp.Application.Common.Currency.GetCurrencies.GetCurrenciesQueryResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:36.574 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Common.Account.GetAccountData.GetAccountDataResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-12-15 19:11:36.577 +01:00 [INF] Executed action WalletApp.Controllers.CurrencyController.GetCurrencies (WalletApp.Api) in 11.8561ms
+2023-12-15 19:11:36.578 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0
+2023-12-15 19:11:36.578 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.GetAccountData (WalletApp.Api) in 10.7519ms
+2023-12-15 19:11:36.580 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.CurrencyController.GetCurrencies (WalletApp.Api)'
+2023-12-15 19:11:36.582 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-12-15 19:11:36.583 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.GetAccountData (WalletApp.Api)'
+2023-12-15 19:11:36.584 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/currency - - - 200 - application/json;+charset=utf-8 34.9160ms
+2023-12-15 19:11:36.586 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api) in 22.3524ms
+2023-12-15 19:11:36.586 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/account/data - - - 200 - application/json;+charset=utf-8 38.7765ms
+2023-12-15 19:11:36.588 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api)'
+2023-12-15 19:11:36.590 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=2 - - - 200 - application/json;+charset=utf-8 41.7290ms
+2023-12-15 19:11:36.602 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/getIncomeByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:36.603 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.604 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/getIncomeByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 204 - - 1.7130ms
+2023-12-15 19:11:36.605 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/getIncomeByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:36.606 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.607 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetIncomeByCategory (WalletApp.Api)'
+2023-12-15 19:11:36.608 +01:00 [INF] Route matched with {action = "GetIncomeByCategory", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IEnumerable`1[WalletApp.Application.Common.Transaction.GetIncomeByCategory.GetIncomeByCategoryResponseDto]]]] GetIncomeByCategory(WalletApp.Application.Common.Transaction.GetIncomeByCategory.GetIncomeByCategoryDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:36.614 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__currencyId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c0].[Name], COALESCE(SUM([t].[Price]), 0.0)
+FROM [Transactions] AS [t]
+INNER JOIN [Currencies] AS [c] ON [t].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t].[CategoryId] = [c0].[Id]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [c].[Id] = @__currencyId_1 AND [t].[Price] > 0.0
+GROUP BY [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+2023-12-15 19:11:36.616 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:36.617 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IEnumerable`1[[WalletApp.Application.Common.Transaction.GetIncomeByCategory.GetIncomeByCategoryResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:36.617 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.619 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetIncomeByCategory (WalletApp.Api) in 8.6175ms
+2023-12-15 19:11:36.619 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 204 - - 3.6871ms
+2023-12-15 19:11:36.620 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:36.620 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetIncomeByCategory (WalletApp.Api)'
+2023-12-15 19:11:36.622 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:36.623 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/getIncomeByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 200 - application/json;+charset=utf-8 17.4536ms
+2023-12-15 19:11:36.624 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:36.625 +01:00 [INF] Route matched with {action = "GetCostByCategory", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IEnumerable`1[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto]]]] GetCostByCategory(WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:36.630 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__currencyId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c0].[Name], COALESCE(SUM([t].[Price]), 0.0)
+FROM [Transactions] AS [t]
+INNER JOIN [Currencies] AS [c] ON [t].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t].[CategoryId] = [c0].[Id]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [c].[Id] = @__currencyId_1 AND [t].[Price] < 0.0
+GROUP BY [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+2023-12-15 19:11:36.632 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IEnumerable`1[[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:36.634 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api) in 6.8472ms
+2023-12-15 19:11:36.635 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:36.636 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 200 - application/json;+charset=utf-8 15.5630ms
+2023-12-15 19:11:37.269 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/defaultUserTransactions - -
+2023-12-15 19:11:37.271 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:37.272 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/defaultUserTransactions - - - 204 - - 2.0894ms
+2023-12-15 19:11:37.273 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/defaultUserTransactions - -
+2023-12-15 19:11:37.273 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:37.274 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.DefaultUserTransactionsController.GetDefaultUserTransactions (WalletApp.Api)'
+2023-12-15 19:11:37.275 +01:00 [INF] Route matched with {action = "GetDefaultUserTransactions", controller = "DefaultUserTransactions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IReadOnlyCollection`1[WalletApp.Application.Common.DefaultTransaction.GetDefaultUserTransactions.GetDefaultUserTransactionResponseDto]]]] GetDefaultUserTransactions(System.Threading.CancellationToken) on controller WalletApp.Controllers.DefaultUserTransactionsController (WalletApp.Api).
+2023-12-15 19:11:37.280 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[Id], [d].[BackgroundColor], [d].[CategoryId], [d].[CratedBy], [d].[CreatedTime], [d].[CurrencyId], [d].[DeletedBy], [d].[DeletedTime], [d].[Description], [d].[GroupId], [d].[IsDeleted], [d].[ModifiedBy], [d].[ModifiedTime], [d].[Price], [d].[TextColor], [d].[Title], [d].[UserIdentityId], [c].[Id], [c].[CratedBy], [c].[CreatedTime], [c].[DeletedBy], [c].[DeletedTime], [c].[GroupId], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[Name], [c].[UserIdentityId], [c0].[Id], [c0].[Ask], [c0].[Bid], [c0].[Code], [c0].[CratedBy], [c0].[CreatedTime], [c0].[CurrencyName], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[TradingDate]
+FROM [DefaultTransactions] AS [d]
+INNER JOIN [Categories] AS [c] ON [d].[CategoryId] = [c].[Id]
+INNER JOIN [Currencies] AS [c0] ON [d].[CurrencyId] = [c0].[Id]
+WHERE [d].[UserIdentityId] = @__userId_0
+2023-12-15 19:11:37.282 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IReadOnlyCollection`1[[WalletApp.Application.Common.DefaultTransaction.GetDefaultUserTransactions.GetDefaultUserTransactionResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:37.284 +01:00 [INF] Executed action WalletApp.Controllers.DefaultUserTransactionsController.GetDefaultUserTransactions (WalletApp.Api) in 7.4311ms
+2023-12-15 19:11:37.285 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.DefaultUserTransactionsController.GetDefaultUserTransactions (WalletApp.Api)'
+2023-12-15 19:11:37.286 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/defaultUserTransactions - - - 200 - application/json;+charset=utf-8 13.4687ms
+2023-12-15 19:11:38.072 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/notesUser - -
+2023-12-15 19:11:38.073 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:38.074 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/notesUser - - - 204 - - 1.9074ms
+2023-12-15 19:11:38.075 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/notesUser - -
+2023-12-15 19:11:38.076 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:38.077 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.NotesUserController.GetAllUserNotes (WalletApp.Api)'
+2023-12-15 19:11:38.078 +01:00 [INF] Route matched with {action = "GetAllUserNotes", controller = "NotesUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IReadOnlyCollection`1[WalletApp.Application.Common.Note.GetUserNotes.GetUserNotesResponseDto]]]] GetAllUserNotes(System.Threading.CancellationToken) on controller WalletApp.Controllers.NotesUserController (WalletApp.Api).
+2023-12-15 19:11:38.082 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[BackgroundColor], [n].[CratedBy], [n].[CreatedTime], [n].[DeletedBy], [n].[DeletedTime], [n].[GroupId], [n].[IsDeleted], [n].[IsDone], [n].[ModifiedBy], [n].[ModifiedTime], [n].[Text], [n].[TextColor], [n].[Title], [n].[UserIdentityId]
+FROM [Notes] AS [n]
+WHERE [n].[UserIdentityId] = @__userId_0
+2023-12-15 19:11:38.084 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IReadOnlyCollection`1[[WalletApp.Application.Common.Note.GetUserNotes.GetUserNotesResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:38.086 +01:00 [INF] Executed action WalletApp.Controllers.NotesUserController.GetAllUserNotes (WalletApp.Api) in 6.3737ms
+2023-12-15 19:11:38.087 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.NotesUserController.GetAllUserNotes (WalletApp.Api)'
+2023-12-15 19:11:38.088 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/notesUser - - - 200 - application/json;+charset=utf-8 12.4618ms
+2023-12-15 19:11:47.828 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=5 - -
+2023-12-15 19:11:47.829 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:47.830 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=5 - - - 204 - - 2.4361ms
+2023-12-15 19:11:47.831 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=5 - -
+2023-12-15 19:11:47.832 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:47.833 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api)'
+2023-12-15 19:11:47.834 +01:00 [INF] Route matched with {action = "GetAllTransactions", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListResponseDto]]] GetAllTransactions(WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:47.840 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Transactions] AS [t]
+        WHERE [t].[UserIdentityId] = @__userId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2023-12-15 19:11:47.845 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[Id], [t0].[CategoryId], [t0].[CratedBy], [t0].[CreatedTime], [t0].[CurrencyId], [t0].[Date], [t0].[DefaultTransactionId], [t0].[DeletedBy], [t0].[DeletedTime], [t0].[Description], [t0].[GroupId], [t0].[IsDefault], [t0].[IsDeleted], [t0].[ModifiedBy], [t0].[ModifiedTime], [t0].[Price], [t0].[Title], [t0].[UserIdentityId], [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate], [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+FROM (
+    SELECT [t].[Id], [t].[CategoryId], [t].[CratedBy], [t].[CreatedTime], [t].[CurrencyId], [t].[Date], [t].[DefaultTransactionId], [t].[DeletedBy], [t].[DeletedTime], [t].[Description], [t].[GroupId], [t].[IsDefault], [t].[IsDeleted], [t].[ModifiedBy], [t].[ModifiedTime], [t].[Price], [t].[Title], [t].[UserIdentityId]
+    FROM [Transactions] AS [t]
+    WHERE [t].[UserIdentityId] = @__userId_0
+    ORDER BY [t].[Date] DESC
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [t0]
+INNER JOIN [Currencies] AS [c] ON [t0].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t0].[CategoryId] = [c0].[Id]
+ORDER BY [t0].[Date] DESC
+2023-12-15 19:11:47.849 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0
+2023-12-15 19:11:47.851 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-12-15 19:11:47.852 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api) in 16.8564ms
+2023-12-15 19:11:47.854 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api)'
+2023-12-15 19:11:47.855 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=5 - - - 200 - application/json;+charset=utf-8 23.2534ms
+2023-12-15 19:11:49.862 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/notesUser - -
+2023-12-15 19:11:49.863 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:49.864 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/notesUser - - - 204 - - 1.8429ms
+2023-12-15 19:11:49.864 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/notesUser - -
+2023-12-15 19:11:49.865 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:49.866 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.NotesUserController.GetAllUserNotes (WalletApp.Api)'
+2023-12-15 19:11:49.867 +01:00 [INF] Route matched with {action = "GetAllUserNotes", controller = "NotesUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IReadOnlyCollection`1[WalletApp.Application.Common.Note.GetUserNotes.GetUserNotesResponseDto]]]] GetAllUserNotes(System.Threading.CancellationToken) on controller WalletApp.Controllers.NotesUserController (WalletApp.Api).
+2023-12-15 19:11:49.870 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[BackgroundColor], [n].[CratedBy], [n].[CreatedTime], [n].[DeletedBy], [n].[DeletedTime], [n].[GroupId], [n].[IsDeleted], [n].[IsDone], [n].[ModifiedBy], [n].[ModifiedTime], [n].[Text], [n].[TextColor], [n].[Title], [n].[UserIdentityId]
+FROM [Notes] AS [n]
+WHERE [n].[UserIdentityId] = @__userId_0
+2023-12-15 19:11:49.873 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IReadOnlyCollection`1[[WalletApp.Application.Common.Note.GetUserNotes.GetUserNotesResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:49.874 +01:00 [INF] Executed action WalletApp.Controllers.NotesUserController.GetAllUserNotes (WalletApp.Api) in 6.0592ms
+2023-12-15 19:11:49.875 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.NotesUserController.GetAllUserNotes (WalletApp.Api)'
+2023-12-15 19:11:49.876 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/notesUser - - - 200 - application/json;+charset=utf-8 11.7448ms
+2023-12-15 19:11:50.995 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/account/data - -
+2023-12-15 19:11:50.995 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/currency - -
+2023-12-15 19:11:50.995 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=2 - -
+2023-12-15 19:11:50.997 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:50.998 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:50.998 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:50.999 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/account/data - - - 204 - - 3.8658ms
+2023-12-15 19:11:50.999 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/currency - - - 204 - - 3.9859ms
+2023-12-15 19:11:51.000 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=2 - - - 204 - - 4.7055ms
+2023-12-15 19:11:51.001 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/currency - -
+2023-12-15 19:11:51.001 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/account/data - -
+2023-12-15 19:11:51.001 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=2 - -
+2023-12-15 19:11:51.004 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:51.004 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:51.005 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:51.006 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.CurrencyController.GetCurrencies (WalletApp.Api)'
+2023-12-15 19:11:51.007 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.GetAccountData (WalletApp.Api)'
+2023-12-15 19:11:51.008 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api)'
+2023-12-15 19:11:51.008 +01:00 [INF] Route matched with {action = "GetCurrencies", controller = "Currency"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IEnumerable`1[WalletApp.Application.Common.Currency.GetCurrencies.GetCurrenciesQueryResponseDto]]]] GetCurrencies(System.Threading.CancellationToken) on controller WalletApp.Controllers.CurrencyController (WalletApp.Api).
+2023-12-15 19:11:51.009 +01:00 [INF] Route matched with {action = "GetAccountData", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Common.Account.GetAccountData.GetAccountDataResponseDto]]] GetAccountData(System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2023-12-15 19:11:51.010 +01:00 [INF] Route matched with {action = "GetAllTransactions", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListResponseDto]]] GetAllTransactions(WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:51.014 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+2023-12-15 19:11:51.016 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a0].[Id], [a0].[ActualMoneyChf], [a0].[ActualMoneyEur], [a0].[ActualMoneyGbp], [a0].[ActualMoneyPln], [a0].[ActualMoneyUsd], [a0].[CratedBy], [a0].[CreatedTime], [a0].[DeletedBy], [a0].[DeletedTime], [a0].[IsDeleted], [a0].[ModifiedBy], [a0].[ModifiedTime], [a0].[UserIdentityId], [m].[Id], [m].[CratedBy], [m].[CreatedTime], [m].[DeletedBy], [m].[DeletedTime], [m].[GroupId], [m].[IsDeleted], [m].[ModifiedBy], [m].[ModifiedTime], [m].[UserIdentityId], [m].[UserRoleIdentityId]
+FROM [AspNetUsers] AS [a]
+LEFT JOIN [AccountData] AS [a0] ON [a].[Id] = [a0].[UserIdentityId]
+LEFT JOIN [Members] AS [m] ON [a].[Id] = [m].[UserIdentityId]
+WHERE [a].[Id] = @__userId_0
+2023-12-15 19:11:51.018 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IEnumerable`1[[WalletApp.Application.Common.Currency.GetCurrencies.GetCurrenciesQueryResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:51.019 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Transactions] AS [t]
+        WHERE [t].[UserIdentityId] = @__userId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2023-12-15 19:11:51.020 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Common.Account.GetAccountData.GetAccountDataResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-12-15 19:11:51.020 +01:00 [INF] Executed action WalletApp.Controllers.CurrencyController.GetCurrencies (WalletApp.Api) in 8.3285ms
+2023-12-15 19:11:51.025 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.GetAccountData (WalletApp.Api) in 10.4823ms
+2023-12-15 19:11:51.025 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[Id], [t0].[CategoryId], [t0].[CratedBy], [t0].[CreatedTime], [t0].[CurrencyId], [t0].[Date], [t0].[DefaultTransactionId], [t0].[DeletedBy], [t0].[DeletedTime], [t0].[Description], [t0].[GroupId], [t0].[IsDefault], [t0].[IsDeleted], [t0].[ModifiedBy], [t0].[ModifiedTime], [t0].[Price], [t0].[Title], [t0].[UserIdentityId], [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate], [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+FROM (
+    SELECT [t].[Id], [t].[CategoryId], [t].[CratedBy], [t].[CreatedTime], [t].[CurrencyId], [t].[Date], [t].[DefaultTransactionId], [t].[DeletedBy], [t].[DeletedTime], [t].[Description], [t].[GroupId], [t].[IsDefault], [t].[IsDeleted], [t].[ModifiedBy], [t].[ModifiedTime], [t].[Price], [t].[Title], [t].[UserIdentityId]
+    FROM [Transactions] AS [t]
+    WHERE [t].[UserIdentityId] = @__userId_0
+    ORDER BY [t].[Date] DESC
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [t0]
+INNER JOIN [Currencies] AS [c] ON [t0].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t0].[CategoryId] = [c0].[Id]
+ORDER BY [t0].[Date] DESC
+2023-12-15 19:11:51.025 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.CurrencyController.GetCurrencies (WalletApp.Api)'
+2023-12-15 19:11:51.026 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.GetAccountData (WalletApp.Api)'
+2023-12-15 19:11:51.029 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/currency - - - 200 - application/json;+charset=utf-8 28.3553ms
+2023-12-15 19:11:51.030 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/account/data - - - 200 - application/json;+charset=utf-8 29.5118ms
+2023-12-15 19:11:51.031 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0
+2023-12-15 19:11:51.033 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Common.Transaction.GetTransactionList.GetTransactionListResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-12-15 19:11:51.034 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api) in 18.4278ms
+2023-12-15 19:11:51.035 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetAllTransactions (WalletApp.Api)'
+2023-12-15 19:11:51.036 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/transactionList?PaginationParamsDto.PageNumber=1&PaginationParamsDto.PageSize=2 - - - 200 - application/json;+charset=utf-8 35.1358ms
+2023-12-15 19:11:51.036 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/getIncomeByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:51.038 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:51.038 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:51.039 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:51.040 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/getIncomeByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 204 - - 3.2761ms
+2023-12-15 19:11:51.041 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 204 - - 2.7350ms
+2023-12-15 19:11:51.041 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/getIncomeByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:51.041 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - -
+2023-12-15 19:11:51.043 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:51.043 +01:00 [INF] CORS policy execution successful.
+2023-12-15 19:11:51.044 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetIncomeByCategory (WalletApp.Api)'
+2023-12-15 19:11:51.045 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:51.045 +01:00 [INF] Route matched with {action = "GetIncomeByCategory", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IEnumerable`1[WalletApp.Application.Common.Transaction.GetIncomeByCategory.GetIncomeByCategoryResponseDto]]]] GetIncomeByCategory(WalletApp.Application.Common.Transaction.GetIncomeByCategory.GetIncomeByCategoryDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:51.046 +01:00 [INF] Route matched with {action = "GetCostByCategory", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[System.Collections.Generic.IEnumerable`1[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto]]]] GetCostByCategory(WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2023-12-15 19:11:51.050 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__currencyId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c0].[Name], COALESCE(SUM([t].[Price]), 0.0)
+FROM [Transactions] AS [t]
+INNER JOIN [Currencies] AS [c] ON [t].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t].[CategoryId] = [c0].[Id]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [c].[Id] = @__currencyId_1 AND [t].[Price] > 0.0
+GROUP BY [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+2023-12-15 19:11:51.053 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__currencyId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c0].[Name], COALESCE(SUM([t].[Price]), 0.0)
+FROM [Transactions] AS [t]
+INNER JOIN [Currencies] AS [c] ON [t].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [t].[CategoryId] = [c0].[Id]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [c].[Id] = @__currencyId_1 AND [t].[Price] < 0.0
+GROUP BY [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+2023-12-15 19:11:51.053 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IEnumerable`1[[WalletApp.Application.Common.Transaction.GetIncomeByCategory.GetIncomeByCategoryResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:51.055 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[System.Collections.Generic.IEnumerable`1[[WalletApp.Application.Common.Transaction.GetCostByCategory.GetCostByCategoryResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-15 19:11:51.056 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetIncomeByCategory (WalletApp.Api) in 8.6968ms
+2023-12-15 19:11:51.057 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api) in 8.1028ms
+2023-12-15 19:11:51.058 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetIncomeByCategory (WalletApp.Api)'
+2023-12-15 19:11:51.059 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.GetCostByCategory (WalletApp.Api)'
+2023-12-15 19:11:51.060 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/getIncomeByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 200 - application/json;+charset=utf-8 19.2086ms
+2023-12-15 19:11:51.061 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5238/api/transactionUser/getCostByCategory?currencyId=d18771fe-5a2a-4723-a8df-534b43acb5ef - - - 200 - application/json;+charset=utf-8 19.6664ms

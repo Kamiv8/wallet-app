@@ -15,17 +15,13 @@ const Template: ComponentStory<typeof HistoryCardDetails> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  currency: {
-    id: '1',
-    mark: 'PLN',
-    exchangeRate: 2,
-    name: 'Polski złoty',
-  },
+  currency: 'PLN',
   price: 12,
-  category: {
-    id: '',
-    name: 'ticket',
-  },
+  category: 'ticket',
   title: 'Lorem ipsum dolor sit ipsum dolor sit',
   date: new Date(),
+  toChart: {
+    currentCategory: 0,
+    all: 0,
+  },
 };

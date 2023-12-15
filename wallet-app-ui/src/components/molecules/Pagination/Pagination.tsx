@@ -34,7 +34,7 @@ export const Pagination = ({
       <StyledSVGWrapper>
         <PreviousPageIcon onClick={() => setPreviousPage()} />
       </StyledSVGWrapper>
-      {displayFivePages(generatePageButtons(totalPages), currentPage).map(
+      {displayFivePages(generatePageButtons(totalPages), currentPage - 1).map(
         (p) => (
           <PaginationItem
             key={p}
@@ -48,7 +48,7 @@ export const Pagination = ({
         <NextPageIcon onClick={() => setNextPage()} />
       </StyledSVGWrapper>
       <StyledSVGWrapper>
-        <LastPageIcon onClick={() => setPage(totalPages + 1)} />
+        <LastPageIcon onClick={() => setPage(totalPages)} />
       </StyledSVGWrapper>
     </Wrapper>
   );

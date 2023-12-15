@@ -9,3 +9,4 @@ export { PaginationItem } from './PaginationItem/PaginationItem';
 export { Select } from './Select/Select';
 export { TextArea } from './TextArea/TextArea';
 export { Typography } from './Typography/Typography';
+export { SvgIcon } from './SvgIcon/SvgIcon';

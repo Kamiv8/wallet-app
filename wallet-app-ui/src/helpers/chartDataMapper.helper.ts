@@ -1,5 +1,7 @@
 import { ToMoneyChartDto } from '../models/dtos/toMoneyChartDto';
 import { ToPieChartDto } from '../models/dtos/toPieChartDto';
+import { GetIncomeByCategoryResponse } from '../models/apiTypes/transaction/getIcomeByCategory/getIncomeByCategory.response';
+import { GetCostByCategoryResponse } from '../models/apiTypes/transaction/getCostByCategory/getCostByCategory.response';
 
 export const areaChartData = (
   labels: string[],
@@ -24,7 +26,7 @@ export const areaChartData = (
 
 export const pieChartMapper = (data: ToPieChartDto[]) => {
   return {
-    labels: data.map((x) => x.name),
+    labels: data.map((x) => x.key),
     datasets: [
       {
         data: data.map((x) => x.value),
@@ -36,6 +38,96 @@ export const pieChartMapper = (data: ToPieChartDto[]) => {
           'rgba(99,132,255,0.2)',
         ],
         borderColor: ['#FF6384', '#63FF84', '#84FF63', '#8463FF', '#6384FF'],
+      },
+    ],
+    options: {
+      plugins: {
+        legend: {
+          position: 'bottom',
+        },
+        filler: {
+          propagate: true,
+        },
+      },
+    },
+  };
+};
+export const incomePieChartMapper = (
+  data: Array<GetIncomeByCategoryResponse>,
+) => {
+  return {
+    labels: data.map((x) => x.categoryName),
+    datasets: [
+      {
+        data: data.map((x) => x.prices),
+        backgroundColor: [
+          'rgba(255,99,132,0.2)',
+          'rgba(99,255,132,0.2)',
+          'rgba(22,234,109,0.2)',
+          'rgba(132,99,255,0.2)',
+          'rgba(99,132,255,0.2)',
+        ],
+        borderColor: ['#FF6384', '#63FF84', '#16ead1', '#8463FF', '#6384FF'],
+      },
+    ],
+    options: {
+      plugins: {
+        legend: {
+          position: 'bottom',
+        },
+        filler: {
+          propagate: true,
+        },
+      },
+    },
+  };
+};
+export const costPieChartMapper = (data: Array<GetCostByCategoryResponse>) => {
+  return {
+    labels: data.map((x) => x.categoryName),
+    datasets: [
+      {
+        data: data.map((x) => x.prices),
+        backgroundColor: [
+          'rgba(255,99,132,0.2)',
+          'rgba(99,255,132,0.2)',
+          'rgba(132,255,99,0.2)',
+          'rgba(132,99,255,0.2)',
+          'rgba(99,132,255,0.2)',
+        ],
+        borderColor: ['#FF6384', '#63FF84', '#16ead1', '#8463FF', '#6384FF'],
+      },
+    ],
+    options: {
+      plugins: {
+        legend: {
+          position: 'bottom',
+        },
+        filler: {
+          propagate: true,
+        },
+      },
+    },
+  };
+};
+
+export const detailsPieChartMapper = (data: {
+  all: number;
+  currentCategory: number;
+}) => {
+  return {
+    labels: Object.keys(data).map((x) => x),
+    datasets: [
+      {
+        data: Object.values(data).map((x) => x),
+        backgroundColor: [
+          'rgba(255,99,132,0.2)',
+          'rgba(99,255,132,0.2)',
+          'rgba(132,255,99,0.2)',
+          'rgba(132,99,255,0.2)',
+          'rgba(99,132,255,0.2)',
+        ],
+        borderColor: ['#FF6384', '#63FF84', '#16ead1', '#8463FF', '#6384FF'],
       },
     ],
     options: {

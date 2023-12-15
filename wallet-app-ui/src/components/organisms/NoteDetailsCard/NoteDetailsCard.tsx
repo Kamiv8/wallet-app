@@ -1,4 +1,4 @@
-import { CardWrapper, Typography } from '../../atoms';
+import { CardWrapper, Typography, SvgIcon } from '../../atoms';
 import {
   ButtonWrapper,
   Li,
@@ -26,6 +26,7 @@ export const NoteDetailsCard = (props: TProps) => {
       <CardWrapper
         color={props.backgroundColor}
         close={() => navigate(RoutesName.TABLE)}
+        iconColor={props.textColor}
       >
         <TitleWrapper>
           <Typography customColor={props.textColor} size={'l'}>
@@ -44,8 +45,12 @@ export const NoteDetailsCard = (props: TProps) => {
           </Ul>
         </ListWrapper>
         <ButtonWrapper>
-          <DoneNoteIcon onClick={props.doneNote} />
-          <EditIcon />
+          <SvgIcon
+            Icon={DoneNoteIcon}
+            color={props.textColor}
+            onClick={props.doneNote}
+          />
+          <SvgIcon Icon={EditIcon} color={props.textColor} />
         </ButtonWrapper>
       </CardWrapper>
     </>

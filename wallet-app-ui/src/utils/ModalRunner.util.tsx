@@ -15,7 +15,6 @@ const ModalRunnerUtil = () => {
   const selectModal = useMemo(() => {
     switch (appContext.state.modalState.type) {
       case ModalEnum.LOADING:
-        console.log('loading');
         return (
           <BlurBackgroundTemplate
             type={ModalEnum.LOADING}

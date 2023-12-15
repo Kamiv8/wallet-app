@@ -55,6 +55,7 @@ export const AddTransactionPage = () => {
   const addTransaction = useCallback(
     async (id: string) => {
       await callToApi(TransactionApi.addTransactionDefault(id));
+      await getSavedTransactions();
     },
     [state],
   );

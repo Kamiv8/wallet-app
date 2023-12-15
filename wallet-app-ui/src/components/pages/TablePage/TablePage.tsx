@@ -1,28 +1,25 @@
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import { useContext, useEffect, useState } from 'react';
-import { Note } from '../../../models/resources/note';
-import { TableApi } from '../../../api';
+import { useEffect, useState } from 'react';
+import { NoteApi } from '../../../api';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
-import ApplicationContext from '../../../contexts/application.context';
-import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
 import { TableCard } from '../../molecules';
 import { GridTemplate, MainTemplate } from '../../templates';
 import { Typography } from '../../atoms';
+import { GetUserNotesResponse } from '../../../models/apiTypes/note/getUserNotes/getUserNotes.response';
+import { useFetch } from '../../../hooks';
 
 export const TablePage = () => {
-  const appContext = useContext(ApplicationContext);
+  const { callToApi } = useFetch();
   const navigate = useNavigate();
-  const [state, setState] = useState<Note[]>([]);
+  const [state, setState] = useState<Array<GetUserNotesResponse>>([]);
 
   useEffect(() => {
     (async () => {
-      const data = await TableApi.getAllNotes(
-        getApplicationType(appContext.state.type),
-      );
-      setState(data.data?.response);
+      const data = await callToApi(NoteApi.getAllUserNotes());
+      setState(data.data || []);
     })();
   }, []);
 
@@ -33,12 +30,12 @@ export const TablePage = () => {
       </Typography>
       <GridTemplate>
         {state.map((item) => (
-          <div>
+          <div key={item.id}>
             <TableCard
               backgroundColor={item.backgroundColor}
               textColor={item.textColor}
               title={item.title}
-              text={item.text}
+              text={item.textList}
               onClick={() => navigate(`${RoutesName.TABLE}/${item.id}`)}
             />
           </div>

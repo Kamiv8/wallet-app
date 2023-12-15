@@ -22,6 +22,8 @@ public class
             return ApiResult<GetAccountDataResponseDto>.Error(AccountErrorMessages.UserNotExist);
 
         var dto = new GetAccountDataResponseDto(
+            user.UserName!,
+            user.IconType!,
             user.AccountData.ActualMoneyPln,
             user.AccountData.ActualMoneyUsd,
             user.AccountData.ActualMoneyChf,

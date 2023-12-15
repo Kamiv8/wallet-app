@@ -29,7 +29,8 @@ public class TransactionRepository : ITransactionRepository
         var query = _db.Transactions
             .Include(x => x.Currency)
             .Include(x => x.Category)
-            .Where(x => x.UserIdentityId == userId);
+            .Where(x => x.UserIdentityId == userId)
+            .OrderByDescending(x => x.Date);
 
         return await PagedList<Transaction>.ToPagedList(query, paginationParamsDto,
             cancellationToken);

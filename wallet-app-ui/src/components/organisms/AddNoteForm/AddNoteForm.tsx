@@ -5,15 +5,12 @@ import messages from '../../../i18n/messages';
 import { useForm } from '../../../hooks';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
-import { TableApi } from '../../../api';
 import { RoutesName } from '../../../const/routesName';
 import { colorPicker } from '../../../const/colorPicker';
-import { useContext } from 'react';
-import ApplicationContext from '../../../contexts/application.context';
-import { getApplicationType } from '../../../helpers/checkIsGroup.helper';
+import { AddUserNoteForm } from '../../../models/apiTypes/note/addUserNote/addUserNote.form';
+import { NoteApi } from '../../../api';
 
 export const AddNoteForm = () => {
-  const appContext = useContext(ApplicationContext);
   const navigate = useNavigate();
   const initialValues = {
     title: '',
@@ -22,18 +19,12 @@ export const AddNoteForm = () => {
     backgroundColor: colorPicker.backgroundColor,
   };
 
-  const { values, handleChange } = useForm(initialValues);
+  const { values, handleChange, onSubmit } =
+    useForm<AddUserNoteForm>(initialValues);
 
   const handleSubmit = async () => {
-    const command = {
-      ...values,
-      type: getApplicationType(appContext.state.type),
-    };
-
-    const { status } = await TableApi.createNote(command);
-    if (status) {
-      navigate(RoutesName.TABLE);
-    }
+    await onSubmit(NoteApi.createUserNote);
+    navigate(RoutesName.TABLE);
   };
 
   return (
