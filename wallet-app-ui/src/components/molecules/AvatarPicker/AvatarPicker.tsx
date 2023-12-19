@@ -14,7 +14,7 @@ import { StyledWrapper } from './AvatarPicker.styles';
 
 export type TProps = {
   selected: 0 | 1 | 2 | 3 | 4;
-  onClick: (index: TSelectedIcon, icon: string, type: FieldType) => void;
+  onClick: (index: TSelectedIcon, icon: any, type: FieldType) => void;
   variant: 'single' | 'group';
 };
 

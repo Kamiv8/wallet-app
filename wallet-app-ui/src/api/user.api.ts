@@ -13,11 +13,6 @@ export class UserApi {
     return BaseApiHandler.handleApi(data);
   }
 
-  public static async getActualMoney(): Promise<IApiResult> {
-    const data = await axios.get('/user/actualMoney', UserApi.apiOptions());
-    return BaseApiHandler.handleApi(data);
-  }
-
   public static async changeCurrencies(value: any): Promise<IApiResult> {
     const data = await axios.put(
       '/user/changeCurrencies',
@@ -30,15 +25,6 @@ export class UserApi {
   public static async changeIcon(value: any): Promise<IApiResult> {
     const data = await axios.put(
       '/user/changeIcon',
-      value,
-      UserApi.apiOptions(),
-    );
-    return BaseApiHandler.handleApi(data);
-  }
-
-  public static async changePassword(value: any): Promise<IApiResult> {
-    const data = await axios.put(
-      '/user/changePassword',
       value,
       UserApi.apiOptions(),
     );

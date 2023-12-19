@@ -15,7 +15,7 @@ import { NavigationPage } from '../../pages';
 
 export type TNavigationItems = {
   route: string;
-  icon: any;
+  icon: string;
   text: ReactNode;
 };
 

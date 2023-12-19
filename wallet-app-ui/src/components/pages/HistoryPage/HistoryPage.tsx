@@ -3,7 +3,6 @@ import messages from '../../../i18n/messages';
 import { PaginationWrapper } from './HistoryPage.styles';
 import { useEffect, useState } from 'react';
 import { TransactionApi } from '../../../api';
-// import ApplicationContext from '../../../contexts/application.context';
 import { MainTemplate } from '../../templates';
 import { Typography } from '../../atoms';
 import { Pagination, TransactionItem } from '../../molecules';
@@ -11,7 +10,6 @@ import { GetUserTransactionListResponse } from '../../../models/apiTypes/transac
 import { useFetch, usePagination } from '../../../hooks';
 
 export const HistoryPage = () => {
-  // const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<GetUserTransactionListResponse | null>();
   const {
     currentPage,
@@ -20,7 +18,7 @@ export const HistoryPage = () => {
     setNextPage,
     setPreviousPage,
     hasNext,
-    hasPrevous,
+    hasPrevious,
   } = usePagination(state?.paginationParamsResponseDto);
   const { callToApi } = useFetch();
 
@@ -48,17 +46,13 @@ export const HistoryPage = () => {
       >
         <FormattedMessage {...messages.historyPageHistory} />
       </Typography>
-      {/*<SelectWrapper>*/}
-      {/*  <Select items={[]} name={'Filter'} />*/}
-      {/*  <Select items={[]} name={'Sort'} />*/}
-      {/*</SelectWrapper>*/}
       {state?.transactionList.map((t) => (
         <TransactionItem data={t} key={t.id} />
       ))}
       <PaginationWrapper>
         <Pagination
           hasNext={hasNext}
-          hasPrevious={hasPrevous}
+          hasPrevious={hasPrevious}
           setPage={setPage}
           currentPage={currentPage}
           setNextPage={setNextPage}

@@ -1,4 +1,4 @@
-import { ApiStatus, IApiResult } from '../models/apiResult';
+import { IApiResult } from '../models/apiResult';
 import { AuthenticateCommand } from '../models/commands/auth/authenticate.command';
 import { BaseApiHandler } from './baseApiHandler';
 import { ResetPasswordCommand } from '../models/commands/auth/resetPassword.command';
@@ -15,17 +15,8 @@ export class AuthApi {
     value: TAuthenticateForm,
   ): Promise<IApiResult<AuthenticateDto>> {
     const command = new AuthenticateCommand(value.username, value.password);
-
     const data = await noAuthApi.post('/account/authenticate', command);
-
-    const dataResult = BaseApiHandler.handleApi<AuthenticateDto>(data); // TODO Move to component
-    if (dataResult.status === ApiStatus.SUCCESS) {
-      localStorage.setItem('token', dataResult.data?.token ?? '');
-      localStorage.setItem('type', 'SINGLE');
-      localStorage.setItem('refreshToken', dataResult.data?.refreshToken ?? '');
-    }
-
-    return dataResult;
+    return BaseApiHandler.handleApi<AuthenticateDto>(data);
   }
 
   public static async register(

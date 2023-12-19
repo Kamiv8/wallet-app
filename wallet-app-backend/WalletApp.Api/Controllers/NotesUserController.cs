@@ -5,6 +5,7 @@ using WalletApp.Application.Common;
 using WalletApp.Application.Common.Note.CreateUserNote;
 using WalletApp.Application.Common.Note.GetUserNoteDetails;
 using WalletApp.Application.Common.Note.GetUserNotes;
+using WalletApp.Application.Common.Note.MarkNoteAsDone;
 using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Controllers;
@@ -47,6 +48,14 @@ public class NotesUserController : BaseController
     {
         var query = new GetUserNoteDetailsQuery(id);
         var res = await _mediator.Send(query, cancellationToken);
+        return CreateResponse(res);
+    }
+
+    [HttpPatch("markAsDone")]
+    public async Task<ActionResult<ApiResult>> MarkAsDone([FromBody] MarkNoteAsDoneDto dto, CancellationToken cancellationToken)
+    {
+        var command = new MarkNoteAsDoneCommand(_currentUserService.Id, dto.NoteId);
+        var res = await _mediator.Send(command, cancellationToken);
         return CreateResponse(res);
     }
 }

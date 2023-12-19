@@ -4,7 +4,6 @@ import { BaseApiConfig } from './baseApiConfig';
 import { api } from './baseAxios.config';
 import { CreateUserCategoryCommand } from '../models/apiTypes/category/createUserCategory/createUserCategory.command';
 import { TCreateUserCategoryForm } from '../models/apiTypes/category/createUserCategory/createUserCategory.form';
-import axios from 'axios';
 import { DeleteUserCategoryCommand } from '../models/apiTypes/category/deleteUserCategory/deleteUserCategory.command';
 import { TGetUserCategoriesResponse } from '../models/apiTypes/category/getUserCategories/getUserCategories.response';
 
@@ -31,20 +30,6 @@ export class CategoryApi extends BaseApiConfig {
   ): Promise<IApiResult> {
     const command = new DeleteUserCategoryCommand(categoryId);
     const data = await api.delete(`/category/deleteUserCategory/${command.id}`);
-    return BaseApiHandler.handleApi(data);
-  }
-
-  public static async getUserCategory(type: any): Promise<IApiResult> {
-    const data = await axios.get('/category', {
-      params: { type },
-      ...CategoryApi.apiOptions(),
-    });
-
-    return BaseApiHandler.handleApi(data);
-  }
-
-  public static async getDefaultCategory(): Promise<IApiResult> {
-    const data = await axios.get('/category/default', CategoryApi.apiOptions());
     return BaseApiHandler.handleApi(data);
   }
 }

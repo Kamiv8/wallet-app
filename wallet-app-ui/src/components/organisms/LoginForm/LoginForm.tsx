@@ -1,4 +1,4 @@
-import { useForm, useMapValidationMessages } from '../../../hooks';
+import { useForm } from '../../../hooks';
 import { InputField } from '../../molecules';
 import messages from '../../../i18n/messages';
 import {
@@ -15,14 +15,10 @@ import { useNavigate } from 'react-router-dom';
 import { ApiStatus } from '../../../models/apiResult';
 import { TAuthenticateForm } from '../../../models/apiTypes/account/authenticate/authenticate.form';
 import { authenticateSchema } from '../../../validators/account/authenticate.validator';
-// import { UserApi } from '../../../api/user.api';
-// import { useContext } from 'react';
-// import ApplicationContext from '../../../contexts/application.context';
-// import { ActionEnum } from '../../../contexts/application.reducer';
+import { LocalstorageHelper } from '../../../helpers/localstorage.helper';
+import { LocalstorageEnum } from '../../../types/enums/localstorage.enum';
 
 export const LoginForm = () => {
-  //const appContext = useContext(ApplicationContext);
-  const { loadMessages } = useMapValidationMessages();
   const navigate = useNavigate();
   const initialValues = {
     username: '',
@@ -34,26 +30,15 @@ export const LoginForm = () => {
   const handleSubmit = async () => {
     const authenticate = await onSubmit(AuthApi.authenticate);
 
-    if (
-      authenticate?.status === ApiStatus.ERROR &&
-      authenticate.validationMessages
-    ) {
-      loadMessages(authenticate.validationMessages);
-    }
-
     if (authenticate?.status === ApiStatus.SUCCESS) {
-      // const userData = await UserApi.getUserData();
-      // if (userData.data?.response.groupId !== null) {
-      //   localStorage.setItem('groupId', userData.data?.groupId);
-      //   localStorage.setItem('userRole', userData.data?.role);
-      //   appContext.dispatch({
-      //     type: ActionEnum.CHANGE_APPLICATION_TYPE,
-      //     payload: {
-      //       groupId: userData.data?.response.groupId,
-      //       userRole: userData.data?.response.role,
-      //     },
-      //   });
-      // }
+      LocalstorageHelper.setItem(
+        LocalstorageEnum.TOKEN,
+        authenticate.data?.token ?? '',
+      );
+      LocalstorageHelper.setItem(
+        LocalstorageEnum.REFRESH_TOKEN,
+        authenticate.data?.refreshToken ?? '',
+      );
       navigate(RoutesName.ROOT);
     }
   };

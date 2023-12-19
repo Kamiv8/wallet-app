@@ -36,7 +36,26 @@ export const useFetch = () => {
     [],
   );
 
+  const callToApis = useCallback(async (apis: Array<Promise<IApiResult>>) => {
+    try {
+      openPendingModal();
+      const results = await Promise.all(apis);
+      closePendingModal();
+      return results;
+    } catch (e: any) {
+      closePendingModal();
+      openErrorModal(e?.message || 'An error occurred');
+      return [
+        {
+          status: ApiStatus.ERROR,
+          message: '',
+        },
+      ];
+    }
+  }, []);
+
   return {
+    callToApis,
     callToApi,
   };
 };

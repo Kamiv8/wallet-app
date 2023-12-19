@@ -41,7 +41,7 @@ export const useForm = <T,>(
   }, []);
 
   const handleChange = useCallback(
-    (event: any, fieldName: string, type: FieldType = FieldType.Text) => {
+    (event: any, fieldName: keyof T, type: FieldType = FieldType.Text) => {
       let typedValue: number | string | Date | null = null;
       switch (type) {
         case FieldType.Number:

@@ -34,8 +34,6 @@ export const RegisterForm = () => {
   const { values, handleChange, onSubmit, getValidationMessage, resetForm } =
     useForm<TRegisterForm>(initialValues, registerSchema);
 
-  console.log(values);
-
   const onSubmitEvent = async () => {
     const result = await onSubmit<null>(AuthApi.register);
 

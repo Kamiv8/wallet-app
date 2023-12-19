@@ -16,7 +16,7 @@ import { GetIncomeByCategoryResponse } from '../../../models/apiTypes/transactio
 import { CurrenciesButton } from '../../molecules/CurrenciesButton/CurrenciesButton';
 import { GetCostByCategoryResponse } from '../../../models/apiTypes/transaction/getCostByCategory/getCostByCategory.response';
 import { TransactionResponse } from '../../../models/apiTypes/transaction/getUserTransactionList/transaction.response';
-import { useModalAction } from '../../../hooks';
+import { useFetch } from '../../../hooks';
 import { GetTransactionsByCurrencyResponse } from '../../../models/apiTypes/transaction/GetTransactionsByCurrency/GetTransactionsByCurrency.response';
 
 interface IState {
@@ -39,7 +39,7 @@ interface IState {
 }
 
 export const HomePage = () => {
-  const { openPendingModal, closePendingModal } = useModalAction();
+  const { callToApis } = useFetch();
   const [state, setState] = useState<IState>({
     currencies: [],
     lastTransactions: [],
@@ -58,48 +58,6 @@ export const HomePage = () => {
       costChart: '',
     },
   });
-
-  async function getActualMoney() {
-    const actualMoney = await UserApi.getUserData();
-    setState((prev) => ({
-      ...prev,
-      actualMoney: {
-        ...prev.actualMoney,
-        actualMoneyPln: actualMoney.data?.actualMoneyPln,
-        actualMoneyUsd: actualMoney.data?.actualMoneyUsd,
-        actualMoneyChf: actualMoney.data?.actualMoneyChf,
-        actualMoneyGbp: actualMoney.data?.actualMoneyGbp,
-        actualMoneyEur: actualMoney.data?.actualMoneyEur,
-      },
-    }));
-  }
-
-  // TODO refactor return no void
-
-  async function getMoneyChartData() {
-    const moneyData = await TransactionApi.getTransactionsByCurrency();
-    setState((prevState) => ({
-      ...prevState,
-
-      moneyChart: moneyData.data || [],
-    }));
-  }
-
-  async function getCurrencies() {
-    const currencies = await CurrencyApi.addCurrencies();
-    setState((prev) => ({
-      ...prev,
-      currencies: currencies.data ?? [],
-    }));
-  }
-
-  async function getLastTransactions() {
-    const lastTransactions = await TransactionApi.getLastTransactions();
-    setState((prev) => ({
-      ...prev,
-      lastTransactions: lastTransactions.data?.transactionList || [],
-    }));
-  }
 
   async function getIncomeChartData(currencyId: string) {
     const incomeChartData = await TransactionApi.getIncomeByCategory(
@@ -129,24 +87,49 @@ export const HomePage = () => {
 
   useEffect(() => {
     (async () => {
-      openPendingModal();
-      await Promise.all([
-        getActualMoney(),
-        getMoneyChartData(),
-        getLastTransactions(),
-        getCurrencies(),
-      ]);
-      closePendingModal();
+      const [actualMoney, moneyData, lastTransactions, currencies] =
+        await callToApis([
+          UserApi.getUserData(),
+          TransactionApi.getTransactionsByCurrency(),
+          TransactionApi.getLastTransactions(),
+          CurrencyApi.addCurrencies(),
+        ]);
+
+      setState((prev) => ({
+        ...prev,
+        actualMoney: {
+          ...prev.actualMoney,
+          actualMoneyPln: actualMoney.data?.actualMoneyPln,
+          actualMoneyUsd: actualMoney.data?.actualMoneyUsd,
+          actualMoneyChf: actualMoney.data?.actualMoneyChf,
+          actualMoneyGbp: actualMoney.data?.actualMoneyGbp,
+          actualMoneyEur: actualMoney.data?.actualMoneyEur,
+        },
+        moneyChart: moneyData.data || [],
+        lastTransactions: lastTransactions.data?.transactionList || [],
+        currencies: currencies.data ?? [],
+      }));
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
       if (state.currencies.length === 0) return;
-      await Promise.all([
-        getIncomeChartData(state.currencies[0]?.id),
-        getCostChartData(state.currencies[0]?.id),
+      const currencyId = state.currencies[0]?.id;
+      const [incomeChartData, costChartData] = await callToApis([
+        TransactionApi.getIncomeByCategory(currencyId),
+        TransactionApi.getCostByCategory(currencyId),
       ]);
+      setState((prev) => ({
+        ...prev,
+        incomeChart: incomeChartData.data || [],
+        costChart: costChartData.data || [],
+        activeCurrency: {
+          ...prev.activeCurrency,
+          incomeChart: currencyId,
+          costChart: currencyId,
+        },
+      }));
     })();
   }, [state.currencies]);
 

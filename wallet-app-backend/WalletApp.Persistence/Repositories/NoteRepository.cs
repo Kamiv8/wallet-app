@@ -21,7 +21,7 @@ public class NoteRepository : INoteRepository
     public async Task<IEnumerable<Note>> GetAllUserNotes(Guid userId, CancellationToken cancellationToken)
     {
         return await _db.Notes
-            .Where(x => x.UserIdentityId == userId)
+            .Where(x => x.UserIdentityId == userId && !x.IsDone)
             .ToListAsync(cancellationToken);
     }
 

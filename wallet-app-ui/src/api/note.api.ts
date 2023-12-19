@@ -5,6 +5,7 @@ import { BaseApiHandler } from './baseApiHandler';
 import { IApiResult } from '../models/apiResult';
 import { GetUserNotesResponse } from '../models/apiTypes/note/getUserNotes/getUserNotes.response';
 import { GetUserNoteDetailsResponse } from '../models/apiTypes/note/getUserNoteDetails/getUserNoteDetails.response';
+import { MarkAsNoteCommand } from '../models/apiTypes/note/markAsNote/markAsNote.command';
 
 export class NoteApi {
   public static async createUserNote(
@@ -31,6 +32,12 @@ export class NoteApi {
     noteId: string,
   ): Promise<IApiResult<GetUserNoteDetailsResponse>> {
     const data = await api.get(`/notesUser/${noteId}`);
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async markAsNote(noteId: string) {
+    const command = new MarkAsNoteCommand(noteId);
+    const data = await api.patch('/notesUser/markAsDone', command);
     return BaseApiHandler.handleApi(data);
   }
 }

@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { TransactionApi } from '../../../api';
 import { MainTemplate } from '../../templates';
@@ -8,8 +8,8 @@ import { useFetch } from '../../../hooks';
 import { GetUserTransactionDetailsResponse } from '../../../models/apiTypes/transaction/getUserTransactionDetails/getUserTransactionDetails.response';
 
 export const HistoryDetailsPage = () => {
-  const location = useLocation();
   const { callToApi } = useFetch();
+  const { id } = useParams();
 
   const [state, setState] = useState<GetUserTransactionDetailsResponse>({
     id: '',
@@ -26,9 +26,8 @@ export const HistoryDetailsPage = () => {
 
   useEffect(() => {
     (async () => {
-      const parsedId = location.pathname.split('/');
       const data = await callToApi(
-        TransactionApi.getTransactionDetails(parsedId[2]),
+        TransactionApi.getTransactionDetails(id as string),
       );
       if (!data.data) return;
       setState(data.data);

@@ -40,6 +40,6 @@ export const usePagination = (paginationResponse?: TPaginationResponse) => {
     setNextPage,
     setPreviousPage,
     hasNext: state.hasNext,
-    hasPrevous: state.hasPrevious,
+    hasPrevious: state.hasPrevious,
   };
 };

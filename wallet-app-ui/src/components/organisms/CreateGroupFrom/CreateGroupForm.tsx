@@ -1,5 +1,5 @@
 import { CardWrapper, Button, Typography } from '../../atoms';
-import { InputField, SelectField, AvatarPicker } from '../../molecules';
+import { InputField, SelectField } from '../../molecules';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { FormWrapper } from './CreateGroupForm.styles';
@@ -73,11 +73,11 @@ export const CreateGroupForm = () => {
           <FormattedMessage {...messages.createGroupFormGroupIcon} />
         </Typography>
 
-        <AvatarPicker
-          selected={values.icon}
-          onClick={handleChange}
-          variant={'group'}
-        />
+        {/*<AvatarPicker*/}
+        {/*  selected={values.icon}*/}
+        {/*  onClick={handleChange}*/}
+        {/*  variant={'group'}*/}
+        {/*/>*/}
 
         <SelectField
           selectItems={maxGroupMember}
