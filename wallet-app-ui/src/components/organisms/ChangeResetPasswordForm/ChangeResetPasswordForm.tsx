@@ -4,19 +4,19 @@ import {
 } from './ChangeResetPasswordForm.styles';
 import { Button } from '../../atoms';
 import { useCallback } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
-import { useForm } from '../../../hooks';
+import { useFetch, useForm } from '../../../hooks';
 import { InputField } from '../../molecules';
 import messages from '../../../i18n/messages';
 import { FormattedMessage } from 'react-intl';
 import { LastButton } from '../ResetPasswordForm/ResetPassword.styles';
 import { AuthApi } from '../../../api';
-import { createPathArray } from '../../../utils/utils';
 
 export const ChangeResetPasswordForm = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const params = useParams();
+  const { callToApi } = useFetch();
   const initialValues = {
     password: '',
     confirmPassword: '',
@@ -29,12 +29,14 @@ export const ChangeResetPasswordForm = () => {
   }, []);
 
   const onSubmit = useCallback(async () => {
-    const [, , , email, token] = createPathArray(location.pathname);
-    await AuthApi.changeForgotPassword({
-      ...values,
-      email,
-      token,
-    });
+    await callToApi(
+      AuthApi.changeForgotPassword({
+        ...values,
+        email: params.email,
+        token: params['*'],
+      }),
+      true,
+    );
   }, [values]);
 
   return (

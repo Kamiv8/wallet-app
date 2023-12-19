@@ -13,7 +13,6 @@ public interface ITransactionRepository
         PaginationParamsDto paginationParamsDto,
         CancellationToken cancellationToken
     );
-
     Task<IEnumerable<Transaction>> GetTransactionsByCategoryId(Guid userid, Guid categoryId);
     Task<Transaction?> GetTransactionById(Guid userId, Guid transactionId);
     Task<IEnumerable<Transaction>> GetSumByCurrency(Guid userId, Guid currencyId);

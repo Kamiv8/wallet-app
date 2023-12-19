@@ -14,6 +14,8 @@ export type TColors = {
   shadow: string;
   green: string;
   backgroundBlur: string;
+  chartColors: Array<string>;
+  chartBackgroundColors: Array<string>;
   tableCardColors: {
     pink: string;
     green: string;
@@ -67,6 +69,22 @@ const theme: DefaultTheme & TTheme = {
     shadow: 'rgba(0,0,0.5)',
     green: 'rgba(21,151,0,1)',
     backgroundBlur: 'rgba(100,100,100,.15)',
+    chartColors: [
+      '#FF6384',
+      '#63FF84',
+      '#2196f3',
+      '#8463FF',
+      '#6384FF',
+      '#D04646',
+    ],
+    chartBackgroundColors: [
+      'rgba(255,99,132,0.2)',
+      'rgba(99,255,132,0.2)',
+      'rgba(33,150,243,0.2)',
+      'rgba(132,99,255,0.2)',
+      'rgba(99,132,255,0.2)',
+      'rgba(208,70,70,0.2)',
+    ],
     tableCardColors: {
       pink: 'rgba(170, 116, 195, 1)',
       green: 'rgba(116, 195, 148, 1)',

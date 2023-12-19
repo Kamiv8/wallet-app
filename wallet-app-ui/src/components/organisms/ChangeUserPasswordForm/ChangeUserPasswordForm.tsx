@@ -6,7 +6,9 @@ import messages from '../../../i18n/messages';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { useForm } from '../../../hooks';
-import { UserApi } from '../../../api';
+import { SettingsApi } from '../../../api';
+import { ChangePasswordForm } from '../../../models/apiTypes/settings/changePassword/changePassword.form';
+import { ApiStatus } from '../../../models/apiResult';
 
 export const ChangeUserPasswordForm = () => {
   const navigate = useNavigate();
@@ -14,14 +16,16 @@ export const ChangeUserPasswordForm = () => {
   const initialValues = {
     oldPassword: '',
     newPassword: '',
-    confirmNewPassword: '',
+    confirmPassword: '',
   };
 
-  const { values, handleChange } = useForm<typeof initialValues>(initialValues);
+  const { handleChange, onSubmit } = useForm<ChangePasswordForm>(initialValues);
 
   const handleSubmit = async () => {
-    await UserApi.changePassword(values);
-    navigate(RoutesName.SETTINGS);
+    const res = await onSubmit(SettingsApi.changePassword);
+    if (res.status === ApiStatus.SUCCESS) {
+      navigate(RoutesName.SETTINGS);
+    }
   };
 
   return (
@@ -46,7 +50,7 @@ export const ChangeUserPasswordForm = () => {
           type={'password'}
           variant={'dark'}
           name={'confirmNewPassword'}
-          onChange={(e) => handleChange(e, 'confirmNewPassword')}
+          onChange={(e) => handleChange(e, 'confirmPassword')}
         />
       </Wrapper>
       <ButtonWrapper>

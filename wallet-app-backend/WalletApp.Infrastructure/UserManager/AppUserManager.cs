@@ -40,9 +40,9 @@ public class AppUserManager : IUserManager
         return await _userManager.FindByNameAsync(username);
     }
 
-    public async Task<UserIdentity?> FindByIdAsync(string userId)
+    public async Task<UserIdentity?> FindByIdAsync(Guid? userId)
     {
-        return await _userManager.FindByIdAsync(userId);
+        return await _userManager.FindByIdAsync(userId.ToString());
     }
 
     public async Task<UserIdentity?> FindUserAndDataByIdAsync(Guid userId)
@@ -75,6 +75,10 @@ public class AppUserManager : IUserManager
             await _userManager.ResetPasswordAsync(userIdentity, token, password));
     }
 
+    public async Task<AppIdentityResult> ChangePasswordAsync(UserIdentity user, string currentPassword, string newPassword)
+    {
+        return CreateIdentityResponse(await _userManager.ChangePasswordAsync(user, currentPassword, newPassword));
+    }
 
     private static AppIdentityResult CreateIdentityResponse(IdentityResult result)
     {

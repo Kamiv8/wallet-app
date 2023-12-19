@@ -33,7 +33,7 @@ public class
         if (oldToken is null || oldToken.RefreshTokenExpiryTime <= DateTime.Now)
             return ApiResult<RefreshTokenResponseDto>.Error(TokenErrorMessages.CannotFindToken);
 
-        var user = await _userManager.FindByIdAsync(oldToken.UserIdentityId.ToString());
+        var user = await _userManager.FindByIdAsync(oldToken.UserIdentityId);
 
         var newRefreshToken = _jwtUtil.GenerateRefreshToken(request.IpAddress);
 

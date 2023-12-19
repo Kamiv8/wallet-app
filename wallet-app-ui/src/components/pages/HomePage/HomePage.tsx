@@ -8,7 +8,6 @@ import {
   lineChartMapper,
 } from '../../../helpers/chartDataMapper.helper';
 import { CurrencyApi, TransactionApi, UserApi } from '../../../api';
-import { ToMoneyChartDto } from '../../../models/dtos/toMoneyChartDto';
 import { MainTemplate } from '../../templates';
 import { Chart, Typography } from '../../atoms';
 import { TransactionItem } from '../../molecules';
@@ -18,11 +17,12 @@ import { CurrenciesButton } from '../../molecules/CurrenciesButton/CurrenciesBut
 import { GetCostByCategoryResponse } from '../../../models/apiTypes/transaction/getCostByCategory/getCostByCategory.response';
 import { TransactionResponse } from '../../../models/apiTypes/transaction/getUserTransactionList/transaction.response';
 import { useModalAction } from '../../../hooks';
+import { GetTransactionsByCurrencyResponse } from '../../../models/apiTypes/transaction/GetTransactionsByCurrency/GetTransactionsByCurrency.response';
 
 interface IState {
   currencies: Array<TGetCurrenciesResponse>;
   lastTransactions: Array<TransactionResponse>;
-  moneyChart: Array<ToMoneyChartDto>;
+  moneyChart: Array<Array<GetTransactionsByCurrencyResponse>>;
   incomeChart: Array<GetIncomeByCategoryResponse>;
   costChart: Array<GetCostByCategoryResponse>;
   actualMoney: {
@@ -74,6 +74,17 @@ export const HomePage = () => {
     }));
   }
 
+  // TODO refactor return no void
+
+  async function getMoneyChartData() {
+    const moneyData = await TransactionApi.getTransactionsByCurrency();
+    setState((prevState) => ({
+      ...prevState,
+
+      moneyChart: moneyData.data || [],
+    }));
+  }
+
   async function getCurrencies() {
     const currencies = await CurrencyApi.addCurrencies();
     setState((prev) => ({
@@ -121,6 +132,7 @@ export const HomePage = () => {
       openPendingModal();
       await Promise.all([
         getActualMoney(),
+        getMoneyChartData(),
         getLastTransactions(),
         getCurrencies(),
       ]);

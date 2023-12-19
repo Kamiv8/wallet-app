@@ -53,10 +53,9 @@ export const Routes = () => (
       element={<VerificationSuccessfulPage />}
     />
     <Route
-      path={RoutesName.RESET_PASSWORD + '/:email' + '/:token'}
+      path={RoutesName.RESET_PASSWORD + '/:email/*'}
       element={<ChangeForgotPasswordPage />}
     />
-
     <Route path={RoutesName.RESET_PASSWORD} element={<ResetPasswordPage />} />
     <Route element={<GuardedRoute />}>
       <Route path={RoutesName.ROOT} element={<HomePage />} />

@@ -3,22 +3,34 @@ import { ApiStatus, IApiResult } from '../models/apiResult';
 import { useModalAction } from './useModalAction';
 
 export const useFetch = () => {
-  const { openErrorModal, openPendingModal, closePendingModal } =
-    useModalAction();
+  const {
+    openErrorModal,
+    openPendingModal,
+    closePendingModal,
+    openSuccessModal,
+  } = useModalAction();
 
   const callToApi = useCallback(
-    async <T = any,>(api: Promise<IApiResult<T>>) => {
+    async <T = any,>(
+      api: Promise<IApiResult<T>>,
+      withSuccessModal?: boolean,
+    ) => {
       try {
         openPendingModal();
-        return await api;
+        const response = await api;
+        closePendingModal();
+        if (response.status === ApiStatus.SUCCESS && withSuccessModal) {
+          console.log(response);
+          openSuccessModal(response.message);
+        }
+        return response;
       } catch (e: any) {
-        openErrorModal(e?.message);
+        closePendingModal();
+        openErrorModal(e?.message || 'An error occurred');
         return {
           status: ApiStatus.ERROR,
           message: '',
         };
-      } finally {
-        closePendingModal();
       }
     },
     [],

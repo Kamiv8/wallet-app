@@ -29,4 +29,6 @@ public class NoteRepository : INoteRepository
     {
         return _db.Notes.FirstOrDefaultAsync(x => x.Id == noteId, cancellationToken);
     }
+
+
 }

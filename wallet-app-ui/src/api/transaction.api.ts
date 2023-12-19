@@ -13,6 +13,7 @@ import { GetIncomeByCategoryResponse } from '../models/apiTypes/transaction/getI
 import { GetIncomeByCategoryCommand } from '../models/apiTypes/transaction/getIcomeByCategory/getIncomeByCategory.command';
 import { GetCostByCategoryResponse } from '../models/apiTypes/transaction/getCostByCategory/getCostByCategory.response';
 import { GetCostByCategoryCommand } from '../models/apiTypes/transaction/getCostByCategory/getCostByCategory.command';
+import { GetTransactionsByCurrencyResponse } from '../models/apiTypes/transaction/GetTransactionsByCurrency/GetTransactionsByCurrency.response';
 
 export class TransactionApi extends BaseApiConfig {
   public static async getMoneyChartData(type: any): Promise<IApiResult> {
@@ -57,14 +58,6 @@ export class TransactionApi extends BaseApiConfig {
       params: {
         type,
       },
-    });
-    return BaseApiHandler.handleApi(data);
-  }
-
-  public static async getTransactions(values: any): Promise<IApiResult> {
-    const data = await axios.get('/transaction', {
-      ...TransactionApi.apiOptions(),
-      params: values,
     });
     return BaseApiHandler.handleApi(data);
   }
@@ -127,6 +120,13 @@ export class TransactionApi extends BaseApiConfig {
         transactionId: transactionId,
       },
     });
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async getTransactionsByCurrency(): Promise<
+    IApiResult<Array<Array<GetTransactionsByCurrencyResponse>>>
+  > {
+    const data = await api.get('/transactionUser/transactionsByCurrency');
     return BaseApiHandler.handleApi(data);
   }
 

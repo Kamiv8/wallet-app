@@ -5,26 +5,40 @@ namespace WalletApp.Application.Common.Transaction.GetSumTransactions;
 
 public class
     GetSumTransactionsQueryHandler : IQueryHandler<GetSumTransactionsQuery,
-        IEnumerable<GetSumTransactionsResponseDto>>
+    IEnumerable<IEnumerable<GetSumTransactionsResponseDto>>>
 {
     private readonly ITransactionRepository _transactionRepository;
+    private readonly ICurrencyRepository _currencyRepository;
 
-    public GetSumTransactionsQueryHandler(ITransactionRepository transactionRepository)
+    public GetSumTransactionsQueryHandler(ITransactionRepository transactionRepository,
+        ICurrencyRepository currencyRepository)
     {
         _transactionRepository = transactionRepository;
+        _currencyRepository = currencyRepository;
     }
 
-    public async Task<ApiResult<IEnumerable<GetSumTransactionsResponseDto>>> Handle(
+    public async Task<ApiResult<IEnumerable<IEnumerable<GetSumTransactionsResponseDto>>>> Handle(
         GetSumTransactionsQuery request, CancellationToken cancellationToken)
     {
-        var userTransaction =
-            await _transactionRepository.GetSumByCurrency(request.UserId, request.CurrencyId);
+        var currencies = await _currencyRepository.GetCurrencies(cancellationToken);
 
-        var transactions = userTransaction as Domain.Entities.Transaction[] ?? userTransaction.ToArray();
+        if (!currencies.Any()) return ApiResult<IEnumerable<IEnumerable<GetSumTransactionsResponseDto>>>.Error(); // TODO
+
+
+        var dto = new List<IEnumerable<GetSumTransactionsResponseDto>>();
         
-        var dto = transactions.Select((entity, index) => new GetSumTransactionsResponseDto(
-            transactions.Take(index + 1).Sum(e => e.Price), entity.Date, entity.Currency.Code
-        ));
-        return ApiResult<IEnumerable<GetSumTransactionsResponseDto>>.Success(dto);
+        foreach (var currency in currencies)
+        {
+            var userTransaction =
+                await _transactionRepository.GetSumByCurrency(request.UserId, currency.Id);
+            var currenciesTransaction = userTransaction as Domain.Entities.Transaction[] ??
+                                        userTransaction.ToArray();
+            
+            dto.Add(currenciesTransaction.Reverse().Select((entity, index) => new GetSumTransactionsResponseDto(
+                currenciesTransaction.Take(index + 1).Sum(e => e.Price), entity.Date, entity.Currency.Code
+            )));
+        }
+
+        return ApiResult<IEnumerable<IEnumerable<GetSumTransactionsResponseDto>>>.Success(dto);
     }
 }

@@ -75,18 +75,14 @@ export const useForm = <T,>(
     [values],
   );
 
-  const isError = useCallback(() => {}, []);
-
   const onSubmit = useCallback(
     async <K = any,>(api: (value: T) => Promise<IApiResult<K>>) => {
       try {
         await validationSchema?.validate(values, {
           abortEarly: false,
         });
-
-        return await callToApi(api(values));
+        return await callToApi(api(values), true);
       } catch (e: any) {
-        console.log(e.inner);
         const newErrors = {} as Record<keyof T, string>;
         e.inner?.forEach((error: any) => {
           newErrors[error.path as keyof T] = error.message;
@@ -104,7 +100,6 @@ export const useForm = <T,>(
   return {
     values,
     handleChange,
-    isError,
     resetForm,
     onSubmit,
     getMessageByFieldName,

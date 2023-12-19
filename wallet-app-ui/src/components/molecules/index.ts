@@ -16,3 +16,4 @@ export { TableCard } from './TableCard/TableCard';
 export { TextAreaField } from './TextAreaField/TextAreaField';
 export { TransactionItem } from './TransactionItem/TransactionItem';
 export { UserDataHeader } from './UserDataHeader/UserDataHeader';
+export { SuccessModal } from './SuccessModal/SuccessModal';

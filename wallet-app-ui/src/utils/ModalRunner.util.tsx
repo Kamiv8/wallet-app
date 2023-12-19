@@ -3,14 +3,22 @@ import { useContext, useMemo } from 'react';
 import { HashLoader } from 'react-spinners';
 import ApplicationContext from '../contexts/application.context';
 import { BlurBackgroundTemplate } from '../components/templates';
-import { ErrorModal, RegisterSuccess } from '../components/molecules';
+import {
+  ErrorModal,
+  RegisterSuccess,
+  SuccessModal,
+} from '../components/molecules';
 import { ConfirmActionModal } from '../components/molecules/ConfirmActionModal/ConfirmActionModal';
 import { useModalAction } from '../hooks';
 
 const ModalRunnerUtil = () => {
   const appContext = useContext(ApplicationContext);
-  const { closeRegisterModal, closeErrorModal, closeConfirmActionModal } =
-    useModalAction();
+  const {
+    closeRegisterModal,
+    closeErrorModal,
+    closeConfirmActionModal,
+    closeSuccessModal,
+  } = useModalAction();
 
   const selectModal = useMemo(() => {
     switch (appContext.state.modalState.type) {
@@ -26,7 +34,16 @@ const ModalRunnerUtil = () => {
           />
         );
       case ModalEnum.SUCCESS:
-        return <></>;
+        return (
+          <BlurBackgroundTemplate
+            content={
+              <SuccessModal text={appContext.state.modalState?.message || ''} />
+            }
+            isOpen={appContext.state.modalState.isActive}
+            closeModal={closeSuccessModal}
+            type={ModalEnum.SUCCESS}
+          />
+        );
       case ModalEnum.CONFIRM_ACTION:
         return (
           <BlurBackgroundTemplate

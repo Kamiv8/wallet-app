@@ -18,7 +18,7 @@ export class AuthApi {
 
     const data = await noAuthApi.post('/account/authenticate', command);
 
-    const dataResult = BaseApiHandler.handleApi<AuthenticateDto>(data);
+    const dataResult = BaseApiHandler.handleApi<AuthenticateDto>(data); // TODO Move to component
     if (dataResult.status === ApiStatus.SUCCESS) {
       localStorage.setItem('token', dataResult.data?.token ?? '');
       localStorage.setItem('type', 'SINGLE');

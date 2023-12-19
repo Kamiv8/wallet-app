@@ -1,7 +1,8 @@
-import { ToMoneyChartDto } from '../models/dtos/toMoneyChartDto';
 import { ToPieChartDto } from '../models/dtos/toPieChartDto';
 import { GetIncomeByCategoryResponse } from '../models/apiTypes/transaction/getIcomeByCategory/getIncomeByCategory.response';
 import { GetCostByCategoryResponse } from '../models/apiTypes/transaction/getCostByCategory/getCostByCategory.response';
+import { GetTransactionsByCurrencyResponse } from '../models/apiTypes/transaction/GetTransactionsByCurrency/GetTransactionsByCurrency.response';
+import theme from '../styles/theme';
 
 export const areaChartData = (
   labels: string[],
@@ -63,11 +64,11 @@ export const incomePieChartMapper = (
         backgroundColor: [
           'rgba(255,99,132,0.2)',
           'rgba(99,255,132,0.2)',
-          'rgba(22,234,109,0.2)',
+          'rgba(33,150,243,0.2)',
           'rgba(132,99,255,0.2)',
           'rgba(99,132,255,0.2)',
         ],
-        borderColor: ['#FF6384', '#63FF84', '#16ead1', '#8463FF', '#6384FF'],
+        borderColor: ['#FF6384', '#63FF84', '#2196f3', '#8463FF', '#6384FF'],
       },
     ],
     options: {
@@ -91,11 +92,11 @@ export const costPieChartMapper = (data: Array<GetCostByCategoryResponse>) => {
         backgroundColor: [
           'rgba(255,99,132,0.2)',
           'rgba(99,255,132,0.2)',
-          'rgba(132,255,99,0.2)',
+          'rgba(33,150,243,0.2)',
           'rgba(132,99,255,0.2)',
           'rgba(99,132,255,0.2)',
         ],
-        borderColor: ['#FF6384', '#63FF84', '#16ead1', '#8463FF', '#6384FF'],
+        borderColor: ['#FF6384', '#63FF84', '#2196f3', '#8463FF', '#6384FF'],
       },
     ],
     options: {
@@ -123,11 +124,11 @@ export const detailsPieChartMapper = (data: {
         backgroundColor: [
           'rgba(255,99,132,0.2)',
           'rgba(99,255,132,0.2)',
-          'rgba(132,255,99,0.2)',
+          'rgba(33,150,243,0.2)',
           'rgba(132,99,255,0.2)',
           'rgba(99,132,255,0.2)',
         ],
-        borderColor: ['#FF6384', '#63FF84', '#16ead1', '#8463FF', '#6384FF'],
+        borderColor: ['#FF6384', '#63FF84', '#2196f3', '#8463FF', '#6384FF'],
       },
     ],
     options: {
@@ -143,24 +144,43 @@ export const detailsPieChartMapper = (data: {
   };
 };
 
-export const lineChartMapper = (data: ToMoneyChartDto[]) => {
+export const lineChartMapper = (
+  data: Array<Array<GetTransactionsByCurrencyResponse>>,
+) => {
+  const labelsSet = new Set<string>();
+
+  data.forEach((x) => {
+    x.forEach((y) => {
+      labelsSet.add(new Date(y.dateTime).toDateString());
+    });
+  });
+
+  const dataWithColor = data
+    .filter((x) => x.length > 0)
+    .map((x, index) => ({
+      color: theme.colors.chartColors[index],
+      backgroundColor: theme.colors.chartBackgroundColors[index],
+      data: x,
+    }));
+
   return {
     data: {
-      labels: data.map((x) => new Date(x.name).toLocaleDateString()),
-      datasets: [
-        {
-          data: data.map((x) => x.value),
+      labels: Array.from(labelsSet),
+      datasets: dataWithColor.map((x) => {
+        return {
+          label: x.data[0].currencyCode,
+          data: x.data.map((y) => y.sumPrice),
           fill: true,
-          borderColor: '#2196f3',
-          backgroundColor: 'rgba(33,150,243,0.2)',
+          borderColor: x.color,
+          backgroundColor: x.backgroundColor,
           borderWidth: 1,
-        },
-      ],
+        };
+      }),
     },
     options: {
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
         },
         filler: {

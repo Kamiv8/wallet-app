@@ -54,7 +54,6 @@ public class TransactionUserController : BaseController
         return CreateResponse(res);
     }
     
-    
     [HttpGet("transactionList")]
     public async Task<ActionResult<ApiResult<GetTransactionListResponseDto>>> GetAllTransactions(
         [FromQuery] GetTransactionListDto dto, CancellationToken cancellationToken)
@@ -65,11 +64,10 @@ public class TransactionUserController : BaseController
     }
 
     [HttpGet("transactionsByCurrency")]
-    public async Task<ActionResult<ApiResult<IEnumerable<GetSumTransactionsResponseDto>>>>
-        GetSumTransactions(
-            [FromQuery] GetSumTransactionsDto dto, CancellationToken cancellationToken)
+    public async Task<ActionResult<ApiResult<IEnumerable<IEnumerable<GetSumTransactionsResponseDto>>>>>
+        GetSumTransactions(CancellationToken cancellationToken)
     {
-        var query = new GetSumTransactionsQuery(_currentUserService.Id, dto.CurrencyId);
+        var query = new GetSumTransactionsQuery(_currentUserService.Id);
         var res = await _mediator.Send(query, cancellationToken);
         return CreateResponse(res);
     }

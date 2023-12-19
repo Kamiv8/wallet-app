@@ -8,3 +8,4 @@ export * from './transaction.api';
 export * from './user.api';
 export * from './defaultTransaction';
 export * from './note.api';
+export * from './settings.api';

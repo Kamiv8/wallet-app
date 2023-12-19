@@ -90,6 +90,25 @@ export const useModalAction = () => {
       },
     });
   };
+  const openSuccessModal = (message?: string) => {
+    dispatch({
+      type: ActionEnum.CHANGE_MODAL_STATE,
+      payload: {
+        type: ModalEnum.SUCCESS,
+        isActive: true,
+        message,
+      },
+    });
+  };
+  const closeSuccessModal = () => {
+    dispatch({
+      type: ActionEnum.CHANGE_MODAL_STATE,
+      payload: {
+        type: ModalEnum.SUCCESS,
+        isActive: false,
+      },
+    });
+  };
 
   return {
     openRegisterModal,
@@ -100,5 +119,7 @@ export const useModalAction = () => {
     closeRegisterModal,
     openPendingModal,
     closePendingModal,
+    openSuccessModal,
+    closeSuccessModal,
   };
 };

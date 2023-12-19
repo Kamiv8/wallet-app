@@ -8,10 +8,7 @@ import { getApplicationType } from '../../../../helpers/checkIsGroup.helper';
 import ApplicationContext from '../../../../contexts/application.context';
 import { ToMoneyChartDto } from '../../../../models/dtos/toMoneyChartDto';
 import { ToPieChartDto } from '../../../../models/dtos/toPieChartDto';
-import {
-  lineChartMapper,
-  pieChartMapper,
-} from '../../../../helpers/chartDataMapper.helper';
+import { pieChartMapper } from '../../../../helpers/chartDataMapper.helper';
 import { ChartTypeEnum } from '../../../../types/enums/chartType.enum';
 import { GroupDataWrapper } from './GroupHomePage.styles';
 import { MainTemplate } from '../../../templates';
@@ -156,18 +153,18 @@ export const GroupHomePage = () => {
       {/*  <TransactionItem data={t} />*/}
       {/*))}*/}
 
-      {state.moneyChart.length && (
-        <>
-          <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
-            <FormattedMessage {...messages.mainPageMoneyChart} />
-          </Typography>
-          <Chart
-            data={lineChartMapper(state.moneyChart).data}
-            options={lineChartMapper(state.moneyChart).options}
-            type={ChartTypeEnum.LINE}
-          />
-        </>
-      )}
+      {/*{state.moneyChart.length && (*/}
+      {/*  <>*/}
+      {/*    <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>*/}
+      {/*      <FormattedMessage {...messages.mainPageMoneyChart} />*/}
+      {/*    </Typography>*/}
+      {/*    <Chart*/}
+      {/*      data={lineChartMapper(state.moneyChart).data}*/}
+      {/*      options={lineChartMapper(state.moneyChart).options}*/}
+      {/*      type={ChartTypeEnum.LINE}*/}
+      {/*    />*/}
+      {/*  </>*/}
+      {/*)}*/}
 
       {state.incomeChart.length && (
         <>
