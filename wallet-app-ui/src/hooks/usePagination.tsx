@@ -18,7 +18,6 @@ export const usePagination = (paginationResponse?: TPaginationResponse) => {
   }, [paginationResponse]);
 
   const setPage = useCallback((pageNumber: number) => {
-    console.log(pageNumber);
     setCurrentPage(pageNumber);
   }, []);
 

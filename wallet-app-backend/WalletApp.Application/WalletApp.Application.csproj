@@ -29,6 +29,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Common\Report\" />
       <Folder Include="Common\Settings\" />
       <Folder Include="Mapper\" />
     </ItemGroup>

@@ -105,9 +105,9 @@ export const HomePage = () => {
           actualMoneyGbp: actualMoney.data?.actualMoneyGbp,
           actualMoneyEur: actualMoney.data?.actualMoneyEur,
         },
-        moneyChart: moneyData.data || [],
-        lastTransactions: lastTransactions.data?.transactionList || [],
-        currencies: currencies.data ?? [],
+        moneyChart: moneyData?.data || [],
+        lastTransactions: lastTransactions?.data?.transactionList || [],
+        currencies: currencies?.data ?? [],
       }));
     })();
   }, []);

@@ -16,7 +16,7 @@ export enum FieldType {
 
 export const useForm = <T,>(
   initialValues: T,
-  validationSchema?: yup.ObjectSchema<T>,
+  validationSchema?: yup.ObjectSchema<yup.Maybe<any>>,
 ) => {
   const { getMessageByFieldName } = useMapValidationMessages();
   const { callToApi } = useFetch();
@@ -76,12 +76,15 @@ export const useForm = <T,>(
   );
 
   const onSubmit = useCallback(
-    async <K = any,>(api: (value: T) => Promise<IApiResult<K>>) => {
+    async <K = any,>(
+      api: (value: T) => Promise<IApiResult<K>>,
+      withSuccessModal = false,
+    ) => {
       try {
         await validationSchema?.validate(values, {
           abortEarly: false,
         });
-        return await callToApi(api(values), true);
+        return await callToApi(api(values), withSuccessModal);
       } catch (e: any) {
         const newErrors = {} as Record<keyof T, string>;
         e.inner?.forEach((error: any) => {

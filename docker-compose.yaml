@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    build:
+      context: ./wallet-app-ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+  pdf:
+    build:
+      context: pdf-geberator
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"

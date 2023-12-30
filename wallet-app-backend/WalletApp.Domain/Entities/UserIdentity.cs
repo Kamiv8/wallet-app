@@ -14,5 +14,6 @@ public class UserIdentity : IdentityUser<Guid>
     public ICollection<Transaction> Transactions { get; set; } = default!;
     public ICollection<DefaultTransaction> DefaultTransactions { get; set; } = default!;
     public ICollection<Note> Notes { get; set; } = default!;
+    public ICollection<Report> Reports { get; set; } = default!;
 
 }

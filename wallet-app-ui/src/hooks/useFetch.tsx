@@ -20,7 +20,6 @@ export const useFetch = () => {
         const response = await api;
         closePendingModal();
         if (response.status === ApiStatus.SUCCESS && withSuccessModal) {
-          console.log(response);
           openSuccessModal(response.message);
         }
         return response;
