@@ -100,6 +100,13 @@ export const useForm = <T,>(
     [values],
   );
 
+  const loadToEditValues = useCallback(<K = any,>(oldValues: K) => {
+    setValues((prev) => ({
+      ...prev,
+      ...oldValues,
+    }));
+  }, []);
+
   return {
     values,
     handleChange,
@@ -107,5 +114,6 @@ export const useForm = <T,>(
     onSubmit,
     getMessageByFieldName,
     getValidationMessage,
+    loadToEditValues,
   };
 };
