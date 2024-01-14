@@ -12,5 +12,6 @@ export const ButtonsWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   justify-content: space-between;
 `;

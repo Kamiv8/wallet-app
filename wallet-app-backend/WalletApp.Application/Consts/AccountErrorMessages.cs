@@ -11,4 +11,5 @@ public static class AccountErrorMessages
     public const string EmailExist = "User exist";
     public const string CannotResetPassword = "Cannot reset password";
     public const string ResetPasswordSuccessful = "Reset password successful";
+    public const string ResetPasswordSentMail = "Please check your email";
 }

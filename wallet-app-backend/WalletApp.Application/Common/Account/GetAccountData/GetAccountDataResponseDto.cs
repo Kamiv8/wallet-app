@@ -10,5 +10,6 @@ public sealed record GetAccountDataResponseDto(
     decimal ActualMoneyChf,
     decimal ActualMoneyGbp,
     decimal ActualMoneyEur,
+    Language Language,
     Guid? GroupId
 );

@@ -1,6 +1,4 @@
 import { FormattedMessage } from 'react-intl';
-import { ReactComponent as ChangeUserIcon } from '../../../../assets/images/EditUser.svg';
-
 import messages from '../../../../i18n/messages';
 import {
   AdminSection,
@@ -9,10 +7,8 @@ import {
 } from './GroupSettingsPage.styles';
 import { useEffect, useState } from 'react';
 import { GroupApi } from '../../../../api';
-import { GroupRoutesName, RoutesName } from '../../../../const/routesName';
 import { MainTemplate, SettingsTemplate } from '../../../templates';
 import { Avatar, Button, Typography } from '../../../atoms';
-import { NavigationBox } from '../../../molecules';
 
 export const GroupSettingsPage = () => {
   const [state, setState] = useState({
@@ -76,31 +72,31 @@ export const GroupSettingsPage = () => {
       </AdminSection>
 
       <SettingsTemplate>
-        <NavigationBox
-          Image={ChangeUserIcon}
-          name={'Change Currencies'}
-          routeName={RoutesName.CHANGE_CURRENCIES}
-        />
-        <NavigationBox
-          Image={ChangeUserIcon}
-          name={'Change Category'}
-          routeName={RoutesName.CHANGE_CATEGORY}
-        />
-        <NavigationBox
-          Image={ChangeUserIcon}
-          name={'Change icon'}
-          routeName={RoutesName.CHANGE_ICON}
-        />
-        <NavigationBox
-          Image={ChangeUserIcon}
-          name={'Manage users'}
-          routeName={GroupRoutesName.MANAGE_USERS}
-        />
-        <NavigationBox
-          Image={ChangeUserIcon}
-          name={'Change group name'}
-          routeName={RoutesName.CHANGE_LANGUAGE}
-        />
+        {/*<NavigationBox*/}
+        {/*  Image={ChangeUserIcon}*/}
+        {/*  name={'Change Currencies'}*/}
+        {/*  routeName={RoutesName.CHANGE_CURRENCIES}*/}
+        {/*/>*/}
+        {/*<NavigationBox*/}
+        {/*  Image={ChangeUserIcon}*/}
+        {/*  name={'Change Category'}*/}
+        {/*  routeName={RoutesName.CHANGE_CATEGORY}*/}
+        {/*/>*/}
+        {/*<NavigationBox*/}
+        {/*  Image={ChangeUserIcon}*/}
+        {/*  name={'Change icon'}*/}
+        {/*  routeName={RoutesName.CHANGE_ICON}*/}
+        {/*/>*/}
+        {/*<NavigationBox*/}
+        {/*  Image={ChangeUserIcon}*/}
+        {/*  name={'Manage users'}*/}
+        {/*  routeName={GroupRoutesName.MANAGE_USERS}*/}
+        {/*/>*/}
+        {/*<NavigationBox*/}
+        {/*  Image={ChangeUserIcon}*/}
+        {/*  name={'Change group name'}*/}
+        {/*  routeName={RoutesName.CHANGE_LANGUAGE}*/}
+        {/*/>*/}
       </SettingsTemplate>
 
       <DeleteSection>

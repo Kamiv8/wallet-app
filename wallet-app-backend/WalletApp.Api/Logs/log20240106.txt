@@ -1,0 +1,4 @@
+2024-01-06 00:13:03.923 +01:00 [INF] Application is shutting down...
+2024-01-06 00:13:03.943 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED shutting down.
+2024-01-06 00:13:03.945 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED paused.
+2024-01-06 00:13:03.951 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED Shutdown complete.

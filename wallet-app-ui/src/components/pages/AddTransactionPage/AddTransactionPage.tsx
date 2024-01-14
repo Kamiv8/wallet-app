@@ -6,7 +6,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { AddTransactionForm } from '../../organisms';
 import { DefaultTransaction, TransactionApi } from '../../../api';
 import { GetDefaultTransactionResponse } from '../../../models/apiTypes/defaultTransaction/getDefaultTransaction/getDefaultTransaction.response';
-import { useFetch } from '../../../hooks';
+import { useFetch, useModalAction } from '../../../hooks';
+import { FormattedMessage } from 'react-intl';
+import messages from '../../../i18n/messages';
 
 type TState = {
   transactions: Array<GetDefaultTransactionResponse>;
@@ -15,6 +17,7 @@ type TState = {
 
 export const AddTransactionPage = () => {
   const { callToApi } = useFetch();
+  const { openConfirmActionModal, closeConfirmActionModal } = useModalAction();
 
   const [state, setState] = useState<TState>({
     transactions: [],
@@ -54,8 +57,16 @@ export const AddTransactionPage = () => {
 
   const addTransaction = useCallback(
     async (id: string) => {
-      await callToApi(TransactionApi.addTransactionDefault(id));
-      await getSavedTransactions();
+      openConfirmActionModal(
+        'Do you want to add this transaction?',
+        async () => {
+          await callToApi(TransactionApi.addTransactionDefault(id));
+          await getSavedTransactions();
+        },
+        () => {
+          closeConfirmActionModal();
+        },
+      );
     },
     [state],
   );
@@ -63,7 +74,7 @@ export const AddTransactionPage = () => {
   return (
     <MainTemplate>
       <Typography size={'xl'} color={'lightBlue'} weight={700} uppercase>
-        Add transaction
+        <FormattedMessage {...messages.addTransactionPage} />
       </Typography>
       {!state.isNew &&
         state.transactions.map((item) => (

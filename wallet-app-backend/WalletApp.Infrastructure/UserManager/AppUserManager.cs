@@ -15,6 +15,11 @@ public class AppUserManager : IUserManager
         _userManager = userManager;
     }
 
+    public async Task<IList<string>> GetRolesAsync(UserIdentity user)
+    {
+        return await _userManager.GetRolesAsync(user);
+    }
+    
     public async Task<string> GenerateEmailConfirmationTokenAsync(UserIdentity user)
     {
         return await _userManager.GenerateEmailConfirmationTokenAsync(user);

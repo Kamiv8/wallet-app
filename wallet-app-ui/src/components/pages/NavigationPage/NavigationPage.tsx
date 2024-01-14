@@ -9,9 +9,8 @@ import { NavigationTemplate } from '../../templates';
 import { UserDataHeader } from '../../molecules';
 import { GroupNavigation, PersonNavigation } from '../../organisms';
 import { useFetch } from '../../../hooks';
-import { UserIconTypeEnum } from '../../../types/enums/userIconType.enum';
-import { LocalstorageHelper } from '../../../helpers/localstorage.helper';
-import { LocalstorageEnum } from '../../../types/enums/localstorage.enum';
+import { UserIconTypeEnum, LocalstorageEnum } from '../../../types/enums';
+import { LocalstorageHelper } from '../../../helpers';
 
 type TProps = {
   closeNav: (open: boolean) => void;

@@ -12,10 +12,10 @@ namespace WalletApp.Infractructure.JWT;
 
 public class JWTUtil : IJWTUtil
 {
-    private readonly UserManager<UserIdentity> _userManager;
+    private readonly IUserManager _userManager;
     private readonly JwtOptions _options;
 
-    public JWTUtil(IOptions<JwtOptions> options, UserManager<UserIdentity> userManager)
+    public JWTUtil(IOptions<JwtOptions> options, IUserManager userManager)
     {
         _userManager = userManager;
         _options = options.Value;

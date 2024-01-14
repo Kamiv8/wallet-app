@@ -6,37 +6,38 @@ import { Button } from '../../atoms';
 import { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
-import { useFetch, useForm } from '../../../hooks';
+import { useForm } from '../../../hooks';
 import { InputField } from '../../molecules';
 import messages from '../../../i18n/messages';
 import { FormattedMessage } from 'react-intl';
 import { LastButton } from '../ResetPasswordForm/ResetPassword.styles';
 import { AuthApi } from '../../../api';
+import { TChangeForgotPasswordForm } from '../../../models/apiTypes/account/changeForgotPassword/changeForgotPassword.form';
+import { changeForgotPasswordSchema } from '../../../validators/account/changeForgotPassword.validator';
 
 export const ChangeResetPasswordForm = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const { callToApi } = useFetch();
   const initialValues = {
     password: '',
     confirmPassword: '',
   };
 
-  const { handleChange, values } = useForm(initialValues);
+  const { handleChange, values, getValidationMessage, onSubmit } =
+    useForm<TChangeForgotPasswordForm>(
+      initialValues,
+      changeForgotPasswordSchema,
+    );
 
   const onCancel = useCallback(() => {
     navigate(RoutesName.LOGIN);
   }, []);
 
-  const onSubmit = useCallback(async () => {
-    await callToApi(
-      AuthApi.changeForgotPassword({
-        ...values,
-        email: params.email,
-        token: params['*'],
-      }),
-      true,
-    );
+  const handleSubmit = useCallback(async () => {
+    await onSubmit(AuthApi.changeForgotPassword, true, {
+      email: params.email,
+      token: params['*'],
+    });
   }, [values]);
 
   return (
@@ -47,6 +48,8 @@ export const ChangeResetPasswordForm = () => {
           variant={'light'}
           type={'password'}
           name={'password'}
+          error={getValidationMessage('password')}
+          value={values.password}
           onChange={(e: any) => handleChange(e, 'password')}
         />
       </InputFieldWrapper>
@@ -56,6 +59,8 @@ export const ChangeResetPasswordForm = () => {
           variant={'light'}
           type={'password'}
           name={'confirmPassword'}
+          error={getValidationMessage('confirmPassword')}
+          value={values.confirmPassword}
           onChange={(e: any) => handleChange(e, 'confirmPassword')}
         />
       </InputFieldWrapper>
@@ -63,7 +68,7 @@ export const ChangeResetPasswordForm = () => {
         <Button type={'button'} onClick={onCancel}>
           <FormattedMessage {...messages.resetPasswordPageCancel} />
         </Button>
-        <LastButton type={'button'} onClick={onSubmit}>
+        <LastButton type={'button'} onClick={handleSubmit}>
           <FormattedMessage {...messages.resetPasswordPageSent} />
         </LastButton>
       </ButtonsWrapper>

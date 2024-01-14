@@ -16,7 +16,7 @@ import { ApiStatus } from '../../../models/apiResult';
 import { TAuthenticateForm } from '../../../models/apiTypes/account/authenticate/authenticate.form';
 import { authenticateSchema } from '../../../validators/account/authenticate.validator';
 import { LocalstorageHelper } from '../../../helpers/localstorage.helper';
-import { LocalstorageEnum } from '../../../types/enums/localstorage.enum';
+import { LocalstorageEnum } from '../../../types/enums';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export const LoginForm = () => {
     username: '',
     password: '',
   };
-  const { handleChange, onSubmit, getValidationMessage } =
+  const { handleChange, onSubmit, getValidationMessage, values } =
     useForm<TAuthenticateForm>(initialValues, authenticateSchema);
 
   const handleSubmit = async () => {
@@ -50,6 +50,7 @@ export const LoginForm = () => {
           label={{ ...messages.loginUsername }}
           variant={'light'}
           name={'username'}
+          value={values.username}
           error={getValidationMessage('username')}
           onChange={(e) => handleChange(e, 'username')}
         />
@@ -59,6 +60,7 @@ export const LoginForm = () => {
           label={{ ...messages.loginPassword }}
           variant={'light'}
           name={'password'}
+          value={values.password}
           error={getValidationMessage('password')}
           type={'password'}
           onChange={(e) => handleChange(e, 'password')}

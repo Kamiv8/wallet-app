@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import ApplicationContext from '../contexts/application.context';
 import { ActionEnum } from '../contexts/application.reducer';
-import { ModalEnum } from '../types/enums/modal.enum';
+import { ModalEnum } from '../types/enums';
 
 export const useModalAction = () => {
   const { dispatch } = useContext(ApplicationContext);

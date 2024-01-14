@@ -29,6 +29,7 @@ public class
             user.AccountData.ActualMoneyChf,
             user.AccountData.ActualMoneyGbp,
             user.AccountData.ActualMoneyEur,
+            user.Language,
             user.Member?.GroupId
         );
         

@@ -250,7 +250,7 @@ namespace WalletApp.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("481420ff-3cc1-47cc-be65-03c31e10277e"),
+                            Id = new Guid("fe51b179-a382-447d-9818-b29fb3062847"),
                             IsDeleted = false,
                             Name = "Rachunki"
                         });
@@ -311,53 +311,53 @@ namespace WalletApp.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b62faace-8b8b-412f-8064-a3cf21a52037"),
+                            Id = new Guid("e727487c-94b1-480b-a04a-0b23ffc58bff"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "USD",
                             CurrencyName = "dolar amerykanski",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 3, 16, 0, 51, 539, DateTimeKind.Local).AddTicks(7465)
+                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8920)
                         },
                         new
                         {
-                            Id = new Guid("1bf84dd1-851e-4369-b1d7-4c301f12191c"),
+                            Id = new Guid("e86def6d-fff1-4b84-9ed9-abd707d5bae4"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "EUR",
                             CurrencyName = "euro",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 3, 16, 0, 51, 539, DateTimeKind.Local).AddTicks(7506)
+                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8982)
                         },
                         new
                         {
-                            Id = new Guid("49b11f7c-c6db-4130-a638-58ded5c4dbed"),
+                            Id = new Guid("0a72d06b-b39b-47b1-8aa1-dbb7a960baef"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "CHF",
                             CurrencyName = "frank szwajcarski",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 3, 16, 0, 51, 539, DateTimeKind.Local).AddTicks(7509)
+                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8985)
                         },
                         new
                         {
-                            Id = new Guid("af9d1038-8b15-4808-8601-120666b03214"),
+                            Id = new Guid("8962939b-2c32-4579-b5c1-c5fdc626c3f0"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "GBP",
                             CurrencyName = "funt szterling",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 3, 16, 0, 51, 539, DateTimeKind.Local).AddTicks(7512)
+                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8988)
                         },
                         new
                         {
-                            Id = new Guid("50fc3f92-e9c9-48ae-a54b-01cccb4c49d4"),
+                            Id = new Guid("5e241818-ff68-40a5-9e12-8d63af409e9d"),
                             Ask = 1m,
                             Bid = 1m,
                             Code = "PLN",
                             CurrencyName = "polski złoty",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 3, 16, 0, 51, 539, DateTimeKind.Local).AddTicks(7515)
+                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8993)
                         });
                 });
 
@@ -905,8 +905,13 @@ namespace WalletApp.Persistance.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("IconType")
-                        .HasColumnType("int");
+                    b.Property<long>("IconType")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Language")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasDefaultValue(0L);
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

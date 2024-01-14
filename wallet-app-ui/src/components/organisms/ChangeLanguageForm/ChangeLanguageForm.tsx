@@ -2,15 +2,13 @@ import { CardWrapper, Button } from '../../atoms';
 import { ButtonWrapper, Wrapper } from './ChangeLanguageForm.styles';
 import { SelectField } from '../../molecules';
 import messages from '../../../i18n/messages';
-import { useContext } from 'react';
-import { ActionEnum } from '../../../contexts/application.reducer';
-import { Languages } from '../../../i18n/intlUtils';
-import applicationContext from '../../../contexts/application.context';
-import { useForm } from '../../../hooks';
+import { useAppReducer, useFetch, useForm } from '../../../hooks';
 import { TSelectItem } from '../../atoms/Select/Select';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
+import { Languages } from '../../../types/enums';
+import { UserApi } from '../../../api';
 
 const languages: TSelectItem[] = [
   {
@@ -23,19 +21,18 @@ const languages: TSelectItem[] = [
   },
 ];
 export const ChangeLanguageForm = () => {
-  const appContext = useContext(applicationContext);
   const navigate = useNavigate();
+  const { changeLanguage } = useAppReducer();
+  const { callToApi } = useFetch();
   const initialValue = {
     language: Languages.ENGLISH,
   };
 
   const { values, handleChange } = useForm(initialValue);
 
-  const handleSubmit = () => {
-    appContext.dispatch({
-      type: ActionEnum.CHANGE_LANGUAGE,
-      payload: values.language,
-    });
+  const handleSubmit = async () => {
+    const response = await callToApi(UserApi.changeLanguage(values));
+    changeLanguage({ language: response.data?.language || Languages.ENGLISH });
     navigate(RoutesName.SETTINGS);
   };
 

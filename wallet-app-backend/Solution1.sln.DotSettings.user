@@ -1,0 +1,12 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\maste\AppData\Local\JetBrains\Rider2023.3\resharper-host\temp\Rider\vAny\CoverageData\_Solution1.2006904604\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c06ec726_002Ddc19_002D4149_002D8686_002D5f97d7517434/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GenerateJwtToken_ValidAccount_ReturnsToken" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Jwt.JwtUtilsTests.GenerateJwtToken_ValidAccount_ReturnsToken&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Controllers.Account.AuthenticateControllerTests.Authentication_ValidCredentials_ReturnsOkResult&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.AuthenticateCommandTest.Handle_ReturnError_When_Data_Is_Incorrect&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.AuthenticateCommandTest.Handle_ReturnError_When_Cannot_Find_User&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.AuthenticateCommandTest.Handle_ReturnSuccess_When_Data_Is_Correct&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.AuthenticateCommandTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

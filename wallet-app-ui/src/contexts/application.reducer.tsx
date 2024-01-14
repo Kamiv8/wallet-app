@@ -1,5 +1,5 @@
-import { Languages } from '../i18n/intlUtils';
-import { ModalEnum } from '../types/enums/modal.enum';
+import { Languages, LocalstorageEnum, ModalEnum } from '../types/enums';
+import { LocalstorageHelper } from '../helpers/localstorage.helper';
 
 export enum ActionEnum {
   CHANGE_LANGUAGE,
@@ -30,7 +30,7 @@ type TAction = {
 };
 
 export const initialContextState: any = {
-  language: Languages.ENGLISH,
+  language: LocalstorageHelper.getItemNumber(LocalstorageEnum.LANGUAGE),
   type: localStorage.getItem('type') as ApplicationType,
   groupId: localStorage.getItem('groupId'),
   userRole: localStorage.getItem('userRole'),
@@ -49,9 +49,10 @@ export const applicationReducer = (
 ): TInitialState => {
   switch (action.type) {
     case ActionEnum.CHANGE_LANGUAGE:
+      LocalstorageHelper.setItem(LocalstorageEnum.LANGUAGE, action.payload);
       return {
         ...state,
-        language: action.payload as Languages,
+        language: LocalstorageHelper.getItemNumber(LocalstorageEnum.LANGUAGE),
       };
     case ActionEnum.CHANGE_GROUP_ID_USER_ROLE:
       return {

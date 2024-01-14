@@ -5,6 +5,7 @@ using WalletApp.Application.Account.Authenticate;
 using WalletApp.Application.Common;
 using WalletApp.Application.Common.Account.Authenticate;
 using WalletApp.Application.Common.Account.ChangeForgotPassword;
+using WalletApp.Application.Common.Account.ChangeLanguage;
 using WalletApp.Application.Common.Account.ConfirmRegisterEmail;
 using WalletApp.Application.Common.Account.ForgotPassword;
 using WalletApp.Application.Common.Account.GetAccountData;
@@ -88,6 +89,16 @@ public class AccountController : BaseController
     {
         var query = new GetAccountDataQuery(_currentUserService.Id);
         var res = await _mediator.Send(query, cancellationToken);
+        return CreateResponse(res);
+    }
+
+    [Authorize]
+    [HttpPatch("changeLanguage")]
+    public async Task<ActionResult<ApiResult<ChangeLanguageResponseDto>>> ChangeLanguage(
+        [FromBody] ChangeLanguageDto dto, CancellationToken cancellationToken)
+    {
+        var command = new ChangeLanguageCommand(_currentUserService.Id, dto.Language);
+        var res = await _mediator.Send(command, cancellationToken);
         return CreateResponse(res);
     }
 }

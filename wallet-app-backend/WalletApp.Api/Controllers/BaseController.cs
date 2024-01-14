@@ -35,8 +35,8 @@ public abstract class BaseController : ControllerBase
 
     protected string IpAddress()
     {
-        if (Request.Headers.ContainsKey("X-Forwarded-For"))
-            return Request.Headers["X-Forwarded-For"];
-        return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
+        if (Request?.Headers?.ContainsKey("X-Forwarded-For") is not null)
+            return Request.Headers["X-Forwarded-For"]!;
+        return HttpContext?.Connection?.RemoteIpAddress?.MapToIPv4().ToString() ?? string.Empty;
     }
 }

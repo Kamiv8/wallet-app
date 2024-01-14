@@ -10,6 +10,7 @@ import {
 } from '../components/molecules';
 import { ConfirmActionModal } from '../components/molecules/ConfirmActionModal/ConfirmActionModal';
 import { useModalAction } from '../hooks';
+import theme from '../styles/theme';
 
 const ModalRunnerUtil = () => {
   const appContext = useContext(ApplicationContext);
@@ -27,7 +28,11 @@ const ModalRunnerUtil = () => {
           <BlurBackgroundTemplate
             type={ModalEnum.LOADING}
             content={
-              <HashLoader size={150} color={'#6ADDDD'} speedMultiplier={1.5} />
+              <HashLoader
+                size={150}
+                color={theme.colors.lightBlue}
+                speedMultiplier={1.5}
+              />
             }
             isOpen={appContext.state.modalState.isActive}
             closeModal={() => {}}

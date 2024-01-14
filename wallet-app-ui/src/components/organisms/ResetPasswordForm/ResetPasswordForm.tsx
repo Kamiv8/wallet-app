@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { ButtonsWrapper, LastButton } from './ResetPassword.styles';
 import { AuthApi } from '../../../api';
+import { resetPasswordSchema } from '../../../validators/account/resetPassword.validator';
+import { TResetPasswordForm } from '../../../models/apiTypes/account/resetPassword/resetPassword.form';
 
 export const ResetPasswordForm = () => {
   const navigate = useNavigate();
@@ -15,11 +17,12 @@ export const ResetPasswordForm = () => {
     email: '',
   };
 
-  const { handleChange, values } = useForm<typeof initialValues>(initialValues);
+  const { handleChange, values, onSubmit, getValidationMessage } =
+    useForm<TResetPasswordForm>(initialValues, resetPasswordSchema);
 
-  const onSubmit = useCallback(async () => {
-    await AuthApi.resetPassword(values);
-  }, [values]);
+  const handleSubmit = useCallback(async () => {
+    await onSubmit(AuthApi.resetPassword, true);
+  }, [onSubmit]);
 
   const onCancel = useCallback(() => {
     navigate(RoutesName.LOGIN);
@@ -31,6 +34,8 @@ export const ResetPasswordForm = () => {
         label={{ ...messages.resetPasswordPageEmail }}
         variant={'light'}
         name={'email'}
+        value={values.email}
+        error={getValidationMessage('email')}
         onChange={(e) => handleChange(e, 'email')}
       />
 
@@ -38,7 +43,7 @@ export const ResetPasswordForm = () => {
         <Button type={'button'} onClick={onCancel}>
           <FormattedMessage {...messages.resetPasswordPageCancel} />
         </Button>
-        <LastButton type={'button'} onClick={onSubmit}>
+        <LastButton type={'button'} onClick={handleSubmit}>
           <FormattedMessage {...messages.resetPasswordPageSent} />
         </LastButton>
       </ButtonsWrapper>

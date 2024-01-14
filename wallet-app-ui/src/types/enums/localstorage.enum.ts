@@ -4,4 +4,5 @@ export enum LocalstorageEnum {
   REFRESH_TOKEN,
   TYPE,
   TOKEN,
+  LANGUAGE,
 }

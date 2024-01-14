@@ -16,7 +16,7 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   Image: History,
-  name: 'History',
+  name: {},
   routeName: '/history',
   notificationsNumber: 2,
 };

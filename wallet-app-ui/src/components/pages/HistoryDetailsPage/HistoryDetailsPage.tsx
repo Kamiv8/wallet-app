@@ -18,6 +18,7 @@ export const HistoryDetailsPage = () => {
     price: 0,
     date: new Date(),
     currencyCode: '',
+    description: '',
     chartData: {
       all: 0,
       currentCategory: 0,
@@ -44,6 +45,7 @@ export const HistoryDetailsPage = () => {
         category={state.categoryName}
         price={state.price}
         currency={state.currencyCode}
+        description={state.description}
         date={new Date(state.date)}
         toChart={state.chartData}
       />

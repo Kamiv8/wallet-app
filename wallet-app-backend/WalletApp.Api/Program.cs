@@ -15,7 +15,7 @@ using WalletApp.Application.Options.JwtOptionsSetup;
 using WalletApp.Application.Options.NbpApi;
 using WalletApp.Common.Helpers;
 using WalletApp.Domain.Entities;
-using WalletApp.Infrastructure;
+using WalletApp.Infractructure;
 using WalletApp.Middleware;
 using WalletApp.Persistance;
 using WalletApp.Services;

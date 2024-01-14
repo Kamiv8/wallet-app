@@ -9,6 +9,7 @@ import { RegisterCommand } from '../models/apiTypes/account/register/register.co
 import { ChangeForgotPasswordCommand } from '../models/apiTypes/account/changeForgotPassword/changeForgotPassword.command';
 import { TAuthenticateForm } from '../models/apiTypes/account/authenticate/authenticate.form';
 import { TRegisterForm } from '../models/apiTypes/account/register/register.form';
+import { TResetPasswordForm } from '../models/apiTypes/account/resetPassword/resetPassword.form';
 
 export class AuthApi {
   public static async authenticate(
@@ -34,7 +35,9 @@ export class AuthApi {
     return BaseApiHandler.handleApi<null>(data);
   }
 
-  public static async resetPassword(value: any): Promise<IApiResult> {
+  public static async resetPassword(
+    value: TResetPasswordForm,
+  ): Promise<IApiResult> {
     const command = new ResetPasswordCommand(value.email);
     const data = await noAuthApi.post('/account/forgotPassword', command);
     return BaseApiHandler.handleApi(data);

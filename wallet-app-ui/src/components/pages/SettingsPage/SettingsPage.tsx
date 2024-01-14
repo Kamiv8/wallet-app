@@ -16,7 +16,7 @@ export const SettingsPage = () => {
       <SettingsTemplate>
         <NavigationBox
           Image={ChangeUserIcon}
-          name={'Change Category'}
+          name={messages.settingsMainPageChangeCategory}
           routeName={RoutesName.CHANGE_CATEGORY}
         />
         {/*<NavigationBox*/}
@@ -26,7 +26,7 @@ export const SettingsPage = () => {
         {/*/>*/}
         <NavigationBox
           Image={ChangeUserIcon}
-          name={'Change password'}
+          name={messages.settingsMainPageChangePassword}
           routeName={RoutesName.CHANGE_PASSWORD}
         />
         {/*<NavigationBox*/}
@@ -34,11 +34,11 @@ export const SettingsPage = () => {
         {/*  name={'Change username'}*/}
         {/*  routeName={RoutesName.CHANGE_USERNAME}*/}
         {/*/>*/}
-        {/*<NavigationBox*/}
-        {/*  Image={ChangeUserIcon}*/}
-        {/*  name={'Change language'}*/}
-        {/*  routeName={RoutesName.CHANGE_LANGUAGE}*/}
-        {/*/>*/}
+        <NavigationBox
+          Image={ChangeUserIcon}
+          name={messages.settingsMainPageChangeLanguage}
+          routeName={RoutesName.CHANGE_LANGUAGE}
+        />
       </SettingsTemplate>
     </MainTemplate>
   );

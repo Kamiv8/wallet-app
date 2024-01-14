@@ -7,7 +7,7 @@ public interface IUserManager
 {
     Task<string> GenerateEmailConfirmationTokenAsync(UserIdentity user);
     Task<AppIdentityResult> ConfirmEmailAsync(UserIdentity user, string token);
-
+    Task<IList<string>> GetRolesAsync(UserIdentity user);
     Task<AppIdentityResult> CreateAsync(UserIdentity user, string password);
     Task<UserIdentity?> FindByEmailAsync(string email);
     Task<UserIdentity?> FindByNameAsync(string username);

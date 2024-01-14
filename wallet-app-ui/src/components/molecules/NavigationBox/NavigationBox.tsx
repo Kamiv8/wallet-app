@@ -7,10 +7,12 @@ import {
   Wrapper,
 } from './NavigationBox.styles';
 import { useHref } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import { TFormattedMessage } from '../../../types/types';
 
 export type TProps = {
   Image: FunctionComponent<SVGProps<SVGSVGElement>>;
-  name: string;
+  name: TFormattedMessage;
   routeName: string;
   notificationsNumber?: number;
   action?: () => void;
@@ -32,7 +34,7 @@ export const NavigationBox = ({
         </ImageContainer>
         <TextWrapper>
           <Typography size={'s'} weight={700}>
-            {name}
+            <FormattedMessage {...name} />
           </Typography>
         </TextWrapper>
       </Wrapper>

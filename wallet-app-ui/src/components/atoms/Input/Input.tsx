@@ -8,6 +8,7 @@ type TProps = {
   placeholder?: string;
   type?: 'text' | 'password' | 'email' | 'date' | 'number';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
 };
 
 export const Input = (props: TProps) => {

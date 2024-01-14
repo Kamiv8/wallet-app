@@ -12,6 +12,7 @@ export type TProps = {
   name: string;
   error?: string;
   type?: 'text' | 'email' | 'password' | 'date' | 'number';
+  value?: string | number;
 };
 
 export const InputField = ({
@@ -21,6 +22,7 @@ export const InputField = ({
   onChange,
   error,
   name,
+  value,
   type = 'text',
   ...props
 }: TProps) => {
@@ -54,6 +56,7 @@ export const InputField = ({
         onChange={onChange}
         type={type}
         name={name}
+        value={value}
         {...props}
       />
       {error && (

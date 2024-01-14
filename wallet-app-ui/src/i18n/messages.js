@@ -6,6 +6,7 @@ const messages = defineMessages({
     id: 'hello',
     defaultMessage: 'hello',
   },
+
   // Register Page
   username: {
     id: 'registerPageUsername',
@@ -35,6 +36,7 @@ const messages = defineMessages({
     id: `registerPageRegister`,
     defaultMessage: 'Register',
   },
+
   //Login Page
   loginUsername: {
     id: 'loginPageUsername',
@@ -56,6 +58,7 @@ const messages = defineMessages({
     id: 'loginPageReset',
     defaultMessage: 'Reset password?',
   },
+
   // Navigation modal
   navigationPage: {
     id: 'navigationPageNavigation',
@@ -77,6 +80,7 @@ const messages = defineMessages({
     id: 'navigationMore',
     defaultMessage: 'More',
   },
+
   // Reset password
   resetPasswordPage: {
     id: 'resetPasswordPageResetPassword',
@@ -94,6 +98,7 @@ const messages = defineMessages({
     id: 'resetPasswordPageSent',
     defaultMessage: 'Sent',
   },
+
   // Change reset password
   changeResetPasswordPagePassword: {
     id: 'changeResetPasswordPagePassword',
@@ -111,6 +116,7 @@ const messages = defineMessages({
     id: 'resetPasswordPageSent',
     defaultMessage: 'Sent',
   },
+
   // Main page
   mainPageAllPrices: {
     id: 'mainPageAllPrices',
@@ -132,12 +138,18 @@ const messages = defineMessages({
     id: 'mainPageCostChart',
     defaultMessage: 'Cost chart',
   },
+
   // History page
   historyPageHistory: {
     id: 'historyPageHistory',
     defaultMessage: 'HISTORY',
   },
+
   // Add transaction page
+  addTransactionPage: {
+    id: 'addTransactionPage',
+    defaultMessage: 'Add transaction',
+  },
   addTransactionPageTitle: {
     id: 'addTransactionPageTitle',
     defaultMessage: 'Title',
@@ -174,6 +186,7 @@ const messages = defineMessages({
     id: 'addTransactionPageBackgroundColor',
     defaultMessage: 'Background color',
   },
+
   // Group page
   groupPageGroup: {
     id: 'groupPageGroup',
@@ -195,11 +208,13 @@ const messages = defineMessages({
     id: 'groupPageFindGroupDescription',
     defaultMessage: ' ', // TODO
   },
+
   // find group page
   findGroupPageFindGroup: {
     id: 'findGroupPageFindGroup',
     defaultMessage: 'Find group',
   },
+
   // Create group form
   createGroupForm: {
     id: 'createGroupForm',
@@ -225,10 +240,23 @@ const messages = defineMessages({
     id: 'findGroupFormGroupName',
     defaultMessage: 'Group name',
   },
+
   //Settings
   settingsMainPageSettings: {
     id: 'settingsMainPageSettings',
     defaultMessage: 'Settings',
+  },
+  settingsMainPageChangeCategory: {
+    id: 'settingsMainPageChangeCategory',
+    defaultMessage: 'Change Category',
+  },
+  settingsMainPageChangePassword: {
+    id: 'settingsMainPageChangePassword',
+    defaultMessage: 'Change password',
+  },
+  settingsMainPageChangeLanguage: {
+    id: 'settingsMainPageChangeLanguage',
+    defaultMessage: 'Change language',
   },
 
   //Change currency
@@ -241,6 +269,12 @@ const messages = defineMessages({
   changeLanguageFormLanguage: {
     id: 'changeLanguageFormLanguage',
     defaultMessage: 'Language',
+  },
+
+  // change language page
+  changeLanguagePageChangeLanguage: {
+    id: 'changeLanguagePageChangeLanguage',
+    defaultMessage: 'Change language',
   },
 
   // change username
@@ -274,17 +308,41 @@ const messages = defineMessages({
   },
 
   // table page
-
   tablePageTable: {
     id: 'tablePageTable',
     defaultMessage: 'Table',
   },
 
   // details note
-
   detailsNotePageNoteDetails: {
     id: 'detailsNotePageNoteDetails',
     defaultMessage: 'Note details',
+  },
+
+  // details transaction page
+  detailsTransactionPageCategory: {
+    id: 'detailsTransactionPageCategory',
+    defaultMessage: 'Category',
+  },
+  detailsTransactionPagePrice: {
+    id: 'detailsTransactionPagePrice',
+    defaultMessage: 'Price',
+  },
+  detailsTransactionPageDate: {
+    id: 'detailsTransactionPageDate',
+    defaultMessage: 'Date',
+  },
+  detailsTransactionPageDescription: {
+    id: 'detailsTransactionPageDescription',
+    defaultMessage: 'Description',
+  },
+  detailsTransactionPageChart1: {
+    id: 'detailsTransactionPageChart1',
+    defaultMessage: 'Percentage by',
+  },
+  detailsTransactionPageChart2: {
+    id: 'detailsTransactionPageChart2',
+    defaultMessage: 'category',
   },
 
   // add note form
@@ -322,14 +380,12 @@ const messages = defineMessages({
     id: 'groupMainPageUserIncomeChart',
     defaultMessage: 'Group member income',
   },
-
   groupMainPageUserCostChart: {
     id: 'groupMainPageUserCostChart',
     defaultMessage: 'Group member cost',
   },
 
   // manage form
-
   manageFormUser: {
     id: 'manageFormUser',
     defaultMessage: 'User',
@@ -337,6 +393,25 @@ const messages = defineMessages({
   manageFormRole: {
     id: 'manageFormRole',
     defaultMessage: 'Role',
+  },
+
+  // person navigation
+
+  navigationPageTransaction: {
+    id: 'navigationPageTransaction',
+    defaultMessage: 'Transaction',
+  },
+  navigationPageHistory: {
+    id: 'navigationPageHistory',
+    defaultMessage: 'History',
+  },
+  navigationPageTable: {
+    id: 'navigationPageTable',
+    defaultMessage: 'Table',
+  },
+  navigationPageSettings: {
+    id: 'navigationPageSettings',
+    defaultMessage: 'Settings',
   },
 
   // Buttons

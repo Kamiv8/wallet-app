@@ -50,6 +50,7 @@ export const RegisterForm = () => {
           label={{ ...messages.username }}
           variant={'light'}
           name={'username'}
+          value={values.username}
           error={getValidationMessage('username')}
           onChange={(e) => handleChange(e, 'username')}
         />
@@ -59,6 +60,7 @@ export const RegisterForm = () => {
           label={{ ...messages.email }}
           variant={'light'}
           name={'email'}
+          value={values.email}
           error={getValidationMessage('email')}
           type={'email'}
           onChange={(e) => handleChange(e, 'email')}
@@ -70,6 +72,7 @@ export const RegisterForm = () => {
           variant={'light'}
           error={getValidationMessage('password')}
           type={'password'}
+          value={values.password}
           name={'password'}
           onChange={(e) => handleChange(e, 'password')}
         />
@@ -79,6 +82,7 @@ export const RegisterForm = () => {
           label={{ ...messages.confirmPassword }}
           variant={'light'}
           name={'confirmPassword'}
+          value={values.confirmPassword}
           error={getValidationMessage('confirmPassword')}
           type={'password'}
           onChange={(e) => handleChange(e, 'confirmPassword')}

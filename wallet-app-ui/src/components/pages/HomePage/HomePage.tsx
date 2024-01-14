@@ -18,6 +18,8 @@ import { GetCostByCategoryResponse } from '../../../models/apiTypes/transaction/
 import { TransactionResponse } from '../../../models/apiTypes/transaction/getUserTransactionList/transaction.response';
 import { useFetch } from '../../../hooks';
 import { GetTransactionsByCurrencyResponse } from '../../../models/apiTypes/transaction/GetTransactionsByCurrency/GetTransactionsByCurrency.response';
+import { LocalstorageHelper } from '../../../helpers/localstorage.helper';
+import { Languages, LocalstorageEnum } from '../../../types/enums';
 
 interface IState {
   currencies: Array<TGetCurrenciesResponse>;
@@ -94,6 +96,11 @@ export const HomePage = () => {
           TransactionApi.getLastTransactions(),
           CurrencyApi.addCurrencies(),
         ]);
+
+      LocalstorageHelper.setItem(
+        LocalstorageEnum.LANGUAGE,
+        actualMoney.data?.language ?? Languages.ENGLISH,
+      );
 
       setState((prev) => ({
         ...prev,

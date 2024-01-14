@@ -7,6 +7,8 @@ namespace WalletApp.Domain.Entities;
 public class UserIdentity : IdentityUser<Guid>
 {
     public IconType IconType { get; set; }
+
+    public Language Language { get; set; }
     public AccountData AccountData { get; set; } = default!;
     public Member? Member { get; set; }
     public ICollection<Token> Tokens { get; set; } = default!;
@@ -15,5 +17,4 @@ public class UserIdentity : IdentityUser<Guid>
     public ICollection<DefaultTransaction> DefaultTransactions { get; set; } = default!;
     public ICollection<Note> Notes { get; set; } = default!;
     public ICollection<Report> Reports { get; set; } = default!;
-
 }

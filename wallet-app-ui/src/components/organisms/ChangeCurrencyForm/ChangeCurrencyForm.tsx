@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { useEffect, useState } from 'react';
 import { CurrencyDto } from '../../../models/dtos/currencyDto';
-import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
+import { parseDataToSelect } from '../../../helpers';
 import { useForm } from '../../../hooks';
 import { UserApi } from '../../../api';
 

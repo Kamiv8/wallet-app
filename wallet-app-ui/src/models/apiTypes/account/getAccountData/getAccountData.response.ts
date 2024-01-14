@@ -1,4 +1,4 @@
-import { UserIconTypeEnum } from '../../../../types/enums/userIconType.enum';
+import { Languages, UserIconTypeEnum } from '../../../../types/enums';
 
 export type GetAccountDataResponse = {
   username: string;
@@ -9,4 +9,5 @@ export type GetAccountDataResponse = {
   actualMoneyGbp: number;
   actualMoneyEur: number;
   groupId?: string;
+  language: Languages;
 };

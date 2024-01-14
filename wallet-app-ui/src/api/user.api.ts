@@ -4,12 +4,23 @@ import axios from 'axios';
 import { BaseApiHandler } from './baseApiHandler';
 import { api } from './baseAxios.config';
 import { GetAccountDataResponse } from '../models/apiTypes/account/getAccountData/getAccountData.response';
+import { TChangeLanguageForm } from '../models/apiTypes/account/changeLanguage/changeLanguage.form';
+import { ChangeLanguageCommand } from '../models/apiTypes/account/changeLanguage/changeLanguage.command';
+import { ChangeLanguageResponse } from '../models/apiTypes/account/changeLanguage/changeLanguage.response';
 
 export class UserApi {
   public static async getUserData(): Promise<
     IApiResult<GetAccountDataResponse>
   > {
     const data = await api.get('/account/data');
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async changeLanguage(
+    values: TChangeLanguageForm,
+  ): Promise<IApiResult<ChangeLanguageResponse>> {
+    const command = new ChangeLanguageCommand(values.language);
+    const data = await api.patch('/account/changeLanguage', command);
     return BaseApiHandler.handleApi(data);
   }
 

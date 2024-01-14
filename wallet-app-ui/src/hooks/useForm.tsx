@@ -79,12 +79,25 @@ export const useForm = <T,>(
     async <K = any,>(
       api: (value: T) => Promise<IApiResult<K>>,
       withSuccessModal = false,
+      extraValues?: any,
     ) => {
       try {
         await validationSchema?.validate(values, {
           abortEarly: false,
         });
-        return await callToApi(api(values), withSuccessModal);
+        let response;
+
+        if (extraValues) {
+          const newValues = {
+            ...values,
+            ...extraValues,
+          };
+          response = await callToApi(api(newValues), withSuccessModal);
+        } else {
+          response = await callToApi(api(values), withSuccessModal);
+        }
+        resetForm();
+        return response;
       } catch (e: any) {
         const newErrors = {} as Record<keyof T, string>;
         e.inner?.forEach((error: any) => {

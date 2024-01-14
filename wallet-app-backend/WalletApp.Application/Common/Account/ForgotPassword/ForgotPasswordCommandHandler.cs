@@ -21,7 +21,7 @@ public class ForgotPasswordCommandHandler : ICommandHandler<ForgotPasswordComman
     {
 
         var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user is null) return ApiResult.Error(AccountErrorMessages.EmailNotExist);
+        if (user is null) return ApiResult.Success(AccountErrorMessages.ResetPasswordSentMail);
 
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
@@ -32,6 +32,6 @@ public class ForgotPasswordCommandHandler : ICommandHandler<ForgotPasswordComman
         
         await _emailClient.SendMailAsync(emailDto); // TODO
 
-        return ApiResult.Success();
+        return ApiResult.Success(AccountErrorMessages.ResetPasswordSentMail);
     }
 }

@@ -60,19 +60,19 @@ public class
         switch (acceptCurrency)
         {
             case AcceptCurrency.CHF:
-                accountData.ActualMoneyChf = request.Price;
+                accountData.ActualMoneyChf += request.Price;
                 break;
             case AcceptCurrency.EUR:
-                accountData.ActualMoneyEur = request.Price;
+                accountData.ActualMoneyEur += request.Price;
                 break;
             case AcceptCurrency.GBP:
-                accountData.ActualMoneyGbp = request.Price;
+                accountData.ActualMoneyGbp += request.Price;
                 break;
             case AcceptCurrency.USD:
-                accountData.ActualMoneyUsd = request.Price;
+                accountData.ActualMoneyUsd += request.Price;
                 break;
             default:
-                accountData.ActualMoneyPln = request.Price;
+                accountData.ActualMoneyPln += request.Price;
                 break;
         }
 

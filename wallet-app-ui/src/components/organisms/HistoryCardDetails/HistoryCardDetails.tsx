@@ -8,9 +8,11 @@ import { Typography, Chart } from '../../atoms';
 import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
-import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
+import { ChartTypeEnum } from '../../../types/enums';
 import { cutString } from '../../../utils/utils';
-import { detailsPieChartMapper } from '../../../helpers/chartDataMapper.helper';
+import { detailsPieChartMapper } from '../../../helpers';
+import { FormattedMessage } from 'react-intl';
+import messages from '../../../i18n/messages';
 
 export type TProps = {
   title: string;
@@ -45,7 +47,7 @@ export const HistoryCardDetails = ({
       </Header>
       <Content>
         <Typography weight={700} size={'m'}>
-          Category
+          <FormattedMessage {...messages.detailsTransactionPageCategory} />
         </Typography>
         <Typography weight={700} size={'m'}>
           {category}
@@ -53,7 +55,7 @@ export const HistoryCardDetails = ({
       </Content>
       <Content>
         <Typography weight={700} size={'m'}>
-          Price
+          <FormattedMessage {...messages.detailsTransactionPagePrice} />
         </Typography>
         <Typography weight={700} size={'m'}>
           {price}
@@ -62,16 +64,15 @@ export const HistoryCardDetails = ({
       </Content>
       <Content>
         <Typography weight={700} size={'m'}>
-          Date
+          <FormattedMessage {...messages.detailsTransactionPageDate} />
         </Typography>
         <Typography weight={700} size={'m'}>
           {date.toLocaleDateString()}
         </Typography>
       </Content>
-      {}
       <Content>
         <Typography weight={700} size={'m'}>
-          Description
+          <FormattedMessage {...messages.detailsTransactionPageDescription} />
         </Typography>
         <Typography weight={700} size={'m'}>
           {description}
@@ -79,7 +80,9 @@ export const HistoryCardDetails = ({
       </Content>
       <div>
         <Typography size={'l'} weight={700}>
-          Percentage by {category} category:
+          <FormattedMessage {...messages.detailsTransactionPageChart1} />{' '}
+          {category}{' '}
+          <FormattedMessage {...messages.detailsTransactionPageChart2} /> :
         </Typography>
         <ChartWrapper>
           <Chart

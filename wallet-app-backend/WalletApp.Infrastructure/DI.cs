@@ -1,14 +1,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Quartz;
 using WalletApp.Application.Interfaces;
-using WalletApp.Infractructure.AppSignInManager;
-using WalletApp.Infractructure.EmailClient;
 using WalletApp.Infractructure.ExternalApi.NBP;
 using WalletApp.Infractructure.JWT;
 using WalletApp.Infractructure.Quartz;
 using WalletApp.Infractructure.UserManager;
 
-namespace WalletApp.Infrastructure;
+namespace WalletApp.Infractructure;
 
 public static class DI
 {
@@ -17,9 +15,9 @@ public static class DI
         
         serviceCollection.AddScoped<IJWTUtil, JWTUtil>();
         serviceCollection.AddSingleton<INbpClient, NbpClient>();
-        serviceCollection.AddScoped<IEmailClient, EmailClient>();
+        serviceCollection.AddScoped<IEmailClient, EmailClient.EmailClient>();
         serviceCollection.AddScoped<IUserManager, AppUserManager>();
-        serviceCollection.AddScoped<IAppSignInManager, AppSignInManager>();
+        serviceCollection.AddScoped<IAppSignInManager, AppSignInManager.AppSignInManager>();
         serviceCollection.AddQuartz(q =>
         {
             q.UseMicrosoftDependencyInjectionJobFactory();

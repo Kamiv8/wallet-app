@@ -2,24 +2,20 @@ import { IntlProvider } from 'react-intl';
 import React, { ReactNode, FC } from 'react';
 import Poland from './languages/pl.json';
 import English from './languages/en.json';
-
-export enum Languages {
-  ENGLISH = 'en-us',
-  POLISH = 'pl-pl',
-}
+import { LanguageType } from './languageType';
 
 type TProps = {
   children: ReactNode;
-  locale: Languages;
+  locale: string;
 };
 
 const LanguageProvider: FC<TProps> = ({
   children,
-  locale = Languages.ENGLISH,
+  locale = LanguageType.ENGLISH,
 }) => {
   const messages = {
-    [Languages.ENGLISH]: English,
-    [Languages.POLISH]: Poland,
+    [LanguageType.ENGLISH]: English,
+    [LanguageType.POLISH]: Poland,
   };
 
   return (
