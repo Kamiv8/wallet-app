@@ -59,7 +59,7 @@ public class RegisterCommandHandler : ICommandHandler<RegisterCommand>
         var encodedEmailToken = Encoding.UTF8.GetBytes(registerToken);
         var validEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
 
-        await _emailClient.SendMailAsync(new EmailClientDto("dsa", "dsada",
+        await _emailClient.SendMailAsync(new EmailClientDto("dsa", "dsada", // TODO add subject and template
             $"""<a href="http://localhost:3000/verify/{request.Email}/{validEmailToken}">Click link</a>""",
             newUser.Email));
 

@@ -44,7 +44,7 @@ public class JWTUtil : IJWTUtil
             DateTime.UtcNow.AddMinutes(_options.AccessTokenTtl),
             signingCredentials
         );
-        var token = tokenHandler.WriteToken(tokenDescriptor);
+        var token = tokenHandler.WriteToken(tokenDescriptor) ?? "";
         return token;
     }
 
