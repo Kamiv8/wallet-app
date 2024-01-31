@@ -24,7 +24,8 @@ public class ForgotPasswordCommandHandler : ICommandHandler<ForgotPasswordComman
         if (user is null) return ApiResult.Success(AccountErrorMessages.ResetPasswordSentMail);
 
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-
+        if (token == string.Empty) return ApiResult.Error(CommonErrorMessages.CommonError);
+        
         var emailDto = new EmailClientDto("Forgot Password", "Kliknij do nowego konta",
             $"""<a href="http://localhost:3000/resetPassword/{request.Email}/{token}">Click to activation</a>""",
             request.Email);

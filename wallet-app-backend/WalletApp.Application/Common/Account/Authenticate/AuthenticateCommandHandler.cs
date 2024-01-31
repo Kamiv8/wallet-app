@@ -62,7 +62,7 @@ public class
         await _userManager.UpdateAsync(account);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        var dto = new AuthenticateResponseDto(newAccessToken, token!.RefreshToken!);
+        var dto = new AuthenticateResponseDto(newAccessToken, refreshToken!.RefreshToken!);
 
         return ApiResult<AuthenticateResponseDto>.Success(dto);
     }

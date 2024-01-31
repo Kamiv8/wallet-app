@@ -9,7 +9,7 @@ using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Entities;
 using WalletApp.Domain.Enums;
 
-namespace Application.Tests.Common.Account;
+namespace Application.Tests.Common.Account.Register;
 
 public class RegisterCommandTest
 {
@@ -32,7 +32,7 @@ public class RegisterCommandTest
             _accountDataRepositoryMock.Object,
             _emailClientMock.Object
         );
-        
+
         // Act
         var result = await handler.Handle(command, default);
 
@@ -53,13 +53,13 @@ public class RegisterCommandTest
 
         _userManagerMock.Setup(x => x.CreateAsync(It.IsAny<UserIdentity>(), It.IsAny<string>()))
             .ReturnsAsync(new AppIdentityResult() { Succeeded = false });
-        
+
         var handler = new RegisterCommandHandler(_userManagerMock.Object,
             _accountDataRepositoryMock.Object, _emailClientMock.Object);
-        
+
         // Act
         var result = await handler.Handle(command, default);
-        
+
         // Assert
         result.Status.Should().Be(ApiResultStatus.Error);
         result.Message.Should().Be(AccountErrorMessages.EmailExist);
@@ -80,18 +80,17 @@ public class RegisterCommandTest
 
         _userManagerMock.Setup(x => x.GenerateEmailConfirmationTokenAsync(It.IsAny<UserIdentity>()))
             .ReturnsAsync("registerToken");
-        
+
         var handler = new RegisterCommandHandler(_userManagerMock.Object,
             _accountDataRepositoryMock.Object, _emailClientMock.Object);
-        
+
         // Act
         var result = await handler.Handle(command, default);
-        
+
         // Assert
         result.Status.Should().Be(ApiResultStatus.Success);
-        _accountDataRepositoryMock.Verify(x => x.CreateAsync(It.IsAny<AccountData>()), Times.Once());
-        _emailClientMock.Verify(x => x.SendMailAsync(It.IsAny<EmailClientDto>()), Times.Once());
+        _accountDataRepositoryMock.Verify(x => x.CreateAsync(It.IsAny<AccountData>()), Times.Once);
+        _emailClientMock.Verify(x => x.SendMailAsync(It.IsAny<EmailClientDto>()), Times.Once);
         result.Message.Should().Be(AccountErrorMessages.RegisterSuccess);
     }
-
 }

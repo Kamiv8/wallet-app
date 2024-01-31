@@ -7,13 +7,11 @@ using WalletApp.Application.Interfaces;
 using WalletApp.Domain.Entities;
 using WalletApp.Domain.Enums;
 
-namespace Application.Tests.Common.Account;
+namespace Application.Tests.Common.GetAccountData;
 
 public class GetAccountDataTest
 {
-
     private readonly Mock<IUserManager> _userManagerMock = new();
-
 
     [Fact]
     public async Task Handle_ReturnError_When_Cannot_Find_User()
@@ -35,8 +33,8 @@ public class GetAccountDataTest
         result.Message.Should().Be(AccountErrorMessages.UserNotExist);
         result.Data.Should().BeNull();
     }
-    
-    
+
+
     [Fact]
     public async Task Handle_ReturnSuccess_When_User_Exist()
     {
@@ -45,7 +43,8 @@ public class GetAccountDataTest
         var query = new GetAccountDataQuery(userId);
 
         _userManagerMock.Setup(x => x.FindUserAndDataByIdAsync(It.IsAny<Guid>()))
-            .ReturnsAsync(new UserIdentity() {UserName = "kamiv8", IconType = IconType.Boy, AccountData = new AccountData()});
+            .ReturnsAsync(new UserIdentity()
+                { UserName = "kamiv8", IconType = IconType.Boy, AccountData = new AccountData() });
 
         var handler = new GetAccountDataQueryHandler(_userManagerMock.Object);
 
@@ -56,6 +55,4 @@ public class GetAccountDataTest
         result.Status.Should().Be(ApiResultStatus.Success);
         result.Data.Should().NotBeNull();
     }
-
-
 }

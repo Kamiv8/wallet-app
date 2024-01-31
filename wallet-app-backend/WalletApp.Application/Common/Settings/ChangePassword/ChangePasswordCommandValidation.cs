@@ -1,5 +1,4 @@
 using FluentValidation;
-using WalletApp.Application.Common.Account.ChangePassword;
 using WalletApp.Application.Consts;
 
 namespace WalletApp.Application.Common.Settings.ChangePassword;

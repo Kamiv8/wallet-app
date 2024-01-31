@@ -1,5 +1,4 @@
 using WalletApp.Application.Abstractions.Messaging;
-using WalletApp.Application.Common.Account.ChangePassword;
 using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Application.Common.Settings.ChangePassword;

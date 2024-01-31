@@ -7,6 +7,8 @@ public class ChangeForgotPasswordCommandValidation : AbstractValidator<ChangeFor
 {
     public ChangeForgotPasswordCommandValidation()
     {
+        RuleFor(x => x.Email).Cascade(CascadeMode.Stop).NotEmpty().EmailAddress();
+        
         RuleFor(x => x.Token).NotEmpty();
         
         RuleFor(x => x.Password)

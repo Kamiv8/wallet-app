@@ -2,7 +2,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
-using WalletApp.Application.Common.Account.ChangePassword;
 using WalletApp.Application.Common.Settings.ChangePassword;
 using WalletApp.Application.Interfaces;
 
@@ -30,6 +29,4 @@ public class SettingsController : BaseController
         var res = await _mediator.Send(command, cancellationToken);
         return CreateResponse(res);
     }
-    
-    
 }
