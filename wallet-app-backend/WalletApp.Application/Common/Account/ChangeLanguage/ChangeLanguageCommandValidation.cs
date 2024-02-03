@@ -7,6 +7,6 @@ public class ChangeLanguageCommandValidation : AbstractValidator<ChangeLanguageC
 
     public ChangeLanguageCommandValidation()
     {
-        RuleFor(x => x.Language).Cascade(CascadeMode.Stop).NotEmpty().IsInEnum();
+        RuleFor(x => x.Language).Cascade(CascadeMode.Stop).IsInEnum();
     }
 }
