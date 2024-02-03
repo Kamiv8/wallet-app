@@ -30,5 +30,7 @@
     &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.ForgotPassword.ForgotPasswordTest.Handle_ReturnError_When_Cannot_Find_User_By_Name&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.ForgotPassword.ForgotPasswordTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.ForgotPassword.ForgotPasswordValidationTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ConfirmRegisterEmail.ConfirmRegisterEmailValidationTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ConfirmRegisterEmail.ConfirmRegisterEmailTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

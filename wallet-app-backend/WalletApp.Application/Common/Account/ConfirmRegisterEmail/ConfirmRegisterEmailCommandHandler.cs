@@ -23,7 +23,15 @@ public class
 
         if (userIdentity is null) return ApiResult.Error(AccountErrorMessages.UserNotExist);
 
-        var decidedToken = WebEncoders.Base64UrlDecode(request.Token);
+        byte[] decidedToken;
+        try
+        {
+            decidedToken = WebEncoders.Base64UrlDecode(request.Token);
+        }
+        catch
+        {
+            return ApiResult.Error(AccountErrorMessages.InvalidTokenFormat);
+        }
         var normalToken = Encoding.UTF8.GetString(decidedToken);
 
         var res = await _userManager.ConfirmEmail(userIdentity, normalToken);
