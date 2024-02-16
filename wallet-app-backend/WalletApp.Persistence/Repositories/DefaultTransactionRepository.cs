@@ -40,4 +40,14 @@ public class DefaultTransactionRepository : IDefaultTransactionRepository
     {
         _db.DefaultTransactions.Remove(defaultTransaction);
     }
+
+    public async Task<DefaultTransaction?> GetDefaultTransactionToAddUserTxDefault(Guid dTransactionId, CancellationToken cancellationToken)
+    {
+        return await _db.DefaultTransactions
+            .Include(x => x.UserIdentity)
+            .ThenInclude(u => u.DefaultTransactions)
+            .Include(x => x.Currency)
+            .Where(x => x.Id == dTransactionId)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
 }

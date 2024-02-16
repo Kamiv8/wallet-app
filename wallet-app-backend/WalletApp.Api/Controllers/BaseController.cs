@@ -1,4 +1,3 @@
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
 using WalletApp.Application.Enums;
@@ -35,7 +34,7 @@ public abstract class BaseController : ControllerBase
 
     protected string IpAddress()
     {
-        if (Request?.Headers?.ContainsKey("X-Forwarded-For") is not null)
+        if (Request?.Headers?.ContainsKey("X-Forwarded-For") == true)
             return Request.Headers["X-Forwarded-For"]!;
         return HttpContext?.Connection?.RemoteIpAddress?.MapToIPv4().ToString() ?? string.Empty;
     }

@@ -13,4 +13,6 @@ public interface IDefaultTransactionRepository
         CancellationToken cancellationToken);
 
     void RemoveDefaultTransaction(DefaultTransaction defaultTransaction);
+    Task<DefaultTransaction?> GetDefaultTransactionToAddUserTxDefault(Guid dTransactionId, CancellationToken cancellationToken);
+
 }

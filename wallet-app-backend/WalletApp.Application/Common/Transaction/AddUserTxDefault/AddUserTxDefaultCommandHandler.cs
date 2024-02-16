@@ -50,6 +50,11 @@ public class AddUserTxDefaultCommandHandler : ICommandHandler<AddUserTxDefaultCo
                 cancellationToken);
         if (currency is null) return ApiResult.Error(CommonErrorMessages.CommonError);
 
+
+        var dTransaction =
+            await _defaultTransactionRepository.GetDefaultTransactionToAddUserTxDefault(
+                request.DefaultTransactionId, cancellationToken);
+        
         if (!Enum.TryParse(currency.Code, true, out AcceptCurrency acceptCurrency))
             return ApiResult.Error(CommonErrorMessages.CommonError);
 
