@@ -7,7 +7,7 @@ using WalletApp.Application.Interfaces;
 using WalletApp.Domain.Entities;
 using WalletApp.Domain.Enums;
 
-namespace Application.Tests.Common.GetAccountData;
+namespace Application.Tests.Common.Account.GetAccountData;
 
 public class GetAccountDataTest
 {

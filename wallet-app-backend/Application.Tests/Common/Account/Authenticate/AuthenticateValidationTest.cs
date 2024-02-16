@@ -3,7 +3,7 @@ using WalletApp.Application.Common.Account.Authenticate;
 
 namespace Application.Tests.Common.Account.Authenticate;
 
-public class AuthenticateCommandValidationTest
+public class AuthenticateValidationTest
 {
     [Theory]
     [InlineData(null, "!Password123")]
@@ -16,7 +16,7 @@ public class AuthenticateCommandValidationTest
     public void Validation_Error(string username, string password)
     {
         // Arrange
-        var validator = new AuthenticateCommandValidation();
+        var validator = new AuthenticateValidation();
         var command = new AuthenticateCommand(username, password, default!);
 
         // Act
@@ -31,7 +31,7 @@ public class AuthenticateCommandValidationTest
     {
         // Arrange
         var command = new AuthenticateCommand("username", "!Password123", default!);
-        var validator = new AuthenticateCommandValidation();
+        var validator = new AuthenticateValidation();
 
         // Act
         var result = validator.Validate(command);

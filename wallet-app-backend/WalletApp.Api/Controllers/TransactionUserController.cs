@@ -28,7 +28,7 @@ public class TransactionUserController : BaseController
 
     [HttpPost("add")]
     public async Task<ActionResult<ApiResult>> AddUserTransaction(
-        [FromBody] AddUserTransactionCommandDto dto, CancellationToken cancellationToken)
+        [FromBody] AddUserTransactionDto dto, CancellationToken cancellationToken)
     {
         var command = new AddUserTransactionCommand(
             _currentUserService.Id,

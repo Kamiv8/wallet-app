@@ -7,7 +7,7 @@ using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 using WalletApp.Domain.Entities;
 
-namespace Application.Tests.Common.ForgotPassword;
+namespace Application.Tests.Common.Account.ForgotPassword;
 
 public class ForgotPasswordTest
 {

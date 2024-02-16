@@ -10,7 +10,7 @@ using WalletApp.Domain.Entities;
 
 namespace Application.Tests.Common.Account.Authenticate;
 
-public class AuthenticateCommandTest
+public class AuthenticateTest
 {
     private readonly Mock<IAppSignInManager> _signInManagerMock = new();
     private readonly Mock<IUserManager> _userManagerMock = new();
@@ -23,7 +23,7 @@ public class AuthenticateCommandTest
     public async Task Handle_ReturnSuccess_When_Data_Is_Correct()
     {
         // Arrange
-        var command = new AuthenticateCommand("kamiv8", "password", "0,0,0,0");
+        var command = new WalletApp.Application.Common.Account.Authenticate.AuthenticateCommand("kamiv8", "password", "0,0,0,0");
         var userGuid = Guid.NewGuid();
 
         var handler = new AuthenticateCommandHandler(_signInManagerMock.Object,
@@ -60,7 +60,7 @@ public class AuthenticateCommandTest
     public async Task Handle_ReturnError_When_Data_Is_Incorrect()
     {
         // Arrange
-        var command = new AuthenticateCommand("kamiv8", "password", "0,0,0,0");
+        var command = new WalletApp.Application.Common.Account.Authenticate.AuthenticateCommand("kamiv8", "password", "0,0,0,0");
 
         var handler = new AuthenticateCommandHandler(_signInManagerMock.Object,
             _userManagerMock.Object, _tokenRepositoryMock.Object, _jwtUnit.Object,
@@ -81,7 +81,7 @@ public class AuthenticateCommandTest
     public async Task Handle_ReturnError_When_Cannot_Find_User()
     {
         // Arrange
-        var command = new AuthenticateCommand("kamiv8", "password", "0,0,0,0");
+        var command = new WalletApp.Application.Common.Account.Authenticate.AuthenticateCommand("kamiv8", "password", "0,0,0,0");
 
         var handler = new AuthenticateCommandHandler(_signInManagerMock.Object,
             _userManagerMock.Object, _tokenRepositoryMock.Object, _jwtUnit.Object,
@@ -106,7 +106,7 @@ public class AuthenticateCommandTest
     public async Task Handle_ReturnSuccess_When_Token_Is_New()
     {
         // Arrange
-        var command = new AuthenticateCommand("kamiv8", "password", "0,0,0,0");
+        var command = new WalletApp.Application.Common.Account.Authenticate.AuthenticateCommand("kamiv8", "password", "0,0,0,0");
         var userGuid = Guid.NewGuid();
 
         var handler = new AuthenticateCommandHandler(_signInManagerMock.Object,

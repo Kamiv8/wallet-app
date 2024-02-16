@@ -35,5 +35,13 @@
     &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeLanguage.ChangeLanguageValidationTest.Validation_Success&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeLanguage.ChangeLanguageValidationTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeLanguage.ChangeLanguageTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.GetAccountData.GetAccountDataTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ForgotPassword.ForgotPasswordValidationTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ForgotPassword.ForgotPasswordTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.Authenticate.AuthenticateValidationTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Transaction.AddUserTransaction.AddUserTransactionValidationTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.Authenticate.AuthenticateTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Transaction.AddUserTransaction.AddUserTransactionTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Transaction.AddUserTxDefault.AddUserTxDefaultTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

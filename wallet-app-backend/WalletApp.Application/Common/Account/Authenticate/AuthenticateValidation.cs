@@ -3,9 +3,9 @@ using WalletApp.Application.Consts;
 
 namespace WalletApp.Application.Common.Account.Authenticate;
 
-public class AuthenticateCommandValidation : AbstractValidator<AuthenticateCommand>
+public class AuthenticateValidation : AbstractValidator<AuthenticateCommand>
 {
-    public AuthenticateCommandValidation()
+    public AuthenticateValidation()
     {
         RuleFor(x => x.Username).Cascade(CascadeMode.Stop).NotEmpty().MinimumLength(3)
             .MaximumLength(40);

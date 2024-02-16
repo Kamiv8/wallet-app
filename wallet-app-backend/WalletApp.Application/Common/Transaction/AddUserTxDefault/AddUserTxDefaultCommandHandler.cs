@@ -1,4 +1,5 @@
 using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
@@ -13,20 +14,23 @@ public class AddUserTxDefaultCommandHandler : ICommandHandler<AddUserTxDefaultCo
     private readonly ICurrencyRepository _currencyRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IAccountDataRepository _accountDataRepository;
+    private readonly IDate _date;
 
     public AddUserTxDefaultCommandHandler(
         ITransactionRepository transactionRepository,
         IDefaultTransactionRepository defaultTransactionRepository,
         ICurrencyRepository currencyRepository,
         IUnitOfWork unitOfWork,
-        IAccountDataRepository accountDataRepository
-        )
+        IAccountDataRepository accountDataRepository,
+        IDate date
+    )
     {
         _transactionRepository = transactionRepository;
         _defaultTransactionRepository = defaultTransactionRepository;
         _currencyRepository = currencyRepository;
         _unitOfWork = unitOfWork;
         _accountDataRepository = accountDataRepository;
+        _date = date;
     }
 
     public async Task<ApiResult> Handle(AddUserTxDefaultCommand request,
@@ -35,20 +39,19 @@ public class AddUserTxDefaultCommandHandler : ICommandHandler<AddUserTxDefaultCo
         var defaultTransaction =
             await _defaultTransactionRepository.GetDefaultUserTransactionById(
                 request.DefaultTransactionId, cancellationToken);
+        if (defaultTransaction is null) return ApiResult.Error(CommonErrorMessages.CommonError);
 
-        if (defaultTransaction is null) return ApiResult.Error(); // TODO
-        
         var accountData =
             await _accountDataRepository.GetUserById(request.UserId, cancellationToken);
-        if (accountData is null) return ApiResult.Error(); // TODO
-
+        if (accountData is null) return ApiResult.Error(CommonErrorMessages.CommonError);
         
         var currency =
-            await _currencyRepository.GetCurrencyById(defaultTransaction.CurrencyId, cancellationToken);
-        if (currency is null) return ApiResult.Error(); // TODO
-        
+            await _currencyRepository.GetCurrencyById(defaultTransaction.CurrencyId,
+                cancellationToken);
+        if (currency is null) return ApiResult.Error(CommonErrorMessages.CommonError);
+
         if (!Enum.TryParse(currency.Code, true, out AcceptCurrency acceptCurrency))
-            return ApiResult.Error(); // TODO
+            return ApiResult.Error(CommonErrorMessages.CommonError);
 
         switch (acceptCurrency)
         {
@@ -68,7 +71,7 @@ public class AddUserTxDefaultCommandHandler : ICommandHandler<AddUserTxDefaultCo
                 accountData.ActualMoneyPln += defaultTransaction.Price;
                 break;
         }
-        
+
         var transaction = new EntityTransaction
         {
             Title = defaultTransaction.Title,
@@ -76,7 +79,7 @@ public class AddUserTxDefaultCommandHandler : ICommandHandler<AddUserTxDefaultCo
             Price = defaultTransaction.Price,
             CategoryId = defaultTransaction.CategoryId,
             CurrencyId = defaultTransaction.CurrencyId,
-            Date = DateTime.Now,
+            Date = _date.Now(),
             Description = defaultTransaction.Description,
             IsDefault = false
         };

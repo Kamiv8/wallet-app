@@ -1,4 +1,5 @@
 using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
@@ -48,14 +49,14 @@ public class
 
         var currency =
             await _currencyRepository.GetCurrencyById(request.CurrencyId, cancellationToken);
-        if (currency is null) return ApiResult.Error(); // TODO
+        if (currency is null) return ApiResult.Error(CommonErrorMessages.CommonError);
 
         var accountData =
             await _accountDataRepository.GetUserById(request.UserId, cancellationToken);
-        if (accountData is null) return ApiResult.Error(); // TODO
+        if (accountData is null) return ApiResult.Error(CommonErrorMessages.CommonError);
 
         if (!Enum.TryParse(currency.Code, true, out AcceptCurrency acceptCurrency))
-            return ApiResult.Error(); // TODO
+            return ApiResult.Error(CommonErrorMessages.CommonError);
 
         switch (acceptCurrency)
         {
@@ -76,27 +77,29 @@ public class
                 break;
         }
 
-        if (request.IsDefault)
-        {
-            var defaultTransaction = new EntityDefaultTransaction
-            {
-                UserIdentityId = request.UserId,
-                Title = request.Title,
-                Price = request.Price,
-                CategoryId = request.CategoryId,
-                CurrencyId = request.CurrencyId,
-                Description = request.Description,
-                BackgroundColor = request.BackgroundColor!,
-                TextColor = request.TextColor!
-            };
-            await _defaultTransactionRepository.CreateDefaultUserRepository(defaultTransaction,
-                cancellationToken);
-        }
-
+        if (request.IsDefault) await AddDefaultTransaction(request, cancellationToken);
 
         await _repository.AddTransactionAsync(entityTransaction, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return ApiResult.Success();
+    }
+
+    private async Task AddDefaultTransaction(AddUserTransactionCommand request,
+        CancellationToken cancellationToken)
+    {
+        var defaultTransaction = new EntityDefaultTransaction
+        {
+            UserIdentityId = request.UserId,
+            Title = request.Title,
+            Price = request.Price,
+            CategoryId = request.CategoryId,
+            CurrencyId = request.CurrencyId,
+            Description = request.Description,
+            BackgroundColor = request.BackgroundColor!,
+            TextColor = request.TextColor!
+        };
+        await _defaultTransactionRepository.CreateDefaultUserRepository(defaultTransaction,
+            cancellationToken);
     }
 }

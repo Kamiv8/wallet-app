@@ -1,6 +1,6 @@
 namespace WalletApp.Application.Common.Transaction.AddUserTransaction;
 
-public sealed record AddUserTransactionCommandDto(
+public sealed record AddUserTransactionDto(
     string Title,
     decimal Price,
     Guid CurrencyId,

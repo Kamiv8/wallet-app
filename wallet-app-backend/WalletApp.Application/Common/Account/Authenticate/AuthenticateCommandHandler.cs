@@ -8,7 +8,7 @@ namespace WalletApp.Application.Common.Account.Authenticate;
 
 public class
     AuthenticateCommandHandler : ICommandHandler<AuthenticateCommand,
-        AuthenticateResponseDto>
+    AuthenticateResponseDto>
 {
     private readonly IAppSignInManager _signInManager;
     private readonly IUserManager _userManager;

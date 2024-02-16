@@ -4,6 +4,8 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using WalletApp.Application.Behaviours;
+using WalletApp.Application.Helpers;
+using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Application;
 
@@ -17,6 +19,7 @@ public static class DI
         ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en-US");
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+        services.AddTransient<IDate, Date>();
         return services;
     }
 }

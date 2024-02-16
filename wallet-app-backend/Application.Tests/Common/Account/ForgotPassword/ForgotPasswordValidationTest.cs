@@ -1,7 +1,7 @@
 using FluentAssertions;
 using WalletApp.Application.Common.Account.ForgotPassword;
 
-namespace Application.Tests.Common.ForgotPassword;
+namespace Application.Tests.Common.Account.ForgotPassword;
 
 public class ForgotPasswordValidationTest
 {
