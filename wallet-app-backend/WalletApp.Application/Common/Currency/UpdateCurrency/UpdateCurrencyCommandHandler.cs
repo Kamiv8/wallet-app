@@ -19,7 +19,7 @@ public class UpdateCurrencyCommandHandler : ICommandHandler<UpdateCurrencyComman
     {
         var response = await _client.GetCurrencies(cancellationToken);
 
-        var entityCurrencies = await _currencyRepository.GetCurrencies(cancellationToken);
+        var entityCurrencies = await _currencyRepository.GetCurrenciesWithoutPln(cancellationToken);
 
         foreach (var currency in entityCurrencies)
         {

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Entities;
 
@@ -33,6 +34,11 @@ public class CurrencyRepository : ICurrencyRepository
         return await _db.Currencies.FirstOrDefaultAsync(x => x.Code == code);
     }
 
+    public async Task<List<Currency>> GetCurrenciesWithoutPln(CancellationToken cancellationToken)
+    {
+        return await _db.Currencies.Where(x => x.Code != Enum.GetName(AcceptCurrency.PLN)).ToListAsync(cancellationToken);
+    }
+    
     public async Task<List<Currency>> GetCurrencies(CancellationToken cancellationToken)
     {
         return await _db.Currencies.ToListAsync(cancellationToken);
