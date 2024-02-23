@@ -4,7 +4,7 @@ import { Typography } from '../../atoms';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
 import { useCallback, useEffect, useState } from 'react';
 import { AddTransactionForm } from '../../organisms';
-import { DefaultTransaction, TransactionApi } from '../../../api';
+import { DefaultTransaction } from '../../../api';
 import { GetDefaultTransactionResponse } from '../../../models/apiTypes/defaultTransaction/getDefaultTransaction/getDefaultTransaction.response';
 import { useFetch, useModalAction } from '../../../hooks';
 import { FormattedMessage } from 'react-intl';
@@ -60,7 +60,7 @@ export const AddTransactionPage = () => {
       openConfirmActionModal(
         'Do you want to add this transaction?',
         async () => {
-          await callToApi(TransactionApi.addTransactionDefault(id));
+          await callToApi(DefaultTransaction.addTransactionDefault(id));
           await getSavedTransactions();
         },
         () => {

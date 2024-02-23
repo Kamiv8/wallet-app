@@ -5,7 +5,6 @@ import { BaseApiConfig } from './baseApiConfig';
 import { AddUserTransactionCommand } from '../models/apiTypes/transaction/addUserTransaction/addUserTransaction.command';
 import { TAddUserTransactionForm } from '../models/apiTypes/transaction/addUserTransaction/addUserTransaction.form';
 import { api } from './baseAxios.config';
-import { AddUserTransactionDefaultCommand } from '../models/apiTypes/transaction/addUserTransactionDefault/addUserTransactionDefault.command';
 import { TPagination } from '../models/pagination';
 import { GetUserTransactionListResponse } from '../models/apiTypes/transaction/getUserTransactionList/getUserTransactionList.response';
 import { GetUserTransactionDetailsResponse } from '../models/apiTypes/transaction/getUserTransactionDetails/getUserTransactionDetails.response';
@@ -77,14 +76,6 @@ export class TransactionApi extends BaseApiConfig {
       values.backgroundColor,
     );
     const data = await api.post('/transactionUser/add', command);
-    return BaseApiHandler.handleApi(data);
-  }
-
-  public static async addTransactionDefault(
-    transactionId: string,
-  ): Promise<IApiResult> {
-    const command = new AddUserTransactionDefaultCommand(transactionId);
-    const data = await api.post('/transactionUser/addDefault', command);
     return BaseApiHandler.handleApi(data);
   }
 

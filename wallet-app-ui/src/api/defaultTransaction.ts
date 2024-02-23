@@ -4,12 +4,21 @@ import { api } from './baseAxios.config';
 import { GetDefaultTransactionResponse } from '../models/apiTypes/defaultTransaction/getDefaultTransaction/getDefaultTransaction.response';
 import { TEditDefaultUserTransactionForm } from '../models/apiTypes/defaultTransaction/EditDefaultUserTransaction/editDefaultUserTransaction.form';
 import { EditDefaultUserTransactionCommand } from '../models/apiTypes/defaultTransaction/EditDefaultUserTransaction/editDefaultUserTransaction.command';
+import { AddUserTransactionDefaultCommand } from '../models/apiTypes/transaction/addUserTransactionDefault/addUserTransactionDefault.command';
 
 export class DefaultTransaction {
   public static async getDefaultUserTransaction(): Promise<
     IApiResult<Array<GetDefaultTransactionResponse>>
   > {
     const data = await api.get('/defaultUserTransactions');
+    return BaseApiHandler.handleApi(data);
+  }
+
+  public static async addTransactionDefault(
+    transactionId: string,
+  ): Promise<IApiResult> {
+    const command = new AddUserTransactionDefaultCommand(transactionId);
+    const data = await api.post('/defaultUserTransactions/addDefault', command);
     return BaseApiHandler.handleApi(data);
   }
 

@@ -45,8 +45,9 @@ public class DefaultTransactionRepository : IDefaultTransactionRepository
     {
         return await _db.DefaultTransactions
             .Include(x => x.UserIdentity)
-            .ThenInclude(u => u.DefaultTransactions)
+            .ThenInclude(u => u.AccountData)
             .Include(x => x.Currency)
+            .Include(x => x.Category)
             .Where(x => x.Id == dTransactionId)
             .FirstOrDefaultAsync(cancellationToken);
     }

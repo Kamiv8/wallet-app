@@ -46,13 +46,7 @@ public class TransactionUserController : BaseController
         return CreateResponse(res);
     }
     
-    [HttpPost("addDefault")]
-    public async Task<ActionResult<ApiResult>> AddUserTransactionDefault(AddUserTxDefaultDto dto, CancellationToken cancellationToken)
-    {
-        var command = new AddUserTxDefaultCommand(_currentUserService.Id, dto.DefaultTransactionId);
-        var res = await _mediator.Send(command, cancellationToken);
-        return CreateResponse(res);
-    }
+
     
     [HttpGet("transactionList")]
     public async Task<ActionResult<ApiResult<GetTransactionListResponseDto>>> GetAllTransactions(

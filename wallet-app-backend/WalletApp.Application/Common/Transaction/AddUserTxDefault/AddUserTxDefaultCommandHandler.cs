@@ -37,43 +37,29 @@ public class AddUserTxDefaultCommandHandler : ICommandHandler<AddUserTxDefaultCo
         CancellationToken cancellationToken)
     {
         var defaultTransaction =
-            await _defaultTransactionRepository.GetDefaultUserTransactionById(
-                request.DefaultTransactionId, cancellationToken);
-        if (defaultTransaction is null) return ApiResult.Error(CommonErrorMessages.CommonError);
-
-        var accountData =
-            await _accountDataRepository.GetUserById(request.UserId, cancellationToken);
-        if (accountData is null) return ApiResult.Error(CommonErrorMessages.CommonError);
-        
-        var currency =
-            await _currencyRepository.GetCurrencyById(defaultTransaction.CurrencyId,
-                cancellationToken);
-        if (currency is null) return ApiResult.Error(CommonErrorMessages.CommonError);
-
-
-        var dTransaction =
             await _defaultTransactionRepository.GetDefaultTransactionToAddUserTxDefault(
                 request.DefaultTransactionId, cancellationToken);
+        if (defaultTransaction is null) return ApiResult.Error(CommonErrorMessages.CommonError);
         
-        if (!Enum.TryParse(currency.Code, true, out AcceptCurrency acceptCurrency))
+        if (!Enum.TryParse(defaultTransaction.Currency.Code, true, out AcceptCurrency acceptCurrency))
             return ApiResult.Error(CommonErrorMessages.CommonError);
 
         switch (acceptCurrency)
         {
             case AcceptCurrency.CHF:
-                accountData.ActualMoneyChf += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyChf += defaultTransaction.Price;
                 break;
             case AcceptCurrency.EUR:
-                accountData.ActualMoneyEur += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyEur += defaultTransaction.Price;
                 break;
             case AcceptCurrency.GBP:
-                accountData.ActualMoneyGbp += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyGbp += defaultTransaction.Price;
                 break;
             case AcceptCurrency.USD:
-                accountData.ActualMoneyUsd += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyUsd += defaultTransaction.Price;
                 break;
             default:
-                accountData.ActualMoneyPln += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyPln += defaultTransaction.Price;
                 break;
         }
 

@@ -5,6 +5,7 @@ using WalletApp.Application.Common;
 using WalletApp.Application.Common.DefaultTransaction.DeleteDefaultUserTransaction;
 using WalletApp.Application.Common.DefaultTransaction.EditDefaultUserTransaction;
 using WalletApp.Application.Common.DefaultTransaction.GetDefaultUserTransactions;
+using WalletApp.Application.Common.Transaction.AddUserTxDefault;
 using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Controllers;
@@ -32,6 +33,14 @@ public class DefaultUserTransactionsController : BaseController
         return CreateResponse(res);
     }
 
+    [HttpPost("addDefault")]
+    public async Task<ActionResult<ApiResult>> AddUserTransactionDefault(AddUserTxDefaultDto dto, CancellationToken cancellationToken)
+    {
+        var command = new AddUserTxDefaultCommand(_userService.Id, dto.DefaultTransactionId);
+        var res = await _mediator.Send(command, cancellationToken);
+        return CreateResponse(res);
+    }
+    
     [HttpPut]
     public async Task<ActionResult<ApiResult>> EditDefaultUserTransaction(
         [FromBody] EditDefaultUserTransactionDto dto, CancellationToken cancellationToken)
