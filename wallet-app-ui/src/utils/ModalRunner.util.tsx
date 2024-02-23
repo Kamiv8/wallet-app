@@ -1,4 +1,4 @@
-import { ModalEnum } from '../types/enums/modal.enum';
+import { ModalEnum } from '../types/enums';
 import { useContext, useMemo } from 'react';
 import { HashLoader } from 'react-spinners';
 import ApplicationContext from '../contexts/application.context';
