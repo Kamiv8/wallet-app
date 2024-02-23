@@ -1,13 +1,13 @@
 import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
-  // Test
+  //region Test
   hello: {
     id: 'hello',
     defaultMessage: 'hello',
   },
-
-  // Register Page
+  //endregion
+  //region Register page
   username: {
     id: 'registerPageUsername',
     defaultMessage: 'Username',
@@ -36,8 +36,8 @@ const messages = defineMessages({
     id: `registerPageRegister`,
     defaultMessage: 'Register',
   },
-
-  //Login Page
+  //endregion
+  //region Login Page
   loginUsername: {
     id: 'loginPageUsername',
     defaultMessage: 'Username',
@@ -58,8 +58,8 @@ const messages = defineMessages({
     id: 'loginPageReset',
     defaultMessage: 'Reset password?',
   },
-
-  // Navigation modal
+  //endregion
+  //region Navigation modal page
   navigationPage: {
     id: 'navigationPageNavigation',
     defaultMessage: 'NAVIGATION',
@@ -80,8 +80,8 @@ const messages = defineMessages({
     id: 'navigationMore',
     defaultMessage: 'More',
   },
-
-  // Reset password
+  //endregion
+  //region Reset password page
   resetPasswordPage: {
     id: 'resetPasswordPageResetPassword',
     defaultMessage: 'Reset password',
@@ -98,8 +98,8 @@ const messages = defineMessages({
     id: 'resetPasswordPageSent',
     defaultMessage: 'Sent',
   },
-
-  // Change reset password
+  //endregion
+  //region Change reset password page
   changeResetPasswordPagePassword: {
     id: 'changeResetPasswordPagePassword',
     defaultMessage: 'New Password',
@@ -116,8 +116,8 @@ const messages = defineMessages({
     id: 'resetPasswordPageSent',
     defaultMessage: 'Sent',
   },
-
-  // Main page
+  //endregion
+  //region Main page
   mainPageAllPrices: {
     id: 'mainPageAllPrices',
     defaultMessage: 'ALL PRICES',
@@ -138,14 +138,18 @@ const messages = defineMessages({
     id: 'mainPageCostChart',
     defaultMessage: 'Cost chart',
   },
-
-  // History page
+  mainPageNoData: {
+    id: 'mainPageNoData',
+    defaultMessage: 'No data',
+  },
+  //endregion
+  //region History page
   historyPageHistory: {
     id: 'historyPageHistory',
     defaultMessage: 'HISTORY',
   },
-
-  // Add transaction page
+  //endregion
+  //region Add transaction page
   addTransactionPage: {
     id: 'addTransactionPage',
     defaultMessage: 'Add transaction',
@@ -186,8 +190,8 @@ const messages = defineMessages({
     id: 'addTransactionPageBackgroundColor',
     defaultMessage: 'Background color',
   },
-
-  // Group page
+  //endregion
+  //region Group page
   groupPageGroup: {
     id: 'groupPageGroup',
     defaultMessage: 'Group',
@@ -208,14 +212,14 @@ const messages = defineMessages({
     id: 'groupPageFindGroupDescription',
     defaultMessage: ' ', // TODO
   },
-
-  // find group page
+  //endregion
+  //region Find group page
   findGroupPageFindGroup: {
     id: 'findGroupPageFindGroup',
     defaultMessage: 'Find group',
   },
-
-  // Create group form
+  //endregion
+  //region Create group form
   createGroupForm: {
     id: 'createGroupForm',
     defaultMessage: 'Create group',
@@ -240,8 +244,8 @@ const messages = defineMessages({
     id: 'findGroupFormGroupName',
     defaultMessage: 'Group name',
   },
-
-  //Settings
+  //endregion
+  //region Settings page
   settingsMainPageSettings: {
     id: 'settingsMainPageSettings',
     defaultMessage: 'Settings',
@@ -258,32 +262,32 @@ const messages = defineMessages({
     id: 'settingsMainPageChangeLanguage',
     defaultMessage: 'Change language',
   },
-
-  //Change currency
+  //endregion
+  //region Change currency form
   changeCurrencyFormCurrency: {
     id: 'changeCurrencyFormCurrency',
     defaultMessage: 'Currency',
   },
-
-  // change language
+  //endregion
+  //region Change language form
   changeLanguageFormLanguage: {
     id: 'changeLanguageFormLanguage',
     defaultMessage: 'Language',
   },
-
-  // change language page
+  //endregion
+  //region Change language page
   changeLanguagePageChangeLanguage: {
     id: 'changeLanguagePageChangeLanguage',
     defaultMessage: 'Change language',
   },
-
-  // change username
+  //endregion
+  //region Change username form
   changeUsernameFormUsername: {
     id: 'changeUsernameFormUsername',
     defaultMessage: 'Username',
   },
-
-  // change password
+  //endregion
+  //region Change password form
   changePasswordFormOldPassword: {
     id: 'changePasswordFormOldPassword',
     defaultMessage: 'Old password',
@@ -296,8 +300,8 @@ const messages = defineMessages({
     id: 'changePasswordFormConfirmNewPassword',
     defaultMessage: 'Confirm new password',
   },
-
-  //change category
+  //endregion
+  //region Change category form
   changeCategoryFormAddNewCategory: {
     id: 'changeCategoryFormAddNewCategory',
     defaultMessage: 'Add new category',
@@ -306,20 +310,20 @@ const messages = defineMessages({
     id: 'changeCategoryFormYourCategory',
     defaultMessage: 'Your category',
   },
-
-  // table page
+  //endregion
+  //region Table page
   tablePageTable: {
     id: 'tablePageTable',
     defaultMessage: 'Table',
   },
-
-  // details note
+  //endregion
+  //region Details note page
   detailsNotePageNoteDetails: {
     id: 'detailsNotePageNoteDetails',
     defaultMessage: 'Note details',
   },
-
-  // details transaction page
+  //endregion
+  //region Details transaction page
   detailsTransactionPageCategory: {
     id: 'detailsTransactionPageCategory',
     defaultMessage: 'Category',
@@ -344,8 +348,8 @@ const messages = defineMessages({
     id: 'detailsTransactionPageChart2',
     defaultMessage: 'category',
   },
-
-  // add note form
+  //endregion
+  //region Add note form
   addNoteFormTitle: {
     id: 'addNotePageTitle',
     defaultMessage: 'Title',
@@ -362,20 +366,20 @@ const messages = defineMessages({
     id: 'addNotePageBackgroundColor',
     defaultMessage: 'Background color',
   },
-
-  // add note page
+  //endregion
+  //region Ddd note page
   addNotePageAddNote: {
     id: 'addNotePageAddNote',
     defaultMessage: 'Add note',
   },
-
-  //notification page
+  //endregion
+  //region Notification page
   notificationPageNotificationPanel: {
     id: 'notificationPageNotificationPanel',
     defaultMessage: 'Notification panel',
   },
-
-  // group main page
+  //endregion
+  //region Group main page
   groupMainPageUserIncomeChart: {
     id: 'groupMainPageUserIncomeChart',
     defaultMessage: 'Group member income',
@@ -384,8 +388,8 @@ const messages = defineMessages({
     id: 'groupMainPageUserCostChart',
     defaultMessage: 'Group member cost',
   },
-
-  // manage form
+  //endregion
+  //region Manage form
   manageFormUser: {
     id: 'manageFormUser',
     defaultMessage: 'User',
@@ -394,9 +398,8 @@ const messages = defineMessages({
     id: 'manageFormRole',
     defaultMessage: 'Role',
   },
-
-  // person navigation
-
+  //endregion
+  //region Person navigation page
   navigationPageTransaction: {
     id: 'navigationPageTransaction',
     defaultMessage: 'Transaction',
@@ -413,8 +416,8 @@ const messages = defineMessages({
     id: 'navigationPageSettings',
     defaultMessage: 'Settings',
   },
-
-  // Buttons
+  //endregion
+  //region Buttons
   buttonAdd: {
     id: 'buttonAdd',
     defaultMessage: 'ADD',
@@ -447,6 +450,7 @@ const messages = defineMessages({
     id: 'buttonNo',
     defaultMessage: 'No',
   },
+  //endregion
 });
 
 export default messages;

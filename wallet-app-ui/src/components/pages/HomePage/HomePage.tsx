@@ -20,6 +20,7 @@ import { useFetch } from '../../../hooks';
 import { GetTransactionsByCurrencyResponse } from '../../../models/apiTypes/transaction/GetTransactionsByCurrency/GetTransactionsByCurrency.response';
 import { LocalstorageHelper } from '../../../helpers/localstorage.helper';
 import { Languages, LocalstorageEnum } from '../../../types/enums';
+import { NoDataTypography } from './HomePage.styles';
 
 interface IState {
   currencies: Array<TGetCurrenciesResponse>;
@@ -238,9 +239,9 @@ export const HomePage = () => {
           type={ChartTypeEnum.PIE}
         />
       ) : (
-        <Typography color={'orange'} size={'l'}>
-          No data
-        </Typography>
+        <NoDataTypography color={'orange'} uppercase weight={700} size={'l'}>
+          <FormattedMessage {...messages.mainPageNoData} />
+        </NoDataTypography>
       )}
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.mainPageCostChart} />
@@ -256,9 +257,9 @@ export const HomePage = () => {
           type={ChartTypeEnum.PIE}
         />
       ) : (
-        <Typography color={'orange'} size={'l'}>
-          No data
-        </Typography>
+        <NoDataTypography color={'orange'} uppercase weight={700} size={'l'}>
+          <FormattedMessage {...messages.mainPageNoData} />
+        </NoDataTypography>
       )}
     </MainTemplate>
   );
