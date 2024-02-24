@@ -13,5 +13,8 @@ const Template: ComponentStory<typeof ConfirmActionModal> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  title: 'dasdsa',
+  title: {
+    id: '1',
+    defaultMessage: ' ',
+  },
 };

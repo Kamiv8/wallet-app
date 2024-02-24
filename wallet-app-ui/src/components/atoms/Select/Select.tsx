@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { OptionWrapper, SelectButton, Wrapper, Option } from './Select.styles';
 import { ReactComponent as SelectDownArrow } from '../../../assets/images/selectDownArrow.svg';
 import { ReactComponent as SelectUpArrow } from '../../../assets/images/selectUpArrow.svg';
-import { FieldType } from '../../../hooks/useForm';
+import { FieldType } from '../../../hooks';
 
 export type TSelectItem = {
   key: string | number;
@@ -19,7 +19,7 @@ export type TProps = {
 export const Select = (props: TProps) => {
   const [selected, setSelected] = useState<TSelectItem>({
     key: '',
-    description: (props.name as string) || '',
+    description: '',
   });
 
   const [isActive, setIsActive] = useState<boolean>(false);

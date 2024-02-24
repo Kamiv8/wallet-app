@@ -5,7 +5,9 @@ import { MainTemplate } from '../../templates';
 import { Typography } from '../../atoms';
 import { HistoryCardDetails } from '../../organisms';
 import { useFetch } from '../../../hooks';
-import { GetUserTransactionDetailsResponse } from '../../../models/apiTypes/transaction/getUserTransactionDetails/getUserTransactionDetails.response';
+import { GetUserTransactionDetailsResponse } from '../../../models/apiTypes/transaction';
+import { FormattedMessage } from 'react-intl';
+import messages from '../../../i18n/messages';
 
 export const HistoryDetailsPage = () => {
   const { callToApi } = useFetch();
@@ -38,7 +40,7 @@ export const HistoryDetailsPage = () => {
   return (
     <MainTemplate>
       <Typography size={'l'} weight={700} color={'lightBlue'} uppercase>
-        Transaction details
+        <FormattedMessage {...messages.detailsTransactionPageTitle} />
       </Typography>
       <HistoryCardDetails
         title={state.title}

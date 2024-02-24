@@ -49,9 +49,8 @@ export const ChangeCategoryForm = () => {
   };
 
   const onClickDelete = (id: string) => {
-    console.log('dsa');
     openConfirmActionModal(
-      'Do you want to delete the category?',
+      messages.changeCategoryFormDeleteConfirmModal,
       () => handleDelete(id),
       () => closeConfirmActionModal(),
     );

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import ApplicationContext from '../contexts/application.context';
 import { ActionEnum } from '../contexts/application.reducer';
 import { ModalEnum } from '../types/enums';
+import { TFormattedMessage } from '../types/types';
 
 export const useModalAction = () => {
   const { dispatch } = useContext(ApplicationContext);
@@ -55,7 +56,7 @@ export const useModalAction = () => {
   };
 
   const openConfirmActionModal = (
-    message: string,
+    title: TFormattedMessage,
     yesAction: () => void,
     noAction: () => void,
   ) => {
@@ -64,7 +65,7 @@ export const useModalAction = () => {
       payload: {
         type: ModalEnum.CONFIRM_ACTION,
         isActive: true,
-        message,
+        intlMessage: title,
         yesAction,
         noAction,
       },

@@ -5,7 +5,7 @@ import {
   Wrapper,
 } from './BlurBackgroundTemplate.styles';
 import Portal from '../../../utils/portal.util';
-import { ModalEnum } from '../../../types/enums/modal.enum';
+import { ModalEnum } from '../../../types/enums';
 
 export type TProps = {
   content: ReactNode | ReactNode[];

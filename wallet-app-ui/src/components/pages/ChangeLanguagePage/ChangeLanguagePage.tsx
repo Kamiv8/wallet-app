@@ -7,7 +7,7 @@ import messages from '../../../i18n/messages';
 export const ChangeLanguagePage = () => {
   return (
     <MainTemplate>
-      <Typography size={'xxl'} weight={700}>
+      <Typography size={'xxl'} weight={700} color={'lightBlue'}>
         <FormattedMessage {...messages.changeLanguagePageChangeLanguage} />
       </Typography>
       <ChangeLanguageForm />

@@ -5,9 +5,10 @@ import { Button, Typography } from '../../atoms';
 import theme from '../../../styles/theme';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
+import { TFormattedMessage } from '../../../types/types';
 
 type TProps = {
-  title: string;
+  title: TFormattedMessage;
   yesAction: () => void;
   noAction: () => void;
 };
@@ -21,7 +22,7 @@ export const ConfirmActionModal: FC<TProps> = ({
     <Wrapper>
       <ConfirmActionIcon />
       <Typography size={'l'} color={'orange'} weight={700}>
-        {title}
+        <FormattedMessage {...title} />
       </Typography>
       <ButtonsWrapper>
         <Button onClick={yesAction} customColor={theme.colors.green}>

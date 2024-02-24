@@ -7,7 +7,7 @@ import { StyledErrorMessage } from './SelectField.styles';
 export type TProps = {
   selectItems: TSelectItem[];
   label: TFormattedMessage;
-  name: string;
+  name?: string;
   onChange?: any;
   error?: string;
 };

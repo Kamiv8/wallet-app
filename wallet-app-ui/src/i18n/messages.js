@@ -6,6 +6,10 @@ const messages = defineMessages({
     id: 'hello',
     defaultMessage: 'hello',
   },
+  empty: {
+    id: 'empty',
+    defaultMessage: '',
+  },
   //endregion
   //region Register page
   username: {
@@ -264,6 +268,10 @@ const messages = defineMessages({
   },
   //endregion
   //region Change currency form
+  changeCurrencyPageTitle: {
+    id: 'changeCurrencyPageTitle',
+    defaultMessage: 'Change currency',
+  },
   changeCurrencyFormCurrency: {
     id: 'changeCurrencyFormCurrency',
     defaultMessage: 'Currency',
@@ -302,6 +310,10 @@ const messages = defineMessages({
   },
   //endregion
   //region Change category form
+  changeCategoryPageTitle: {
+    id: 'changeCategoryPageTitle',
+    defaultMessage: 'Change category',
+  },
   changeCategoryFormAddNewCategory: {
     id: 'changeCategoryFormAddNewCategory',
     defaultMessage: 'Add new category',
@@ -324,6 +336,10 @@ const messages = defineMessages({
   },
   //endregion
   //region Details transaction page
+  detailsTransactionPageTitle: {
+    id: 'detailsTransactionPageTitle',
+    defaultMessage: 'Transaction details',
+  },
   detailsTransactionPageCategory: {
     id: 'detailsTransactionPageCategory',
     defaultMessage: 'Category',
@@ -415,6 +431,16 @@ const messages = defineMessages({
   navigationPageSettings: {
     id: 'navigationPageSettings',
     defaultMessage: 'Settings',
+  },
+  //endregion
+  //region Modals
+  addTransactionPageConfirmModal: {
+    id: 'addTransactionPageConfirmModal',
+    defaultMessage: 'Do you want to add this transaction?',
+  },
+  changeCategoryFormDeleteConfirmModal: {
+    id: 'changeCategoryFormDeleteConfirmModal',
+    defaultMessage: 'Do you want to delete the category?',
   },
   //endregion
   //region Buttons

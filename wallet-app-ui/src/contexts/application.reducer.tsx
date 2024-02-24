@@ -1,5 +1,7 @@
 import { Languages, LocalstorageEnum, ModalEnum } from '../types/enums';
-import { LocalstorageHelper } from '../helpers/localstorage.helper';
+import { LocalstorageHelper } from '../helpers';
+import { TFormattedMessage } from '../types/types';
+import messages from '../i18n/messages';
 
 export enum ActionEnum {
   CHANGE_LANGUAGE,
@@ -19,6 +21,7 @@ type TInitialState = {
     type: ModalEnum;
     isActive: boolean;
     message?: string;
+    intlMessage?: TFormattedMessage;
     yesAction: () => void;
     noAction: () => void;
   };
@@ -38,6 +41,7 @@ export const initialContextState: any = {
     type: ModalEnum.NONE,
     isActive: false,
     message: undefined,
+    intlMessage: undefined,
     yesAction: () => {},
     noAction: () => {},
   },
@@ -70,9 +74,11 @@ export const applicationReducer = (
       return {
         ...state,
         modalState: {
+          ...state.modalState,
           type: action.payload.type,
           isActive: action.payload.isActive,
           message: action.payload?.message,
+          intlMessage: action.payload?.intlMessage ?? messages.empty,
           yesAction: action.payload?.yesAction,
           noAction: action.payload?.noAction,
         },

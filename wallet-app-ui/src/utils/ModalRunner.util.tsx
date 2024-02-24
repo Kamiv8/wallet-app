@@ -54,7 +54,7 @@ const ModalRunnerUtil = () => {
           <BlurBackgroundTemplate
             content={
               <ConfirmActionModal
-                title={appContext.state.modalState?.message}
+                title={appContext.state.modalState?.intlMessage}
                 yesAction={appContext.state.modalState?.yesAction}
                 noAction={appContext.state.modalState?.noAction}
               />

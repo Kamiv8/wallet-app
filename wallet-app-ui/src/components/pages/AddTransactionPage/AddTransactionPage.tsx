@@ -5,7 +5,7 @@ import { StyledButton } from '../../../styles/override/AddButton.styles';
 import { useCallback, useEffect, useState } from 'react';
 import { AddTransactionForm } from '../../organisms';
 import { DefaultTransaction } from '../../../api';
-import { GetDefaultTransactionResponse } from '../../../models/apiTypes/defaultTransaction/getDefaultTransaction/getDefaultTransaction.response';
+import { GetDefaultTransactionResponse } from '../../../models/apiTypes/defaultTransaction';
 import { useFetch, useModalAction } from '../../../hooks';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
@@ -58,7 +58,7 @@ export const AddTransactionPage = () => {
   const addTransaction = useCallback(
     async (id: string) => {
       openConfirmActionModal(
-        'Do you want to add this transaction?',
+        messages.addTransactionPageConfirmModal,
         async () => {
           await callToApi(DefaultTransaction.addTransactionDefault(id));
           await getSavedTransactions();
