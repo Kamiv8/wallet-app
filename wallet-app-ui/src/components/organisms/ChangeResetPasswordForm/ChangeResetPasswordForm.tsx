@@ -12,8 +12,8 @@ import messages from '../../../i18n/messages';
 import { FormattedMessage } from 'react-intl';
 import { LastButton } from '../ResetPasswordForm/ResetPassword.styles';
 import { AuthApi } from '../../../api';
-import { TChangeForgotPasswordForm } from '../../../models/apiTypes/account/changeForgotPassword/changeForgotPassword.form';
 import { changeForgotPasswordSchema } from '../../../validators/account/changeForgotPassword.validator';
+import { TChangeForgotPasswordForm } from '../../../models/apiTypes/account';
 
 export const ChangeResetPasswordForm = () => {
   const navigate = useNavigate();

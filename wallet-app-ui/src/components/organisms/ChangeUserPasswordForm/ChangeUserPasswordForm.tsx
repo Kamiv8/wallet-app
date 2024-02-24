@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { useForm } from '../../../hooks';
 import { SettingsApi } from '../../../api';
-import { ChangePasswordForm } from '../../../models/apiTypes/settings/changePassword/changePassword.form';
 import { ApiStatus } from '../../../models/apiResult';
+import { ChangePasswordForm } from '../../../models/apiTypes/settings';
 
 export const ChangeUserPasswordForm = () => {
   const navigate = useNavigate();

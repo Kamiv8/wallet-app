@@ -1,7 +1,9 @@
-import { ChangePasswordForm } from '../models/apiTypes/settings/changePassword/changePassword.form';
-import { ChangePasswordCommand } from '../models/apiTypes/settings/changePassword/changePassword.command';
 import { api } from './baseAxios.config';
 import { BaseApiHandler } from './baseApiHandler';
+import {
+  ChangePasswordCommand,
+  ChangePasswordForm,
+} from '../models/apiTypes/settings';
 
 export class SettingsApi {
   public static async changePassword(values: ChangePasswordForm) {

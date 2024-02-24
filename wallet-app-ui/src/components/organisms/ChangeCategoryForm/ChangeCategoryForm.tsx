@@ -13,9 +13,11 @@ import { FormattedMessage } from 'react-intl';
 import { CategoryApi } from '../../../api';
 import { useEffect, useState } from 'react';
 import { useFetch, useForm, useModalAction } from '../../../hooks';
-import { TCreateUserCategoryForm } from '../../../models/apiTypes/category/createUserCategory/createUserCategory.form';
 import { createCategorySchema } from '../../../validators/category/createCategory.validator';
-import { TGetUserCategoriesResponse } from '../../../models/apiTypes/category/getUserCategories/getUserCategories.response';
+import {
+  TCreateUserCategoryForm,
+  TGetUserCategoriesResponse,
+} from '../../../models/apiTypes/category';
 
 export const ChangeCategoryForm = () => {
   const navigate = useNavigate();

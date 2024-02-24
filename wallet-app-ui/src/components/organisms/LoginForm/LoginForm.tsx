@@ -13,10 +13,10 @@ import { RoutesName } from '../../../const/routesName';
 import { AuthApi } from '../../../api';
 import { useNavigate } from 'react-router-dom';
 import { ApiStatus } from '../../../models/apiResult';
-import { TAuthenticateForm } from '../../../models/apiTypes/account/authenticate/authenticate.form';
 import { authenticateSchema } from '../../../validators/account/authenticate.validator';
-import { LocalstorageHelper } from '../../../helpers/localstorage.helper';
 import { LocalstorageEnum } from '../../../types/enums';
+import { TAuthenticateForm } from '../../../models/apiTypes/account';
+import { LocalstorageHelper } from '../../../helpers';
 
 export const LoginForm = () => {
   const navigate = useNavigate();

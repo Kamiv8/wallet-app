@@ -12,13 +12,10 @@ import { FormattedMessage } from 'react-intl';
 import { FormWrapper, SavedInputsWrapper } from './AddTransactionForm.styles';
 import { useForm, FieldType, useFetch } from '../../../hooks';
 import { CategoryApi, CurrencyApi, TransactionApi } from '../../../api';
-import {
-  parseDataToSelect,
-  parseToCurrencySelect,
-} from '../../../helpers/parseDataToSelect.helper';
-import { TGetCurrenciesResponse } from '../../../models/apiTypes/currency/getCurrencies/getCurrencies.response';
-import { TGetUserCategoriesResponse } from '../../../models/apiTypes/category/getUserCategories/getUserCategories.response';
-import { TAddUserTransactionForm } from '../../../models/apiTypes/transaction/addUserTransaction/addUserTransaction.form';
+import { TGetCurrenciesResponse } from '../../../models/apiTypes/currency';
+import { TGetUserCategoriesResponse } from '../../../models/apiTypes/category';
+import { TAddUserTransactionForm } from '../../../models/apiTypes/transaction';
+import { parseDataToSelect, parseToCurrencySelect } from '../../../helpers';
 
 export type TProps = {
   onClose: () => void;

@@ -7,8 +7,8 @@ import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
 import { colorPicker } from '../../../const/colorPicker';
-import { AddUserNoteForm } from '../../../models/apiTypes/note/addUserNote/addUserNote.form';
 import { NoteApi } from '../../../api';
+import { AddUserNoteForm } from '../../../models/apiTypes/note';
 
 export const AddNoteForm = () => {
   const navigate = useNavigate();

@@ -3,10 +3,12 @@ import { devConfig } from '../const/config';
 import axios from 'axios';
 import { BaseApiHandler } from './baseApiHandler';
 import { api } from './baseAxios.config';
-import { GetAccountDataResponse } from '../models/apiTypes/account/getAccountData/getAccountData.response';
-import { TChangeLanguageForm } from '../models/apiTypes/account/changeLanguage/changeLanguage.form';
-import { ChangeLanguageCommand } from '../models/apiTypes/account/changeLanguage/changeLanguage.command';
-import { ChangeLanguageResponse } from '../models/apiTypes/account/changeLanguage/changeLanguage.response';
+import {
+  ChangeLanguageCommand,
+  ChangeLanguageResponse,
+  GetAccountDataResponse,
+  TChangeLanguageForm,
+} from '../models/apiTypes/account';
 
 export class UserApi {
   public static async getUserData(): Promise<

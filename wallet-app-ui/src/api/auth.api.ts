@@ -2,14 +2,16 @@ import { IApiResult } from '../models/apiResult';
 import { AuthenticateCommand } from '../models/commands/auth/authenticate.command';
 import { BaseApiHandler } from './baseApiHandler';
 import { ResetPasswordCommand } from '../models/commands/auth/resetPassword.command';
-import { VerifyAccountCommand } from '../models/apiTypes/account/verifyEmail/verifyAccount.command';
 import { noAuthApi } from './baseAxios.config';
-import { AuthenticateDto } from '../models/apiTypes/account/authenticate/authenticate.dto';
-import { RegisterCommand } from '../models/apiTypes/account/register/register.command';
-import { ChangeForgotPasswordCommand } from '../models/apiTypes/account/changeForgotPassword/changeForgotPassword.command';
-import { TAuthenticateForm } from '../models/apiTypes/account/authenticate/authenticate.form';
-import { TRegisterForm } from '../models/apiTypes/account/register/register.form';
-import { TResetPasswordForm } from '../models/apiTypes/account/resetPassword/resetPassword.form';
+import {
+  AuthenticateDto,
+  ChangeForgotPasswordCommand,
+  RegisterCommand,
+  TAuthenticateForm,
+  TRegisterForm,
+  TResetPasswordForm,
+  VerifyAccountCommand,
+} from '../models/apiTypes/account';
 
 export class AuthApi {
   public static async authenticate(

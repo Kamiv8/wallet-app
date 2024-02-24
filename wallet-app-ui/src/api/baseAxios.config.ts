@@ -2,8 +2,8 @@ import axios from 'axios';
 import { TokenApi } from './token.api';
 import { devConfig } from '../const/config';
 import { ApiStatus } from '../models/apiResult';
-import { LocalstorageHelper } from '../helpers/localstorage.helper';
-import { LocalstorageEnum } from '../types/enums/localstorage.enum';
+import { LocalstorageHelper } from '../helpers';
+import { LocalstorageEnum } from '../types/enums';
 
 export const api = axios.create();
 api.interceptors.request.use(

@@ -9,7 +9,7 @@ import { RoutesName } from '../../../const/routesName';
 import { ButtonsWrapper, LastButton } from './ResetPassword.styles';
 import { AuthApi } from '../../../api';
 import { resetPasswordSchema } from '../../../validators/account/resetPassword.validator';
-import { TResetPasswordForm } from '../../../models/apiTypes/account/resetPassword/resetPassword.form';
+import { TResetPasswordForm } from '../../../models/apiTypes/account';
 
 export const ResetPasswordForm = () => {
   const navigate = useNavigate();

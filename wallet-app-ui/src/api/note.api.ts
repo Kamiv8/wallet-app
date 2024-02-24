@@ -1,11 +1,13 @@
-import { AddUserNoteForm } from '../models/apiTypes/note/addUserNote/addUserNote.form';
-import { AddUserNoteCommand } from '../models/apiTypes/note/addUserNote/addUserNote.command';
 import { api } from './baseAxios.config';
 import { BaseApiHandler } from './baseApiHandler';
 import { IApiResult } from '../models/apiResult';
-import { GetUserNotesResponse } from '../models/apiTypes/note/getUserNotes/getUserNotes.response';
-import { GetUserNoteDetailsResponse } from '../models/apiTypes/note/getUserNoteDetails/getUserNoteDetails.response';
-import { MarkAsNoteCommand } from '../models/apiTypes/note/markAsNote/markAsNote.command';
+import {
+  AddUserNoteCommand,
+  AddUserNoteForm,
+  GetUserNoteDetailsResponse,
+  GetUserNotesResponse,
+  MarkAsNoteCommand,
+} from '../models/apiTypes/note';
 
 export class NoteApi {
   public static async createUserNote(

@@ -8,9 +8,9 @@ import { useForm } from '../../../hooks';
 import { useEffect, useState } from 'react';
 import { CurrencyDto } from '../../../models/dtos/currencyDto';
 import { GroupApi } from '../../../api';
-import { parseDataToSelect } from '../../../helpers/parseDataToSelect.helper';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
+import { parseDataToSelect } from '../../../helpers';
 
 const maxGroupMember: TSelectItem[] = [
   {

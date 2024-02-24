@@ -2,17 +2,19 @@ import { IApiResult } from '../models/apiResult';
 import { BaseApiHandler } from './baseApiHandler';
 import axios from 'axios';
 import { BaseApiConfig } from './baseApiConfig';
-import { AddUserTransactionCommand } from '../models/apiTypes/transaction/addUserTransaction/addUserTransaction.command';
-import { TAddUserTransactionForm } from '../models/apiTypes/transaction/addUserTransaction/addUserTransaction.form';
 import { api } from './baseAxios.config';
 import { TPagination } from '../models/pagination';
-import { GetUserTransactionListResponse } from '../models/apiTypes/transaction/getUserTransactionList/getUserTransactionList.response';
-import { GetUserTransactionDetailsResponse } from '../models/apiTypes/transaction/getUserTransactionDetails/getUserTransactionDetails.response';
-import { GetIncomeByCategoryResponse } from '../models/apiTypes/transaction/getIcomeByCategory/getIncomeByCategory.response';
-import { GetIncomeByCategoryCommand } from '../models/apiTypes/transaction/getIcomeByCategory/getIncomeByCategory.command';
-import { GetCostByCategoryResponse } from '../models/apiTypes/transaction/getCostByCategory/getCostByCategory.response';
-import { GetCostByCategoryCommand } from '../models/apiTypes/transaction/getCostByCategory/getCostByCategory.command';
-import { GetTransactionsByCurrencyResponse } from '../models/apiTypes/transaction/GetTransactionsByCurrency/GetTransactionsByCurrency.response';
+import {
+  AddUserTransactionCommand,
+  GetCostByCategoryCommand,
+  GetCostByCategoryResponse,
+  GetIncomeByCategoryCommand,
+  GetIncomeByCategoryResponse,
+  GetTransactionsByCurrencyResponse,
+  GetUserTransactionDetailsResponse,
+  GetUserTransactionListResponse,
+  TAddUserTransactionForm,
+} from '../models/apiTypes/transaction';
 
 export class TransactionApi extends BaseApiConfig {
   public static async getMoneyChartData(type: any): Promise<IApiResult> {

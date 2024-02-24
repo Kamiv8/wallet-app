@@ -1,8 +1,8 @@
 import { IApiResult } from '../models/apiResult';
 import { api } from './baseAxios.config';
 import { BaseApiHandler } from './baseApiHandler';
-import { LocalstorageHelper } from '../helpers/localstorage.helper';
-import { LocalstorageEnum } from '../types/enums/localstorage.enum';
+import { LocalstorageHelper } from '../helpers';
+import { LocalstorageEnum } from '../types/enums';
 
 export class TokenApi {
   public static async getAccessToken(): Promise<IApiResult> {

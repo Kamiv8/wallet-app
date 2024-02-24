@@ -13,7 +13,7 @@ import { StyledLink } from '../../../styles/override/Link.styles';
 import { RoutesName } from '../../../const/routesName';
 import { AuthApi } from '../../../api';
 import { ApiStatus } from '../../../models/apiResult';
-import { TRegisterForm } from '../../../models/apiTypes/account/register/register.form';
+import { TRegisterForm } from '../../../models/apiTypes/account';
 import { registerSchema } from '../../../validators/account/register.validator';
 
 export type TSelectedIcon = 0 | 1 | 2 | 3 | 4;

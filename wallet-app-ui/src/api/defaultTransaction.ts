@@ -1,10 +1,12 @@
 import { IApiResult } from '../models/apiResult';
 import { BaseApiHandler } from './baseApiHandler';
 import { api } from './baseAxios.config';
-import { GetDefaultTransactionResponse } from '../models/apiTypes/defaultTransaction/getDefaultTransaction/getDefaultTransaction.response';
-import { TEditDefaultUserTransactionForm } from '../models/apiTypes/defaultTransaction/EditDefaultUserTransaction/editDefaultUserTransaction.form';
-import { EditDefaultUserTransactionCommand } from '../models/apiTypes/defaultTransaction/EditDefaultUserTransaction/editDefaultUserTransaction.command';
-import { AddUserTransactionDefaultCommand } from '../models/apiTypes/transaction/addUserTransactionDefault/addUserTransactionDefault.command';
+import {
+  EditDefaultUserTransactionCommand,
+  GetDefaultTransactionResponse,
+  TEditDefaultUserTransactionForm,
+} from '../models/apiTypes/defaultTransaction';
+import { AddUserTransactionDefaultCommand } from '../models/apiTypes/transaction';
 
 export class DefaultTransaction {
   public static async getDefaultUserTransaction(): Promise<

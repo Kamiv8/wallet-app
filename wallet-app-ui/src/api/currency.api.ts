@@ -1,7 +1,7 @@
 import { IApiResult } from '../models/apiResult';
 import { BaseApiHandler } from './baseApiHandler';
 import { api } from './baseAxios.config';
-import { TGetCurrenciesResponse } from '../models/apiTypes/currency/getCurrencies/getCurrencies.response';
+import { TGetCurrenciesResponse } from '../models/apiTypes/currency';
 
 export class CurrencyApi {
   public static async addCurrencies(): Promise<

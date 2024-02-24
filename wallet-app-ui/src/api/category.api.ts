@@ -2,10 +2,12 @@ import { BaseApiHandler } from './baseApiHandler';
 import { IApiResult } from '../models/apiResult';
 import { BaseApiConfig } from './baseApiConfig';
 import { api } from './baseAxios.config';
-import { CreateUserCategoryCommand } from '../models/apiTypes/category/createUserCategory/createUserCategory.command';
-import { TCreateUserCategoryForm } from '../models/apiTypes/category/createUserCategory/createUserCategory.form';
-import { DeleteUserCategoryCommand } from '../models/apiTypes/category/deleteUserCategory/deleteUserCategory.command';
-import { TGetUserCategoriesResponse } from '../models/apiTypes/category/getUserCategories/getUserCategories.response';
+import {
+  CreateUserCategoryCommand,
+  DeleteUserCategoryCommand,
+  TCreateUserCategoryForm,
+  TGetUserCategoriesResponse,
+} from '../models/apiTypes/category';
 
 export class CategoryApi extends BaseApiConfig {
   public static async getUserCategories(): Promise<

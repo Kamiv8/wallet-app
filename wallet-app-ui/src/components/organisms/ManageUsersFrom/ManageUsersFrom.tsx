@@ -6,7 +6,7 @@ import { ButtonWrapper } from './ManageUsersForm.styles';
 import { GroupApi } from '../../../api';
 import { useEffect, useState } from 'react';
 import { TSelectItem } from '../../atoms/Select/Select';
-import { RoleEnum } from '../../../types/enums/role.enum';
+import { RoleEnum } from '../../../types/enums';
 
 const roles: TSelectItem[] = [
   {
