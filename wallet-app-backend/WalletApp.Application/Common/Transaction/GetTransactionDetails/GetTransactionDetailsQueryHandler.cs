@@ -1,4 +1,5 @@
 using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces.Repository;
 
 namespace WalletApp.Application.Common.Transaction.GetTransactionDetails;
@@ -20,7 +21,7 @@ public class GetTransactionDetailsQueryHandler : IQueryHandler<GetTransactionDet
             await _repository.GetTransactionById(request.UserId, request.TransactionId);
 
         if (transaction is null)
-            return ApiResult<GetTransactionDetailsResponseDto>.Error(); // TODO error message
+            return ApiResult<GetTransactionDetailsResponseDto>.Error(TransactionMessages.TransactionNotFound);
 
         var transactionsByCategory =
             await _repository.GetTransactionsByCategoryId(request.UserId, transaction.CategoryId);

@@ -1,4 +1,5 @@
 using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces.Repository;
 
 namespace WalletApp.Application.Common.DefaultTransaction.DeleteDefaultUserTransaction;
@@ -17,7 +18,7 @@ public class DeleteDefaultUserTransactionCommandHandler : ICommandHandler<Delete
         var transaction = await _repository.GetDefaultUserTransactionById(request.Id, cancellationToken);
 
         if (transaction is null)
-            return ApiResult.Error(); // TODO
+            return ApiResult.Error(TransactionMessages.DefaultTransactionNotFound);
         
         _repository.RemoveDefaultTransaction(transaction);
 

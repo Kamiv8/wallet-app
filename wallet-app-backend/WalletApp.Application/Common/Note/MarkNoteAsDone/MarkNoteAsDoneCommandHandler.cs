@@ -1,4 +1,5 @@
 using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
 
@@ -19,7 +20,7 @@ public class MarkNoteAsDoneCommandHandler : ICommandHandler<MarkNoteAsDoneComman
     {
         var note = await _repository.GetUserNote(request.NoteId, cancellationToken);
         
-        if (note is null) return ApiResult.Error();
+        if (note is null) return ApiResult.Error(NoteMessages.NoteNotFound);
 
         note.IsDone = true;
 

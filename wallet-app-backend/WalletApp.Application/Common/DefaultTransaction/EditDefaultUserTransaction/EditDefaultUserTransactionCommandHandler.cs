@@ -1,4 +1,5 @@
 using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
 
@@ -24,7 +25,7 @@ public class
             await _repository.GetDefaultUserTransactionById(request.Id, cancellationToken);
 
         if (transaction is null)
-            return ApiResult.Error();
+            return ApiResult.Error(TransactionMessages.DefaultTransactionNotFound);
 
         transaction.Title = request.Title;
         transaction.Price = request.Price;

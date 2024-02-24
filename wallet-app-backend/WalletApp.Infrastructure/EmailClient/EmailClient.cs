@@ -3,6 +3,7 @@ using Mailjet.Client.Resources;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using WalletApp.Application.Common;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Dtos;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Options.EmailOptions;
@@ -40,6 +41,6 @@ public class EmailClient : IEmailClient
 
         var response = await client.PostAsync(request);
 
-        return response.IsSuccessStatusCode ? ApiResult.Success() : ApiResult.Error();
+        return response.IsSuccessStatusCode ? ApiResult.Success() : ApiResult.Error(CommonErrorMessages.CommonError);
     }
 }

@@ -1,4 +1,5 @@
 using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Application.utils;
 
@@ -20,7 +21,7 @@ public class
     {
         var note = await _repository.GetUserNote(request.NoteId, cancellationToken);
 
-        if (note is null) return ApiResult<GetUserNoteDetailsResponseDto>.Error(); // TODO
+        if (note is null) return ApiResult<GetUserNoteDetailsResponseDto>.Error(NoteMessages.NoteNotFound);
 
 
         var dto = new GetUserNoteDetailsResponseDto(note.Id, note.Title,

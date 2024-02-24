@@ -1,4 +1,5 @@
 using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces.Repository;
 
 namespace WalletApp.Application.Common.Transaction.GetSumTransactions;
@@ -22,7 +23,7 @@ public class
     {
         var currencies = await _currencyRepository.GetCurrencies(cancellationToken);
 
-        if (!currencies.Any()) return ApiResult<IEnumerable<IEnumerable<GetSumTransactionsResponseDto>>>.Error(); // TODO
+        if (!currencies.Any()) return ApiResult<IEnumerable<IEnumerable<GetSumTransactionsResponseDto>>>.Error(CommonErrorMessages.CommonError);
 
 
         var dto = new List<IEnumerable<GetSumTransactionsResponseDto>>();

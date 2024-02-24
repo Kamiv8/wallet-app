@@ -1,4 +1,5 @@
 using WalletApp.Application.Abstractions.Messaging;
+using WalletApp.Application.Consts;
 using WalletApp.Application.Interfaces;
 
 namespace WalletApp.Application.Common.Settings.ChangePassword;
@@ -17,7 +18,7 @@ public class ChangePasswordCommandHandler : ICommandHandler<ChangePasswordComman
     {
         var user = await _userManager.FindByIdAsync(request.UserId);
 
-        if (user is null) return ApiResult.Error(); // TODO
+        if (user is null) return ApiResult.Error(AccountErrorMessages.UserNotExist);
 
         await _userManager.ChangePasswordAsync(user, request.OldPassword,
             request.NewPassword);
