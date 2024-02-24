@@ -16,6 +16,9 @@ import { TGetCurrenciesResponse } from '../../../models/apiTypes/currency';
 import { TGetUserCategoriesResponse } from '../../../models/apiTypes/category';
 import { TAddUserTransactionForm } from '../../../models/apiTypes/transaction';
 import { parseDataToSelect, parseToCurrencySelect } from '../../../helpers';
+import { addUserTransactionSchema } from '../../../validators/transaction/addUserTransaction.validator';
+import { ApiStatus } from '../../../models/apiResult';
+import { transactionDefaultColor } from '../../../const/colorPicker';
 
 export type TProps = {
   onClose: () => void;
@@ -42,8 +45,13 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
     description: undefined,
   };
 
-  const { handleChange, getValidationMessage, onSubmit } =
-    useForm<TAddUserTransactionForm>(initialValues);
+  const {
+    values,
+    handleChange,
+    getValidationMessage,
+    onSubmit,
+    updateInitValues,
+  } = useForm<TAddUserTransactionForm>(initialValues, addUserTransactionSchema);
 
   const handleIsSaved = (e: any) => {
     setIsSaved(e.target.checked);
@@ -79,9 +87,25 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
     })();
   }, []);
 
+  useEffect(() => {
+    if (values.isDefault) {
+      updateInitValues({
+        ...values,
+        backgroundColor: transactionDefaultColor.backgroundColor,
+        textColor: transactionDefaultColor.textColor,
+      });
+    } else {
+      updateInitValues({
+        ...values,
+        backgroundColor: undefined,
+        textColor: undefined,
+      });
+    }
+  }, [values.isDefault]);
+
   const handleSubmit = async () => {
-    await onSubmit(TransactionApi.addTransaction);
-    onClose();
+    const response = await onSubmit(TransactionApi.addTransaction);
+    if (response.status === ApiStatus.SUCCESS) onClose();
   };
 
   return (
@@ -91,6 +115,7 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
           label={{ ...messages.addTransactionPageTitle }}
           variant={'dark'}
           name={'title'}
+          value={values.title}
           error={getValidationMessage('title')}
           onChange={(e) => handleChange(e, 'title')}
         />
@@ -98,6 +123,7 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
           label={{ ...messages.addTransactionPagePrice }}
           variant={'dark'}
           name={'title'}
+          value={values.price}
           error={getValidationMessage('price')}
           type={'number'}
           onChange={(e) => handleChange(e, 'price', FieldType.Number)}
@@ -130,6 +156,7 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
           error={getValidationMessage('description')}
           onChange={(e) => handleChange(e, 'description')}
           name={'description'}
+          value={values.description}
         />
         <CheckboxField
           label={{ ...messages.addTransactionPageSavedTransaction }}
@@ -142,11 +169,13 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
             <ColorPickerField
               label={{ ...messages.addTransactionPageTextColor }}
               color={'darkBlue'}
+              defaultValue={values.textColor}
               onChange={(e) => handleChange(e, 'textColor')}
             />
             <ColorPickerField
               label={{ ...messages.addTransactionPageBackgroundColor }}
               color={'darkBlue'}
+              defaultValue={values.backgroundColor}
               onChange={(e) => handleChange(e, 'backgroundColor')}
             />
           </SavedInputsWrapper>

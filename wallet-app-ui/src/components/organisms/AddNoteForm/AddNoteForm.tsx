@@ -9,6 +9,8 @@ import { RoutesName } from '../../../const/routesName';
 import { colorPicker } from '../../../const/colorPicker';
 import { NoteApi } from '../../../api';
 import { AddUserNoteForm } from '../../../models/apiTypes/note';
+import { createUserSchema } from '../../../validators/Note/CreateNote.validator';
+import { ApiStatus } from '../../../models/apiResult';
 
 export const AddNoteForm = () => {
   const navigate = useNavigate();
@@ -19,12 +21,12 @@ export const AddNoteForm = () => {
     backgroundColor: colorPicker.backgroundColor,
   };
 
-  const { values, handleChange, onSubmit } =
-    useForm<AddUserNoteForm>(initialValues);
+  const { values, handleChange, onSubmit, getValidationMessage } =
+    useForm<AddUserNoteForm>(initialValues, createUserSchema);
 
   const handleSubmit = async () => {
-    await onSubmit(NoteApi.createUserNote);
-    navigate(RoutesName.TABLE);
+    const response = await onSubmit(NoteApi.createUserNote);
+    if (response.status === ApiStatus.SUCCESS) navigate(RoutesName.TABLE);
   };
 
   return (
@@ -33,12 +35,16 @@ export const AddNoteForm = () => {
         <InputField
           label={{ ...messages.addNoteFormTitle }}
           variant={'dark'}
+          value={values.title}
+          error={getValidationMessage('title')}
           name={'title'}
           onChange={(e) => handleChange(e, 'title')}
         />
         <TextAreaField
           label={{ ...messages.addNoteFormTodoList }}
           variant={'dark'}
+          value={values.text}
+          error={getValidationMessage('text')}
           onChange={(e) => handleChange(e, 'text')}
           name={'text'}
         />

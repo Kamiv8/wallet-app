@@ -27,6 +27,13 @@ export const useForm = <T,>(
     {} as Record<keyof T, string>,
   );
 
+  const updateInitValues = useCallback((newValue: T) => {
+    setValues((prev) => ({
+      ...prev,
+      ...newValue,
+    }));
+  }, []);
+
   const getValidationMessage = useCallback(
     (field: keyof T) => {
       if (!validValues) return undefined;
@@ -86,7 +93,6 @@ export const useForm = <T,>(
           abortEarly: false,
         });
         let response;
-
         if (extraValues) {
           const newValues = {
             ...values,
@@ -128,5 +134,6 @@ export const useForm = <T,>(
     getMessageByFieldName,
     getValidationMessage,
     loadToEditValues,
+    updateInitValues,
   };
 };

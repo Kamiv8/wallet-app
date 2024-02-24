@@ -1,8 +1,10 @@
 import { ToPieChartDto } from '../models/dtos/toPieChartDto';
-import { GetIncomeByCategoryResponse } from '../models/apiTypes/transaction/getIcomeByCategory/getIncomeByCategory.response';
-import { GetCostByCategoryResponse } from '../models/apiTypes/transaction/getCostByCategory/getCostByCategory.response';
-import { GetTransactionsByCurrencyResponse } from '../models/apiTypes/transaction/GetTransactionsByCurrency/GetTransactionsByCurrency.response';
 import theme from '../styles/theme';
+import {
+  GetCostByCategoryResponse,
+  GetIncomeByCategoryResponse,
+  GetTransactionsByCurrencyResponse,
+} from '../models/apiTypes/transaction';
 
 export const areaChartData = (
   labels: string[],

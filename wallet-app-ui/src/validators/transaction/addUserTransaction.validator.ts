@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { TAddUserTransactionForm } from '../../models/apiTypes/transaction/addUserTransaction/addUserTransaction.form';
+import { TAddUserTransactionForm } from '../../models/apiTypes/transaction';
 import { hexColorRegex } from '../../const/regex';
 export const addUserTransactionSchema = yup
   .object<TAddUserTransactionForm>()
@@ -9,20 +9,20 @@ export const addUserTransactionSchema = yup
     date: yup.date().required(),
     currencyId: yup.string().required(),
     categoryId: yup.string().required(),
-    isDefault: yup.boolean().required(),
+    isDefault: yup.boolean(),
     description: yup.string().min(1).max(500),
     textColor: yup
       .string()
-      .when(
-        'isDefault',
-        ([isDefault], schema) =>
-          isDefault && schema.matches(hexColorRegex).required(),
+      .when('isDefault', ([isDefault], schema) =>
+        isDefault
+          ? schema.matches(hexColorRegex).required()
+          : schema.notRequired(),
       ),
     backgroundColor: yup
       .string()
-      .when(
-        'isDefault',
-        ([isDefault], schema) =>
-          isDefault && schema.matches(hexColorRegex).required(),
+      .when('isDefault', ([isDefault], schema) =>
+        isDefault
+          ? schema.matches(hexColorRegex).required()
+          : schema.notRequired(),
       ),
   });
