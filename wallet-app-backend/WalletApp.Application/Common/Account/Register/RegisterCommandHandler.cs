@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Consts;
 using WalletApp.Application.Dtos;
+using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
 using WalletApp.Domain.Entities;
@@ -15,13 +16,16 @@ public class RegisterCommandHandler : ICommandHandler<RegisterCommand>
     private readonly IUserManager _userManager;
     private readonly IAccountDataRepository _accountDataRepository;
     private readonly IEmailClient _emailClient;
+    private readonly IEmailTemplates _emailTemplates;
 
     public RegisterCommandHandler(IUserManager userManager,
-        IAccountDataRepository accountDataRepository, IEmailClient emailClient)
+        IAccountDataRepository accountDataRepository, IEmailClient emailClient,
+        IEmailTemplates emailTemplates)
     {
         _userManager = userManager;
         _accountDataRepository = accountDataRepository;
         _emailClient = emailClient;
+        _emailTemplates = emailTemplates;
     }
 
     public async Task<ApiResult> Handle(RegisterCommand request,
@@ -59,8 +63,14 @@ public class RegisterCommandHandler : ICommandHandler<RegisterCommand>
         var encodedEmailToken = Encoding.UTF8.GetBytes(registerToken);
         var validEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
 
-        await _emailClient.SendMailAsync(new EmailClientDto("dsa", "dsada", // TODO add subject and template
-            $"""<a href="http://localhost:3000/verify/{request.Email}/{validEmailToken}">Click link</a>""",
+        var template = _emailTemplates.GetTemplate(EmailTemplate.REGISTER);
+        var replace = template.Template
+            .Replace("{0}", newUser.UserName)
+            .Replace("{1}", request.Email)
+            .Replace("{2}", validEmailToken)
+            .Replace("{3}", "verify");
+        await _emailClient.SendMailAsync(new EmailClientDto("Confirm Registration", "dbfs",
+            replace,
             newUser.Email));
 
         transactionsScope.Complete();

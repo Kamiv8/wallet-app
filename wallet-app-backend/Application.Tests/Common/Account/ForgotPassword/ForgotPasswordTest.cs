@@ -13,6 +13,7 @@ public class ForgotPasswordTest
 {
     private readonly Mock<IUserManager> _userManagerMock = new();
     private readonly Mock<IEmailClient> _emailClientMock = new();
+    private readonly Mock<IEmailTemplates> _emailTemplateMock = new();
 
 
     [Fact]
@@ -24,7 +25,7 @@ public class ForgotPasswordTest
             .ReturnsAsync(() => null);
 
         var handler =
-            new ForgotPasswordCommandHandler(_userManagerMock.Object, _emailClientMock.Object);
+            new ForgotPasswordCommandHandler(_userManagerMock.Object, _emailClientMock.Object, _emailTemplateMock.Object);
 
         // Act
         var result = await handler.Handle(command, default!);
@@ -44,7 +45,7 @@ public class ForgotPasswordTest
         _userManagerMock.Setup(x => x.GeneratePasswordResetTokenAsync(It.IsAny<UserIdentity>()))
             .ReturnsAsync(() => string.Empty);
         var handler =
-            new ForgotPasswordCommandHandler(_userManagerMock.Object, _emailClientMock.Object);
+            new ForgotPasswordCommandHandler(_userManagerMock.Object, _emailClientMock.Object, _emailTemplateMock.Object);
         
         // Act
         var result = await handler.Handle(command, default!);
@@ -64,7 +65,7 @@ public class ForgotPasswordTest
         _userManagerMock.Setup(x => x.GeneratePasswordResetTokenAsync(It.IsAny<UserIdentity>()))
             .ReturnsAsync(() => "resetToken");
         var handler =
-            new ForgotPasswordCommandHandler(_userManagerMock.Object, _emailClientMock.Object);
+            new ForgotPasswordCommandHandler(_userManagerMock.Object, _emailClientMock.Object, _emailTemplateMock.Object);
         
         // Act
         var result = await handler.Handle(command, default!);

@@ -31,7 +31,6 @@
     <ItemGroup>
       <Folder Include="Common\Report\" />
       <Folder Include="Common\Settings\" />
-      <Folder Include="EmailTemplates\" />
       <Folder Include="Mapper\" />
     </ItemGroup>
 

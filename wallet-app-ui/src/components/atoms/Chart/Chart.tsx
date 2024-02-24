@@ -1,4 +1,4 @@
-import { ChartTypeEnum } from '../../../types/enums/chartType.enum';
+import { ChartTypeEnum } from '../../../types/enums';
 import {
   Chart as ChartJS,
   CategoryScale,

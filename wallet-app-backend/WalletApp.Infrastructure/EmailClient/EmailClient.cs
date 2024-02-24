@@ -30,8 +30,8 @@ public class EmailClient : IEmailClient
             }
             .Property(Send.FromEmail, _options.FromEmail)
             .Property(Send.FromName, _options.FromName)
-            .Property(Send.Subject, "Your email flight plan!")
-            .Property(Send.TextPart, "Dear passenger, welcome to Mailjet! May the delivery force be with you!")
+            .Property(Send.Subject, dto.Subject)
+            .Property(Send.TextPart, dto.Title)
             .Property(Send.HtmlPart, dto.Html)
             .Property(Send.Recipients, new JArray {
                 new JObject {

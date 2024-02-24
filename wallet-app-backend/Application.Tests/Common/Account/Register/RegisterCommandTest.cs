@@ -16,6 +16,7 @@ public class RegisterCommandTest
     private readonly Mock<IUserManager> _userManagerMock = new();
     private readonly Mock<IAccountDataRepository> _accountDataRepositoryMock = new();
     private readonly Mock<IEmailClient> _emailClientMock = new();
+    private readonly Mock<IEmailTemplates> _emailTemplateMock = new();
 
     [Fact]
     public async Task Handle_ReturnError_When_Email_Does_Exist()
@@ -30,7 +31,8 @@ public class RegisterCommandTest
         var handler = new RegisterCommandHandler(
             _userManagerMock.Object,
             _accountDataRepositoryMock.Object,
-            _emailClientMock.Object
+            _emailClientMock.Object,
+            _emailTemplateMock.Object
         );
 
         // Act
@@ -54,8 +56,12 @@ public class RegisterCommandTest
         _userManagerMock.Setup(x => x.CreateAsync(It.IsAny<UserIdentity>(), It.IsAny<string>()))
             .ReturnsAsync(new AppIdentityResult() { Succeeded = false });
 
-        var handler = new RegisterCommandHandler(_userManagerMock.Object,
-            _accountDataRepositoryMock.Object, _emailClientMock.Object);
+        var handler = new RegisterCommandHandler(
+            _userManagerMock.Object,
+            _accountDataRepositoryMock.Object,
+            _emailClientMock.Object,
+            _emailTemplateMock.Object
+            );
 
         // Act
         var result = await handler.Handle(command, default);
@@ -81,8 +87,12 @@ public class RegisterCommandTest
         _userManagerMock.Setup(x => x.GenerateEmailConfirmationTokenAsync(It.IsAny<UserIdentity>()))
             .ReturnsAsync("registerToken");
 
-        var handler = new RegisterCommandHandler(_userManagerMock.Object,
-            _accountDataRepositoryMock.Object, _emailClientMock.Object);
+        var handler = new RegisterCommandHandler(
+            _userManagerMock.Object,
+            _accountDataRepositoryMock.Object,
+            _emailClientMock.Object,
+            _emailTemplateMock.Object
+            );
 
         // Act
         var result = await handler.Handle(command, default);
