@@ -33,7 +33,7 @@ api.interceptors.response.use(
     ) {
       originalRequest._retry = true;
       const token = await TokenApi.getAccessToken();
-      axios.defaults.headers.common.Authorization = `Bearer ${token.data?.jwtToken}`;
+      originalRequest.headers.Authorization = `Bearer ${token.data?.jwtToken}`;
       LocalstorageHelper.setItem(
         LocalstorageEnum.TOKEN,
         token.data?.jwtToken ?? '',
