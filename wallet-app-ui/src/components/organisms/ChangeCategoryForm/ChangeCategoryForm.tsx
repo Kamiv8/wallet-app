@@ -18,6 +18,7 @@ import {
   TCreateUserCategoryForm,
   TGetUserCategoriesResponse,
 } from '../../../models/apiTypes/category';
+import { ApiStatus } from '../../../models/apiResult';
 
 export const ChangeCategoryForm = () => {
   const navigate = useNavigate();
@@ -56,7 +57,8 @@ export const ChangeCategoryForm = () => {
     );
   };
   const handleSubmit = async () => {
-    onSubmit(CategoryApi.createUserCategory);
+    const response = await onSubmit(CategoryApi.createUserCategory);
+    if (response.status !== ApiStatus.SUCCESS) return;
     setRefresher(true);
     resetForm();
   };
@@ -89,7 +91,9 @@ export const ChangeCategoryForm = () => {
           />
         ) : (
           <EmptyArrayWrapper>
-            <Typography size={'l'}>You don't have your own category</Typography>
+            <Typography size={'l'}>
+              <FormattedMessage {...messages.changeCategoryFormEmptyArray} />
+            </Typography>
           </EmptyArrayWrapper>
         )}
       </ListWrapper>

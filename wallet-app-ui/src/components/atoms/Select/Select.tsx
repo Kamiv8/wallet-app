@@ -3,6 +3,8 @@ import { OptionWrapper, SelectButton, Wrapper, Option } from './Select.styles';
 import { ReactComponent as SelectDownArrow } from '../../../assets/images/selectDownArrow.svg';
 import { ReactComponent as SelectUpArrow } from '../../../assets/images/selectUpArrow.svg';
 import { FieldType } from '../../../hooks';
+import { FormattedMessage } from 'react-intl';
+import messages from '../../../i18n/messages';
 
 export type TSelectItem = {
   key: string | number;
@@ -61,7 +63,7 @@ export const Select = (props: TProps) => {
               }
               isRounded={props.isRounded}
             >
-              Reset
+              <FormattedMessage {...messages.selectResetOption} />
             </Option>
             {props.items.map(({ key, description }) => (
               <Option

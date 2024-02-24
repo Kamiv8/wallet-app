@@ -7,6 +7,9 @@ import { useForm } from '../../../hooks';
 import { UserApi } from '../../../api';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../const/routesName';
+import { TChangeUsernameForm } from '../../../models/apiTypes/settings';
+import { changeUsernameSchema } from '../../../validators/settings/changeUsername.validator';
+import { ApiStatus } from '../../../models/apiResult';
 
 export const ChangeUsernameForm = () => {
   const navigate = useNavigate();
@@ -14,10 +17,12 @@ export const ChangeUsernameForm = () => {
     newUsername: '',
   };
 
-  const { values, handleChange } = useForm<typeof initialValues>(initialValues);
+  const { values, handleChange, getValidationMessage, onSubmit } =
+    useForm<TChangeUsernameForm>(initialValues, changeUsernameSchema);
 
   const handleSubmit = async () => {
-    await UserApi.changeUsername(values);
+    const response = await onSubmit(UserApi.changeUsername);
+    if (response.status !== ApiStatus.SUCCESS) return;
     navigate(RoutesName.SETTINGS);
   };
 
@@ -28,7 +33,9 @@ export const ChangeUsernameForm = () => {
           label={{ ...messages.changeUsernameFormUsername }}
           variant={'dark'}
           name={'username'}
-          onChange={(e: any) => handleChange(e, 'newUsername')}
+          value={values.newUsername}
+          error={getValidationMessage('newUsername')}
+          onChange={(e) => handleChange(e, 'newUsername')}
         />
         <ButtonWrapper>
           <Button color={'darkBlue'} type={'button'} onClick={handleSubmit}>

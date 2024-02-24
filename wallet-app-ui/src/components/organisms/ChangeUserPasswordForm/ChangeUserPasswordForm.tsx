@@ -9,6 +9,7 @@ import { useForm } from '../../../hooks';
 import { SettingsApi } from '../../../api';
 import { ApiStatus } from '../../../models/apiResult';
 import { ChangePasswordForm } from '../../../models/apiTypes/settings';
+import { changeUserPasswordValidator } from '../../../validators/settings/changeUserPassword.validator';
 
 export const ChangeUserPasswordForm = () => {
   const navigate = useNavigate();
@@ -19,7 +20,8 @@ export const ChangeUserPasswordForm = () => {
     confirmPassword: '',
   };
 
-  const { handleChange, onSubmit } = useForm<ChangePasswordForm>(initialValues);
+  const { values, getValidationMessage, handleChange, onSubmit } =
+    useForm<ChangePasswordForm>(initialValues, changeUserPasswordValidator);
 
   const handleSubmit = async () => {
     const res = await onSubmit(SettingsApi.changePassword);
@@ -36,6 +38,8 @@ export const ChangeUserPasswordForm = () => {
           variant={'dark'}
           name={'oldPassword'}
           type={'password'}
+          value={values.oldPassword}
+          error={getValidationMessage('oldPassword')}
           onChange={(e) => handleChange(e, 'oldPassword')}
         />
         <InputField
@@ -43,6 +47,8 @@ export const ChangeUserPasswordForm = () => {
           variant={'dark'}
           type={'password'}
           name={'newPassword'}
+          value={values.newPassword}
+          error={getValidationMessage('newPassword')}
           onChange={(e) => handleChange(e, 'newPassword')}
         />
         <InputField
@@ -50,6 +56,8 @@ export const ChangeUserPasswordForm = () => {
           type={'password'}
           variant={'dark'}
           name={'confirmNewPassword'}
+          value={values.confirmPassword}
+          error={getValidationMessage('confirmPassword')}
           onChange={(e) => handleChange(e, 'confirmPassword')}
         />
       </Wrapper>

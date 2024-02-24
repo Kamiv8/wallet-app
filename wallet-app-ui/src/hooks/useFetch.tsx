@@ -24,8 +24,9 @@ export const useFetch = () => {
         }
         return response;
       } catch (e: any) {
+        console.log(e);
         closePendingModal();
-        openErrorModal(e?.message || 'An error occurred');
+        openErrorModal(e?.response.data?.message || 'An error occurred');
         return {
           status: ApiStatus.ERROR,
           message: '',

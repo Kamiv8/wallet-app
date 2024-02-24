@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { passwordRegex } from '../../const/regex';
-import { TRegisterForm } from '../../models/apiTypes/account/register/register.form';
+import { TRegisterForm } from '../../models/apiTypes/account';
 import { TSelectedIcon } from '../../components/organisms/RegisterForm/RegisterForm';
 
 export const registerSchema = yup.object<TRegisterForm>().shape({

@@ -11,6 +11,12 @@ const messages = defineMessages({
     defaultMessage: '',
   },
   //endregion
+  //region Atom Elements
+  selectResetOption: {
+    id: 'selectResetOption',
+    defaultMessage: 'Reset',
+  },
+  //endregion
   //region Register page
   username: {
     id: 'registerPageUsername',
@@ -266,6 +272,10 @@ const messages = defineMessages({
     id: 'settingsMainPageChangeLanguage',
     defaultMessage: 'Change language',
   },
+  settingsMainPageChangeUsername: {
+    id: 'settingsMainPageChangeUsername',
+    defaultMessage: 'Change username',
+  },
   //endregion
   //region Change currency form
   changeCurrencyPageTitle: {
@@ -321,6 +331,10 @@ const messages = defineMessages({
   changeCategoryFormYourCategory: {
     id: 'changeCategoryFormYourCategory',
     defaultMessage: 'Your category',
+  },
+  changeCategoryFormEmptyArray: {
+    id: 'changeCategoryFormEmptyArray',
+    defaultMessage: "You don't have your own category",
   },
   //endregion
   //region Table page

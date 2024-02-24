@@ -29,11 +29,11 @@ export const SettingsPage = () => {
           name={messages.settingsMainPageChangePassword}
           routeName={RoutesName.CHANGE_PASSWORD}
         />
-        {/*<NavigationBox*/}
-        {/*  Image={ChangeUserIcon}*/}
-        {/*  name={'Change username'}*/}
-        {/*  routeName={RoutesName.CHANGE_USERNAME}*/}
-        {/*/>*/}
+        <NavigationBox
+          Image={ChangeUserIcon}
+          name={messages.settingsMainPageChangeUsername}
+          routeName={RoutesName.CHANGE_USERNAME}
+        />
         <NavigationBox
           Image={ChangeUserIcon}
           name={messages.settingsMainPageChangeLanguage}

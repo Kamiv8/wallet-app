@@ -14,4 +14,5 @@ export const ListWrapper = styled.div`
 
 export const EmptyArrayWrapper = styled.div`
   margin: 50px 0;
+  text-align: center;
 `;
