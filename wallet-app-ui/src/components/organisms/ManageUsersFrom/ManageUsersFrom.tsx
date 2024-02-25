@@ -3,40 +3,11 @@ import messages from '../../../i18n/messages';
 import { SelectField, List } from '../../molecules';
 import { FormattedMessage } from 'react-intl';
 import { ButtonWrapper } from './ManageUsersForm.styles';
-import { GroupApi } from '../../../api';
-import { useEffect, useState } from 'react';
 import { TSelectItem } from '../../atoms/Select/Select';
-import { RoleEnum } from '../../../types/enums';
-
-const roles: TSelectItem[] = [
-  {
-    key: RoleEnum.ADMIN,
-    description: 'Admin',
-  },
-  {
-    key: RoleEnum.MEMBER,
-    description: 'Member',
-  },
-];
+import { roles, useManageUsersForm } from './useManageUsersForm';
 
 export const ManageUsersFrom = () => {
-  const [state, setState] = useState({
-    users: [],
-  });
-
-  useEffect(() => {
-    (async () => {
-      const users = await GroupApi.getUsers();
-      setState({
-        users: users.data?.response,
-      });
-    })();
-  }, []);
-
-  const deleteUser = async (userId: string) => {
-    await GroupApi.deleteUser(userId);
-  };
-
+  const { state, deleteUser } = useManageUsersForm();
   return (
     <>
       <CardWrapper gradientColor close={() => {}}>

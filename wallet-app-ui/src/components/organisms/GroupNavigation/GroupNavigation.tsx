@@ -1,23 +1,10 @@
-import { TBoxes } from '../PersonNavigation/PersonNavigation';
 import { NavigationBox } from '../../molecules';
-import { useContext, useEffect, useState } from 'react';
-import ApplicationContext from '../../../contexts/application.context';
 import { RoleEnum } from '../../../types/enums';
 import { Wrapper } from './GroupNavigation.styles';
-import { GroupApi } from '../../../api';
+import { useGroupNavigation } from './useGroupNavigation';
 
 export const GroupNavigation = () => {
-  const appContext = useContext(ApplicationContext);
-  const [, setState] = useState<number | undefined>(undefined);
-  const boxes: TBoxes[] = [];
-
-  useEffect(() => {
-    (async () => {
-      const data = await GroupApi.getJoinUserNotificationCount();
-      setState(data.data?.response.count);
-    })();
-  }, []);
-
+  const { boxes, appContext } = useGroupNavigation();
   return (
     <Wrapper>
       {boxes.map((b) => (

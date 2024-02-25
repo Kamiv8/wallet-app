@@ -3,64 +3,13 @@ import { InputField, SelectField } from '../../molecules';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { FormWrapper } from './CreateGroupForm.styles';
-import { TSelectItem } from '../../atoms/Select/Select';
-import { useForm } from '../../../hooks';
-import { useEffect, useState } from 'react';
-import { CurrencyDto } from '../../../models/dtos/currencyDto';
-import { GroupApi } from '../../../api';
-import { useNavigate } from 'react-router-dom';
-import { RoutesName } from '../../../const/routesName';
 import { parseDataToSelect } from '../../../helpers';
-
-const maxGroupMember: TSelectItem[] = [
-  {
-    key: 2,
-    description: '2',
-  },
-  {
-    key: 3,
-    description: '3',
-  },
-  {
-    key: 5,
-    description: '5',
-  },
-  {
-    key: 10,
-    description: '10',
-  },
-];
+import { maxGroupMember, useCreateGroupForm } from './useCreateGroupForm';
 
 export const CreateGroupForm = () => {
-  const [currencies, setCurrencies] = useState<CurrencyDto[]>([]);
-  const navigate = useNavigate();
-  const initialValues = {
-    name: '',
-    maxMembers: 2,
-    icon: 1 as 1 | 2 | 3 | 4,
-    currencyId: '',
-  };
-
-  const { values, handleChange } = useForm<typeof initialValues>(initialValues);
-
-  useEffect(() => {
-    (async () => {
-      // const data = await CurrencyApi.getCurrency();
-      setCurrencies([]);
-    })();
-  }, []);
-
-  const onSubmit = async () => {
-    const data = await GroupApi.createGroup(values);
-    localStorage.setItem('groupId', data.data?.response.groupId.toString());
-    localStorage.setItem('userRole', data.data?.response.role);
-  };
-
+  const { currencies, onSubmit, handleChange, onClose } = useCreateGroupForm();
   return (
-    <CardWrapper
-      gradientColor
-      close={() => navigate(RoutesName.CREATE_FIND_GROUP)}
-    >
+    <CardWrapper gradientColor close={onClose}>
       <FormWrapper>
         <InputField
           label={{ ...messages.createGroupFormName }}

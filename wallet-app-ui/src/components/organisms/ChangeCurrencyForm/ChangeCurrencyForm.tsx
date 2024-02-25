@@ -3,43 +3,14 @@ import messages from '../../../i18n/messages';
 import { SelectField } from '../../molecules';
 import { FormattedMessage } from 'react-intl';
 import { ButtonWrapper } from './ChangeCurrencyForm.styles';
-import { useNavigate } from 'react-router-dom';
-import { RoutesName } from '../../../const/routesName';
-import { useEffect, useState } from 'react';
-import { CurrencyDto } from '../../../models/dtos/currencyDto';
 import { parseDataToSelect } from '../../../helpers';
-import { useForm } from '../../../hooks';
-import { UserApi } from '../../../api';
+import { useChangeCurrencyForm } from './useChangeCurrencyForm';
 
 export const ChangeCurrencyForm = () => {
-  const navigate = useNavigate();
-  const [state, setState] = useState<CurrencyDto[]>([]);
-  const initialValues = {
-    currencyId: '',
-  };
-
-  const { values, handleChange } = useForm<typeof initialValues>(initialValues);
-
-  async function getCurrencyData() {
-    // const currencyData = await CurrencyApi.getCurrency();
-
-    setState([]);
-  }
-
-  useEffect(() => {
-    (async () => {
-      await getCurrencyData();
-    })();
-  }, []);
-
-  const onSubmit = async () => {
-    await UserApi.changeCurrencies(values);
-    navigate(RoutesName.SETTINGS);
-  };
-
+  const { state, handleChange, onSubmit, onClose } = useChangeCurrencyForm();
   return (
     <>
-      <CardWrapper gradientColor close={() => navigate(RoutesName.SETTINGS)}>
+      <CardWrapper gradientColor close={onClose}>
         <div>
           <SelectField
             label={{ ...messages.changeCurrencyFormCurrency }}

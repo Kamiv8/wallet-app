@@ -3,35 +3,13 @@ import { ButtonWrapper, Wrapper } from './ChangeUserPasswordForm.styles';
 import { InputField } from '../../molecules';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import { useNavigate } from 'react-router-dom';
-import { RoutesName } from '../../../const/routesName';
-import { useForm } from '../../../hooks';
-import { SettingsApi } from '../../../api';
-import { ApiStatus } from '../../../models/apiResult';
-import { ChangePasswordForm } from '../../../models/apiTypes/settings';
-import { changeUserPasswordValidator } from '../../../validators/settings/changeUserPassword.validator';
+import { useChangeUserPasswordForm } from './useChangeUserPasswordForm';
 
 export const ChangeUserPasswordForm = () => {
-  const navigate = useNavigate();
-
-  const initialValues = {
-    oldPassword: '',
-    newPassword: '',
-    confirmPassword: '',
-  };
-
-  const { values, getValidationMessage, handleChange, onSubmit } =
-    useForm<ChangePasswordForm>(initialValues, changeUserPasswordValidator);
-
-  const handleSubmit = async () => {
-    const res = await onSubmit(SettingsApi.changePassword);
-    if (res.status === ApiStatus.SUCCESS) {
-      navigate(RoutesName.SETTINGS);
-    }
-  };
-
+  const { handleSubmit, values, getValidationMessage, handleChange, onClose } =
+    useChangeUserPasswordForm();
   return (
-    <CardWrapper gradientColor close={() => navigate(RoutesName.SETTINGS)}>
+    <CardWrapper gradientColor close={onClose}>
       <Wrapper>
         <InputField
           label={{ ...messages.changePasswordFormOldPassword }}
