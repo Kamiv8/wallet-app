@@ -1,40 +1,22 @@
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { PaginationWrapper } from './HistoryPage.styles';
-import { useEffect, useState } from 'react';
-import { TransactionApi } from '../../../api';
 import { MainTemplate } from '../../templates';
 import { Typography } from '../../atoms';
 import { Pagination, TransactionItem } from '../../molecules';
-import { GetUserTransactionListResponse } from '../../../models/apiTypes/transaction/getUserTransactionList/getUserTransactionList.response';
-import { useFetch, usePagination } from '../../../hooks';
+import { useHistoryPage } from './useHistoryPage';
 
 export const HistoryPage = () => {
-  const [state, setState] = useState<GetUserTransactionListResponse | null>();
   const {
-    currentPage,
     setPage,
     totalPages,
     setNextPage,
     setPreviousPage,
     hasNext,
     hasPrevious,
-  } = usePagination(state?.paginationParamsResponseDto);
-  const { callToApi } = useFetch();
-
-  useEffect(() => {
-    (async () => {
-      const data = await callToApi(
-        TransactionApi.getAllTransactions({
-          pageNumber: currentPage,
-          pageSize: 5,
-        }),
-      );
-
-      setState(data.data);
-    })();
-  }, [currentPage]);
-
+    currentPage,
+    state,
+  } = useHistoryPage();
   return (
     <MainTemplate>
       <Typography
