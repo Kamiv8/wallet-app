@@ -11,13 +11,16 @@ export const useFetch = () => {
   } = useModalAction();
 
   const callToApi = useCallback(
-    async <T = null,>(
+    async <T = never,>(
       api: Promise<IApiResult<T>>,
       withSuccessModal?: boolean,
     ) => {
       try {
-        openPendingModal();
+        const timeout = setTimeout(() => {
+          openPendingModal();
+        }, 300);
         const response = await api;
+        clearTimeout(timeout);
         closePendingModal();
         if (response.status === ApiStatus.SUCCESS && withSuccessModal) {
           openSuccessModal(response.message);

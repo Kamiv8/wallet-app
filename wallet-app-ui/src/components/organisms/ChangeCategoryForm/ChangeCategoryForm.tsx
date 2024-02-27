@@ -5,66 +5,22 @@ import {
   ListWrapper,
   Wrapper,
 } from './ChangeCategoryForm.styles';
-import { useNavigate } from 'react-router-dom';
-import { RoutesName } from '../../../const/routesName';
 import { InputField, List } from '../../molecules';
 import messages from '../../../i18n/messages';
 import { FormattedMessage } from 'react-intl';
-import { CategoryApi } from '../../../api';
-import { useEffect, useState } from 'react';
-import { useFetch, useForm, useModalAction } from '../../../hooks';
-import { createCategorySchema } from '../../../validators/category/createCategory.validator';
-import {
-  TCreateUserCategoryForm,
-  TGetUserCategoriesResponse,
-} from '../../../models/apiTypes/category';
-import { ApiStatus } from '../../../models/apiResult';
+import { useChangeCategoryForm } from './useChangeCategoryForm';
 
 export const ChangeCategoryForm = () => {
-  const navigate = useNavigate();
-  const { callToApi } = useFetch();
-  const { openConfirmActionModal, closeConfirmActionModal } = useModalAction();
-
-  const [state, setState] = useState<Array<TGetUserCategoriesResponse>>([]);
-  const [refresher, setRefresher] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      const data = await callToApi(CategoryApi.getUserCategories());
-      setState(data.data ?? []);
-      setRefresher(false);
-    })();
-  }, [refresher]);
-
-  const initialValues = {
-    name: '',
-  };
-
-  const { handleChange, resetForm, onSubmit, getValidationMessage } =
-    useForm<TCreateUserCategoryForm>(initialValues, createCategorySchema);
-
-  const handleDelete = async (id: string) => {
-    await callToApi(CategoryApi.deleteUserCategory(id));
-    setRefresher(true);
-    closeConfirmActionModal();
-  };
-
-  const onClickDelete = (id: string) => {
-    openConfirmActionModal(
-      messages.changeCategoryFormDeleteConfirmModal,
-      () => handleDelete(id),
-      () => closeConfirmActionModal(),
-    );
-  };
-  const handleSubmit = async () => {
-    const response = await onSubmit(CategoryApi.createUserCategory);
-    if (response.status !== ApiStatus.SUCCESS) return;
-    setRefresher(true);
-    resetForm();
-  };
-
+  const {
+    state,
+    handleChange,
+    getValidationMessage,
+    handleSubmit,
+    onClickDelete,
+    onClose,
+  } = useChangeCategoryForm();
   return (
-    <CardWrapper gradientColor close={() => navigate(RoutesName.SETTINGS)}>
+    <CardWrapper gradientColor close={onClose}>
       <Wrapper>
         <InputField
           label={{ ...messages.changeCategoryFormAddNewCategory }}

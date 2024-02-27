@@ -1,4 +1,3 @@
-import { useForm } from '../../../hooks';
 import { InputField } from '../../molecules';
 import messages from '../../../i18n/messages';
 import {
@@ -10,39 +9,11 @@ import { Button, Typography } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 import { StyledLink } from '../../../styles/override/Link.styles';
 import { RoutesName } from '../../../const/routesName';
-import { AuthApi } from '../../../api';
-import { useNavigate } from 'react-router-dom';
-import { ApiStatus } from '../../../models/apiResult';
-import { authenticateSchema } from '../../../validators/account/authenticate.validator';
-import { LocalstorageEnum } from '../../../types/enums';
-import { TAuthenticateForm } from '../../../models/apiTypes/account';
-import { LocalstorageHelper } from '../../../helpers';
+import { useLoginForm } from './useLoginForm';
 
 export const LoginForm = () => {
-  const navigate = useNavigate();
-  const initialValues = {
-    username: '',
-    password: '',
-  };
-  const { handleChange, onSubmit, getValidationMessage, values } =
-    useForm<TAuthenticateForm>(initialValues, authenticateSchema);
-
-  const handleSubmit = async () => {
-    const authenticate = await onSubmit(AuthApi.authenticate);
-
-    if (authenticate?.status === ApiStatus.SUCCESS) {
-      LocalstorageHelper.setItem(
-        LocalstorageEnum.TOKEN,
-        authenticate.data?.token ?? '',
-      );
-      LocalstorageHelper.setItem(
-        LocalstorageEnum.REFRESH_TOKEN,
-        authenticate.data?.refreshToken ?? '',
-      );
-      navigate(RoutesName.ROOT);
-    }
-  };
-
+  const { values, handleSubmit, handleChange, getValidationMessage } =
+    useLoginForm();
   return (
     <Wrapper>
       <StyledFormItem>

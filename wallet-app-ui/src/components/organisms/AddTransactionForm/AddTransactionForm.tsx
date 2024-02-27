@@ -7,107 +7,26 @@ import {
   TextAreaField,
 } from '../../molecules';
 import messages from '../../../i18n/messages';
-import { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { FormWrapper, SavedInputsWrapper } from './AddTransactionForm.styles';
-import { useForm, FieldType, useFetch } from '../../../hooks';
-import { CategoryApi, CurrencyApi, TransactionApi } from '../../../api';
-import { TGetCurrenciesResponse } from '../../../models/apiTypes/currency';
-import { TGetUserCategoriesResponse } from '../../../models/apiTypes/category';
-import { TAddUserTransactionForm } from '../../../models/apiTypes/transaction';
+import { FieldType } from '../../../hooks';
 import { parseDataToSelect, parseToCurrencySelect } from '../../../helpers';
-import { addUserTransactionSchema } from '../../../validators/transaction/addUserTransaction.validator';
-import { ApiStatus } from '../../../models/apiResult';
-import { transactionDefaultColor } from '../../../const/colorPicker';
+import { useAddTransactionForm } from './useAddTransactionForm';
 
 export type TProps = {
   onClose: () => void;
 };
 
 export const AddTransactionForm = ({ onClose }: TProps) => {
-  const { callToApi } = useFetch();
-
-  const [isSaved, setIsSaved] = useState<boolean>(false);
-  const [state, setState] = useState({
-    currency: [] as Array<TGetCurrenciesResponse>,
-    category: [] as Array<TGetUserCategoriesResponse>,
-  });
-
-  const initialValues = {
-    title: '',
-    price: 0,
-    currencyId: '',
-    categoryId: '',
-    date: new Date(),
-    isDefault: false,
-    textColor: undefined,
-    backgroundColor: undefined,
-    description: undefined,
-  };
-
   const {
+    handleSubmit,
     values,
-    handleChange,
     getValidationMessage,
-    onSubmit,
-    updateInitValues,
-  } = useForm<TAddUserTransactionForm>(initialValues, addUserTransactionSchema);
-
-  const handleIsSaved = (e: any) => {
-    setIsSaved(e.target.checked);
-    handleChange(e, 'isDefault', FieldType.Checkbox);
-
-    if (!e.target.checked) {
-      setState((prev) => ({
-        ...prev,
-        backgroundColor: undefined,
-        textColor: undefined,
-      }));
-    }
-  };
-  async function getCurrencyData() {
-    const currencyData = await callToApi(CurrencyApi.getCurrencies());
-    setState((prev) => ({
-      ...prev,
-      currency: currencyData.data ?? [],
-    }));
-  }
-
-  async function getUserCategoryData() {
-    const data = await callToApi(CategoryApi.getUserCategories());
-    setState((prev) => ({
-      ...prev,
-      category: data.data ?? [],
-    }));
-  }
-
-  useEffect(() => {
-    (async () => {
-      await Promise.all([getCurrencyData(), getUserCategoryData()]);
-    })();
-  }, []);
-
-  useEffect(() => {
-    if (values.isDefault) {
-      updateInitValues({
-        ...values,
-        backgroundColor: transactionDefaultColor.backgroundColor,
-        textColor: transactionDefaultColor.textColor,
-      });
-    } else {
-      updateInitValues({
-        ...values,
-        backgroundColor: undefined,
-        textColor: undefined,
-      });
-    }
-  }, [values.isDefault]);
-
-  const handleSubmit = async () => {
-    const response = await onSubmit(TransactionApi.addTransaction);
-    if (response.status === ApiStatus.SUCCESS) onClose();
-  };
-
+    handleChange,
+    isSaved,
+    state,
+    handleIsSaved,
+  } = useAddTransactionForm({ onClose });
   return (
     <CardWrapper gradientColor close={onClose}>
       <FormWrapper>

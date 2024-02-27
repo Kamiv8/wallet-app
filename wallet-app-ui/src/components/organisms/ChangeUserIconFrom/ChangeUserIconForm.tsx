@@ -1,33 +1,17 @@
 import { CardWrapper, Typography, Button } from '../../atoms';
 import { ButtonWrapper, Wrapper } from './ChangeUserIconForm.styles';
 import { AvatarPicker } from '../../molecules';
-import { useForm } from '../../../hooks';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import { UserApi } from '../../../api';
-import { useNavigate } from 'react-router-dom';
-import { RoutesName } from '../../../const/routesName';
+import { useChangeUserIconForm } from './useChangeUserIconForm';
 
 export const ChangeUserIconForm = () => {
-  const navigate = useNavigate();
-
-  const initialValues = {
-    iconId: 1 as 1 | 2 | 3 | 4,
-  };
-
-  const { values, handleChange } = useForm<typeof initialValues>(initialValues);
-
-  const handleSubmit = async () => {
-    const command = {
-      iconId: values.iconId,
-    };
-    await UserApi.changeIcon(command);
-    navigate(RoutesName.SETTINGS);
-  };
+  const { handleChange, handleSubmit, onClose, values } =
+    useChangeUserIconForm();
 
   return (
     <>
-      <CardWrapper gradientColor close={() => navigate(RoutesName.SETTINGS)}>
+      <CardWrapper gradientColor close={onClose}>
         <Wrapper>
           <label>
             <Typography size={'m'} weight={700} color={'darkBlue'}>
