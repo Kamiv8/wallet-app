@@ -11,7 +11,7 @@ export const useFetch = () => {
   } = useModalAction();
 
   const callToApi = useCallback(
-    async <T = any,>(
+    async <T = null,>(
       api: Promise<IApiResult<T>>,
       withSuccessModal?: boolean,
     ) => {
@@ -24,7 +24,6 @@ export const useFetch = () => {
         }
         return response;
       } catch (e: any) {
-        console.log(e);
         closePendingModal();
         openErrorModal(e?.response.data?.message || 'An error occurred');
         return {
@@ -36,7 +35,7 @@ export const useFetch = () => {
     [],
   );
 
-  const callToApis = useCallback(async (apis: Array<Promise<IApiResult>>) => {
+  const callToApis = useCallback(async (apis: any) => {
     try {
       openPendingModal();
       const results = await Promise.all(apis);

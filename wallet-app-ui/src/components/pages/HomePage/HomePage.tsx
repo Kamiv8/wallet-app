@@ -21,6 +21,8 @@ import { GetTransactionsByCurrencyResponse } from '../../../models/apiTypes/tran
 import { LocalstorageHelper } from '../../../helpers/localstorage.helper';
 import { Languages, LocalstorageEnum } from '../../../types/enums';
 import { NoDataTypography } from './HomePage.styles';
+import { GetAccountDataResponse } from '../../../models/apiTypes/account';
+import { type } from 'node:os';
 
 interface IState {
   currencies: Array<TGetCurrenciesResponse>;
@@ -95,7 +97,7 @@ export const HomePage = () => {
           UserApi.getUserData(),
           TransactionApi.getTransactionsByCurrency(),
           TransactionApi.getLastTransactions(),
-          CurrencyApi.addCurrencies(),
+          CurrencyApi.getCurrencies(),
         ]);
 
       LocalstorageHelper.setItem(

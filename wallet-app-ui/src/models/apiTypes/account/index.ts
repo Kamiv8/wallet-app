@@ -1,5 +1,5 @@
 export * from './authenticate/authenticate.command';
-export * from './authenticate/authenticate.dto';
+export * from './authenticate/authenticate.response';
 export * from './authenticate/authenticate.form';
 
 export * from './changeForgotPassword/changeForgotPassword.command';
@@ -17,3 +17,4 @@ export * from './register/register.form';
 export * from './resetPassword/resetPassword.form';
 
 export * from './verifyEmail/verifyAccount.command';
+export * from './verifyEmail/verifyAccount.dto';

@@ -66,7 +66,7 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
     }
   };
   async function getCurrencyData() {
-    const currencyData = await callToApi(CurrencyApi.addCurrencies());
+    const currencyData = await callToApi(CurrencyApi.getCurrencies());
     setState((prev) => ({
       ...prev,
       currency: currencyData.data ?? [],

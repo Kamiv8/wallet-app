@@ -25,8 +25,6 @@ export class CategoryApi extends BaseApiConfig {
     return BaseApiHandler.handleApi(data);
   }
 
-  // TODO update user category
-
   public static async deleteUserCategory(
     categoryId: string,
   ): Promise<IApiResult> {

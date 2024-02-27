@@ -4,27 +4,27 @@ import { BaseApiHandler } from './baseApiHandler';
 import { ResetPasswordCommand } from '../models/commands/auth/resetPassword.command';
 import { noAuthApi } from './baseAxios.config';
 import {
-  AuthenticateDto,
+  AuthenticateResponse,
   ChangeForgotPasswordCommand,
   RegisterCommand,
   TAuthenticateForm,
+  TChangeForgotPasswordFormDto,
   TRegisterForm,
   TResetPasswordForm,
   VerifyAccountCommand,
+  VerifyAccountDto,
 } from '../models/apiTypes/account';
 
 export class AuthApi {
   public static async authenticate(
     value: TAuthenticateForm,
-  ): Promise<IApiResult<AuthenticateDto>> {
+  ): Promise<IApiResult<AuthenticateResponse>> {
     const command = new AuthenticateCommand(value.username, value.password);
     const data = await noAuthApi.post('/account/authenticate', command);
-    return BaseApiHandler.handleApi<AuthenticateDto>(data);
+    return BaseApiHandler.handleApi<AuthenticateResponse>(data);
   }
 
-  public static async register(
-    value: TRegisterForm,
-  ): Promise<IApiResult<null>> {
+  public static async register(value: TRegisterForm): Promise<IApiResult> {
     const command = new RegisterCommand(
       value.username,
       value.email,
@@ -34,7 +34,7 @@ export class AuthApi {
     );
     const data = await noAuthApi.post('/account/register', command);
 
-    return BaseApiHandler.handleApi<null>(data);
+    return BaseApiHandler.handleApi(data);
   }
 
   public static async resetPassword(
@@ -45,7 +45,9 @@ export class AuthApi {
     return BaseApiHandler.handleApi(data);
   }
 
-  public static async changeForgotPassword(values: any): Promise<IApiResult> {
+  public static async changeForgotPassword(
+    values: TChangeForgotPasswordFormDto,
+  ): Promise<IApiResult> {
     const command = new ChangeForgotPasswordCommand(
       values.email,
       values.token,
@@ -58,10 +60,13 @@ export class AuthApi {
   }
 
   public static async verifyAccount(
-    value: any,
+    value: VerifyAccountDto,
     controller: AbortController,
   ): Promise<IApiResult> {
-    const command = new VerifyAccountCommand(value.token, value.email);
+    const command = new VerifyAccountCommand(
+      value.token as string,
+      value.email as string,
+    );
     const data = await noAuthApi.get(`/account/confirmEmail`, {
       params: {
         token: command.token,

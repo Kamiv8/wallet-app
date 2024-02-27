@@ -4,7 +4,7 @@ import { api } from './baseAxios.config';
 import { TGetCurrenciesResponse } from '../models/apiTypes/currency';
 
 export class CurrencyApi {
-  public static async addCurrencies(): Promise<
+  public static async getCurrencies(): Promise<
     IApiResult<Array<TGetCurrenciesResponse>>
   > {
     const data = await api.get('/currency');

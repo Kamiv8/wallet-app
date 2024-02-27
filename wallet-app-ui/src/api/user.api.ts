@@ -15,7 +15,7 @@ export class UserApi {
     IApiResult<GetAccountDataResponse>
   > {
     const data = await api.get('/account/data');
-    return BaseApiHandler.handleApi(data);
+    return BaseApiHandler.handleApi<GetAccountDataResponse>(data);
   }
 
   public static async changeLanguage(
