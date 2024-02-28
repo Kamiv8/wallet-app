@@ -10,6 +10,7 @@ import { createCategorySchema } from '../../../validators/category/createCategor
 import messages from '../../../i18n/messages';
 import { ApiStatus } from '../../../models/apiResult';
 import { RoutesName } from '../../../const/routesName';
+import { CustomString } from '../../../overrides/string.override';
 
 export const useChangeCategoryForm = () => {
   const navigate = useNavigate();
@@ -18,6 +19,11 @@ export const useChangeCategoryForm = () => {
 
   const [state, setState] = useState<Array<TGetUserCategoriesResponse>>([]);
   const [refresher, setRefresher] = useState(false);
+  const initialValues = {
+    name: CustomString.Empty,
+  };
+  const { handleChange, resetForm, onSubmit, getValidationMessage } =
+    useForm<TCreateUserCategoryForm>(initialValues, createCategorySchema);
 
   useEffect(() => {
     (async () => {
@@ -26,13 +32,6 @@ export const useChangeCategoryForm = () => {
       setRefresher(false);
     })();
   }, [refresher]);
-
-  const initialValues = {
-    name: '',
-  };
-
-  const { handleChange, resetForm, onSubmit, getValidationMessage } =
-    useForm<TCreateUserCategoryForm>(initialValues, createCategorySchema);
 
   const handleDelete = async (id: string) => {
     await callToApi(CategoryApi.deleteUserCategory(id));

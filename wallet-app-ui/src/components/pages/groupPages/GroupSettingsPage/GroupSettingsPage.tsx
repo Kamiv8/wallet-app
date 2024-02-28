@@ -9,12 +9,13 @@ import { useEffect, useState } from 'react';
 import { GroupApi } from '../../../../api';
 import { MainTemplate, SettingsTemplate } from '../../../templates';
 import { Avatar, Button, Typography } from '../../../atoms';
+import { CustomString } from '../../../../overrides/string.override';
 
 export const GroupSettingsPage = () => {
   const [state, setState] = useState({
-    id: '',
+    id: CustomString.Empty,
     iconId: 1,
-    groupName: '',
+    groupName: CustomString.Empty,
     admins: [] as string[],
     maxMembers: 0,
     membersCount: 0,

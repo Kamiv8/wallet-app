@@ -10,6 +10,7 @@ import {
   GetTransactionsByCurrencyResponse,
   TransactionResponse,
 } from '../../../models/apiTypes/transaction';
+import { CustomString } from '../../../overrides/string.override';
 
 interface IState {
   currencies: Array<TGetCurrenciesResponse>;
@@ -46,8 +47,8 @@ export const useHomePage = () => {
       actualMoneyEur: 0,
     },
     activeCurrency: {
-      incomeChart: '',
-      costChart: '',
+      incomeChart: CustomString.Empty,
+      costChart: CustomString.Empty,
     },
   });
 
@@ -84,7 +85,7 @@ export const useHomePage = () => {
           UserApi.getUserData(),
           TransactionApi.getTransactionsByCurrency(),
           TransactionApi.getLastTransactions(),
-          CurrencyApi.addCurrencies(),
+          CurrencyApi.getCurrencies(),
         ]);
 
       LocalstorageHelper.setItem(

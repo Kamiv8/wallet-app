@@ -10,7 +10,7 @@ export enum ActionEnum {
   CHANGE_MODAL_STATE,
 }
 
-export type ApplicationType = 'SINGLE' | 'GROUP';
+export type ApplicationType = 'SINGLE' | 'GROUP'; // TODO moved to enum
 
 type TInitialState = {
   language: Languages;

@@ -7,6 +7,8 @@ import { AuthApi } from '../../../api';
 import { useFetch } from '../../../hooks';
 import { VerificationAccountTemplate } from '../../templates';
 import { Typography } from '../../atoms';
+import { FormattedMessage } from 'react-intl';
+import messages from '../../../i18n/messages';
 
 export const VerificationSuccessfulPage = () => {
   const { callToApi } = useFetch();
@@ -28,16 +30,18 @@ export const VerificationSuccessfulPage = () => {
       Image={VerifyDone}
       heading={
         <Typography size={'xl'} weight={700} color={'lightBlue'}>
-          Verification successful
+          <FormattedMessage
+            {...messages.verificationSuccessfulPageVerifySuccess}
+          />
         </Typography>
       }
     >
       <Typography size={'l'} color={'orange'} weight={700}>
-        You can now login.
+        <FormattedMessage {...messages.verificationSuccessfulPageYouCanLogin} />
       </Typography>
       <StyledLink to={RoutesName.LOGIN}>
         <Typography size={'l'} color={'orange'} underline weight={700}>
-          Click here
+          <FormattedMessage {...messages.buttonClickHere} />
         </Typography>
       </StyledLink>
     </VerificationAccountTemplate>

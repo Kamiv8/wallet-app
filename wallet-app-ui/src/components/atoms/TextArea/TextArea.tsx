@@ -1,6 +1,7 @@
 import StyledTextArea from './TextArea.style';
 import { ChangeEvent } from 'react';
 import { TColor } from '../../../types/types';
+import { CustomString } from '../../../overrides/string.override';
 
 export type TProps = {
   color: TColor;
@@ -17,7 +18,7 @@ export const TextArea = (props: TProps) => {
       onChange={(e) => props.onChange(e)}
       name={props.name}
       value={props.value}
-      placeholder={props.placeholder || ''}
+      placeholder={props.placeholder || CustomString.Empty}
     />
   );
 };

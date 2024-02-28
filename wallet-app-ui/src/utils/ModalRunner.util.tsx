@@ -11,6 +11,7 @@ import {
 import { ConfirmActionModal } from '../components/molecules/ConfirmActionModal/ConfirmActionModal';
 import { useModalAction } from '../hooks';
 import theme from '../styles/theme';
+import { CustomString } from '../overrides/string.override';
 
 const ModalRunnerUtil = () => {
   const appContext = useContext(ApplicationContext);
@@ -42,7 +43,11 @@ const ModalRunnerUtil = () => {
         return (
           <BlurBackgroundTemplate
             content={
-              <SuccessModal text={appContext.state.modalState?.message || ''} />
+              <SuccessModal
+                text={
+                  appContext.state.modalState?.message || CustomString.Empty
+                }
+              />
             }
             isOpen={appContext.state.modalState.isActive}
             closeModal={closeSuccessModal}

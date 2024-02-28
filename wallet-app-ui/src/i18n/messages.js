@@ -447,6 +447,16 @@ const messages = defineMessages({
     defaultMessage: 'Settings',
   },
   //endregion
+  //region VerificationSuccessfulPage
+  verificationSuccessfulPageVerifySuccess: {
+    id: 'verificationSuccessfulPageVerifySuccess',
+    defaultMessage: 'Verification successful',
+  },
+  verificationSuccessfulPageYouCanLogin: {
+    id: 'verificationSuccessfulPageYouCanLogin',
+    defaultMessage: 'You can now login',
+  },
+  //endregion
   //region Modals
   addTransactionPageConfirmModal: {
     id: 'addTransactionPageConfirmModal',
@@ -489,6 +499,10 @@ const messages = defineMessages({
   buttonNo: {
     id: 'buttonNo',
     defaultMessage: 'No',
+  },
+  buttonClickHere: {
+    id: 'buttonClickHere',
+    defaultMessage: 'Click here',
   },
   //endregion
 });

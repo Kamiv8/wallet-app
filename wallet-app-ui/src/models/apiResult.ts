@@ -4,7 +4,8 @@ export enum ApiStatus {
   ERROR = 404,
   UNAUTHORIZED = 401,
 }
-export interface IApiResult<T = null> {
+export interface IApiResult<T = any> {
+  // TODO change to null
   status: ApiStatus;
   message: string;
   data?: T;

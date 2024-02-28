@@ -19,11 +19,6 @@ export const SettingsPage = () => {
           name={messages.settingsMainPageChangeCategory}
           routeName={RoutesName.CHANGE_CATEGORY}
         />
-        {/*<NavigationBox*/}
-        {/*  Image={ChangeUserIcon}*/}
-        {/*  name={'Change icon'}*/}
-        {/*  routeName={RoutesName.CHANGE_ICON}*/}
-        {/*/>*/}
         <NavigationBox
           Image={ChangeUserIcon}
           name={messages.settingsMainPageChangePassword}

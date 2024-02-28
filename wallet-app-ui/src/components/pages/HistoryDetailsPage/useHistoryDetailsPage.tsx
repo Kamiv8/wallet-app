@@ -1,26 +1,28 @@
 import { useFetch } from '../../../hooks';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { GetUserTransactionDetailsResponse } from '../../../models/apiTypes/transaction';
 import { TransactionApi } from '../../../api';
+import { CustomString } from '../../../overrides/string.override';
 
 export const useHistoryDetailsPage = () => {
   const { callToApi } = useFetch();
   const { id } = useParams();
 
-  const [state, setState] = useState<GetUserTransactionDetailsResponse>({
-    id: '',
-    title: '',
-    categoryName: '',
+  const initialState = {
+    id: CustomString.Empty,
+    title: CustomString.Empty,
+    categoryName: CustomString.Empty,
     price: 0,
     date: new Date(),
-    currencyCode: '',
-    description: '',
+    currencyCode: CustomString.Empty,
+    description: CustomString.Empty,
     chartData: {
       all: 0,
       currentCategory: 0,
     },
-  });
+  };
+
+  const [state, setState] = useState<typeof initialState>(initialState);
 
   useEffect(() => {
     (async () => {
@@ -28,7 +30,7 @@ export const useHistoryDetailsPage = () => {
         TransactionApi.getTransactionDetails(id as string),
       );
       if (!data.data) return;
-      setState(data.data);
+      setState((prev) => ({ ...prev, ...data.data }));
     })();
   }, []);
 

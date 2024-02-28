@@ -8,7 +8,7 @@ import {
   ChangeForgotPasswordCommand,
   RegisterCommand,
   TAuthenticateForm,
-  TChangeForgotPasswordFormDto,
+  TChangeForgotPasswordForm,
   TRegisterForm,
   TResetPasswordForm,
   VerifyAccountCommand,
@@ -46,13 +46,13 @@ export class AuthApi {
   }
 
   public static async changeForgotPassword(
-    values: TChangeForgotPasswordFormDto,
+    values: TChangeForgotPasswordForm,
   ): Promise<IApiResult> {
     const command = new ChangeForgotPasswordCommand(
-      values.email,
-      values.token,
       values.password,
       values.confirmPassword,
+      values.email,
+      values.token,
     );
     const data = await noAuthApi.post('/account/changeForgotPassword', command);
 

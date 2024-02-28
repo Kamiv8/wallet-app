@@ -4,6 +4,7 @@ import { devConfig } from '../const/config';
 import { ApiStatus } from '../models/apiResult';
 import { LocalstorageHelper } from '../helpers';
 import { LocalstorageEnum } from '../types/enums';
+import { CustomString } from '../overrides/string.override';
 
 export const api = axios.create();
 api.interceptors.request.use(
@@ -36,11 +37,11 @@ api.interceptors.response.use(
       originalRequest.headers.Authorization = `Bearer ${token.data?.jwtToken}`;
       LocalstorageHelper.setItem(
         LocalstorageEnum.TOKEN,
-        token.data?.jwtToken ?? '',
+        token.data?.jwtToken ?? CustomString.Empty,
       );
       LocalstorageHelper.setItem(
         LocalstorageEnum.REFRESH_TOKEN,
-        token.data?.refreshToken ?? '',
+        token.data?.refreshToken ?? CustomString.Empty,
       );
       return api(originalRequest);
     }

@@ -6,12 +6,13 @@ import { createUserSchema } from '../../../validators/Note/CreateNote.validator'
 import { NoteApi } from '../../../api';
 import { ApiStatus } from '../../../models/apiResult';
 import { RoutesName } from '../../../const/routesName';
+import { CustomString } from '../../../overrides/string.override';
 
 export const useAddNoteForm = () => {
   const navigate = useNavigate();
   const initialValues = {
-    title: '',
-    text: '',
+    title: CustomString.Empty,
+    text: CustomString.Empty,
     textColor: colorPicker.textColor,
     backgroundColor: colorPicker.backgroundColor,
   };

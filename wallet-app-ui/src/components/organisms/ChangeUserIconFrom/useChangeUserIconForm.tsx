@@ -1,22 +1,24 @@
 import { useNavigate } from 'react-router-dom';
-import { useForm } from '../../../hooks';
+import { useFetch, useForm } from '../../../hooks';
 import { UserApi } from '../../../api';
 import { RoutesName } from '../../../const/routesName';
+import { UserIconTypeEnum } from '../../../types/enums';
+import { ApiStatus } from '../../../models/apiResult';
+import { ChangeUserIconForm } from '../../../models/apiTypes/settings';
 
 export const useChangeUserIconForm = () => {
+  const { callToApi } = useFetch();
   const navigate = useNavigate();
 
   const initialValues = {
-    iconId: 1 as 1 | 2 | 3 | 4,
+    iconId: UserIconTypeEnum.Boy,
   };
 
-  const { values, handleChange } = useForm<typeof initialValues>(initialValues);
+  const { values, handleChange } = useForm<ChangeUserIconForm>(initialValues);
 
   const handleSubmit = async () => {
-    const command = {
-      iconId: values.iconId,
-    };
-    await UserApi.changeIcon(command);
+    const response = await callToApi(UserApi.changeIcon(values.iconId));
+    if (response.status !== ApiStatus.SUCCESS) return;
     navigate(RoutesName.SETTINGS);
   };
 

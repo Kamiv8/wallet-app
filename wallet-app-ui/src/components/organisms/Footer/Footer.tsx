@@ -1,20 +1,11 @@
 import { Circle, NavColumn, NavigationContent, Wrapper } from './Footer.styles';
 import { Link } from 'react-router-dom';
-import { ReactNode } from 'react';
 import { NavigationItem } from '../../molecules';
 import { StyledLink } from '../../../styles/override/Link.styles';
-import { Typography } from '../../atoms';
-import { FormattedMessage } from 'react-intl';
 import MoreIcon from '../../../assets/images/navigationIcons/more.svg';
 import messages from '../../../i18n/messages';
 import { NavigationPage } from '../../pages';
 import { useFooter } from './useFooter';
-
-export type TNavigationItems = {
-  route: string;
-  icon: string;
-  text: ReactNode;
-};
 
 export type TProps = {
   isGroup?: boolean;
@@ -60,11 +51,7 @@ export const Footer = (props: TProps) => {
             <NavigationItem
               icon={MoreIcon}
               onClick={toggleNavigation}
-              text={
-                <Typography size={'s'} weight={700}>
-                  <FormattedMessage {...messages.navigationMore} />
-                </Typography>
-              }
+              text={messages.navigationMore}
             />
           </NavColumn>
         </NavigationContent>

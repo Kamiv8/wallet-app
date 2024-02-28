@@ -5,6 +5,7 @@ import { ReactComponent as SelectUpArrow } from '../../../assets/images/selectUp
 import { FieldType } from '../../../hooks';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
+import { CustomString } from '../../../overrides/string.override';
 
 export type TSelectItem = {
   key: string | number;
@@ -20,8 +21,8 @@ export type TProps = {
 
 export const Select = (props: TProps) => {
   const [selected, setSelected] = useState<TSelectItem>({
-    key: '',
-    description: '',
+    key: CustomString.Empty,
+    description: CustomString.Empty,
   });
 
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -59,7 +60,10 @@ export const Select = (props: TProps) => {
           <OptionWrapper isRounded={props.isRounded}>
             <Option
               onClick={() =>
-                optionAction({ key: '', description: props.name || '' })
+                optionAction({
+                  key: CustomString.Empty,
+                  description: props.name || CustomString.Empty,
+                })
               }
               isRounded={props.isRounded}
             >

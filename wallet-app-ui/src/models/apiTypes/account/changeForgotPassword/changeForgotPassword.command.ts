@@ -1,4 +1,8 @@
 export class ChangeForgotPasswordCommand {
-  constructor(public Email: string, public Token: string, public Password: string, public ConfirmPassword: string) {
-  }
+  constructor(
+    public Password: string,
+    public ConfirmPassword: string,
+    public Email?: string,
+    public Token?: string,
+  ) {}
 }

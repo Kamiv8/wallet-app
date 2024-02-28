@@ -5,6 +5,7 @@ import { useForm } from '../../../hooks';
 import { GroupApi } from '../../../api';
 import { TSelectItem } from '../../atoms/Select/Select';
 import { RoutesName } from '../../../const/routesName';
+import { CustomString } from '../../../overrides/string.override';
 
 export const maxGroupMember: TSelectItem[] = [
   {
@@ -28,10 +29,10 @@ export const useCreateGroupForm = () => {
   const [currencies, setCurrencies] = useState<CurrencyDto[]>([]);
   const navigate = useNavigate();
   const initialValues = {
-    name: '',
+    name: CustomString.Empty,
     maxMembers: 2,
     icon: 1 as 1 | 2 | 3 | 4,
-    currencyId: '',
+    currencyId: CustomString.Empty,
   };
 
   const { values, handleChange } = useForm<typeof initialValues>(initialValues);

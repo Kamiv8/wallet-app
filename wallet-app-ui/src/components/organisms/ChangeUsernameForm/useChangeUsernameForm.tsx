@@ -5,11 +5,12 @@ import { changeUsernameSchema } from '../../../validators/settings/changeUsernam
 import { UserApi } from '../../../api';
 import { ApiStatus } from '../../../models/apiResult';
 import { RoutesName } from '../../../const/routesName';
+import { CustomString } from '../../../overrides/string.override';
 
 export const useChangeUsernameForm = () => {
   const navigate = useNavigate();
   const initialValues = {
-    newUsername: '',
+    newUsername: CustomString.Empty,
   };
 
   const { values, handleChange, getValidationMessage, onSubmit } =

@@ -5,11 +5,12 @@ import { resetPasswordSchema } from '../../../validators/account/resetPassword.v
 import { useCallback } from 'react';
 import { AuthApi } from '../../../api';
 import { RoutesName } from '../../../const/routesName';
+import { CustomString } from '../../../overrides/string.override';
 
 export const useResetPasswordForm = () => {
   const navigate = useNavigate();
   const initialValues = {
-    email: '',
+    email: CustomString.Empty,
   };
 
   const { handleChange, values, onSubmit, getValidationMessage } =

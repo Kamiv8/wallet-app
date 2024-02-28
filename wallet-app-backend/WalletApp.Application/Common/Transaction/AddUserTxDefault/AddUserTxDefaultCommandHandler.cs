@@ -11,25 +11,19 @@ public class AddUserTxDefaultCommandHandler : ICommandHandler<AddUserTxDefaultCo
 {
     private readonly ITransactionRepository _transactionRepository;
     private readonly IDefaultTransactionRepository _defaultTransactionRepository;
-    private readonly ICurrencyRepository _currencyRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IAccountDataRepository _accountDataRepository;
     private readonly IDate _date;
 
     public AddUserTxDefaultCommandHandler(
         ITransactionRepository transactionRepository,
         IDefaultTransactionRepository defaultTransactionRepository,
-        ICurrencyRepository currencyRepository,
         IUnitOfWork unitOfWork,
-        IAccountDataRepository accountDataRepository,
         IDate date
     )
     {
         _transactionRepository = transactionRepository;
         _defaultTransactionRepository = defaultTransactionRepository;
-        _currencyRepository = currencyRepository;
         _unitOfWork = unitOfWork;
-        _accountDataRepository = accountDataRepository;
         _date = date;
     }
 

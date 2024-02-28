@@ -4,6 +4,7 @@ import { Languages } from '../../../types/enums';
 import { UserApi } from '../../../api';
 import { RoutesName } from '../../../const/routesName';
 import { TSelectItem } from '../../atoms/Select/Select';
+import { ChangeLanguageForm } from '../../../models/apiTypes/settings';
 
 export const languages: TSelectItem[] = [
   {
@@ -24,7 +25,7 @@ export const useChangeLanguageForm = () => {
     language: Languages.ENGLISH,
   };
 
-  const { values, handleChange } = useForm(initialValue);
+  const { values, handleChange } = useForm<ChangeLanguageForm>(initialValue);
 
   const handleSubmit = async () => {
     const response = await callToApi(UserApi.changeLanguage(values));

@@ -7,30 +7,30 @@ import { ApiStatus } from '../../../models/apiResult';
 import { LocalstorageHelper } from '../../../helpers';
 import { LocalstorageEnum } from '../../../types/enums';
 import { RoutesName } from '../../../const/routesName';
+import { CustomString } from '../../../overrides/string.override';
 
 export const useLoginForm = () => {
   const navigate = useNavigate();
   const initialValues = {
-    username: '',
-    password: '',
+    username: CustomString.Empty,
+    password: CustomString.Empty,
   };
   const { handleChange, onSubmit, getValidationMessage, values } =
     useForm<TAuthenticateForm>(initialValues, authenticateSchema);
 
   const handleSubmit = async () => {
     const authenticate = await onSubmit(AuthApi.authenticate);
+    if (authenticate.status !== ApiStatus.SUCCESS) return;
 
-    if (authenticate?.status === ApiStatus.SUCCESS) {
-      LocalstorageHelper.setItem(
-        LocalstorageEnum.TOKEN,
-        authenticate.data?.token ?? '',
-      );
-      LocalstorageHelper.setItem(
-        LocalstorageEnum.REFRESH_TOKEN,
-        authenticate.data?.refreshToken ?? '',
-      );
-      navigate(RoutesName.ROOT);
-    }
+    LocalstorageHelper.setItem(
+      LocalstorageEnum.TOKEN,
+      authenticate.data?.token ?? CustomString.Empty,
+    );
+    LocalstorageHelper.setItem(
+      LocalstorageEnum.REFRESH_TOKEN,
+      authenticate.data?.refreshToken ?? CustomString.Empty,
+    );
+    navigate(RoutesName.ROOT);
   };
 
   return {

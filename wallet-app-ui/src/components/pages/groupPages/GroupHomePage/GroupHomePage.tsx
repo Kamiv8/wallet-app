@@ -13,6 +13,7 @@ import { ChartTypeEnum } from '../../../../types/enums/chartType.enum';
 import { GroupDataWrapper } from './GroupHomePage.styles';
 import { MainTemplate } from '../../../templates';
 import { Avatar, Chart, Typography } from '../../../atoms';
+import { CustomString } from '../../../../overrides/string.override';
 // import { TransactionItem } from '../../../molecules';
 
 interface IState {
@@ -32,9 +33,9 @@ export const GroupHomePage = () => {
   const appContext = useContext(ApplicationContext);
   const [state, setState] = useState<IState>({
     iconId: 1,
-    groupName: '',
+    groupName: CustomString.Empty,
     actualMoney: 0,
-    currencyMark: '',
+    currencyMark: CustomString.Empty,
     lastTransactions: [],
     moneyChart: [],
     incomeChart: [],

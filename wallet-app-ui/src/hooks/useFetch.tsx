@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { ApiStatus, IApiResult } from '../models/apiResult';
 import { useModalAction } from './useModalAction';
+import { CustomString } from '../overrides/string.override';
 
 export const useFetch = () => {
   const {
@@ -31,7 +32,7 @@ export const useFetch = () => {
         openErrorModal(e?.response.data?.message || 'An error occurred');
         return {
           status: ApiStatus.ERROR,
-          message: '',
+          message: CustomString.Empty,
         };
       }
     },
@@ -50,7 +51,7 @@ export const useFetch = () => {
       return [
         {
           status: ApiStatus.ERROR,
-          message: '',
+          message: CustomString.Empty,
         },
       ];
     }

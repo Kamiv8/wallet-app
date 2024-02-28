@@ -83,10 +83,10 @@ export const useForm = <T,>(
   );
 
   const onSubmit = useCallback(
-    async <K = any,>(
+    async <K = any, J = any>(
       api: (value: T) => Promise<IApiResult<K>>,
       withSuccessModal = false,
-      extraValues?: any,
+      extraValues?: J,
     ) => {
       try {
         await validationSchema?.validate(values, {

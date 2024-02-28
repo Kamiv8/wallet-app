@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import ApplicationContext from '../contexts/application.context';
-import { ActionEnum } from '../contexts/application.reducer';
+import { ActionEnum, ApplicationType } from '../contexts/application.reducer';
 
 export const useAppReducer = () => {
   const { dispatch } = useContext(ApplicationContext);
@@ -12,7 +12,15 @@ export const useAppReducer = () => {
     });
   };
 
+  const changeApplicationType = (type: ApplicationType) => {
+    dispatch({
+      type: ActionEnum.CHANGE_APPLICATION_TYPE,
+      payload: type,
+    });
+  };
+
   return {
     changeLanguage,
+    changeApplicationType,
   };
 };

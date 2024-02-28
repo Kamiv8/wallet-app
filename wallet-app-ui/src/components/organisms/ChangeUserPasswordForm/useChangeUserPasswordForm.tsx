@@ -5,14 +5,15 @@ import { changeUserPasswordValidator } from '../../../validators/settings/change
 import { SettingsApi } from '../../../api';
 import { ApiStatus } from '../../../models/apiResult';
 import { RoutesName } from '../../../const/routesName';
+import { CustomString } from '../../../overrides/string.override';
 
 export const useChangeUserPasswordForm = () => {
   const navigate = useNavigate();
 
   const initialValues = {
-    oldPassword: '',
-    newPassword: '',
-    confirmPassword: '',
+    oldPassword: CustomString.Empty,
+    newPassword: CustomString.Empty,
+    confirmPassword: CustomString.Empty,
   };
 
   const { values, getValidationMessage, handleChange, onSubmit } =
@@ -20,9 +21,8 @@ export const useChangeUserPasswordForm = () => {
 
   const handleSubmit = async () => {
     const res = await onSubmit(SettingsApi.changePassword);
-    if (res.status === ApiStatus.SUCCESS) {
-      navigate(RoutesName.SETTINGS);
-    }
+    if (res.status !== ApiStatus.SUCCESS) return;
+    navigate(RoutesName.SETTINGS);
   };
 
   return {

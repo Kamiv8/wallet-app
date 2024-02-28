@@ -5,13 +5,16 @@ import { changeForgotPasswordSchema } from '../../../validators/account/changeFo
 import { useCallback } from 'react';
 import { RoutesName } from '../../../const/routesName';
 import { AuthApi } from '../../../api';
+import { CustomString } from '../../../overrides/string.override';
 
 export const useChangeResetPasswordForm = () => {
   const navigate = useNavigate();
   const params = useParams();
   const initialValues = {
-    password: '',
-    confirmPassword: '',
+    password: CustomString.Empty,
+    confirmPassword: CustomString.Empty,
+    email: params.email,
+    token: params.token,
   };
 
   const { handleChange, values, getValidationMessage, onSubmit } =
@@ -25,10 +28,7 @@ export const useChangeResetPasswordForm = () => {
   }, []);
 
   const handleSubmit = useCallback(async () => {
-    await onSubmit(AuthApi.changeForgotPassword, true, {
-      email: params.email,
-      token: params['*'],
-    });
+    await onSubmit(AuthApi.changeForgotPassword, true);
   }, [values]);
 
   return {

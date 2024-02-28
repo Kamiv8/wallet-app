@@ -4,12 +4,8 @@ import { useFetch } from '../../../hooks';
 import { LocalstorageHelper } from '../../../helpers';
 import { LocalstorageEnum, UserIconTypeEnum } from '../../../types/enums';
 import { UserApi } from '../../../api';
+import { CustomString } from '../../../overrides/string.override';
 
-type TState = {
-  username: string;
-  avatarNumber: UserIconTypeEnum;
-  groupId?: string | null;
-};
 export const useNavigationPage = () => {
   const appContext = useContext(ApplicationContext);
   const { callToApi } = useFetch();
@@ -17,28 +13,31 @@ export const useNavigationPage = () => {
     LocalstorageEnum.USERNAME,
     LocalstorageEnum.ICON_TYPE,
   ]);
-  const [state, setState] = useState<TState>({
+
+  const initialState = {
     username,
-    avatarNumber: +iconType,
-    groupId: null,
-  });
+    avatarNumber: +iconType as UserIconTypeEnum,
+    groupId: CustomString.Empty,
+  };
+
+  const [state, setState] = useState<typeof initialState>(initialState);
 
   async function getUserData() {
     if (username && iconType) return;
     const userData = await callToApi(UserApi.getUserData());
     LocalstorageHelper.setItem(
       LocalstorageEnum.USERNAME,
-      userData.data?.username || '',
+      userData.data?.username || CustomString.Empty,
     );
     LocalstorageHelper.setItem(
       LocalstorageEnum.ICON_TYPE,
-      userData.data?.iconType.toString() || '',
+      userData.data?.iconType.toString() || CustomString.Empty,
     );
     setState((prev) => ({
       ...prev,
-      username: userData.data?.username ?? '',
+      username: userData.data?.username ?? CustomString.Empty,
       avatarNumber: userData.data?.iconType ?? 0,
-      groupId: userData.data?.groupId,
+      groupId: userData.data?.groupId ?? CustomString.Empty,
     }));
   }
 

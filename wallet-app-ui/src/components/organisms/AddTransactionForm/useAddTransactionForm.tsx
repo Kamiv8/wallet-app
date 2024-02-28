@@ -7,13 +7,14 @@ import { addUserTransactionSchema } from '../../../validators/transaction/addUse
 import { CategoryApi, CurrencyApi, TransactionApi } from '../../../api';
 import { transactionDefaultColor } from '../../../const/colorPicker';
 import { ApiStatus } from '../../../models/apiResult';
+import { CustomString } from '../../../overrides/string.override';
 
 export type TProps = {
   onClose: () => void;
 };
 
 export const useAddTransactionForm = ({ onClose }: TProps) => {
-  const { callToApi } = useFetch();
+  const { callToApis } = useFetch();
 
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [state, setState] = useState({
@@ -22,10 +23,10 @@ export const useAddTransactionForm = ({ onClose }: TProps) => {
   });
 
   const initialValues = {
-    title: '',
+    title: CustomString.Empty,
     price: 0,
-    currencyId: '',
-    categoryId: '',
+    currencyId: CustomString.Empty,
+    categoryId: CustomString.Empty,
     date: new Date(),
     isDefault: false,
     textColor: undefined,
@@ -46,32 +47,26 @@ export const useAddTransactionForm = ({ onClose }: TProps) => {
     handleChange(e, 'isDefault', FieldType.Checkbox);
 
     if (!e.target.checked) {
-      setState((prev) => ({
-        ...prev,
+      updateInitValues({
+        ...values,
         backgroundColor: undefined,
         textColor: undefined,
-      }));
+      });
     }
   };
-  async function getCurrencyData() {
-    const currencyData = await callToApi(CurrencyApi.addCurrencies());
-    setState((prev) => ({
-      ...prev,
-      currency: currencyData.data ?? [],
-    }));
-  }
-
-  async function getUserCategoryData() {
-    const data = await callToApi(CategoryApi.getUserCategories());
-    setState((prev) => ({
-      ...prev,
-      category: data.data ?? [],
-    }));
-  }
 
   useEffect(() => {
     (async () => {
-      await Promise.all([getCurrencyData(), getUserCategoryData()]);
+      const [currencies, categories] = await callToApis([
+        CurrencyApi.getCurrencies(),
+        CategoryApi.getUserCategories(),
+      ]);
+
+      setState((prev) => ({
+        ...prev,
+        currency: currencies.data ?? [],
+        category: categories.data ?? [],
+      }));
     })();
   }, []);
 

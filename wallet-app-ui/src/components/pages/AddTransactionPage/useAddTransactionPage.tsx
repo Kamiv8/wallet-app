@@ -4,19 +4,16 @@ import { DefaultTransaction } from '../../../api';
 import messages from '../../../i18n/messages';
 import { GetDefaultTransactionResponse } from '../../../models/apiTypes/defaultTransaction';
 
-type TState = {
-  transactions: Array<GetDefaultTransactionResponse>;
-  isNew: boolean;
-};
-
 export const useAddTransactionPage = () => {
   const { callToApi } = useFetch();
   const { openConfirmActionModal, closeConfirmActionModal } = useModalAction();
 
-  const [state, setState] = useState<TState>({
-    transactions: [],
+  const initialState = {
+    transactions: [] as Array<GetDefaultTransactionResponse>,
     isNew: false,
-  });
+  };
+
+  const [state, setState] = useState<typeof initialState>(initialState);
 
   const getSavedTransactions = async () => {
     const data = await callToApi(

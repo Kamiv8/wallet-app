@@ -2,13 +2,16 @@ import { useCallback, useState } from 'react';
 import { useHref, useNavigate } from 'react-router-dom';
 import { GroupRoutesName, RoutesName } from '../../../const/routesName';
 import TransactionIcon from '../../../assets/images/navigationIcons/transaction.svg';
-import { Typography } from '../../atoms';
-import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import HistoryIcon from '../../../assets/images/navigationIcons/history.svg';
 import TableIcon from '../../../assets/images/navigationIcons/table.svg';
-import { TNavigationItems } from './Footer';
+import { TFormattedMessage } from '../../../types/types';
 
+export type TNavigationItems = {
+  route: string;
+  icon: string;
+  text: TFormattedMessage;
+};
 export const useFooter = () => {
   const [isOpenNav, setIsOpenNav] = useState(false);
   const navigate = useNavigate();
@@ -20,33 +23,20 @@ export const useFooter = () => {
   const tableURL = useHref(RoutesName.TABLE);
 
   const navigationItems: TNavigationItems[] = [
-    // TODO change text implementation
     {
       icon: TransactionIcon,
       route: transactionURL,
-      text: (
-        <Typography size={'s'} weight={700}>
-          <FormattedMessage {...messages.navigationTransaction} />
-        </Typography>
-      ),
+      text: messages.navigationTransaction,
     },
     {
       icon: HistoryIcon,
       route: historyURL,
-      text: (
-        <Typography size={'s'} weight={700}>
-          <FormattedMessage {...messages.navigationHistory} />
-        </Typography>
-      ),
+      text: messages.navigationHistory,
     },
     {
       icon: TableIcon,
       route: tableURL,
-      text: (
-        <Typography size={'s'} weight={700}>
-          <FormattedMessage {...messages.navigationTable} />
-        </Typography>
-      ),
+      text: messages.navigationTable,
     },
   ];
 

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { TokenApi } from './api';
 import { LocalstorageHelper } from './helpers/localstorage.helper';
 import { LocalstorageEnum } from './types/enums/localstorage.enum';
+import { CustomString } from './overrides/string.override';
 
 const GuardedRoute = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -26,11 +27,11 @@ const GuardedRoute = () => {
           const newToken = await TokenApi.getAccessToken();
           LocalstorageHelper.setItem(
             LocalstorageEnum.TOKEN,
-            newToken.data?.jwtToken ?? '',
+            newToken.data?.jwtToken ?? CustomString.Empty,
           );
           LocalstorageHelper.setItem(
             LocalstorageEnum.REFRESH_TOKEN,
-            newToken.data?.refreshToken ?? '',
+            newToken.data?.refreshToken ?? CustomString.Empty,
           );
         } catch (error) {
           setIsAuthenticated(false);

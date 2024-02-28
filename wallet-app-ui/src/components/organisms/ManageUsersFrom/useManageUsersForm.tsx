@@ -15,9 +15,11 @@ export const roles: TSelectItem[] = [
 ];
 
 export const useManageUsersForm = () => {
-  const [state, setState] = useState({
+  const initialState = {
     users: [],
-  });
+  };
+
+  const [state, setState] = useState<typeof initialState>(initialState);
 
   useEffect(() => {
     (async () => {
