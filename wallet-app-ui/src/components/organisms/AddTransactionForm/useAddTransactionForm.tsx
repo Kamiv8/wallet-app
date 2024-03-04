@@ -24,10 +24,10 @@ export const useAddTransactionForm = ({ onClose }: TProps) => {
 
   const initialValues = {
     title: CustomString.Empty,
-    price: 0,
+    price: null as unknown as number,
     currencyId: CustomString.Empty,
     categoryId: CustomString.Empty,
-    date: new Date(),
+    date: null as unknown as Date,
     isDefault: false,
     textColor: undefined,
     backgroundColor: undefined,

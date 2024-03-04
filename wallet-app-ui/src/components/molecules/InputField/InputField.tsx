@@ -59,11 +59,9 @@ export const InputField = ({
         value={value}
         {...props}
       />
-      {error && (
-        <StyledErrorMessage size={'xs'} color={'error'}>
-          {error}
-        </StyledErrorMessage>
-      )}
+      <StyledErrorMessage size={'xs'} color={'error'}>
+        {error ?? error}
+      </StyledErrorMessage>
     </div>
   );
 };

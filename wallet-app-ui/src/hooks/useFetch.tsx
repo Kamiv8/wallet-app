@@ -41,8 +41,11 @@ export const useFetch = () => {
 
   const callToApis = useCallback(async (apis: any) => {
     try {
-      openPendingModal();
+      const timeout = setTimeout(() => {
+        openPendingModal();
+      }, 300);
       const results = await Promise.all(apis);
+      clearTimeout(timeout);
       closePendingModal();
       return results;
     } catch (e: any) {

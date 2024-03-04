@@ -6,7 +6,14 @@ export const addUserTransactionSchema = yup
   .shape({
     title: yup.string().required().min(3).max(50),
     price: yup.number().required(),
-    date: yup.date().required(),
+    date: yup
+      .date()
+      .required()
+      .test((value) => {
+        const currentDate = new Date();
+        const inputDate = new Date(value);
+        return inputDate && inputDate <= currentDate;
+      }),
     currencyId: yup.string().required(),
     categoryId: yup.string().required(),
     isDefault: yup.boolean(),

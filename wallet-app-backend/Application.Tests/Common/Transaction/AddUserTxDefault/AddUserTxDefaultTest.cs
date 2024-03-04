@@ -12,9 +12,7 @@ public class AddUserTxDefaultTest
 {
     private readonly Mock<ITransactionRepository> _transactionRepositoryMock = new();
     private readonly Mock<IDefaultTransactionRepository> _defaultTransactionRepositoryMock = new();
-    private readonly Mock<ICurrencyRepository> _currencyRepositoryMock = new();
     private readonly Mock<IUnitOfWork> _unitOfWorkMock = new();
-    private readonly Mock<IAccountDataRepository> _accountDataRepositoryMock = new();
     private readonly Mock<IDate> _dateMock = new();
 
     [Fact]
@@ -31,9 +29,7 @@ public class AddUserTxDefaultTest
         var handler = new AddUserTxDefaultCommandHandler(
             _transactionRepositoryMock.Object,
             _defaultTransactionRepositoryMock.Object,
-            _currencyRepositoryMock.Object,
             _unitOfWorkMock.Object,
-            _accountDataRepositoryMock.Object,
             _dateMock.Object
         );
 
@@ -44,5 +40,4 @@ public class AddUserTxDefaultTest
         result.Message.Should().Be(CommonErrorMessages.CommonError);
         result.Status.Should().Be(ApiResultStatus.Error);
     }
-    
 }

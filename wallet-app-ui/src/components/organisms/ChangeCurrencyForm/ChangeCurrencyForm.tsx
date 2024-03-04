@@ -17,6 +17,7 @@ export const ChangeCurrencyForm = () => {
             name={'currencyId'}
             onChange={handleChange}
             selectItems={parseDataToSelect(state)}
+            variant={'dark'}
           />
           <ButtonWrapper>
             <Button color={'darkBlue'} onClick={onSubmit}>

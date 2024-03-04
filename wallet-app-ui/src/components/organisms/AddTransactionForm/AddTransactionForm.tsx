@@ -53,6 +53,7 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
           name={'currencyId'}
           error={getValidationMessage('currencyId')}
           onChange={handleChange}
+          variant={'dark'}
         />
         <SelectField
           selectItems={parseDataToSelect(state.category)}
@@ -60,6 +61,7 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
           name={'categoryId'}
           error={getValidationMessage('categoryId')}
           onChange={handleChange}
+          variant={'dark'}
         />
         <InputField
           label={{ ...messages.addTransactionPageDate }}

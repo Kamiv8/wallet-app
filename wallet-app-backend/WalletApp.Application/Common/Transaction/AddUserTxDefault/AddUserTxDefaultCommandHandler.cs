@@ -34,26 +34,32 @@ public class AddUserTxDefaultCommandHandler : ICommandHandler<AddUserTxDefaultCo
             await _defaultTransactionRepository.GetDefaultTransactionToAddUserTxDefault(
                 request.DefaultTransactionId, cancellationToken);
         if (defaultTransaction is null) return ApiResult.Error(CommonErrorMessages.CommonError);
-        
-        if (!Enum.TryParse(defaultTransaction.Currency.Code, true, out AcceptCurrency acceptCurrency))
+
+        if (!Enum.TryParse(defaultTransaction.Currency.Code, true,
+                out AcceptCurrency acceptCurrency))
             return ApiResult.Error(CommonErrorMessages.CommonError);
 
         switch (acceptCurrency)
         {
             case AcceptCurrency.CHF:
-                defaultTransaction.UserIdentity.AccountData.ActualMoneyChf += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyChf +=
+                    defaultTransaction.Price;
                 break;
             case AcceptCurrency.EUR:
-                defaultTransaction.UserIdentity.AccountData.ActualMoneyEur += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyEur +=
+                    defaultTransaction.Price;
                 break;
             case AcceptCurrency.GBP:
-                defaultTransaction.UserIdentity.AccountData.ActualMoneyGbp += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyGbp +=
+                    defaultTransaction.Price;
                 break;
             case AcceptCurrency.USD:
-                defaultTransaction.UserIdentity.AccountData.ActualMoneyUsd += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyUsd +=
+                    defaultTransaction.Price;
                 break;
             default:
-                defaultTransaction.UserIdentity.AccountData.ActualMoneyPln += defaultTransaction.Price;
+                defaultTransaction.UserIdentity.AccountData.ActualMoneyPln +=
+                    defaultTransaction.Price;
                 break;
         }
 

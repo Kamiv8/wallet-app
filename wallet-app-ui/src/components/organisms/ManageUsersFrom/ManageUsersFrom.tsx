@@ -21,11 +21,13 @@ export const ManageUsersFrom = () => {
                 description: x.username,
               } as TSelectItem),
           )}
+          variant={'dark'}
         />
         <SelectField
           label={{ ...messages.manageFormRole }}
           name={'role'}
           selectItems={roles}
+          variant={'dark'}
         />
 
         <ButtonWrapper>

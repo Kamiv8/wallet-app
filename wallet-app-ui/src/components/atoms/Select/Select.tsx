@@ -6,6 +6,8 @@ import { FieldType } from '../../../hooks';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { CustomString } from '../../../overrides/string.override';
+import { TColor } from '../../../types/types';
+import { SvgIcon } from '../SvgIcon/SvgIcon';
 
 export type TSelectItem = {
   key: string | number;
@@ -17,6 +19,7 @@ export type TProps = {
   name?: string;
   isRounded?: boolean;
   onChange?: any;
+  color: TColor;
 };
 
 export const Select = (props: TProps) => {
@@ -48,17 +51,29 @@ export const Select = (props: TProps) => {
           isActive={isActive}
           isRounded={props.isRounded}
           onClick={() => setIsActive(!isActive)}
+          color={props.color}
         >
           <span>{selected.description}</span>
           {props.isRounded && !isActive ? (
-            <SelectDownArrow />
+            <SvgIcon
+              Icon={SelectDownArrow}
+              color={props.color}
+              withStroke={false}
+            />
           ) : (
-            props.isRounded && <SelectUpArrow />
+            props.isRounded && (
+              <SvgIcon
+                withStroke={false}
+                Icon={SelectUpArrow}
+                color={props.color}
+              />
+            )
           )}
         </SelectButton>
         {isActive && (
-          <OptionWrapper isRounded={props.isRounded}>
+          <OptionWrapper isRounded={props.isRounded} color={props.color}>
             <Option
+              color={props.color}
               onClick={() =>
                 optionAction({
                   key: CustomString.Empty,
@@ -71,6 +86,7 @@ export const Select = (props: TProps) => {
             </Option>
             {props.items.map(({ key, description }) => (
               <Option
+                color={props.color}
                 isRounded={props.isRounded}
                 onClick={() => optionAction({ key, description })}
                 key={key}

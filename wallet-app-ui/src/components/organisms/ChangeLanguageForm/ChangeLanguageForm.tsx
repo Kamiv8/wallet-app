@@ -15,6 +15,7 @@ export const ChangeLanguageForm = () => {
           label={{ ...messages.changeLanguageFormLanguage }}
           name={'language'}
           onChange={handleChange}
+          variant={'dark'}
         />
         <ButtonWrapper>
           <Button color={'darkBlue'} type={'button'} onClick={handleSubmit}>

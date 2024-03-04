@@ -21,7 +21,7 @@ export const useHistoryPage = () => {
       const data = await callToApi(
         TransactionApi.getAllTransactions({
           pageNumber: currentPage,
-          pageSize: 5,
+          pageSize: 4,
         }),
       );
 

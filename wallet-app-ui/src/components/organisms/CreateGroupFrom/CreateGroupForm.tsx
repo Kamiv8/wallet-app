@@ -33,12 +33,14 @@ export const CreateGroupForm = () => {
           label={{ ...messages.createGroupFormMaxMembers }}
           name={'maxMember'}
           onChange={handleChange}
+          variant={'dark'}
         />
         <SelectField
           selectItems={parseDataToSelect(currencies)}
           label={{ ...messages.createGroupFormDefaultCurrencies }}
           name={'currencyId'}
           onChange={handleChange}
+          variant={'dark'}
         />
         <Button color={'darkBlue'} onClick={onSubmit}>
           <FormattedMessage {...messages.buttonCreate} />

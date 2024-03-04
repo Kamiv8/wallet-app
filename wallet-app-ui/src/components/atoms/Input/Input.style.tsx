@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledInput = styled.input`
   background: none;
@@ -12,6 +12,8 @@ const StyledInput = styled.input`
   height: 32px;
   width: 100%;
   border-radius: 5px;
+  font-size: 15px;
+  padding: 0 17px;
   color: ${({ color, theme }) =>
     color === 'orange'
       ? theme.colors.orange
@@ -26,8 +28,14 @@ const StyledInput = styled.input`
         ? theme.colors.darkBluePlaceholder
         : theme.colors.errorPlaceholder};
   }
-  font-size: 15px;
-  padding: 0 17px;
+  ${({ color }) =>
+    color === 'error' &&
+    css`
+      ::-webkit-calendar-picker-indicator {
+        filter: invert(52%) sepia(98%) saturate(3172%) hue-rotate(357deg)
+          brightness(88%) contrast(100%);
+      }
+    `}
 `;
 
 export default StyledInput;

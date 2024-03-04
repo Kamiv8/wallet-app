@@ -45,11 +45,9 @@ export const TextAreaField = (props: TProps) => {
         placeholder={props.placeholder?.defaultMessage}
         value={props.value}
       />
-      {props.error && (
-        <StyledErrorMessage size={'xs'} color={'error'}>
-          {props.error}
-        </StyledErrorMessage>
-      )}
+      <StyledErrorMessage size={'xs'} color={'error'}>
+        {props.error && props.error}
+      </StyledErrorMessage>
     </div>
   );
 };
