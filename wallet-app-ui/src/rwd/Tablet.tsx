@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode | Array<ReactNode>;
 };
 export const Tablet = ({ children }: Props) => (
-  <MediaQuery maxWidth={theme.mediaQueries.tablet.max as number}>
+  <MediaQuery minWidth={theme.mediaQueries.tablet.min as number}>
     {children}
   </MediaQuery>
 );

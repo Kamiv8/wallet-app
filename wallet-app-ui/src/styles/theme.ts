@@ -125,7 +125,7 @@ const theme: DefaultTheme & TTheme = {
   },
   mediaQueries: {
     mobile: {
-      min: 320,
+      min: 0,
       max: 768,
     },
     tablet: {

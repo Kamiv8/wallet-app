@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const Mobile = ({ children }: Props) => (
-  <MediaQuery maxWidth={theme.mediaQueries.mobile.max as number}>
+  <MediaQuery minWidth={theme.mediaQueries.mobile.min as number}>
     {children}
   </MediaQuery>
 );

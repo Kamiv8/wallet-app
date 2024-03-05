@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode | Array<ReactNode>;
 };
 export const LargeScreen = ({ children }: Props) => (
-  <MediaQuery maxWidth={theme.mediaQueries.desktop.max as number}>
+  <MediaQuery minWidth={theme.mediaQueries.desktop.min as number}>
     {children}
   </MediaQuery>
 );
