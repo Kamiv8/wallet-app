@@ -1,19 +1,16 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from './Avatar';
 
 export default {
-  title: 'Atoms/Avatar',
   component: Avatar,
-} as ComponentMeta<typeof Avatar>;
+} as Meta<typeof Avatar>;
 
-const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
+type Story = StoryObj<typeof Avatar>;
 
-export const Primary = Template.bind({});
-
-Primary.args = {
-  image: 1,
-  onClick: () => {
-    console.log();
+export const Primary: Story = {
+  args: {
+    onClick: () => {},
+    image: 1,
+    selected: true,
   },
-  selected: false,
 };

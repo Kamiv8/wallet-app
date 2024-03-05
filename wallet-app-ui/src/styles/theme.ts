@@ -1,5 +1,10 @@
 import { DefaultTheme } from 'styled-components';
 
+export type TMediaQuery = {
+  max: number | null;
+  min: number;
+};
+
 export type TColors = {
   white: string;
   orange: string;
@@ -46,12 +51,20 @@ type THorizontalMargin = {
   column: number;
 };
 
+export type TMediaQueries = {
+  mobile: TMediaQuery;
+  tablet: TMediaQuery;
+  desktop: TMediaQuery;
+  largeScreen: TMediaQuery;
+};
+
 export type TTheme = {
   colors: TColors;
   fonts: TFontSize;
   weight: TFontWeight;
   horizontalMargin: THorizontalMargin;
   gradients: TGradients;
+  mediaQueries: TMediaQueries;
 };
 
 const theme: DefaultTheme & TTheme = {
@@ -109,6 +122,24 @@ const theme: DefaultTheme & TTheme = {
   },
   gradients: {
     main: 'linear-gradient(135deg, rgba(245,168,34,1) 0%, rgba(106,221,221,1) 100%)',
+  },
+  mediaQueries: {
+    mobile: {
+      min: 320,
+      max: 768,
+    },
+    tablet: {
+      min: 769,
+      max: 1023,
+    },
+    desktop: {
+      min: 1024,
+      max: 1439,
+    },
+    largeScreen: {
+      min: 1440,
+      max: null,
+    },
   },
 };
 

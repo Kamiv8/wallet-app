@@ -1,16 +1,13 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { ColorPicker } from './ColorPicker';
 
 export default {
-  title: 'Atoms/ColorPicker',
   component: ColorPicker,
-} as ComponentMeta<typeof ColorPicker>;
+} as Meta<typeof ColorPicker>;
 
-const Template: ComponentStory<typeof ColorPicker> = (args) => (
-  <ColorPicker {...args} />
-);
-
-export const Primary = Template.bind({});
-Primary.args = {
-  color: 'orange',
+type Story = StoryObj<typeof ColorPicker>;
+export const Primary: Story = {
+  args: {
+    color: 'orange',
+  },
 };

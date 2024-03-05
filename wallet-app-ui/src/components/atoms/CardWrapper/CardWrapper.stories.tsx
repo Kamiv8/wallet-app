@@ -1,16 +1,13 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { CardWrapper } from './CardWrapper';
 
 export default {
-  title: 'Atoms/CardWrapper',
   component: CardWrapper,
-} as ComponentMeta<typeof CardWrapper>;
+} as Meta<typeof CardWrapper>;
 
-const Template: ComponentStory<typeof CardWrapper> = (args) => (
-  <CardWrapper {...args} />
-);
-
-export const Primary = Template.bind({});
-Primary.args = {
-  gradientColor: true,
+type Story = StoryObj<typeof CardWrapper>;
+export const Primary: Story = {
+  args: {
+    gradientColor: true,
+  },
 };

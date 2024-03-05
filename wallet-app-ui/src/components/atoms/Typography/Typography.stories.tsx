@@ -1,19 +1,15 @@
 import { Typography } from './Typography';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 export default {
-  title: 'Atoms/Typography',
   component: Typography,
-} as ComponentMeta<typeof Typography>;
+} as Meta<typeof Typography>;
 
-const Template: ComponentStory<typeof Typography> = (args) => (
-  <Typography {...args}>
-    <p>Lorem ipsum</p>
-  </Typography>
-);
-
-export const Primary = Template.bind({});
-Primary.args = {
-  size: 'xxl',
-  underline: true,
+type Story = StoryObj<typeof Typography>;
+export const Primary: Story = {
+  args: {
+    size: 'xxl',
+    underline: true,
+    children: 'dsadsa',
+  },
 };

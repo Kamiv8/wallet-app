@@ -1,13 +1,12 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { SvgIcon } from './SvgIcon';
 
 export default {
-  title: 'Atoms/SvgIcon',
   component: SvgIcon,
-} as ComponentMeta<typeof SvgIcon>;
+} as Meta<typeof SvgIcon>;
 
-const Template: ComponentStory<typeof SvgIcon> = (args) => (
-  <SvgIcon {...args} />
-);
+type Story = StoryObj<typeof SvgIcon>;
 
-export const Primary = Template.bind({});
+export const Primary: Story = {
+  args: {},
+};

@@ -1,30 +1,21 @@
 import { Button } from './Button';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 export default {
-  title: 'Atoms/Button',
   component: Button,
-  argTypes: {
-    onClick: {
-      action: 'click',
-    },
+} as Meta<typeof Button>;
+
+type Story = StoryObj<typeof Button>;
+
+export const Primary: Story = {
+  args: {
+    color: 'orange',
+    children: 'dsa',
   },
-} as ComponentMeta<typeof Button>;
-
-const Template: ComponentStory<typeof Button> = (args) => (
-  <Button {...args}>Filter</Button>
-);
-
-const AddTemplate: ComponentStory<typeof Button> = (args) => (
-  <Button {...args} />
-);
-
-export const Primary = Template.bind({});
-Primary.args = {
-  color: 'orange',
 };
 
-export const Add = AddTemplate.bind({});
-Add.args = {
-  variant: 'add',
+export const Add: Story = {
+  args: {
+    variant: 'add',
+  },
 };

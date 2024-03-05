@@ -1,12 +1,17 @@
 {
- "extends": [
+  "extends": [
     "airbnb-typescript",
     "plugin:@typescript-eslint/recommended",
     "eslint:recommended",
-    "eslint-config-prettier"
+    "eslint-config-prettier",
+    "plugin:storybook/recommended"
   ],
   "plugins": [
-    "react", "import", "@typescript-eslint", "jest", "eslint-plugin-prettier"
+    "react",
+    "import",
+    "@typescript-eslint",
+    "jest",
+    "eslint-plugin-prettier"
   ],
   "env": {
     "browser": true,

@@ -1,4 +1,4 @@
-import { LocalstorageEnum } from '../types/enums/localstorage.enum';
+import { LocalstorageEnum } from '../types/enums';
 
 export class LocalstorageHelper {
   public static getItem(key: LocalstorageEnum): string {

@@ -1,13 +1,12 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { AddNotePage } from './AddNotePage';
-import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {
-  title: 'Pages/AddNotePage',
   component: AddNotePage,
-  decorators: [withRouter],
-} as ComponentMeta<typeof AddNotePage>;
+} as Meta<typeof AddNotePage>;
 
-const Template: ComponentStory<typeof AddNotePage> = () => <AddNotePage />;
+type Story = StoryObj<typeof AddNotePage>;
 
-export const Primary = Template.bind({});
+export const Primary: Story = {
+  args: {},
+};
