@@ -9,7 +9,7 @@ export const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rgba(28, 26, 50, 1);
+  background-color: rgba(28, 26, 50, 1); // TODO get color from theme
 `;
 
 export const ImageElement = styled.div`

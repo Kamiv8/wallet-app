@@ -1,7 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
-import { RoutesName } from '../../../const/routesName';
+import { RoutesName } from '../../../const';
 import { TableCard } from '../../molecules';
 import { GridTemplate, MainTemplate } from '../../templates';
 import { Typography } from '../../atoms';

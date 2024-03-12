@@ -1,0 +1,51 @@
+2024-03-11 19:22:11.211 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-11 19:22:11.351 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-03-11 19:22:11.352 +01:00 [INF] Quartz Scheduler created
+2024-03-11 19:22:11.353 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-03-11 19:22:11.354 +01:00 [INF] RAMJobStore initialized.
+2024-03-11 19:22:11.355 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-03-11 19:22:11.356 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-03-11 19:22:11.357 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-03-11 19:22:11.364 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-03-11 19:22:11.367 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-03-11 19:22:45.203 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-11 19:22:45.301 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-03-11 19:22:45.303 +01:00 [INF] Quartz Scheduler created
+2024-03-11 19:22:45.304 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-03-11 19:22:45.304 +01:00 [INF] RAMJobStore initialized.
+2024-03-11 19:22:45.305 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-03-11 19:22:45.313 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-03-11 19:22:45.314 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-03-11 19:22:45.325 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-03-11 19:22:45.328 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-03-11 19:22:45.373 +01:00 [INF] Now listening on: http://localhost:5238
+2024-03-11 19:22:45.375 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-11 19:22:45.375 +01:00 [INF] Hosting environment: Development
+2024-03-11 19:22:45.377 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-03-11 19:22:45.378 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-03-11 19:22:45.513 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-03-11 19:22:45.515 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-03-11 19:22:45.625 +01:00 [INF] Received HTTP response headers after 107.534ms - 200
+2024-03-11 19:22:45.628 +01:00 [INF] End processing HTTP request after 118.5823ms - 200
+2024-03-11 19:22:46.780 +01:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+WHERE [c].[Code] <> N'PLN'
+2024-03-11 19:22:46.942 +01:00 [INF] Executed DbCommand (20ms) [Parameters=[@p4='?' (DbType = Guid), @p0='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p1='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p2='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p9='?' (DbType = Guid), @p5='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p6='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p7='?' (DbType = DateTime2), @p8='?' (DbType = DateTime2), @p14='?' (DbType = Guid), @p10='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p11='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p12='?' (DbType = DateTime2), @p13='?' (DbType = DateTime2), @p19='?' (DbType = Guid), @p15='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p16='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p17='?' (DbType = DateTime2), @p18='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Currencies] SET [Ask] = @p0, [Bid] = @p1, [ModifiedTime] = @p2, [TradingDate] = @p3
+OUTPUT 1
+WHERE [Id] = @p4;
+UPDATE [Currencies] SET [Ask] = @p5, [Bid] = @p6, [ModifiedTime] = @p7, [TradingDate] = @p8
+OUTPUT 1
+WHERE [Id] = @p9;
+UPDATE [Currencies] SET [Ask] = @p10, [Bid] = @p11, [ModifiedTime] = @p12, [TradingDate] = @p13
+OUTPUT 1
+WHERE [Id] = @p14;
+UPDATE [Currencies] SET [Ask] = @p15, [Bid] = @p16, [ModifiedTime] = @p17, [TradingDate] = @p18
+OUTPUT 1
+WHERE [Id] = @p19;
+2024-03-11 19:32:23.045 +01:00 [INF] Application is shutting down...
+2024-03-11 19:32:23.055 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED shutting down.
+2024-03-11 19:32:23.057 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED paused.
+2024-03-11 19:32:23.061 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED Shutdown complete.

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { TokenApi } from './token.api';
-import { devConfig } from '../const/config';
+import { devConfig } from '../const';
 import { ApiStatus } from '../models/apiResult';
 import { LocalstorageHelper } from '../helpers';
 import { LocalstorageEnum } from '../types/enums';

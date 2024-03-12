@@ -1,10 +1,13 @@
 import {
+  createBrowserRouter,
   Navigate,
   Outlet,
   Route,
+  RouterProvider,
   Routes as RoutesWrapper,
+  useRoutes,
 } from 'react-router-dom';
-import { GroupRoutesName, RoutesName } from './const/routesName';
+import { GroupRoutesName, RoutesName } from './const';
 import GuardedRoute from './GuardedRoute';
 import {
   AddNotePage,

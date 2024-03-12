@@ -1,0 +1,44 @@
+2024-02-21 21:41:53.207 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-21 21:41:53.376 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-21 21:41:53.378 +01:00 [INF] Quartz Scheduler created
+2024-02-21 21:41:53.379 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-21 21:41:53.381 +01:00 [INF] RAMJobStore initialized.
+2024-02-21 21:41:53.382 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-21 21:41:53.384 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-21 21:41:53.385 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-21 21:41:53.397 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-21 21:41:53.402 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-21 21:41:53.454 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-21 21:41:53.455 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-21 21:41:53.455 +01:00 [INF] Hosting environment: Development
+2024-02-21 21:41:53.456 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-21 21:41:53.458 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-21 21:41:53.617 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-21 21:41:53.620 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-21 21:41:53.786 +01:00 [INF] Received HTTP response headers after 162.5757ms - 200
+2024-02-21 21:41:53.790 +01:00 [INF] End processing HTTP request after 178.6146ms - 200
+2024-02-21 21:41:55.146 +01:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+2024-02-21 21:41:55.265 +01:00 [ERR] Job DEFAULT.NBP threw an unhandled Exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+2024-02-21 21:41:55.278 +01:00 [ERR] Job DEFAULT.NBP threw an exception.
+Quartz.SchedulerException: Job threw an unhandled exception.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+   --- End of inner exception stack trace --- [See nested exception: System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)]
+2024-02-21 21:44:23.226 +01:00 [INF] Application is shutting down...
+2024-02-21 21:44:23.234 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED shutting down.
+2024-02-21 21:44:23.235 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED paused.
+2024-02-21 21:44:23.239 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED Shutdown complete.

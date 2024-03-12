@@ -1,0 +1,1195 @@
+2024-02-22 20:50:46.237 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 20:50:46.427 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 20:50:46.430 +01:00 [INF] Quartz Scheduler created
+2024-02-22 20:50:46.432 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 20:50:46.434 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 20:50:46.435 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 20:50:46.436 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 20:50:46.437 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 20:50:46.447 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 20:50:46.450 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 20:50:46.533 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 20:50:46.536 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 20:50:46.538 +01:00 [INF] Hosting environment: Development
+2024-02-22 20:50:46.540 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 20:50:46.540 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 20:50:46.721 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 20:50:46.726 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 20:50:46.948 +01:00 [INF] Received HTTP response headers after 219.0572ms - 200
+2024-02-22 20:50:46.953 +01:00 [INF] End processing HTTP request after 236.0184ms - 200
+2024-02-22 20:51:12.713 +01:00 [ERR] An error occurred using the connection to database 'WalletApp' on server 'localhost,1433'.
+2024-02-22 20:51:12.774 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'WalletApp.Persistance.WalletDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.)
+ ---> System.ComponentModel.Win32Exception (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:10061,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.)
+ ---> System.ComponentModel.Win32Exception (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:10061,State:0,Class:20
+2024-02-22 20:51:12.792 +01:00 [ERR] Job DEFAULT.NBP threw an unhandled Exception: 
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.)
+ ---> System.ComponentModel.Win32Exception (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at WalletApp.Persistance.Repositories.CurrencyRepository.GetCurrencies(CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Persistence\Repositories\CurrencyRepository.cs:line 38
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 22
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:10061,State:0,Class:20
+2024-02-22 20:51:12.811 +01:00 [ERR] Job DEFAULT.NBP threw an exception.
+Quartz.SchedulerException: Job threw an unhandled exception.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.)
+ ---> System.ComponentModel.Win32Exception (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at WalletApp.Persistance.Repositories.CurrencyRepository.GetCurrencies(CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Persistence\Repositories\CurrencyRepository.cs:line 38
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 22
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:10061,State:0,Class:20
+   --- End of inner exception stack trace --- [See nested exception: Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.)
+ ---> System.ComponentModel.Win32Exception (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at WalletApp.Persistance.Repositories.CurrencyRepository.GetCurrencies(CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Persistence\Repositories\CurrencyRepository.cs:line 38
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 22
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:10061,State:0,Class:20]
+2024-02-22 20:51:29.321 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 63
+2024-02-22 20:51:29.355 +01:00 [WRN] Failed to determine the https port for redirect.
+2024-02-22 20:51:29.386 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 20:51:29.401 +01:00 [INF] Route matched with {action = "Authentication", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto]]] Authentication(WalletApp.Application.Account.Authenticate.AuthenticateDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2024-02-22 20:51:54.112 +01:00 [ERR] An error occurred using the connection to database 'WalletApp' on server 'localhost,1433'.
+2024-02-22 20:51:54.118 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'WalletApp.Persistance.WalletDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.)
+ ---> System.ComponentModel.Win32Exception (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:10061,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.)
+ ---> System.ComponentModel.Win32Exception (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:10061,State:0,Class:20
+2024-02-22 20:51:54.139 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.Authentication (WalletApp.Api) in 24732.6104ms
+2024-02-22 20:51:54.141 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 20:51:54.143 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.)
+ ---> System.ComponentModel.Win32Exception (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.FindByNameAsync(String userName)
+   at Microsoft.AspNetCore.Identity.SignInManager`1.PasswordSignInAsync(String userName, String password, Boolean isPersistent, Boolean lockoutOnFailure)
+   at WalletApp.Infractructure.AppSignInManager.AppSignInManager.PasswordSignInAsync(String username, String password) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\AppSignInManager\AppSignInManager.cs:line 19
+   at WalletApp.Application.Common.Account.Authenticate.AuthenticateCommandHandler.Handle(AuthenticateCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Account\Authenticate\AuthenticateCommandHandler.cs:line 37
+   at WalletApp.Controllers.AccountController.Authentication(AuthenticateDto dto, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api\Controllers\AccountController.cs:line 37
+   at lambda_method81(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at WalletApp.Middleware.ValidationErrorsMiddleware.InvokeAsync(HttpContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api\Middleware\ValidationErrorsMiddleware.cs:line 19
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:10061,State:0,Class:20
+2024-02-22 20:51:54.171 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 63 - 500 - text/plain;+charset=utf-8 24851.6179ms
+2024-02-22 20:54:33.351 +01:00 [INF] Application is shutting down...
+2024-02-22 20:54:33.361 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED shutting down.
+2024-02-22 20:54:33.363 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED paused.
+2024-02-22 20:54:33.370 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED Shutdown complete.
+2024-02-22 20:54:38.836 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 20:54:38.952 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 20:54:38.955 +01:00 [INF] Quartz Scheduler created
+2024-02-22 20:54:38.956 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 20:54:38.957 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 20:54:38.958 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 20:54:38.959 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 20:54:38.960 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 20:54:38.968 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 20:54:38.971 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 20:54:39.007 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 20:54:39.009 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 20:54:39.011 +01:00 [INF] Hosting environment: Development
+2024-02-22 20:54:39.011 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 20:54:39.012 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 20:54:39.130 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 20:54:39.134 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 20:54:39.280 +01:00 [INF] Received HTTP response headers after 141.9131ms - 200
+2024-02-22 20:54:39.284 +01:00 [INF] End processing HTTP request after 157.5186ms - 200
+2024-02-22 20:54:40.384 +01:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+2024-02-22 20:54:40.471 +01:00 [ERR] Job DEFAULT.NBP threw an unhandled Exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+2024-02-22 20:54:40.481 +01:00 [ERR] Job DEFAULT.NBP threw an exception.
+Quartz.SchedulerException: Job threw an unhandled exception.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+   --- End of inner exception stack trace --- [See nested exception: System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)]
+2024-02-22 20:54:53.797 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 63
+2024-02-22 20:54:53.833 +01:00 [WRN] Failed to determine the https port for redirect.
+2024-02-22 20:54:53.858 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 20:54:53.873 +01:00 [INF] Route matched with {action = "Authentication", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto]]] Authentication(WalletApp.Application.Account.Authenticate.AuthenticateDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2024-02-22 20:54:54.006 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 20:54:54.184 +01:00 [INF] Executing NotFoundObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-02-22 20:54:54.202 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.Authentication (WalletApp.Api) in 321.93ms
+2024-02-22 20:54:54.204 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 20:54:54.212 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 63 - 404 - application/json;+charset=utf-8 416.4879ms
+2024-02-22 20:55:40.439 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 59
+2024-02-22 20:55:40.445 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 20:55:40.448 +01:00 [INF] Route matched with {action = "Authentication", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto]]] Authentication(WalletApp.Application.Account.Authenticate.AuthenticateDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2024-02-22 20:55:40.514 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 20:55:40.591 +01:00 [INF] Executing NotFoundObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-02-22 20:55:40.595 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.Authentication (WalletApp.Api) in 144.9225ms
+2024-02-22 20:55:40.598 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 20:55:40.599 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 59 - 404 - application/json;+charset=utf-8 160.7312ms
+2024-02-22 20:55:48.833 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 59
+2024-02-22 20:55:48.837 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 20:55:48.839 +01:00 [INF] Route matched with {action = "Authentication", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto]]] Authentication(WalletApp.Application.Account.Authenticate.AuthenticateDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2024-02-22 20:55:48.861 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 20:55:48.976 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-02-22 20:55:49.003 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 20:55:49.014 +01:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-02-22 20:55:49.022 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 20:55:49.031 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 20:55:49.115 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__ipAddress_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [t].[Id], [t].[IpAddress], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[UserIdentityId]
+FROM [Tokens] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [t].[IpAddress] = @__ipAddress_1
+2024-02-22 20:55:49.145 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 20:55:49.254 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[@p16='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p17='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int64), @p5='?' (DbType = Int64), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 256), @p20='?' (DbType = Guid), @p18='?' (Size = 4000), @p19='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [IconType] = @p4, [Language] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+UPDATE [Tokens] SET [RefreshToken] = @p18, [RefreshTokenExpiryTime] = @p19
+OUTPUT 1
+WHERE [Id] = @p20;
+2024-02-22 20:55:49.285 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-02-22 20:55:49.288 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.Authentication (WalletApp.Api) in 445.4215ms
+2024-02-22 20:55:49.290 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 20:55:49.292 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 59 - 200 - application/json;+charset=utf-8 459.4387ms
+2024-02-22 20:56:32.203 +01:00 [INF] Application is shutting down...
+2024-02-22 20:56:32.215 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED shutting down.
+2024-02-22 20:56:32.217 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED paused.
+2024-02-22 20:56:32.221 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED Shutdown complete.
+2024-02-22 20:56:55.057 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 20:56:55.235 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 20:56:55.237 +01:00 [INF] Quartz Scheduler created
+2024-02-22 20:56:55.238 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 20:56:55.240 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 20:56:55.242 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 20:56:55.243 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 20:56:55.244 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 20:56:55.256 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 20:56:55.261 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 20:56:55.395 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 20:56:55.398 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 20:56:55.404 +01:00 [INF] Hosting environment: Development
+2024-02-22 20:56:55.406 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 20:56:55.408 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 20:56:55.642 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 20:56:55.646 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 20:56:55.829 +01:00 [INF] Received HTTP response headers after 178.5949ms - 200
+2024-02-22 20:56:55.835 +01:00 [INF] End processing HTTP request after 198.7388ms - 200
+2024-02-22 20:56:57.564 +01:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+2024-02-22 20:57:07.885 +01:00 [ERR] Job DEFAULT.NBP threw an unhandled Exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+2024-02-22 20:57:07.891 +01:00 [ERR] Job DEFAULT.NBP threw an exception.
+Quartz.SchedulerException: Job threw an unhandled exception.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+   --- End of inner exception stack trace --- [See nested exception: System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)]
+2024-02-22 20:59:08.474 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 20:59:08.692 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 20:59:08.694 +01:00 [INF] Quartz Scheduler created
+2024-02-22 20:59:08.696 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 20:59:08.697 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 20:59:08.698 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 20:59:08.699 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 20:59:08.700 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 20:59:08.713 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 20:59:08.718 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 20:59:08.839 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 20:59:08.840 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 20:59:08.847 +01:00 [INF] Hosting environment: Development
+2024-02-22 20:59:08.848 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 20:59:08.851 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 20:59:19.080 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 20:59:19.085 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 20:59:19.289 +01:00 [INF] Received HTTP response headers after 199.8171ms - 200
+2024-02-22 20:59:19.294 +01:00 [INF] End processing HTTP request after 219.9022ms - 200
+2024-02-22 21:03:04.802 +01:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+2024-02-22 21:13:18.764 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 21:13:18.880 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 21:13:18.883 +01:00 [INF] Quartz Scheduler created
+2024-02-22 21:13:18.885 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 21:13:18.888 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 21:13:18.889 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 21:13:18.890 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 21:13:18.891 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 21:13:18.906 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 21:13:18.911 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 21:13:18.957 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 21:13:18.959 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 21:13:18.960 +01:00 [INF] Hosting environment: Development
+2024-02-22 21:13:18.963 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 21:13:18.963 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 21:13:19.132 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:13:19.137 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:13:19.330 +01:00 [INF] Received HTTP response headers after 190.2292ms - 200
+2024-02-22 21:13:19.336 +01:00 [INF] End processing HTTP request after 207.5485ms - 200
+2024-02-22 21:13:20.479 +01:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+WHERE [c].[Code] = N'PLN'
+2024-02-22 21:13:20.550 +01:00 [ERR] Job DEFAULT.NBP threw an unhandled Exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+2024-02-22 21:13:20.560 +01:00 [ERR] Job DEFAULT.NBP threw an exception.
+Quartz.SchedulerException: Job threw an unhandled exception.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+   --- End of inner exception stack trace --- [See nested exception: System.NullReferenceException: Object reference not set to an instance of an object.
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 27
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)]
+2024-02-22 21:13:22.370 +01:00 [INF] Application is shutting down...
+2024-02-22 21:13:22.379 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED shutting down.
+2024-02-22 21:13:22.382 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED paused.
+2024-02-22 21:13:22.386 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED Shutdown complete.
+2024-02-22 21:13:31.567 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 21:13:31.719 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 21:13:31.720 +01:00 [INF] Quartz Scheduler created
+2024-02-22 21:13:31.721 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 21:13:31.722 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 21:13:31.724 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 21:13:31.725 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 21:13:31.727 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 21:13:31.739 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 21:13:31.743 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 21:13:31.857 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 21:13:31.860 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 21:13:31.865 +01:00 [INF] Hosting environment: Development
+2024-02-22 21:13:31.866 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 21:13:31.868 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 21:13:39.168 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:13:39.173 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:13:39.371 +01:00 [INF] Received HTTP response headers after 191.8132ms - 200
+2024-02-22 21:13:39.376 +01:00 [INF] End processing HTTP request after 214.8343ms - 200
+2024-02-22 21:13:44.115 +01:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+WHERE [c].[Code] = N'PLN'
+2024-02-22 21:14:14.215 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 21:14:14.355 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 21:14:14.357 +01:00 [INF] Quartz Scheduler created
+2024-02-22 21:14:14.359 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 21:14:14.361 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 21:14:14.362 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 21:14:14.364 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 21:14:14.365 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 21:14:14.375 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 21:14:14.379 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 21:14:14.423 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 21:14:14.425 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 21:14:14.426 +01:00 [INF] Hosting environment: Development
+2024-02-22 21:14:14.427 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 21:14:14.428 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 21:14:14.573 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:14:14.578 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:14:14.785 +01:00 [INF] Received HTTP response headers after 203.3788ms - 200
+2024-02-22 21:14:14.791 +01:00 [INF] End processing HTTP request after 222.7999ms - 200
+2024-02-22 21:14:15.371 +01:00 [INF] Application is shutting down...
+2024-02-22 21:14:15.380 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED shutting down.
+2024-02-22 21:14:15.383 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED paused.
+2024-02-22 21:14:16.063 +01:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+WHERE [c].[Code] <> N'PLN'
+2024-02-22 21:14:16.272 +01:00 [INF] Executed DbCommand (22ms) [Parameters=[@p5='?' (DbType = Guid), @p0='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p1='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p11='?' (DbType = Guid), @p6='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p7='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p8='?' (DbType = Guid), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p17='?' (DbType = Guid), @p12='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p13='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p14='?' (DbType = Guid), @p15='?' (DbType = DateTime2), @p16='?' (DbType = DateTime2), @p23='?' (DbType = Guid), @p18='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p19='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p20='?' (DbType = Guid), @p21='?' (DbType = DateTime2), @p22='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Currencies] SET [Ask] = @p0, [Bid] = @p1, [ModifiedBy] = @p2, [ModifiedTime] = @p3, [TradingDate] = @p4
+OUTPUT 1
+WHERE [Id] = @p5;
+UPDATE [Currencies] SET [Ask] = @p6, [Bid] = @p7, [ModifiedBy] = @p8, [ModifiedTime] = @p9, [TradingDate] = @p10
+OUTPUT 1
+WHERE [Id] = @p11;
+UPDATE [Currencies] SET [Ask] = @p12, [Bid] = @p13, [ModifiedBy] = @p14, [ModifiedTime] = @p15, [TradingDate] = @p16
+OUTPUT 1
+WHERE [Id] = @p17;
+UPDATE [Currencies] SET [Ask] = @p18, [Bid] = @p19, [ModifiedBy] = @p20, [ModifiedTime] = @p21, [TradingDate] = @p22
+OUTPUT 1
+WHERE [Id] = @p23;
+2024-02-22 21:14:16.305 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED Shutdown complete.
+2024-02-22 21:14:25.269 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 21:14:25.453 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 21:14:25.454 +01:00 [INF] Quartz Scheduler created
+2024-02-22 21:14:25.455 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 21:14:25.457 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 21:14:25.458 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 21:14:25.459 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 21:14:25.460 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 21:14:25.470 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 21:14:25.474 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 21:14:25.589 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 21:14:25.592 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 21:14:25.597 +01:00 [INF] Hosting environment: Development
+2024-02-22 21:14:25.598 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 21:14:25.602 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 21:14:25.812 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:14:25.817 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:14:26.031 +01:00 [INF] Received HTTP response headers after 210.4597ms - 200
+2024-02-22 21:14:26.036 +01:00 [INF] End processing HTTP request after 229.1283ms - 200
+2024-02-22 21:14:33.904 +01:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+WHERE [c].[Code] <> N'PLN'
+2024-02-22 21:14:45.545 +01:00 [INF] Executed DbCommand (32ms) [Parameters=[@p3='?' (DbType = Guid), @p0='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p1='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p2='?' (DbType = DateTime2), @p7='?' (DbType = Guid), @p4='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p5='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p6='?' (DbType = DateTime2), @p11='?' (DbType = Guid), @p8='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p9='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p10='?' (DbType = DateTime2), @p14='?' (DbType = Guid), @p12='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p13='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Currencies] SET [Ask] = @p0, [Bid] = @p1, [ModifiedTime] = @p2
+OUTPUT 1
+WHERE [Id] = @p3;
+UPDATE [Currencies] SET [Ask] = @p4, [Bid] = @p5, [ModifiedTime] = @p6
+OUTPUT 1
+WHERE [Id] = @p7;
+UPDATE [Currencies] SET [Ask] = @p8, [Bid] = @p9, [ModifiedTime] = @p10
+OUTPUT 1
+WHERE [Id] = @p11;
+UPDATE [Currencies] SET [Ask] = @p12, [ModifiedTime] = @p13
+OUTPUT 1
+WHERE [Id] = @p14;
+2024-02-22 21:25:58.277 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 21:25:58.437 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 21:25:58.448 +01:00 [INF] Quartz Scheduler created
+2024-02-22 21:25:58.450 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 21:25:58.450 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 21:25:58.451 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 21:25:58.452 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 21:25:58.453 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 21:25:58.464 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 21:25:58.467 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 21:25:58.576 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 21:25:58.578 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 21:25:58.586 +01:00 [INF] Hosting environment: Development
+2024-02-22 21:25:58.587 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 21:25:58.588 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 21:25:58.773 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:25:58.778 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:25:59.038 +01:00 [INF] Received HTTP response headers after 253.3332ms - 200
+2024-02-22 21:25:59.051 +01:00 [INF] End processing HTTP request after 282.2658ms - 200
+2024-02-22 21:26:13.245 +01:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+WHERE [c].[Code] <> N'PLN'
+2024-02-22 21:27:04.603 +01:00 [INF] Executed DbCommand (29ms) [Parameters=[@p3='?' (DbType = Guid), @p0='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p1='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p2='?' (DbType = DateTime2), @p7='?' (DbType = Guid), @p4='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p5='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p6='?' (DbType = DateTime2), @p11='?' (DbType = Guid), @p8='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p9='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p10='?' (DbType = DateTime2), @p14='?' (DbType = Guid), @p12='?' (Precision = 10) (Scale = 3) (DbType = Decimal), @p13='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Currencies] SET [Ask] = @p0, [Bid] = @p1, [ModifiedTime] = @p2
+OUTPUT 1
+WHERE [Id] = @p3;
+UPDATE [Currencies] SET [Ask] = @p4, [Bid] = @p5, [ModifiedTime] = @p6
+OUTPUT 1
+WHERE [Id] = @p7;
+UPDATE [Currencies] SET [Ask] = @p8, [Bid] = @p9, [ModifiedTime] = @p10
+OUTPUT 1
+WHERE [Id] = @p11;
+UPDATE [Currencies] SET [Ask] = @p12, [ModifiedTime] = @p13
+OUTPUT 1
+WHERE [Id] = @p14;
+2024-02-22 21:38:04.457 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/transaction/addDefault application/json 72
+2024-02-22 21:38:04.513 +01:00 [WRN] Failed to determine the https port for redirect.
+2024-02-22 21:38:04.741 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:38:04'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2024-02-22 21:38:04.753 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:38:04'.
+2024-02-22 21:38:04.769 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/transaction/addDefault application/json 72 - 404 0 - 313.5902ms
+2024-02-22 21:38:30.441 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72
+2024-02-22 21:38:30.447 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:38:30'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2024-02-22 21:38:30.451 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:38:30'.
+2024-02-22 21:38:30.464 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-02-22 21:38:30.543 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72 - 401 - application/json 102.3849ms
+2024-02-22 21:38:58.400 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72
+2024-02-22 21:38:58.410 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:38:58'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2024-02-22 21:38:58.414 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:38:58'.
+2024-02-22 21:38:58.426 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-02-22 21:38:58.428 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72 - 401 - application/json 28.9566ms
+2024-02-22 21:39:50.241 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 59
+2024-02-22 21:39:50.251 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:39:50.273 +01:00 [INF] Route matched with {action = "Authentication", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto]]] Authentication(WalletApp.Application.Account.Authenticate.AuthenticateDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2024-02-22 21:39:50.405 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:39:50.586 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-02-22 21:39:50.631 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:39:50.659 +01:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-02-22 21:39:50.668 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:39:50.682 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:40:00.847 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__ipAddress_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [t].[Id], [t].[IpAddress], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[UserIdentityId]
+FROM [Tokens] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [t].[IpAddress] = @__ipAddress_1
+2024-02-22 21:40:00.880 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:40:00.941 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@p16='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p17='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int64), @p5='?' (DbType = Int64), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 256), @p20='?' (DbType = Guid), @p18='?' (Size = 4000), @p19='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [IconType] = @p4, [Language] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+UPDATE [Tokens] SET [RefreshToken] = @p18, [RefreshTokenExpiryTime] = @p19
+OUTPUT 1
+WHERE [Id] = @p20;
+2024-02-22 21:40:00.971 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-02-22 21:40:00.992 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.Authentication (WalletApp.Api) in 10708.1157ms
+2024-02-22 21:40:00.995 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:40:01.001 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 59 - 200 - application/json;+charset=utf-8 10759.5351ms
+2024-02-22 21:40:45.484 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72
+2024-02-22 21:40:45.487 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:40:45'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2024-02-22 21:40:45.493 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:40:45'.
+2024-02-22 21:40:45.494 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-02-22 21:40:45.495 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72 - 401 - application/json 11.0611ms
+2024-02-22 21:42:17.354 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/transactionUser/add application/json 253
+2024-02-22 21:42:17.363 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:42:17'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2024-02-22 21:42:17.370 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '18.12.2023 10:11:20', Current time: '22.02.2024 20:42:17'.
+2024-02-22 21:42:17.371 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-02-22 21:42:17.373 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/transactionUser/add application/json 253 - 401 - application/json 18.5429ms
+2024-02-22 21:43:04.136 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 43
+2024-02-22 21:43:04.144 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:43:04.149 +01:00 [INF] Route matched with {action = "Authentication", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto]]] Authentication(WalletApp.Application.Account.Authenticate.AuthenticateDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2024-02-22 21:43:04.187 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:43:04.271 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-02-22 21:43:04.277 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:43:04.282 +01:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-02-22 21:43:04.286 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:43:04.291 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:43:06.304 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__ipAddress_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [t].[Id], [t].[IpAddress], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[UserIdentityId]
+FROM [Tokens] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [t].[IpAddress] = @__ipAddress_1
+2024-02-22 21:43:06.310 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:43:06.317 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@p16='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p17='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int64), @p5='?' (DbType = Int64), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 256), @p20='?' (DbType = Guid), @p18='?' (Size = 4000), @p19='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [IconType] = @p4, [Language] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+UPDATE [Tokens] SET [RefreshToken] = @p18, [RefreshTokenExpiryTime] = @p19
+OUTPUT 1
+WHERE [Id] = @p20;
+2024-02-22 21:43:06.326 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-02-22 21:43:06.328 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.Authentication (WalletApp.Api) in 2175.6916ms
+2024-02-22 21:43:06.329 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:43:06.331 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 43 - 200 - application/json;+charset=utf-8 2194.8331ms
+2024-02-22 21:43:06.378 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72
+2024-02-22 21:43:06.391 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api)'
+2024-02-22 21:43:06.399 +01:00 [INF] Route matched with {action = "AddUserTransactionDefault", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult]] AddUserTransactionDefault(WalletApp.Application.Common.Transaction.AddUserTxDefault.AddUserTxDefaultDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2024-02-22 21:43:49.117 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[Id], [d].[BackgroundColor], [d].[CategoryId], [d].[CratedBy], [d].[CreatedTime], [d].[CurrencyId], [d].[DeletedBy], [d].[DeletedTime], [d].[Description], [d].[GroupId], [d].[IsDeleted], [d].[ModifiedBy], [d].[ModifiedTime], [d].[Price], [d].[TextColor], [d].[Title], [d].[UserIdentityId]
+FROM [DefaultTransactions] AS [d]
+WHERE [d].[Id] = @__id_0
+2024-02-22 21:43:49.120 +01:00 [INF] Executing NotFoundObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult'.
+2024-02-22 21:43:49.122 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api) in 42717.8771ms
+2024-02-22 21:43:49.124 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api)'
+2024-02-22 21:43:49.126 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72 - 404 - application/json;+charset=utf-8 42747.4764ms
+2024-02-22 21:45:06.498 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 43
+2024-02-22 21:45:06.506 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:45:06.509 +01:00 [INF] Route matched with {action = "Authentication", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto]]] Authentication(WalletApp.Application.Account.Authenticate.AuthenticateDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2024-02-22 21:45:06.518 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:45:06.595 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-02-22 21:45:06.603 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:45:06.606 +01:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-02-22 21:45:06.609 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:45:06.615 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:45:11.159 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__ipAddress_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [t].[Id], [t].[IpAddress], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[UserIdentityId]
+FROM [Tokens] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [t].[IpAddress] = @__ipAddress_1
+2024-02-22 21:45:11.166 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:45:11.173 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@p16='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p17='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int64), @p5='?' (DbType = Int64), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 256), @p20='?' (DbType = Guid), @p18='?' (Size = 4000), @p19='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [IconType] = @p4, [Language] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+UPDATE [Tokens] SET [RefreshToken] = @p18, [RefreshTokenExpiryTime] = @p19
+OUTPUT 1
+WHERE [Id] = @p20;
+2024-02-22 21:45:11.184 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-02-22 21:45:11.186 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.Authentication (WalletApp.Api) in 4675.5258ms
+2024-02-22 21:45:11.188 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:45:11.189 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 43 - 200 - application/json;+charset=utf-8 4691.1550ms
+2024-02-22 21:45:11.224 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72
+2024-02-22 21:45:11.228 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api)'
+2024-02-22 21:45:11.230 +01:00 [INF] Route matched with {action = "AddUserTransactionDefault", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult]] AddUserTransactionDefault(WalletApp.Application.Common.Transaction.AddUserTxDefault.AddUserTxDefaultDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2024-02-22 21:45:13.778 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[Id], [d].[BackgroundColor], [d].[CategoryId], [d].[CratedBy], [d].[CreatedTime], [d].[CurrencyId], [d].[DeletedBy], [d].[DeletedTime], [d].[Description], [d].[GroupId], [d].[IsDeleted], [d].[ModifiedBy], [d].[ModifiedTime], [d].[Price], [d].[TextColor], [d].[Title], [d].[UserIdentityId]
+FROM [DefaultTransactions] AS [d]
+WHERE [d].[Id] = @__id_0
+2024-02-22 21:45:13.824 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ActualMoneyChf], [a].[ActualMoneyEur], [a].[ActualMoneyGbp], [a].[ActualMoneyPln], [a].[ActualMoneyUsd], [a].[CratedBy], [a].[CreatedTime], [a].[DeletedBy], [a].[DeletedTime], [a].[IsDeleted], [a].[ModifiedBy], [a].[ModifiedTime], [a].[UserIdentityId]
+FROM [AccountData] AS [a]
+WHERE [a].[UserIdentityId] = @__userId_0
+2024-02-22 21:45:13.853 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+WHERE [c].[Id] = @__id_0
+2024-02-22 21:45:19.967 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[@__dTransactionId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[BackgroundColor], [t].[CategoryId], [t].[CratedBy], [t].[CreatedTime], [t].[CurrencyId], [t].[DeletedBy], [t].[DeletedTime], [t].[Description], [t].[GroupId], [t].[IsDeleted], [t].[ModifiedBy], [t].[ModifiedTime], [t].[Price], [t].[TextColor], [t].[Title], [t].[UserIdentityId], [t].[Id0], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[IconType], [t].[Language], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName], [t].[Id1], [d0].[Id], [d0].[BackgroundColor], [d0].[CategoryId], [d0].[CratedBy], [d0].[CreatedTime], [d0].[CurrencyId], [d0].[DeletedBy], [d0].[DeletedTime], [d0].[Description], [d0].[GroupId], [d0].[IsDeleted], [d0].[ModifiedBy], [d0].[ModifiedTime], [d0].[Price], [d0].[TextColor], [d0].[Title], [d0].[UserIdentityId], [t].[Ask], [t].[Bid], [t].[Code], [t].[CratedBy0], [t].[CreatedTime0], [t].[CurrencyName], [t].[DeletedBy0], [t].[DeletedTime0], [t].[IsDeleted0], [t].[ModifiedBy0], [t].[ModifiedTime0], [t].[TradingDate]
+FROM (
+    SELECT TOP(1) [d].[Id], [d].[BackgroundColor], [d].[CategoryId], [d].[CratedBy], [d].[CreatedTime], [d].[CurrencyId], [d].[DeletedBy], [d].[DeletedTime], [d].[Description], [d].[GroupId], [d].[IsDeleted], [d].[ModifiedBy], [d].[ModifiedTime], [d].[Price], [d].[TextColor], [d].[Title], [d].[UserIdentityId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [c].[Id] AS [Id1], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy] AS [CratedBy0], [c].[CreatedTime] AS [CreatedTime0], [c].[CurrencyName], [c].[DeletedBy] AS [DeletedBy0], [c].[DeletedTime] AS [DeletedTime0], [c].[IsDeleted] AS [IsDeleted0], [c].[ModifiedBy] AS [ModifiedBy0], [c].[ModifiedTime] AS [ModifiedTime0], [c].[TradingDate]
+    FROM [DefaultTransactions] AS [d]
+    INNER JOIN [AspNetUsers] AS [a] ON [d].[UserIdentityId] = [a].[Id]
+    INNER JOIN [Currencies] AS [c] ON [d].[CurrencyId] = [c].[Id]
+    WHERE [d].[Id] = @__dTransactionId_0
+) AS [t]
+LEFT JOIN [DefaultTransactions] AS [d0] ON [t].[Id0] = [d0].[UserIdentityId]
+ORDER BY [t].[Id], [t].[Id0], [t].[Id1]
+2024-02-22 21:49:37.750 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 21:49:37.871 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 21:49:37.874 +01:00 [INF] Quartz Scheduler created
+2024-02-22 21:49:37.878 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 21:49:37.881 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 21:49:37.883 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 21:49:37.884 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 21:49:37.886 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 21:49:37.897 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 21:49:37.902 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 21:49:37.953 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 21:49:37.957 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 21:49:37.960 +01:00 [INF] Hosting environment: Development
+2024-02-22 21:49:37.961 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 21:49:37.961 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 21:49:38.092 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:49:38.096 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:49:40.621 +01:00 [INF] Application is shutting down...
+2024-02-22 21:49:40.631 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED shutting down.
+2024-02-22 21:49:40.633 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED paused.
+2024-02-22 21:49:57.446 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 21:49:57.628 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 21:49:57.632 +01:00 [INF] Quartz Scheduler created
+2024-02-22 21:49:57.633 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 21:49:57.634 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 21:49:57.635 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 21:49:57.636 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 21:49:57.637 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 21:49:57.649 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 21:49:57.655 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 21:49:57.788 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 21:49:57.794 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 21:49:57.796 +01:00 [INF] Hosting environment: Development
+2024-02-22 21:49:57.798 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 21:49:57.799 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 21:49:58.010 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:49:58.016 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:50:04.538 +01:00 [INF] Received HTTP response headers after 6510.8759ms - 408
+2024-02-22 21:50:04.551 +01:00 [INF] End processing HTTP request after 6546.8599ms - 408
+2024-02-22 21:50:04.965 +01:00 [ERR] Job DEFAULT.NBP threw an unhandled Exception: 
+WalletApp.Domain.Common.ErrorDetails: Bad request to NBP API
+   at WalletApp.Infractructure.ExternalApi.NBP.NbpClient.GetCurrencies(CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\ExternalApi\NBP\NbpClient.cs:line 30
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 20
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+2024-02-22 21:50:04.989 +01:00 [ERR] Job DEFAULT.NBP threw an exception.
+Quartz.SchedulerException: Job threw an unhandled exception.
+ ---> WalletApp.Domain.Common.ErrorDetails: Bad request to NBP API
+   at WalletApp.Infractructure.ExternalApi.NBP.NbpClient.GetCurrencies(CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\ExternalApi\NBP\NbpClient.cs:line 30
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 20
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+   --- End of inner exception stack trace --- [See nested exception: WalletApp.Domain.Common.ErrorDetails: Bad request to NBP API
+   at WalletApp.Infractructure.ExternalApi.NBP.NbpClient.GetCurrencies(CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\ExternalApi\NBP\NbpClient.cs:line 30
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 20
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)]
+2024-02-22 21:50:24.726 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 43
+2024-02-22 21:50:24.776 +01:00 [WRN] Failed to determine the https port for redirect.
+2024-02-22 21:50:24.887 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:50:24.907 +01:00 [INF] Route matched with {action = "Authentication", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto]]] Authentication(WalletApp.Application.Account.Authenticate.AuthenticateDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2024-02-22 21:50:26.828 +01:00 [INF] Executed DbCommand (64ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:50:27.101 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-02-22 21:50:27.138 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:50:27.162 +01:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-02-22 21:50:27.171 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:50:27.183 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:50:27.347 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__ipAddress_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [t].[Id], [t].[IpAddress], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[UserIdentityId]
+FROM [Tokens] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [t].[IpAddress] = @__ipAddress_1
+2024-02-22 21:50:27.390 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:50:27.566 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@p16='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p17='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int64), @p5='?' (DbType = Int64), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 256), @p20='?' (DbType = Guid), @p18='?' (Size = 4000), @p19='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [IconType] = @p4, [Language] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+UPDATE [Tokens] SET [RefreshToken] = @p18, [RefreshTokenExpiryTime] = @p19
+OUTPUT 1
+WHERE [Id] = @p20;
+2024-02-22 21:50:27.619 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-02-22 21:50:27.648 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.Authentication (WalletApp.Api) in 2730.6849ms
+2024-02-22 21:50:27.651 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:50:27.669 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 43 - 200 - application/json;+charset=utf-8 2943.9342ms
+2024-02-22 21:50:27.720 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72
+2024-02-22 21:50:27.797 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api)'
+2024-02-22 21:50:27.804 +01:00 [INF] Route matched with {action = "AddUserTransactionDefault", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult]] AddUserTransactionDefault(WalletApp.Application.Common.Transaction.AddUserTxDefault.AddUserTxDefaultDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2024-02-22 21:50:32.231 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[Id], [d].[BackgroundColor], [d].[CategoryId], [d].[CratedBy], [d].[CreatedTime], [d].[CurrencyId], [d].[DeletedBy], [d].[DeletedTime], [d].[Description], [d].[GroupId], [d].[IsDeleted], [d].[ModifiedBy], [d].[ModifiedTime], [d].[Price], [d].[TextColor], [d].[Title], [d].[UserIdentityId]
+FROM [DefaultTransactions] AS [d]
+WHERE [d].[Id] = @__id_0
+2024-02-22 21:50:32.265 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ActualMoneyChf], [a].[ActualMoneyEur], [a].[ActualMoneyGbp], [a].[ActualMoneyPln], [a].[ActualMoneyUsd], [a].[CratedBy], [a].[CreatedTime], [a].[DeletedBy], [a].[DeletedTime], [a].[IsDeleted], [a].[ModifiedBy], [a].[ModifiedTime], [a].[UserIdentityId]
+FROM [AccountData] AS [a]
+WHERE [a].[UserIdentityId] = @__userId_0
+2024-02-22 21:50:32.293 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate]
+FROM [Currencies] AS [c]
+WHERE [c].[Id] = @__id_0
+2024-02-22 21:50:36.267 +01:00 [INF] Executed DbCommand (25ms) [Parameters=[@__dTransactionId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[BackgroundColor], [t].[CategoryId], [t].[CratedBy], [t].[CreatedTime], [t].[CurrencyId], [t].[DeletedBy], [t].[DeletedTime], [t].[Description], [t].[GroupId], [t].[IsDeleted], [t].[ModifiedBy], [t].[ModifiedTime], [t].[Price], [t].[TextColor], [t].[Title], [t].[UserIdentityId], [t].[Id0], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[IconType], [t].[Language], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName], [t].[Id1], [t].[Id2], [d0].[Id], [d0].[BackgroundColor], [d0].[CategoryId], [d0].[CratedBy], [d0].[CreatedTime], [d0].[CurrencyId], [d0].[DeletedBy], [d0].[DeletedTime], [d0].[Description], [d0].[GroupId], [d0].[IsDeleted], [d0].[ModifiedBy], [d0].[ModifiedTime], [d0].[Price], [d0].[TextColor], [d0].[Title], [d0].[UserIdentityId], [t].[Ask], [t].[Bid], [t].[Code], [t].[CratedBy0], [t].[CreatedTime0], [t].[CurrencyName], [t].[DeletedBy0], [t].[DeletedTime0], [t].[IsDeleted0], [t].[ModifiedBy0], [t].[ModifiedTime0], [t].[TradingDate], [t].[CratedBy1], [t].[CreatedTime1], [t].[DeletedBy1], [t].[DeletedTime1], [t].[GroupId0], [t].[IsDeleted1], [t].[ModifiedBy1], [t].[ModifiedTime1], [t].[Name], [t].[UserIdentityId0]
+FROM (
+    SELECT TOP(1) [d].[Id], [d].[BackgroundColor], [d].[CategoryId], [d].[CratedBy], [d].[CreatedTime], [d].[CurrencyId], [d].[DeletedBy], [d].[DeletedTime], [d].[Description], [d].[GroupId], [d].[IsDeleted], [d].[ModifiedBy], [d].[ModifiedTime], [d].[Price], [d].[TextColor], [d].[Title], [d].[UserIdentityId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [c].[Id] AS [Id1], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy] AS [CratedBy0], [c].[CreatedTime] AS [CreatedTime0], [c].[CurrencyName], [c].[DeletedBy] AS [DeletedBy0], [c].[DeletedTime] AS [DeletedTime0], [c].[IsDeleted] AS [IsDeleted0], [c].[ModifiedBy] AS [ModifiedBy0], [c].[ModifiedTime] AS [ModifiedTime0], [c].[TradingDate], [c0].[Id] AS [Id2], [c0].[CratedBy] AS [CratedBy1], [c0].[CreatedTime] AS [CreatedTime1], [c0].[DeletedBy] AS [DeletedBy1], [c0].[DeletedTime] AS [DeletedTime1], [c0].[GroupId] AS [GroupId0], [c0].[IsDeleted] AS [IsDeleted1], [c0].[ModifiedBy] AS [ModifiedBy1], [c0].[ModifiedTime] AS [ModifiedTime1], [c0].[Name], [c0].[UserIdentityId] AS [UserIdentityId0]
+    FROM [DefaultTransactions] AS [d]
+    INNER JOIN [AspNetUsers] AS [a] ON [d].[UserIdentityId] = [a].[Id]
+    INNER JOIN [Currencies] AS [c] ON [d].[CurrencyId] = [c].[Id]
+    INNER JOIN [Categories] AS [c0] ON [d].[CategoryId] = [c0].[Id]
+    WHERE [d].[Id] = @__dTransactionId_0
+) AS [t]
+LEFT JOIN [DefaultTransactions] AS [d0] ON [t].[Id0] = [d0].[UserIdentityId]
+ORDER BY [t].[Id], [t].[Id0], [t].[Id1], [t].[Id2]
+2024-02-22 21:50:52.510 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (Precision = 15) (Scale = 2) (DbType = Decimal), @p1='?' (DbType = DateTime2), @p3='?' (DbType = Guid), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime2), @p7='?' (DbType = Guid), @p8='?' (DbType = DateTime2), @p9='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime2), @p12='?' (Size = 500), @p13='?' (DbType = Guid), @p14='?' (DbType = Boolean), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime2), @p17='?' (Precision = 15) (Scale = 2) (DbType = Decimal), @p18='?' (Size = 50), @p19='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AccountData] SET [ActualMoneyUsd] = @p0, [ModifiedTime] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+INSERT INTO [Transactions] ([Id], [CategoryId], [CratedBy], [CreatedTime], [CurrencyId], [Date], [DefaultTransactionId], [DeletedBy], [DeletedTime], [Description], [GroupId], [IsDeleted], [ModifiedBy], [ModifiedTime], [Price], [Title], [UserIdentityId])
+OUTPUT INSERTED.[IsDefault]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19);
+2024-02-22 21:50:52.529 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult'.
+2024-02-22 21:50:52.532 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api) in 24722.3365ms
+2024-02-22 21:50:52.533 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api)'
+2024-02-22 21:50:52.535 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72 - 200 - application/json;+charset=utf-8 24814.8483ms
+2024-02-22 21:57:10.887 +01:00 [INF] User profile is available. Using 'C:\Users\maste\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-02-22 21:57:11.123 +01:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2024-02-22 21:57:11.126 +01:00 [INF] Quartz Scheduler created
+2024-02-22 21:57:11.128 +01:00 [INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+2024-02-22 21:57:11.131 +01:00 [INF] RAMJobStore initialized.
+2024-02-22 21:57:11.134 +01:00 [INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+2024-02-22 21:57:11.135 +01:00 [INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+2024-02-22 21:57:11.137 +01:00 [INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+2024-02-22 21:57:11.152 +01:00 [INF] Adding 1 jobs, 1 triggers.
+2024-02-22 21:57:11.158 +01:00 [INF] Adding job: DEFAULT.NBP
+2024-02-22 21:57:11.309 +01:00 [INF] Now listening on: http://localhost:5238
+2024-02-22 21:57:11.311 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-22 21:57:11.321 +01:00 [INF] Hosting environment: Development
+2024-02-22 21:57:11.324 +01:00 [INF] Content root path: C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Api
+2024-02-22 21:57:11.326 +01:00 [INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2024-02-22 21:57:11.623 +01:00 [INF] Start processing HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:57:11.628 +01:00 [INF] Sending HTTP request GET http://api.nbp.pl/api/exchangerates/tables/c
+2024-02-22 21:57:12.393 +01:00 [ERR] Job DEFAULT.NBP threw an unhandled Exception: 
+System.Net.Http.HttpRequestException: Nieznany host. (api.nbp.pl:80)
+ ---> System.Net.Sockets.SocketException (11001): Nieznany host.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|281_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.HttpConnectionWaiter`1.WaitForConnectionAsync(Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendAsync>g__Core|5_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendAsync>g__Core|5_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at WalletApp.Infractructure.ExternalApi.NBP.NbpClient.GetCurrencies(CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\ExternalApi\NBP\NbpClient.cs:line 27
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 20
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+2024-02-22 21:57:12.415 +01:00 [ERR] Job DEFAULT.NBP threw an exception.
+Quartz.SchedulerException: Job threw an unhandled exception.
+ ---> System.Net.Http.HttpRequestException: Nieznany host. (api.nbp.pl:80)
+ ---> System.Net.Sockets.SocketException (11001): Nieznany host.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|281_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.HttpConnectionWaiter`1.WaitForConnectionAsync(Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendAsync>g__Core|5_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendAsync>g__Core|5_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at WalletApp.Infractructure.ExternalApi.NBP.NbpClient.GetCurrencies(CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\ExternalApi\NBP\NbpClient.cs:line 27
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 20
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)
+   --- End of inner exception stack trace --- [See nested exception: System.Net.Http.HttpRequestException: Nieznany host. (api.nbp.pl:80)
+ ---> System.Net.Sockets.SocketException (11001): Nieznany host.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|281_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.HttpConnectionWaiter`1.WaitForConnectionAsync(Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendAsync>g__Core|5_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendAsync>g__Core|5_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at WalletApp.Infractructure.ExternalApi.NBP.NbpClient.GetCurrencies(CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\ExternalApi\NBP\NbpClient.cs:line 27
+   at WalletApp.Application.Common.Currency.UpdateCurrency.UpdateCurrencyCommandHandler.Handle(UpdateCurrencyCommand request, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Common\Currency\UpdateCurrency\UpdateCurrencyCommandHandler.cs:line 20
+   at WalletApp.Application.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Application\Behaviours\ValidationBehaviour.cs:line 22
+   at WalletApp.Infractructure.Quartz.CallToNbpApiJob.Execute(IJobExecutionContext context) in C:\Users\maste\source\repos\wallet-app\wallet-app-backend\WalletApp.Infrastructure\Quartz\CallToNbpApiJob.cs:line 20
+   at Quartz.Core.JobRunShell.Run(CancellationToken cancellationToken)]
+2024-02-22 21:57:47.438 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 43
+2024-02-22 21:57:47.497 +01:00 [WRN] Failed to determine the https port for redirect.
+2024-02-22 21:57:47.601 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:57:47.629 +01:00 [INF] Route matched with {action = "Authentication", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult`1[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto]]] Authentication(WalletApp.Application.Account.Authenticate.AuthenticateDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.AccountController (WalletApp.Api).
+2024-02-22 21:57:49.925 +01:00 [INF] Executed DbCommand (70ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:57:50.279 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-02-22 21:57:50.322 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:57:50.348 +01:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-02-22 21:57:50.360 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:57:50.373 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-02-22 21:57:50.552 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__ipAddress_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [t].[Id], [t].[IpAddress], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[UserIdentityId]
+FROM [Tokens] AS [t]
+WHERE [t].[UserIdentityId] = @__userId_0 AND [t].[IpAddress] = @__ipAddress_1
+2024-02-22 21:57:50.605 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-02-22 21:57:50.784 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@p16='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p17='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int64), @p5='?' (DbType = Int64), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 256), @p20='?' (DbType = Guid), @p18='?' (Size = 4000), @p19='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [IconType] = @p4, [Language] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+UPDATE [Tokens] SET [RefreshToken] = @p18, [RefreshTokenExpiryTime] = @p19
+OUTPUT 1
+WHERE [Id] = @p20;
+2024-02-22 21:57:50.842 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult`1[[WalletApp.Application.Account.Authenticate.AuthenticateResponseDto, WalletApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-02-22 21:57:50.878 +01:00 [INF] Executed action WalletApp.Controllers.AccountController.Authentication (WalletApp.Api) in 3240.8537ms
+2024-02-22 21:57:50.884 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.AccountController.Authentication (WalletApp.Api)'
+2024-02-22 21:57:50.901 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/account/authenticate application/json 43 - 200 - application/json;+charset=utf-8 3465.2514ms
+2024-02-22 21:57:50.931 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72
+2024-02-22 21:57:51.021 +01:00 [INF] Executing endpoint 'WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api)'
+2024-02-22 21:57:51.027 +01:00 [INF] Route matched with {action = "AddUserTransactionDefault", controller = "TransactionUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WalletApp.Application.Common.ApiResult]] AddUserTransactionDefault(WalletApp.Application.Common.Transaction.AddUserTxDefault.AddUserTxDefaultDto, System.Threading.CancellationToken) on controller WalletApp.Controllers.TransactionUserController (WalletApp.Api).
+2024-02-22 21:58:09.677 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[@__dTransactionId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[Id], [d].[BackgroundColor], [d].[CategoryId], [d].[CratedBy], [d].[CreatedTime], [d].[CurrencyId], [d].[DeletedBy], [d].[DeletedTime], [d].[Description], [d].[GroupId], [d].[IsDeleted], [d].[ModifiedBy], [d].[ModifiedTime], [d].[Price], [d].[TextColor], [d].[Title], [d].[UserIdentityId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[IconType], [a].[Language], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a0].[Id], [a0].[ActualMoneyChf], [a0].[ActualMoneyEur], [a0].[ActualMoneyGbp], [a0].[ActualMoneyPln], [a0].[ActualMoneyUsd], [a0].[CratedBy], [a0].[CreatedTime], [a0].[DeletedBy], [a0].[DeletedTime], [a0].[IsDeleted], [a0].[ModifiedBy], [a0].[ModifiedTime], [a0].[UserIdentityId], [c].[Id], [c].[Ask], [c].[Bid], [c].[Code], [c].[CratedBy], [c].[CreatedTime], [c].[CurrencyName], [c].[DeletedBy], [c].[DeletedTime], [c].[IsDeleted], [c].[ModifiedBy], [c].[ModifiedTime], [c].[TradingDate], [c0].[Id], [c0].[CratedBy], [c0].[CreatedTime], [c0].[DeletedBy], [c0].[DeletedTime], [c0].[GroupId], [c0].[IsDeleted], [c0].[ModifiedBy], [c0].[ModifiedTime], [c0].[Name], [c0].[UserIdentityId]
+FROM [DefaultTransactions] AS [d]
+INNER JOIN [AspNetUsers] AS [a] ON [d].[UserIdentityId] = [a].[Id]
+LEFT JOIN [AccountData] AS [a0] ON [a].[Id] = [a0].[UserIdentityId]
+INNER JOIN [Currencies] AS [c] ON [d].[CurrencyId] = [c].[Id]
+INNER JOIN [Categories] AS [c0] ON [d].[CategoryId] = [c0].[Id]
+WHERE [d].[Id] = @__dTransactionId_0
+2024-02-22 21:58:21.224 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (Precision = 15) (Scale = 2) (DbType = Decimal), @p1='?' (DbType = DateTime2), @p3='?' (DbType = Guid), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime2), @p7='?' (DbType = Guid), @p8='?' (DbType = DateTime2), @p9='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime2), @p12='?' (Size = 500), @p13='?' (DbType = Guid), @p14='?' (DbType = Boolean), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime2), @p17='?' (Precision = 15) (Scale = 2) (DbType = Decimal), @p18='?' (Size = 50), @p19='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AccountData] SET [ActualMoneyUsd] = @p0, [ModifiedTime] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+INSERT INTO [Transactions] ([Id], [CategoryId], [CratedBy], [CreatedTime], [CurrencyId], [Date], [DefaultTransactionId], [DeletedBy], [DeletedTime], [Description], [GroupId], [IsDeleted], [ModifiedBy], [ModifiedTime], [Price], [Title], [UserIdentityId])
+OUTPUT INSERTED.[IsDefault]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19);
+2024-02-22 21:58:21.253 +01:00 [INF] Executing OkObjectResult, writing value of type 'WalletApp.Application.Common.ApiResult'.
+2024-02-22 21:58:21.258 +01:00 [INF] Executed action WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api) in 30228.6576ms
+2024-02-22 21:58:21.261 +01:00 [INF] Executed endpoint 'WalletApp.Controllers.TransactionUserController.AddUserTransactionDefault (WalletApp.Api)'
+2024-02-22 21:58:21.263 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5238/api/TransactionUser/addDefault application/json 72 - 200 - application/json;+charset=utf-8 30331.3635ms
