@@ -16,19 +16,16 @@ export const useAddTransactionPage = () => {
   const [state, setState] = useState<typeof initialState>(initialState);
 
   const getSavedTransactions = async () => {
-    const data = await callToApi(
-      DefaultTransaction.getDefaultUserTransaction(),
-    );
-
-    setState((prev) => ({
-      ...prev,
-      transactions: data.data ?? [],
-    }));
+    return callToApi(DefaultTransaction.getDefaultUserTransaction());
   };
 
   useEffect(() => {
     (async () => {
-      await getSavedTransactions();
+      const savedTransactions = await getSavedTransactions();
+      setState((prev) => ({
+        ...prev,
+        transactions: savedTransactions.data ?? [],
+      }));
     })();
   }, []);
 
@@ -39,11 +36,13 @@ export const useAddTransactionPage = () => {
     });
   };
 
-  const closeAddNewTransactionModal = () => {
-    setState({
-      ...state,
+  const closeAddNewTransactionModal = async () => {
+    const savedTransactions = await getSavedTransactions();
+    setState((prev) => ({
+      ...prev,
       isNew: false,
-    });
+      transactions: savedTransactions.data ?? [],
+    }));
   };
 
   const addTransaction = useCallback(
@@ -52,7 +51,11 @@ export const useAddTransactionPage = () => {
         messages.addTransactionPageConfirmModal,
         async () => {
           await callToApi(DefaultTransaction.addTransactionDefault(id));
-          await getSavedTransactions();
+          const savedTransactions = await getSavedTransactions();
+          setState((prev) => ({
+            ...prev,
+            transactions: savedTransactions.data ?? [],
+          }));
         },
         () => {
           closeConfirmActionModal();

@@ -1,17 +1,14 @@
 import styled from 'styled-components';
-import footerBlue from '../../../assets/images/footerBlue.svg';
-import footerGreen from '../../../assets/images/footerGreen.svg';
 import { TTheme } from '../../../styles/theme';
 
 export const Wrapper = styled.footer<{ isGroup?: boolean }>`
-  background-image: ${({ isGroup }) =>
-    isGroup ? `url(${footerGreen})` : `url(${footerBlue})`};
   position: fixed;
   width: 100vw;
-  height: 17vh;
+  height: 85px;
   background-repeat: no-repeat;
   background-size: cover;
   bottom: 0;
+  background-color: ${({ theme }: { theme: TTheme }) => theme.colors.lightBlue};
 `;
 
 export const Circle = styled.div`

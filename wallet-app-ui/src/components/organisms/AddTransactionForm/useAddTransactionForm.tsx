@@ -5,7 +5,7 @@ import { TGetUserCategoriesResponse } from '../../../models/apiTypes/category';
 import { TAddUserTransactionForm } from '../../../models/apiTypes/transaction';
 import { addUserTransactionSchema } from '../../../validators/transaction/addUserTransaction.validator';
 import { CategoryApi, CurrencyApi, TransactionApi } from '../../../api';
-import { transactionDefaultColor } from '../../../const/colorPicker';
+import { transactionDefaultColor } from '../../../const';
 import { ApiStatus } from '../../../models/apiResult';
 import { CustomString } from '../../../overrides/string.override';
 
@@ -27,7 +27,7 @@ export const useAddTransactionForm = ({ onClose }: TProps) => {
     price: null as unknown as number,
     currencyId: CustomString.Empty,
     categoryId: CustomString.Empty,
-    date: null as unknown as Date,
+    date: new Date(),
     isDefault: false,
     textColor: undefined,
     backgroundColor: undefined,
