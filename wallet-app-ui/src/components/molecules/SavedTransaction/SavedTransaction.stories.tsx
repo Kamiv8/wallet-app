@@ -1,20 +1,17 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { SavedTransaction } from './SavedTransaction';
 
 export default {
-  title: 'Molecules/SavedTransaction',
   component: SavedTransaction,
-} as ComponentMeta<typeof SavedTransaction>;
+} as Meta<typeof SavedTransaction>;
 
-const Template: ComponentStory<typeof SavedTransaction> = (args) => (
-  <SavedTransaction {...args} />
-);
+type Story = StoryObj<typeof SavedTransaction>;
 
-export const Primary = Template.bind({});
-
-Primary.args = {
-  category: 'Ticket',
-  price: 12.34,
-  currency: 'PLN',
-  description: 'Lorem ipsum dolor sit Lorem ipsum dolor sit',
+export const Primary: Story = {
+  args: {
+    category: 'Ticket',
+    price: 12.34,
+    currency: 'PLN',
+    description: 'Lorem ipsum dolor sit Lorem ipsum dolor sit',
+  },
 };

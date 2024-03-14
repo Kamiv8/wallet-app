@@ -35,7 +35,7 @@ export const HomePage = () => {
           color={'orange'}
           letterSpacing={1.6}
         >
-          {state.actualMoney.actualMoneyPln} PLN
+          {state.actualMoney.actualMoneyPln.toFixed(2)} PLN
         </Typography>
       ) : null}
       {state.actualMoney.actualMoneyEur ? (
@@ -46,7 +46,7 @@ export const HomePage = () => {
           color={'orange'}
           letterSpacing={1.6}
         >
-          {state.actualMoney.actualMoneyEur} EUR
+          {state.actualMoney.actualMoneyEur.toFixed(2)} EUR
         </Typography>
       ) : null}
       {state.actualMoney.actualMoneyChf ? (
@@ -57,7 +57,7 @@ export const HomePage = () => {
           color={'orange'}
           letterSpacing={1.6}
         >
-          {state.actualMoney.actualMoneyChf} CHF
+          {state.actualMoney.actualMoneyChf.toFixed(2)} CHF
         </Typography>
       ) : null}
       {state.actualMoney.actualMoneyUsd ? (
@@ -68,7 +68,7 @@ export const HomePage = () => {
           color={'orange'}
           letterSpacing={1.6}
         >
-          {state.actualMoney.actualMoneyUsd} USD
+          {state.actualMoney.actualMoneyUsd.toFixed(2)} USD
         </Typography>
       ) : null}
       {state.actualMoney.actualMoneyGbp ? (
@@ -79,7 +79,7 @@ export const HomePage = () => {
           color={'orange'}
           letterSpacing={1.6}
         >
-          {state.actualMoney.actualMoneyGbp} GBP
+          {state.actualMoney.actualMoneyGbp.toFixed(2)} GBP
         </Typography>
       ) : null}
       <Typography size={'l'} uppercase weight={700} color={'lightBlue'}>

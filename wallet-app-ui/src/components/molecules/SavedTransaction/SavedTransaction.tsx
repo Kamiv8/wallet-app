@@ -40,8 +40,7 @@ export const SavedTransaction = (props: TProps) => {
           {props.category}
         </Typography>
         <Typography customColor={props.textColor} size={'m'} weight={700}>
-          {props.price}
-          {props.currency}
+          {props.price.toFixed(2)} {props.currency}
         </Typography>
       </SecondRow>
       {props.description && (
