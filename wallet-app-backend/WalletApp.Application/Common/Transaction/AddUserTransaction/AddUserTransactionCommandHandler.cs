@@ -51,35 +51,37 @@ public class
             await _currencyRepository.GetCurrencyById(request.CurrencyId, cancellationToken);
         if (currency is null) return ApiResult.Error(CommonErrorMessages.CommonError);
 
-        var accountData =
-            await _accountDataRepository.GetUserById(request.UserId, cancellationToken);
-        if (accountData is null) return ApiResult.Error(CommonErrorMessages.CommonError);
-
-        if (!Enum.TryParse(currency.Code, true, out AcceptCurrency acceptCurrency))
-            return ApiResult.Error(CommonErrorMessages.CommonError);
-
-        switch (acceptCurrency)
-        {
-            case AcceptCurrency.CHF:
-                accountData.ActualMoneyChf += request.Price;
-                break;
-            case AcceptCurrency.EUR:
-                accountData.ActualMoneyEur += request.Price;
-                break;
-            case AcceptCurrency.GBP:
-                accountData.ActualMoneyGbp += request.Price;
-                break;
-            case AcceptCurrency.USD:
-                accountData.ActualMoneyUsd += request.Price;
-                break;
-            default:
-                accountData.ActualMoneyPln += request.Price;
-                break;
-        }
-
         if (request.IsDefault) await AddDefaultTransaction(request, cancellationToken);
 
-        await _repository.AddTransactionAsync(entityTransaction, cancellationToken);
+        if (request.IsTemplate != true)
+        {
+            await _repository.AddTransactionAsync(entityTransaction, cancellationToken);
+            var accountData =
+                await _accountDataRepository.GetUserById(request.UserId, cancellationToken);
+            if (accountData is null) return ApiResult.Error(CommonErrorMessages.CommonError);
+
+            if (!Enum.TryParse(currency.Code, true, out AcceptCurrency acceptCurrency))
+                return ApiResult.Error(CommonErrorMessages.CommonError);
+
+            switch (acceptCurrency)
+            {
+                case AcceptCurrency.CHF:
+                    accountData.ActualMoneyChf += request.Price;
+                    break;
+                case AcceptCurrency.EUR:
+                    accountData.ActualMoneyEur += request.Price;
+                    break;
+                case AcceptCurrency.GBP:
+                    accountData.ActualMoneyGbp += request.Price;
+                    break;
+                case AcceptCurrency.USD:
+                    accountData.ActualMoneyUsd += request.Price;
+                    break;
+                default:
+                    accountData.ActualMoneyPln += request.Price;
+                    break;
+            }
+        }
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return ApiResult.Success();

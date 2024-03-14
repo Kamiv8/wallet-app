@@ -1,9 +1,9 @@
-import { CardWrapper, Button } from '../../atoms';
+import { Button, CardWrapper } from '../../atoms';
 import {
-  InputField,
-  SelectField,
   CheckboxField,
   ColorPickerField,
+  InputField,
+  SelectField,
   TextAreaField,
 } from '../../molecules';
 import messages from '../../../i18n/messages';
@@ -87,6 +87,14 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
         />
         {isSaved && (
           <SavedInputsWrapper>
+            <CheckboxField
+              label={{ ...messages.addTransactionPageIsTemplate }}
+              color={'darkBlue'}
+              name={'IsTemplate'}
+              onChange={(e) =>
+                handleChange(e, 'isTemplate', FieldType.Checkbox)
+              }
+            />
             <ColorPickerField
               label={{ ...messages.addTransactionPageTextColor }}
               color={'darkBlue'}

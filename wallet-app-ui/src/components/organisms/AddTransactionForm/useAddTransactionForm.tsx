@@ -29,6 +29,7 @@ export const useAddTransactionForm = ({ onClose }: TProps) => {
     categoryId: CustomString.Empty,
     date: new Date(),
     isDefault: false,
+    isTemplate: false,
     textColor: undefined,
     backgroundColor: undefined,
     description: undefined,
@@ -87,6 +88,7 @@ export const useAddTransactionForm = ({ onClose }: TProps) => {
   }, [values.isDefault]);
 
   const handleSubmit = async () => {
+    console.log(values);
     const response = await onSubmit(TransactionApi.addTransaction);
     if (response.status === ApiStatus.SUCCESS) onClose();
   };

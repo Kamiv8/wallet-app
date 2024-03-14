@@ -5,6 +5,7 @@ export type TAddUserTransactionForm = {
   categoryId: string;
   date: Date;
   isDefault: boolean;
+  isTemplate?: boolean;
   textColor?: string;
   backgroundColor?: string;
   description?: string;

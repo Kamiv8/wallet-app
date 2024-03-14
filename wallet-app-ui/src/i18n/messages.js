@@ -192,6 +192,10 @@ const messages = defineMessages({
     id: 'addTransactionPageDescription',
     defaultMessage: 'Description',
   },
+  addTransactionPageIsTemplate: {
+    id: 'addTransactionPageIsTemplate',
+    defaultMessage: 'Save only template',
+  },
   addTransactionPageTextColor: {
     id: 'addTransactionPageTextColor',
     defaultMessage: 'Text color',
