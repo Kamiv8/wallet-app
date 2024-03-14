@@ -12,5 +12,7 @@ public class CategoryConfiguration : BaseConfiguration<Category>, IEntityTypeCon
     {
         ConfigureBaseEntity(builder);
         builder.Property(c => c.Name).IsRequired().HasColumnType("nvarchar").HasMaxLength(50);
+        builder.HasOne(x => x.CategoryColor).WithMany(x => x.Categories)
+            .HasForeignKey(x => x.CategoryColorId);
     }
 }

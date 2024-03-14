@@ -9,4 +9,6 @@ public class Category : BaseEntity
     public virtual UserIdentity? UserIdentity { get; set; }
     public Guid? GroupId { get; set; }
     public virtual Group? Group { get; set; }
+    public Guid CategoryColorId { get; set; }
+    public virtual CategoryColors CategoryColor { get; set; }
 }

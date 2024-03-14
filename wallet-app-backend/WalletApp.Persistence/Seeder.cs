@@ -38,5 +38,11 @@ public static class Seeder
                 TradingDate = DateTime.Now
             }
         ));
+
+        modelBuilder.Entity<CategoryColors>(c => c.HasData(
+            new CategoryColors
+            {
+                Color = "#fffffff"
+            }));
     }
 }
