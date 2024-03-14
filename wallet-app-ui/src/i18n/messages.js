@@ -158,6 +158,10 @@ const messages = defineMessages({
     id: 'historyPageHistory',
     defaultMessage: 'HISTORY',
   },
+  historyPageNoElements: {
+    id: 'historyPageNoElements',
+    defaultMessage: 'No Transactions',
+  },
   //endregion
   //region Add transaction page
   addTransactionPage: {

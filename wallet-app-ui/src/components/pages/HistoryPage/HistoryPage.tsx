@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
-import { PaginationWrapper } from './HistoryPage.styles';
+import { NoElementsText, PaginationWrapper } from './HistoryPage.styles';
 import { MainTemplate } from '../../templates';
 import { Typography } from '../../atoms';
 import { Pagination, TransactionItem } from '../../molecules';
@@ -31,17 +31,23 @@ export const HistoryPage = () => {
       {state?.transactionList.map((t) => (
         <TransactionItem data={t} key={t.id} />
       ))}
-      <PaginationWrapper>
-        <Pagination
-          hasNext={hasNext}
-          hasPrevious={hasPrevious}
-          setPage={setPage}
-          currentPage={currentPage}
-          setNextPage={setNextPage}
-          setPreviousPage={setPreviousPage}
-          totalPages={totalPages}
-        />
-      </PaginationWrapper>
+      {state?.transactionList.length ? (
+        <PaginationWrapper>
+          <Pagination
+            hasNext={hasNext}
+            hasPrevious={hasPrevious}
+            setPage={setPage}
+            currentPage={currentPage}
+            setNextPage={setNextPage}
+            setPreviousPage={setPreviousPage}
+            totalPages={totalPages}
+          />
+        </PaginationWrapper>
+      ) : (
+        <NoElementsText size={'l'} uppercase weight={700} color={'orange'}>
+          <FormattedMessage {...messages.historyPageNoElements} />
+        </NoElementsText>
+      )}
     </MainTemplate>
   );
 };
