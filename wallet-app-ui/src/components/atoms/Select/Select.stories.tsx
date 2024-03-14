@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Select } from './Select';
+import { ColorMarker } from '../ColorMarker/ColorMarker';
 
 export default {
   component: Select,
@@ -23,5 +24,28 @@ export const Primary: Story = {
       },
     ],
     name: 'Filter',
+  },
+};
+
+export const WithExtraDescription: Story = {
+  args: {
+    items: [
+      {
+        key: 1,
+        description: 'Lorem iptum',
+      },
+    ],
+    optionExtraDescription: <ColorMarker colors={['#f955ff']} />,
+  },
+};
+export const WithExtraDescription2: Story = {
+  args: {
+    items: [
+      {
+        key: 1,
+        description: 'Lorem iptum',
+      },
+    ],
+    optionExtraDescription: <ColorMarker colors={['#000', '#f9553a']} />,
   },
 };

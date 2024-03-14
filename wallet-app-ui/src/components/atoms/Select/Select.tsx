@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
-import { OptionWrapper, SelectButton, Wrapper, Option } from './Select.styles';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { OptionWrapper, SelectButton, Wrapper } from './Select.styles';
 import { ReactComponent as SelectDownArrow } from '../../../assets/images/selectDownArrow.svg';
 import { ReactComponent as SelectUpArrow } from '../../../assets/images/selectUpArrow.svg';
 import { FieldType } from '../../../hooks';
+import { Option } from '../Option/Option';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { CustomString } from '../../../overrides/string.override';
@@ -20,6 +21,7 @@ export type TProps = {
   isRounded?: boolean;
   onChange?: any;
   color: TColor;
+  optionExtraDescription?: ReactNode;
 };
 
 export const Select = (props: TProps) => {
@@ -90,6 +92,7 @@ export const Select = (props: TProps) => {
                 isRounded={props.isRounded}
                 onClick={() => optionAction({ key, description })}
                 key={key}
+                extraDescription={props.optionExtraDescription}
               >
                 {description}
               </Option>
