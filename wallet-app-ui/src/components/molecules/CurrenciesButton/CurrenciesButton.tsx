@@ -1,4 +1,4 @@
-import { TGetCurrenciesResponse } from '../../../models/apiTypes/currency/getCurrencies/getCurrencies.response';
+import { TGetCurrenciesResponse } from '../../../models/apiTypes/currency';
 import { Button } from '../../atoms';
 import { Wrapper } from './CurrenciesButton.styles';
 

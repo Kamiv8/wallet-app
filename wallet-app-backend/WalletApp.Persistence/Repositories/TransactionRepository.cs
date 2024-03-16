@@ -59,6 +59,13 @@ public class TransactionRepository : ITransactionRepository
             .Include(x => x.Category)
             .Where(x => x.UserIdentityId == userId && x.Currency.Id == currencyId)
             .OrderByDescending(x => x.Date)
+            .GroupBy(x => x.Date.Date)
+            .Select(group => new Transaction
+            {
+                Date = group.Key,
+                Price = group.Sum(x => x.Price),
+                Currency = group.First().Currency
+            })
             .ToListAsync();
     }
 
