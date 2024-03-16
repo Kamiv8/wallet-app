@@ -1,7 +1,4 @@
 export const devConfig = {
-  baseURL: 'http://localhost:5238/api',
-};
-
-export const prodConfig = {
-  baseURL: '',
+  // eslint-disable-next-line no-undef
+  baseURL: `http://localhost:${process.env.PORT_HTTP}/api`,
 };

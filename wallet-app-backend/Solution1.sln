@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletApp.Api", "WalletApp.Api\WalletApp.Api.csproj", "{632C3960-A025-47E9-806A-71CFC94950FD}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletApp.Api", "WalletApp.Api\WalletApp.Api.csproj", "{632C3960-A025-47E9-806A-71CFC94950FD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentaction", "Presentaction", "{082D4425-7E84-4E93-A605-F77122FD1060}"
 EndProject
@@ -10,19 +13,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E7921C37-A9CA-4E10-A63C-A84906C52411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletApp.Application", "WalletApp.Application\WalletApp.Application.csproj", "{84999F0B-B273-4787-96E9-683AB0F10EE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletApp.Application", "WalletApp.Application\WalletApp.Application.csproj", "{84999F0B-B273-4787-96E9-683AB0F10EE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletApp.Domain", "WalletApp.Domain\WalletApp.Domain.csproj", "{93A58E5D-C4DE-45C6-99CE-A75E5388CF86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletApp.Domain", "WalletApp.Domain\WalletApp.Domain.csproj", "{93A58E5D-C4DE-45C6-99CE-A75E5388CF86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletApp.Persistence", "WalletApp.Persistence\WalletApp.Persistence.csproj", "{4BD16C82-E59B-4DA4-87FE-092CED91D2AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletApp.Persistence", "WalletApp.Persistence\WalletApp.Persistence.csproj", "{4BD16C82-E59B-4DA4-87FE-092CED91D2AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletApp.Infrastructure", "WalletApp.Infrastructure\WalletApp.Infrastructure.csproj", "{07AF1003-720F-4E9F-897A-4A2E117161DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletApp.Infrastructure", "WalletApp.Infrastructure\WalletApp.Infrastructure.csproj", "{07AF1003-720F-4E9F-897A-4A2E117161DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{5B22F5AE-87E9-4892-BFD4-DB85018C511B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Core.Tests\Core.Tests.csproj", "{3F7CB577-CA15-402B-8ED3-B3EC651558C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Tests", "Core.Tests\Core.Tests.csproj", "{3F7CB577-CA15-402B-8ED3-B3EC651558C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{C254978D-F18B-4C57-8490-6C04CFCDBD18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{C254978D-F18B-4C57-8490-6C04CFCDBD18}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CA67FBBF-2BCD-4D2F-8E69-C7C0CFEC50BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +63,13 @@ Global
 		{C254978D-F18B-4C57-8490-6C04CFCDBD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C254978D-F18B-4C57-8490-6C04CFCDBD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C254978D-F18B-4C57-8490-6C04CFCDBD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA67FBBF-2BCD-4D2F-8E69-C7C0CFEC50BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA67FBBF-2BCD-4D2F-8E69-C7C0CFEC50BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA67FBBF-2BCD-4D2F-8E69-C7C0CFEC50BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA67FBBF-2BCD-4D2F-8E69-C7C0CFEC50BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{632C3960-A025-47E9-806A-71CFC94950FD} = {082D4425-7E84-4E93-A605-F77122FD1060}
@@ -68,5 +80,8 @@ Global
 		{5B22F5AE-87E9-4892-BFD4-DB85018C511B} = {E7921C37-A9CA-4E10-A63C-A84906C52411}
 		{3F7CB577-CA15-402B-8ED3-B3EC651558C9} = {5B22F5AE-87E9-4892-BFD4-DB85018C511B}
 		{C254978D-F18B-4C57-8490-6C04CFCDBD18} = {5B22F5AE-87E9-4892-BFD4-DB85018C511B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E46765A-BB57-4120-8C1D-F32EA49C9D17}
 	EndGlobalSection
 EndGlobal

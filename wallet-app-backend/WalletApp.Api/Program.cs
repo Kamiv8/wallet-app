@@ -107,6 +107,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+if (app.Environment.IsProduction())
+{
+    app.AppMigrations();
+}
+
 app.UseHttpsRedirection();
 app.UseCors(allowOrigins);
 app.UseAuthentication();
