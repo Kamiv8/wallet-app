@@ -35,7 +35,7 @@ public class
             var currenciesTransaction = userTransaction as Domain.Entities.Transaction[] ??
                                         userTransaction.ToArray();
             
-            dto.Add(currenciesTransaction.Reverse().Select((entity, index) => new GetSumTransactionsResponseDto(
+            dto.Add(currenciesTransaction.Select((entity, index) => new GetSumTransactionsResponseDto(
                 currenciesTransaction.Take(index + 1).Sum(e => e.Price), entity.Date, entity.Currency.Code
             )));
         }
