@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TTheme } from '../../../styles/theme';
+import { media } from '../../../styles/mediaQueries.helper';
 
 type TStyledAvatarProps = {
   onClick: (e: any) => void;
@@ -15,5 +16,11 @@ export const StyledAvatar = styled.div<TStyledAvatarProps>`
   height: 60px;
   border-radius: 50%;
   background-image: url(${({ image }: TStyledAvatarProps) => image});
+  background-size: cover;
   background-position: center;
+  ${media.desktop`
+      
+      width: 40px;
+      height: 40px;
+    `}
 `;

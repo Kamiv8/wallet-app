@@ -3,6 +3,7 @@ import { ChangeEvent, useCallback } from 'react';
 import { StyledErrorMessage } from './InputField.styles';
 import { TColor, TFormattedMessage } from '../../../types/types';
 import { FormattedMessage } from 'react-intl';
+import { useRwd } from '../../../hooks/useRwd';
 
 export type TProps = {
   label: TFormattedMessage;
@@ -26,6 +27,7 @@ export const InputField = ({
   type = 'text',
   ...props
 }: TProps) => {
+  const { getRwdValue } = useRwd();
   const setVariantControl = useCallback(
     (isLabel = false): TColor => {
       if (error) return 'error';
@@ -45,7 +47,11 @@ export const InputField = ({
   return (
     <div>
       <label>
-        <Typography size={'m'} weight={700} color={setVariantControl(true)}>
+        <Typography
+          size={getRwdValue('m', 'l')}
+          weight={700}
+          color={setVariantControl(true)}
+        >
           <FormattedMessage {...label} />
         </Typography>
       </label>
@@ -59,7 +65,7 @@ export const InputField = ({
         value={value}
         {...props}
       />
-      <StyledErrorMessage size={'xs'} color={'error'}>
+      <StyledErrorMessage size={getRwdValue('xs', 's')} color={'error'}>
         {error ?? error}
       </StyledErrorMessage>
     </div>

@@ -434,6 +434,10 @@ const messages = defineMessages({
   },
   //endregion
   //region Person navigation page
+  navigationPageHome: {
+    id: 'navigationPageHome',
+    defaultMessage: 'Home',
+  },
   navigationPageTransaction: {
     id: 'navigationPageTransaction',
     defaultMessage: 'Transaction',

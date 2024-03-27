@@ -7,3 +7,4 @@ export * from './localstorage.helper';
 export * from './pagination.helper';
 export * from './parseDataToSelect.helper';
 export * from './validation.helper';
+export * from './navigation.helper';

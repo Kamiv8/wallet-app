@@ -12,21 +12,18 @@ import {
   incomePieChartMapper,
   lineChartMapper,
 } from '../../../helpers';
-import { ChartTypeEnum } from '../../../types/enums';
+import { ChartTypeEnum, HeadingEnum } from '../../../types/enums';
+import { Heading } from '../../molecules/Heading/Heading';
+import { Desktop } from '../../../rwd';
 
 export const HomePage = () => {
   const { getIncomeChartData, getCostChartData, state } = useHomePage();
   return (
     <MainTemplate>
-      <Typography
-        size={'l'}
-        uppercase
-        weight={700}
-        color={'lightBlue'}
-        letterSpacing={1.2}
-      >
-        <FormattedMessage {...messages.mainPageAllPrices} />
-      </Typography>
+      <Desktop>
+        <Heading text={messages.navigationPageHome} />
+      </Desktop>
+      <Heading text={messages.mainPageAllPrices} type={HeadingEnum.SUB_APP} />
       {state.actualMoney.actualMoneyPln ? (
         <Typography
           size={'xxl'}

@@ -16,6 +16,7 @@ export type TColors = {
   darkBluePlaceholder: string;
   errorPlaceholder: string;
   orangeHover: string;
+  orangeNavigation: string;
   shadow: string;
   green: string;
   backgroundBlur: string;
@@ -40,6 +41,7 @@ export type TFontSize = {
   l: string;
   xl: string;
   xxl: string;
+  xxxl: string;
 };
 
 type TFontWeight = {
@@ -72,6 +74,7 @@ const theme: DefaultTheme & TTheme = {
     white: 'rgba(255,255,255,1)',
     orange: 'rgba(245,168,34,1)',
     orangePlaceholder: 'rgba(245,168,34,.7)',
+    orangeNavigation: 'rgba(255,193,8,.6)',
     darkBlue: 'rgba(28,26,50,1)',
     darkBluePlaceholder: 'rgba(28,26,50,.7)',
     lightBlue: 'rgba(106,221,221,1)',
@@ -112,6 +115,7 @@ const theme: DefaultTheme & TTheme = {
     l: '20px',
     xl: '25px',
     xxl: '32px',
+    xxxl: '39px',
   },
   weight: {
     400: 400,

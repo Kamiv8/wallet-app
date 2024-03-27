@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { TTheme } from '../../../styles/theme';
 import { TProps } from './Button';
+import { media } from '../../../styles/mediaQueries.helper';
 
 const StyledButton = styled.button<TProps>`
   color: ${({
@@ -17,11 +18,12 @@ const StyledButton = styled.button<TProps>`
   font-weight: ${({ theme }) => theme.weight[700]};
   cursor: pointer;
   padding: 10px 15px;
+  font-size: ${({ theme }: { theme: TTheme }) => theme.fonts.s};
 
   ${({ variant }: TProps) =>
     variant === 'add' &&
     css`
-      color: red;
+      color: ${({ theme }: { theme: TTheme }) => theme.colors.error};
       border-radius: 50%;
       width: 50px;
       height: 50px;
@@ -60,6 +62,10 @@ const StyledButton = styled.button<TProps>`
       font-weight: ${({ theme }) => theme.weight[700]};
       cursor: pointer;
       padding: 10px 15px;
+    `}
+    
+    ${media.tablet`
+      font-size: ${({ theme }: { theme: TTheme }) => theme.fonts.m}
     `}
 `;
 

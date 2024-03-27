@@ -15,7 +15,6 @@ export type TProps = {
   name: TFormattedMessage;
   routeName: string;
   notificationsNumber?: number;
-  action?: () => void;
 };
 
 export const NavigationBox = ({
@@ -23,11 +22,10 @@ export const NavigationBox = ({
   name,
   notificationsNumber,
   routeName,
-  action,
 }: TProps) => {
   const href = useHref(routeName);
   return (
-    <StyledLink to={href} onClick={action}>
+    <StyledLink to={href}>
       <Wrapper notificationsNumber={notificationsNumber}>
         <ImageContainer>
           <Image />

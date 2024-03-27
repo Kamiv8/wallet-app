@@ -17,7 +17,9 @@ export const RegisterTemplate = ({ Image, Heading, Form }: TProps) => (
     <ImageElement>
       <Image />
     </ImageElement>
-    <HeadingElement>{Heading}</HeadingElement>
-    <FormElement>{Form}</FormElement>
+    <FormElement>
+      <HeadingElement>{Heading}</HeadingElement>
+      {Form}
+    </FormElement>
   </Wrapper>
 );
