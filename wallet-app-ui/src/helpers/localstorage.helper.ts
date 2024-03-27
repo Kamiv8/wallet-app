@@ -27,6 +27,18 @@ export class LocalstorageHelper {
     localStorage.removeItem(LocalstorageEnum[key]);
   }
 
+  public static removeItems(keys: Array<LocalstorageEnum>): void {
+    keys.forEach((x) => {
+      if (this.isItemExist(x)) {
+        this.removeItem(x);
+      }
+    });
+  }
+
+  public static clear() {
+    localStorage.clear();
+  }
+
   private static isItemExist(key: LocalstorageEnum): boolean {
     return !!localStorage.getItem(LocalstorageEnum[key]);
   }

@@ -1,11 +1,12 @@
 import { useCallback, useState } from 'react';
 import { useHref, useNavigate } from 'react-router-dom';
-import { GroupRoutesName, RoutesName } from '../../../const/routesName';
+import { GroupRoutesName, RoutesName } from '../../../const';
 import TransactionIcon from '../../../assets/images/navigationIcons/transaction.svg';
 import messages from '../../../i18n/messages';
 import HistoryIcon from '../../../assets/images/navigationIcons/history.svg';
 import TableIcon from '../../../assets/images/navigationIcons/table.svg';
 import { TFormattedMessage } from '../../../types/types';
+import { LocalstorageHelper } from '../../../helpers';
 
 export type TNavigationItems = {
   route: string;
@@ -48,9 +49,7 @@ export const useFooter = () => {
   );
 
   const logout = useCallback(() => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('groupId');
-    localStorage.removeItem('userRole');
+    LocalstorageHelper.clear();
     navigate(RoutesName.LOGIN);
   }, []);
 
