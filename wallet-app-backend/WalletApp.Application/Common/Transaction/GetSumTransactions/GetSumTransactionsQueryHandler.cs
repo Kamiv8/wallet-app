@@ -34,10 +34,18 @@ public class
                 await _transactionRepository.GetSumByCurrency(request.UserId, currency.Id);
             var currenciesTransaction = userTransaction as Domain.Entities.Transaction[] ??
                                         userTransaction.ToArray();
-            
-            dto.Add(currenciesTransaction.OrderBy(x => x.Date).Select((entity, index) => new GetSumTransactionsResponseDto(
-                currenciesTransaction.Take(index + 1).Sum(e => e.Price), entity.Date, entity.Currency.Code
-            )));
+            dto.Add(currenciesTransaction
+                .OrderBy(x => x.Date)
+                .Select((entity, index) => new GetSumTransactionsResponseDto(
+                    currenciesTransaction.Take(index + 1).Sum(e => e.Price),
+                    entity.Date,
+                    entity.Currency.Code
+                ))
+                .OrderBy(x => x.DateTime)
+                .TakeLast(10)
+                .ToList()
+            );
+
         }
 
         return ApiResult<IEnumerable<IEnumerable<GetSumTransactionsResponseDto>>>.Success(dto);
