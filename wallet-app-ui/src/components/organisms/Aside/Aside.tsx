@@ -8,8 +8,10 @@ import { ReactComponent as Logo } from '../../../assets/images/logo.svg';
 import { RoutesName } from '../../../const';
 import { StyledLink } from '../../../styles/override/Link.styles';
 import { AsideNavigation } from '../../molecules/AsideNavigation/AsideNavigation';
+import { useAside } from './useAside';
 
 export const Aside = () => {
+  const { logout } = useAside();
   return (
     <Wrapper>
       <LogoWrapper>
@@ -20,7 +22,7 @@ export const Aside = () => {
       <NavWrapper>
         <AsideNavigation />
       </NavWrapper>
-      <AsideFooterWrapper />
+      <AsideFooterWrapper logout={logout} />
     </Wrapper>
   );
 };

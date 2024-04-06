@@ -5,12 +5,16 @@ import {
 } from './AsideFooter.styles';
 import { ReactComponent as Logout } from '../../../assets/images/logout.svg';
 import { UserDataHeader } from '../UserDataHeader/UserDataHeader';
+import { FC } from 'react';
+type Props = {
+  logout: () => void;
+};
 
-export const AsideFooter = () => {
+export const AsideFooter: FC<Props> = ({ logout }) => {
   return (
     <FooterWrapper>
       <LogoutWrapper>
-        <Logout />
+        <Logout onClick={() => logout()} />
       </LogoutWrapper>
       <UserWrapper>
         <UserDataHeader

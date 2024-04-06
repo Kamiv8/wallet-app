@@ -17,6 +17,9 @@ export const LogoutWrapper = styled.div`
     ${({ theme }: { theme: TTheme }) => theme.colors.darkBlue};
   height: 100%;
   width: 30%;
+  & > svg {
+    cursor: pointer;
+  }
 `;
 
 export const UserWrapper = styled.div`
