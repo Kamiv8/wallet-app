@@ -5,6 +5,7 @@ import {
   GetIncomeByCategoryResponse,
   GetTransactionsByCurrencyResponse,
 } from '../models/apiTypes/transaction';
+import { DateHelper } from './date.helper';
 
 export const areaChartData = (
   labels: string[],
@@ -44,6 +45,9 @@ export const pieChartMapper = (data: ToPieChartDto[]) => {
       },
     ],
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      aspectRatio: 2,
       plugins: {
         legend: {
           position: 'bottom',
@@ -74,6 +78,9 @@ export const incomePieChartMapper = (
       },
     ],
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      aspectRatio: 2,
       plugins: {
         legend: {
           position: 'bottom',
@@ -102,6 +109,9 @@ export const costPieChartMapper = (data: Array<GetCostByCategoryResponse>) => {
       },
     ],
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      aspectRatio: 2,
       plugins: {
         legend: {
           position: 'bottom',
@@ -134,6 +144,9 @@ export const detailsPieChartMapper = (data: {
       },
     ],
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      aspectRatio: 2,
       plugins: {
         legend: {
           position: 'bottom',
@@ -153,7 +166,7 @@ export const lineChartMapper = (
 
   data.forEach((x) => {
     x.forEach((y) => {
-      labelsSet.add(new Date(y.dateTime).toDateString());
+      labelsSet.add(DateHelper.GetMonthAndDay(new Date(y.dateTime)));
     });
   });
 
@@ -180,6 +193,8 @@ export const lineChartMapper = (
       }),
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           display: true,

@@ -23,4 +23,5 @@ export const UserWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 70%;
+  padding: 0 10px;
 `;

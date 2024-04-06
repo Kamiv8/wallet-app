@@ -12,12 +12,15 @@ import {
 } from 'chart.js';
 import { Chart as LibChart } from 'react-chartjs-2';
 import { useRef } from 'react';
+import { Wrapper } from './Chart.styles';
 
 export type TProps = {
   data: any;
   type: ChartTypeEnum;
   labels?: string[];
   options?: any;
+  width?: string;
+  height?: string;
 };
 
 ChartJS.register(
@@ -33,15 +36,15 @@ ChartJS.register(
 
 export const Chart = (props: TProps) => {
   const chartRef = useRef<ChartJS>(null);
-
   return (
-    <LibChart
-      type={props.type}
-      ref={chartRef}
-      data={props.data}
-      options={props.options}
-      width={300}
-      height={300}
-    />
+    <Wrapper width={props.width} height={props.height}>
+      <LibChart
+        type={props.type}
+        ref={chartRef}
+        data={props.data}
+        options={props.options}
+        redraw={true}
+      />
+    </Wrapper>
   );
 };

@@ -24,7 +24,7 @@ export const Heading: FC<Props> = ({ text, type = HeadingEnum.APP }) => {
       uppercase: true,
     },
     [HeadingEnum.SUB_APP]: {
-      size: getRwdValue('l', 'xl', 'xxl') as keyof TFontSize,
+      size: getRwdValue('l', 'l', 'l') as keyof TFontSize,
       uppercase: true,
     },
   };

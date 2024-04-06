@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
    box-sizing: border-box;
    padding: 0;
    margin: 0;
- },
+ }
   body {
     font-family: "Source Code Pro", sans-serif;
   }

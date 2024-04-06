@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { TTheme } from '../../../styles/theme';
 import { AsideFooter } from '../../molecules/AsideFooter/AsideFooter';
+import { media } from '../../../styles/mediaQueries.helper';
 
 export const Wrapper = styled.aside`
-  width: 350px;
+  width: 100%;
   height: 100vh;
   background-color: ${({ theme }: { theme: TTheme }) => theme.colors.lightBlue};
   padding-top: 7.5vh;
@@ -15,17 +16,21 @@ export const LogoWrapper = styled.div`
   justify-content: center;
   align-items: center;
   & > a > svg {
-    width: 350px;
-    height: 175px;
+    max-width: 350px;
+    max-height: 175px;
   }
 `;
 
 export const NavWrapper = styled.nav`
   height: 60vh;
-  padding: 0 60px;
+  padding: 0 3vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  ${media.largeScreen`
+    padding: 0 60px;
+      
+  `}
 `;
 
 export const AsideFooterWrapper = styled(AsideFooter)`

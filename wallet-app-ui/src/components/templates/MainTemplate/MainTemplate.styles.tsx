@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TTheme } from '../../../styles/theme';
+import { media } from '../../../styles/mediaQueries.helper';
 
 export const MobileWrapper = styled.main`
   min-height: 100vh;
@@ -11,11 +12,19 @@ export const MobileWrapper = styled.main`
 `;
 
 export const DesktopWrapper = styled.main`
-  display: flex;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 1fr 4fr;
+  ${media.largeScreen`
+      grid-template-columns: 1fr 6fr;
+    `}
 `;
 
 export const DesktopContent = styled.div`
   width: 100%;
   background-color: ${({ theme }: { theme: TTheme }) => theme.colors.darkBlue};
-  padding: 30px 50px;
+  padding: 30px 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 `;

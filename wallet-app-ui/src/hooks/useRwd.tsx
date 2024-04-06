@@ -11,15 +11,20 @@ export const useRwd = () => {
   const isDesktop = useMediaQuery({
     query: `(min-width: ${theme.mediaQueries.desktop.min}px)`,
   });
+  const isLargeScreen = useMediaQuery({
+    query: `(min-width: ${theme.mediaQueries.largeScreen.min}px)`,
+  });
 
   const getRwdValue = <T = string | number,>(
     mobile: T,
     tablet?: T,
     desktop?: T,
+    largeScreen?: T,
   ) => {
     if (isMobile && !isTablet && !isDesktop && mobile) return mobile;
     if (isTablet && !isDesktop && tablet) return tablet;
-    if (isDesktop && desktop) return desktop;
+    if (isDesktop && !largeScreen && desktop) return desktop;
+    if (isLargeScreen && largeScreen) return largeScreen;
     return tablet ? tablet : mobile;
   };
 
