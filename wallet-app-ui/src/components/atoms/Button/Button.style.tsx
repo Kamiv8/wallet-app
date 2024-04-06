@@ -33,6 +33,15 @@ const StyledButton = styled.button<TProps>`
         ${({ theme }: { theme: TTheme }) => theme.colors.orangePlaceholder};
       background-color: ${({ theme }: { theme: TTheme }) =>
         theme.colors.orange};
+
+      ${media.desktop`
+         width: 70px;
+         height: 70px;
+         & > svg {
+            width: 35px;
+            height: 35px;
+         }
+        `}
     `}
   ${({ isActive }: TProps) =>
     isActive &&

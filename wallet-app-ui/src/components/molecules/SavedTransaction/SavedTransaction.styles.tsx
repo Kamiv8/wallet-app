@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { TTheme } from '../../../styles/theme';
 import { ReactComponent as EditIcon } from '../../../assets/images/Edit.svg';
+import { media } from '../../../styles/mediaQueries.helper';
 
 type TWrapper = {
   backgroundColor?: string;
@@ -17,6 +18,12 @@ export const Wrapper = styled.div<TWrapper>`
     backgroundColor ? backgroundColor : theme.colors.lightBlue};
   padding: 15px;
   border-radius: 20px;
+
+  ${media.desktop`
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    `}
 `;
 
 export const FirstRow = styled.div`

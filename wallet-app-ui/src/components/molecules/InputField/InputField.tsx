@@ -3,7 +3,7 @@ import { ChangeEvent, useCallback } from 'react';
 import { StyledErrorMessage } from './InputField.styles';
 import { TColor, TFormattedMessage } from '../../../types/types';
 import { FormattedMessage } from 'react-intl';
-import { useRwd } from '../../../hooks/useRwd';
+import { useRwd } from '../../../hooks';
 
 export type TProps = {
   label: TFormattedMessage;

@@ -28,7 +28,7 @@ export const NavWrapper = styled.nav`
   flex-direction: column;
   justify-content: center;
   ${media.largeScreen`
-    padding: 0 60px;
+    padding: 0 30px;
       
   `}
 `;

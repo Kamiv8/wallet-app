@@ -4,6 +4,7 @@ import { Typography, Select } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 import { StyledErrorMessage } from './SelectField.styles';
 import { useCallback } from 'react';
+import { useRwd } from '../../../hooks';
 
 export type TProps = {
   selectItems: TSelectItem[];
@@ -15,6 +16,7 @@ export type TProps = {
 };
 
 export const SelectField = (props: TProps) => {
+  const { getRwdValue } = useRwd();
   const setVariantControl = useCallback(
     (isLabel = false): TColor => {
       if (props?.error) return 'error';
@@ -33,7 +35,11 @@ export const SelectField = (props: TProps) => {
   return (
     <div>
       <label>
-        <Typography size={'m'} weight={700} color={setVariantControl(true)}>
+        <Typography
+          size={getRwdValue('m', 'l')}
+          weight={700}
+          color={setVariantControl(true)}
+        >
           <FormattedMessage {...props.label} />
         </Typography>
       </label>
@@ -44,7 +50,7 @@ export const SelectField = (props: TProps) => {
         name={props.name}
         color={setVariantControl()}
       />
-      <StyledErrorMessage size={'xs'} color={'error'}>
+      <StyledErrorMessage size={getRwdValue('xs', 's')} color={'error'}>
         {props.error ?? props.error}
       </StyledErrorMessage>
     </div>

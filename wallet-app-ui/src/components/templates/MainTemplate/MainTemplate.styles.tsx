@@ -17,7 +17,7 @@ export const DesktopWrapper = styled.main`
   height: 100vh;
   grid-template-columns: 1fr 4fr;
   ${media.largeScreen`
-      grid-template-columns: 1fr 6fr;
+      grid-template-columns: 1fr 5fr;
     `}
 `;
 

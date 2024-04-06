@@ -27,6 +27,8 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
     state,
     handleIsSaved,
   } = useAddTransactionForm({ onClose });
+
+  console.log(values);
   return (
     <CardWrapper gradientColor close={onClose}>
       <FormWrapper>
@@ -68,6 +70,7 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
           variant={'dark'}
           name={'date'}
           type={'date'}
+          value={values.date.toISOString().slice(0, 10)}
           error={getValidationMessage('date')}
           onChange={(e) => handleChange(e, 'date', FieldType.Date)}
         />

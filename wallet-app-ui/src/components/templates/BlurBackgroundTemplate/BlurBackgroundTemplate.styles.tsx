@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TTheme } from '../../../styles/theme';
+import { media } from '../../../styles/mediaQueries.helper';
 
 export const Background = styled.div`
   width: 100vw;
@@ -22,6 +23,11 @@ export const Wrapper = styled.div`
   padding: 17px 17px;
   background-color: ${({ theme }: { theme: TTheme }) => theme.colors.darkBlue};
   position: fixed;
+  ${media.tablet`
+      width: 70vh;
+      height: 60vh;
+
+    `}
 `;
 
 export const SpinnerWrapper = styled.div`
