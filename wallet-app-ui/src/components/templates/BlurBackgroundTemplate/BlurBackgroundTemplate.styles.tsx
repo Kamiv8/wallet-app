@@ -6,14 +6,13 @@ export const Background = styled.div`
   height: 100vh;
   background-color: ${({ theme }: { theme: TTheme }) =>
     theme.colors.backgroundBlur};
-  position: absolute;
   top: 0;
   left: 0;
   backdrop-filter: blur(5px);
+  position: fixed;
 `;
 
 export const Wrapper = styled.div`
-  position: absolute;
   height: 60%;
   top: 50%;
   left: 50%;
@@ -22,6 +21,7 @@ export const Wrapper = styled.div`
   border: 1px solid ${({ theme }: { theme: TTheme }) => theme.colors.lightBlue};
   padding: 17px 17px;
   background-color: ${({ theme }: { theme: TTheme }) => theme.colors.darkBlue};
+  position: fixed;
 `;
 
 export const SpinnerWrapper = styled.div`
