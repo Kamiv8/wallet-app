@@ -1,13 +1,13 @@
 import { MainTemplate } from '../../templates';
 import { SavedTransaction } from '../../molecules';
-import { Typography } from '../../atoms';
 import { StyledButton } from '../../../styles/override/AddButton.styles';
 import { AddTransactionForm } from '../../organisms';
-import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { useAddTransactionPage } from './useAddTransactionPage';
 import { AppHeaderWrapper } from '../../../styles/override/AppHeaderWrapper.styles';
 import { DefaultTransactionsWrapper } from './AddTransactionPage.styles';
+import { Heading } from '../../molecules/Heading/Heading';
+import { HeadingEnum } from '../../../types/enums';
 
 export const AddTransactionPage = () => {
   const { closeAddNewTransactionModal, addTransaction, setNew, state } =
@@ -15,9 +15,10 @@ export const AddTransactionPage = () => {
   return (
     <MainTemplate>
       <AppHeaderWrapper>
-        <Typography size={'xl'} color={'lightBlue'} weight={700} uppercase>
-          <FormattedMessage {...messages.addTransactionPage} />
-        </Typography>
+        <Heading
+          text={messages.addTransactionPage}
+          type={HeadingEnum.SUB_APP}
+        />
       </AppHeaderWrapper>
       <DefaultTransactionsWrapper>
         {!state.isNew &&

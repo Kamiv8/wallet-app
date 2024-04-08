@@ -21,11 +21,10 @@ export const useRwd = () => {
     desktop?: T,
     largeScreen?: T,
   ) => {
-    if (isMobile && !isTablet && !isDesktop && mobile) return mobile;
-    if (isTablet && !isDesktop && tablet) return tablet;
-    if (isDesktop && !largeScreen && desktop) return desktop;
     if (isLargeScreen && largeScreen) return largeScreen;
-    return tablet ? tablet : mobile;
+    if (isDesktop && desktop) return desktop;
+    if (isTablet && tablet) return tablet;
+    return mobile;
   };
 
   return {

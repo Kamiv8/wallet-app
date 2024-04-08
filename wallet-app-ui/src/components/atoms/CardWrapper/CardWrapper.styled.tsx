@@ -25,10 +25,16 @@ export const StyledWrapper = styled.div<
     
     ${media.desktop`
       grid-column: 1 / -1;
+      
     `}
 `;
 
-export const CloseWrapper = styled.div`
+export const CloseWrapper = styled.div<{ isTitle?: boolean }>`
   display: flex;
   justify-content: flex-end;
+  ${({ isTitle }) =>
+    isTitle &&
+    css`
+      justify-content: space-between;
+    `}
 `;

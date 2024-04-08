@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { GetUserTransactionListResponse } from '../../../models/apiTypes/transaction';
-import { useFetch, usePagination } from '../../../hooks';
+import { useFetch, usePagination, useRwd } from '../../../hooks';
 import { TransactionApi } from '../../../api';
 
 export const useHistoryPage = () => {
+  const { isDesktop } = useRwd();
   const [state, setState] = useState<GetUserTransactionListResponse | null>();
   const {
     currentPage,
@@ -21,13 +22,13 @@ export const useHistoryPage = () => {
       const data = await callToApi(
         TransactionApi.getAllTransactions({
           pageNumber: currentPage,
-          pageSize: 4,
+          pageSize: isDesktop ? 10 : 4,
         }),
       );
 
       setState(data.data);
     })();
-  }, [currentPage]);
+  }, [currentPage, isDesktop]);
 
   return {
     setPage,

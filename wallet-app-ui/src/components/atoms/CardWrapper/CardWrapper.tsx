@@ -9,6 +9,7 @@ export type TProps = {
   children?: ReactNode | ReactNode[];
   close?: () => void;
   iconColor?: string;
+  title?: ReactNode | ReactNode[];
 };
 
 export const CardWrapper = ({
@@ -17,11 +18,13 @@ export const CardWrapper = ({
   children,
   close,
   iconColor,
+  title,
 }: TProps) => {
   return (
     <StyledWrapper color={color} gradientColor={gradientColor}>
       {close && (
-        <CloseWrapper>
+        <CloseWrapper isTitle={!!title}>
+          {title && title}
           <SvgIcon
             Icon={CloseIcon}
             color={iconColor ?? theme.colors.darkBlue}

@@ -27,8 +27,6 @@ export const AddTransactionForm = ({ onClose }: TProps) => {
     state,
     handleIsSaved,
   } = useAddTransactionForm({ onClose });
-
-  console.log(values);
   return (
     <CardWrapper gradientColor close={onClose}>
       <FormWrapper>

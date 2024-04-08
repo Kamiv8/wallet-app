@@ -30,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-track {
-      background: none;
+      background: ${({ theme }: { theme: TTheme }) => theme.colors.darkBlue};;
   }
 
   ::-webkit-scrollbar-thumb {
