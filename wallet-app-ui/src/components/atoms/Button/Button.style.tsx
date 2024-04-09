@@ -12,7 +12,7 @@ const StyledButton = styled.button<TProps>`
     !customColor ? theme.colors[color] : customColor};
   border-radius: 5px;
   border: 2px solid
-    ${({ theme, color = 'orange', customColor }: TProps & { theme: TTheme }) =>
+    ${({ theme, customColor, color = 'orange' }: TProps & { theme: TTheme }) =>
       !customColor ? theme.colors[color] : customColor};
   background: none;
   font-weight: ${({ theme }) => theme.weight[700]};

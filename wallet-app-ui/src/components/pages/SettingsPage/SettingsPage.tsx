@@ -1,18 +1,21 @@
 import { ReactComponent as ChangeUserIcon } from '../../../assets/images/EditUser.svg';
-import { RoutesName } from '../../../const/routesName';
-import { FormattedMessage } from 'react-intl';
+import { RoutesName } from '../../../const';
 import messages from '../../../i18n/messages';
 import { MainTemplate, SettingsTemplate } from '../../templates';
-import { Typography } from '../../atoms';
 import { NavigationBox } from '../../molecules';
+import { AppHeaderWrapper } from '../../../styles/override/AppHeaderWrapper.styles';
+import { Heading } from '../../molecules/Heading/Heading';
+import { HeadingEnum } from '../../../types/enums';
 
 export const SettingsPage = () => {
   return (
     <MainTemplate>
-      <Typography size={'xxl'} weight={700} color={'lightBlue'}>
-        <FormattedMessage {...messages.settingsMainPageSettings} />
-      </Typography>
-
+      <AppHeaderWrapper>
+        <Heading
+          text={messages.settingsMainPageSettings}
+          type={HeadingEnum.SUB_APP}
+        />
+      </AppHeaderWrapper>
       <SettingsTemplate>
         <NavigationBox
           Image={ChangeUserIcon}

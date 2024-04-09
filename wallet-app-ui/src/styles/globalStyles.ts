@@ -27,10 +27,12 @@ const GlobalStyles = createGlobalStyle`
   }
   ::-webkit-scrollbar {
       width: 5px;
+      margin: 10px;
+
   }
 
   ::-webkit-scrollbar-track {
-      background: ${({ theme }: { theme: TTheme }) => theme.colors.darkBlue};;
+      background: none;
   }
 
   ::-webkit-scrollbar-thumb {

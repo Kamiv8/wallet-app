@@ -1,47 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c06ec726_002Ddc19_002D4149_002D8686_002D5f97d7517434/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GenerateJwtToken_ValidAccount_ReturnsToken" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Jwt.JwtUtilsTests.GenerateJwtToken_ValidAccount_ReturnsToken&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Controllers.Account.AuthenticateControllerTests.Authentication_ValidCredentials_ReturnsOkResult&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.AuthenticateCommandTest.Handle_ReturnError_When_Data_Is_Incorrect&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.AuthenticateCommandTest.Handle_ReturnError_When_Cannot_Find_User&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.AuthenticateCommandTest.Handle_ReturnSuccess_When_Data_Is_Correct&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.AuthenticateCommandTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.RegisterCommandTest.Handle_ReturnError_When_Email_Does_Exist&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.RegisterCommandTest.Handle_ReturnError_When_User_Exist&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.RegisterCommandTest.Handle_ReturnSuccess_When_Data_Is_Correct&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.GetAccountDataTest.Handle_ReturnError_When_Cannot_Find_User&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.GetAccountDataTest.Handle_ReturnSuccess_When_User_Exist&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.GetAccountDataTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeForgotPasswordTest.Handle_ReturnError_When_Data_Is_Incorrect&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeForgotPasswordTest.Handle_ReturnSuccess_When_Data_Is_Correct&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeForgotPasswordTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.Authenticate.AuthenticateCommandTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.Authenticate.AuthenticateCommandValidationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.RegisterCommandTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.Register.RegisterCommandValidationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.Register.RegisterCommandTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeForgotPassword.ChangeForgotPasswordTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeForgotPassword.ChangeForgotPasswordValidationTest.Validation_Error&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeForgotPassword.ChangeForgotPasswordValidationTest.Validation_Success&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeForgotPassword.ChangeForgotPasswordValidationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.GetAccountData.GetAccountDataTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.ForgotPassword.ForgotPasswordTest.Handle_ReturnError_When_Cannot_Find_User_By_Name&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.ForgotPassword.ForgotPasswordTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.ForgotPassword.ForgotPasswordValidationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ConfirmRegisterEmail.ConfirmRegisterEmailValidationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ConfirmRegisterEmail.ConfirmRegisterEmailTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeLanguage.ChangeLanguageValidationTest.Validation_Success&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeLanguage.ChangeLanguageValidationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ChangeLanguage.ChangeLanguageTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.GetAccountData.GetAccountDataTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ForgotPassword.ForgotPasswordValidationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.ForgotPassword.ForgotPasswordTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.Authenticate.AuthenticateValidationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Transaction.AddUserTransaction.AddUserTransactionValidationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Account.Authenticate.AuthenticateTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Transaction.AddUserTransaction.AddUserTransactionTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net7.0::Application.Tests.Common.Transaction.AddUserTxDefault.AddUserTxDefaultTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Project Location="C:\Users\maste\source\repos\wallet-app\wallet-app-backend\Application.Tests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;UnitTests&amp;gt;\&amp;lt;Application.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

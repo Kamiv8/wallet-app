@@ -10,6 +10,7 @@ export const ButtonWrapper = styled.div`
 
 export const ListWrapper = styled.div`
   margin-top: 10px;
+  height: 100%;
 `;
 
 export const EmptyArrayWrapper = styled.div`

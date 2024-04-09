@@ -32,6 +32,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: auto;
   ${media.desktop`
       grid-column: 1 / -1;
       display: grid;
