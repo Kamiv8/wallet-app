@@ -38,6 +38,7 @@ public class TransactionUserController : BaseController
             dto.CategoryId,
             dto.Date,
             dto.IsDefault,
+            dto.IsTemplate,
             dto.Description,
             dto.TextColor,
             dto.BackgroundColor
