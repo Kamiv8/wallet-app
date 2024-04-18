@@ -11,8 +11,11 @@ services:
       MSSQL_DATA_DIR: /var/opt/mssql/data
       MSSQL_PID: 'Developer'
       MSSQL_TCP_PORT: 1433
+    restart: always
+    networks:
+      - networkApp
     ports:
-      - "1433:1433"
+      - "8003:1433"
     volumes:
       - ./data:/var/opt/mssql/data
       - ./log:/var/opt/mssql/log
@@ -24,6 +27,8 @@ services:
       dockerfile: WalletApp.Api/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: "Production"
+    networks:
+      - networkApp
     ports:
       - "8000:80"
   walletapp.ui:
@@ -31,9 +36,18 @@ services:
     build:
       context: ../wallet-app-ui
       dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    
     environment:
+      CHOKIDAR_USEPOLLING: true
       REACT_ENV: "production"
-      PORT_HTTP: 5000
-      PORT_HTTPS: 5001
+      PORT_HTTP: 8000
+      PORT_HTTPS: 80
+    networks:
+      - networkApp
     ports:
-      - "3000:3000"
+      - "8002:3000"
+networks:
+  networkApp:
