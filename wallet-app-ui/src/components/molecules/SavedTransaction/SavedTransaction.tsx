@@ -9,6 +9,7 @@ import { Typography, Button } from '../../atoms';
 import { cutString } from '../../../utils/utils';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
+import { useRwd } from '../../../hooks';
 
 export type TProps = {
   id: string;
@@ -23,10 +24,15 @@ export type TProps = {
 };
 
 export const SavedTransaction = (props: TProps) => {
+  const { getRwdValue } = useRwd();
   return (
     <Wrapper backgroundColor={props.backgroundColor}>
       <FirstRow>
-        <Typography customColor={props.textColor} size={'l'} weight={700}>
+        <Typography
+          customColor={props.textColor}
+          size={getRwdValue('l', 'l', 'xl')}
+          weight={700}
+        >
           {props.title}
         </Typography>
       </FirstRow>
@@ -39,13 +45,21 @@ export const SavedTransaction = (props: TProps) => {
         >
           {props.category}
         </Typography>
-        <Typography customColor={props.textColor} size={'m'} weight={700}>
+        <Typography
+          customColor={props.textColor}
+          size={getRwdValue('m', 'm', 'l')}
+          weight={700}
+        >
           {props.price.toFixed(2)} {props.currency}
         </Typography>
       </SecondRow>
       {props.description && (
         <div>
-          <Typography customColor={props.textColor} size={'s'} weight={700}>
+          <Typography
+            customColor={props.textColor}
+            size={getRwdValue('s', 's', 'm')}
+            weight={700}
+          >
             {cutString(props.description, 200)}
           </Typography>
         </div>

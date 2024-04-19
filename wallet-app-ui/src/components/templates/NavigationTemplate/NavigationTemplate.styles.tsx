@@ -1,15 +1,25 @@
 import styled, { keyframes } from 'styled-components';
 import { TTheme } from '../../../styles/theme';
+import { media } from '../../../styles/mediaQueries.helper';
 
 const toggleAnimation = keyframes`
   from {
     transform: translateX(100%);
-    
+
   }
   to {
     transform: translateX(0);
   }
+`;
 
+const toggleAnimationTablet = keyframes`
+  from {
+    transform: translateX(0);
+
+  }
+  to {
+    transform: translateX(40vw);
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -21,9 +31,14 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   padding: 18px 17px;
   position: fixed;
-  transform: translateX(100%);
+  //transform: translateX(100%);
   top: 0;
-  animation: ${toggleAnimation} 0.1s linear forwards;
+  //animation: ${toggleAnimation} 0.1s linear forwards;
+  ${media.tablet`
+      width: 60vw;
+      transform: translateX(40vw);
+      animation: ${toggleAnimationTablet} 0.1s linear forwards;
+    `}
 `;
 
 export const Header = styled.header`

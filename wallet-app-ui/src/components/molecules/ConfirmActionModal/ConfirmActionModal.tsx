@@ -6,6 +6,7 @@ import theme from '../../../styles/theme';
 import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { TFormattedMessage } from '../../../types/types';
+import { useRwd } from '../../../hooks';
 
 type TProps = {
   title: TFormattedMessage;
@@ -18,10 +19,11 @@ export const ConfirmActionModal: FC<TProps> = ({
   yesAction,
   noAction,
 }) => {
+  const { getRwdValue } = useRwd();
   return (
     <Wrapper>
       <ConfirmActionIcon />
-      <Typography size={'l'} color={'orange'} weight={700}>
+      <Typography size={getRwdValue('l', 'xl')} color={'orange'} weight={700}>
         <FormattedMessage {...title} />
       </Typography>
       <ButtonsWrapper>

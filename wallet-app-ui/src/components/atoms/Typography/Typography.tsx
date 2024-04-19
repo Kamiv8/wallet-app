@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import StyledTypography from './Typography.styles';
 import { TColor } from '../../../types/types';
+import { TFontSize } from '../../../styles/theme';
 
-export type TTypographySize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 export type TProps = {
-  size: TTypographySize;
+  size: keyof TFontSize;
   children: ReactNode;
   weight?: 400 | 700;
   underline?: boolean;
@@ -14,6 +14,6 @@ export type TProps = {
   letterSpacing?: number;
 };
 
-export const Typography = (props: TProps) => (
-  <StyledTypography {...props}>{props.children}</StyledTypography>
-);
+export const Typography = (props: TProps) => {
+  return <StyledTypography {...props}>{props.children}</StyledTypography>;
+};

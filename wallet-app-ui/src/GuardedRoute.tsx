@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { RoutesName } from './const/routesName';
+import { RoutesName } from './const';
 import jwtDecode from 'jwt-decode';
 import { useEffect, useState } from 'react';
 import { TokenApi } from './api';
-import { LocalstorageHelper } from './helpers/localstorage.helper';
-import { LocalstorageEnum } from './types/enums/localstorage.enum';
+import { LocalstorageHelper } from './helpers';
+import { LocalstorageEnum } from './types/enums';
 import { CustomString } from './overrides/string.override';
 
 const GuardedRoute = () => {

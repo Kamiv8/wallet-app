@@ -21,11 +21,13 @@ public class AddUserTransactionCommandValidation : AbstractValidator<AddUserTran
         RuleFor(x => x.Description).Cascade(CascadeMode.Stop).MinimumLength(1).MaximumLength(500);
         When(x => x.IsDefault, () =>
         {
+            RuleFor(x => x.IsTemplate).Cascade(CascadeMode.Stop).NotEmpty();
             RuleFor(x => x.TextColor).Cascade(CascadeMode.Stop).NotEmpty().Matches(Regexes.HexColorRegex);
             RuleFor(x => x.BackgroundColor).Cascade(CascadeMode.Stop).NotEmpty()
                 .Matches(Regexes.HexColorRegex);
         }).Otherwise(() =>
         {
+            RuleFor(x => x.IsTemplate).Null();
             RuleFor(x => x.TextColor).Null();
             RuleFor(x => x.BackgroundColor).Null();
         });

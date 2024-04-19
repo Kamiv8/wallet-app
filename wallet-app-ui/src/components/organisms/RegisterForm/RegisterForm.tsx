@@ -8,14 +8,17 @@ import {
   Wrapper,
 } from './RegisterForm.styles';
 import { StyledLink } from '../../../styles/override/Link.styles';
-import { RoutesName } from '../../../const/routesName';
+import { RoutesName } from '../../../const';
 import { useRegisterForm } from './useRegisterForm';
+import { useRwd } from '../../../hooks/useRwd';
 
 export type TSelectedIcon = 0 | 1 | 2 | 3 | 4;
 
 export const RegisterForm = () => {
+  const { getRwdValue } = useRwd();
   const { values, onSubmitEvent, handleChange, getValidationMessage } =
     useRegisterForm();
+
   return (
     <Wrapper>
       <StyledFormItem>
@@ -69,7 +72,7 @@ export const RegisterForm = () => {
         />
       </StyledFormItem>
       <StyledFormItem>
-        <Typography size={'xs'} underline color={'lightBlue'}>
+        <Typography size={getRwdValue('xs', 's')} underline color={'lightBlue'}>
           <StyledLink to={RoutesName.LOGIN}>
             <FormattedMessage {...messages.redirectLogin} />
           </StyledLink>

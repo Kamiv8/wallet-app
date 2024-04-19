@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 import { TTheme } from '../../../styles/theme';
+import { media } from '../../../styles/mediaQueries.helper';
 
 export const Wrapper = styled.div`
   height: 400px;
   overflow-y: auto;
+  padding: 10px;
+  ${media.largeScreen`
+    height: 500px;
+  
+  `}
 `;
 
 export const ListItem = styled.div`

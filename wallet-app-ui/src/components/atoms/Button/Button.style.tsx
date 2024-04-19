@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { TTheme } from '../../../styles/theme';
 import { TProps } from './Button';
+import { media } from '../../../styles/mediaQueries.helper';
 
 const StyledButton = styled.button<TProps>`
   color: ${({
@@ -11,17 +12,18 @@ const StyledButton = styled.button<TProps>`
     !customColor ? theme.colors[color] : customColor};
   border-radius: 5px;
   border: 2px solid
-    ${({ theme, color = 'orange', customColor }: TProps & { theme: TTheme }) =>
+    ${({ theme, customColor, color = 'orange' }: TProps & { theme: TTheme }) =>
       !customColor ? theme.colors[color] : customColor};
   background: none;
   font-weight: ${({ theme }) => theme.weight[700]};
   cursor: pointer;
   padding: 10px 15px;
+  font-size: ${({ theme }: { theme: TTheme }) => theme.fonts.s};
 
   ${({ variant }: TProps) =>
     variant === 'add' &&
     css`
-      color: red;
+      color: ${({ theme }: { theme: TTheme }) => theme.colors.error};
       border-radius: 50%;
       width: 50px;
       height: 50px;
@@ -31,6 +33,15 @@ const StyledButton = styled.button<TProps>`
         ${({ theme }: { theme: TTheme }) => theme.colors.orangePlaceholder};
       background-color: ${({ theme }: { theme: TTheme }) =>
         theme.colors.orange};
+
+      ${media.desktop`
+         width: 70px;
+         height: 70px;
+         & > svg {
+            width: 35px;
+            height: 35px;
+         }
+        `}
     `}
   ${({ isActive }: TProps) =>
     isActive &&
@@ -60,6 +71,10 @@ const StyledButton = styled.button<TProps>`
       font-weight: ${({ theme }) => theme.weight[700]};
       cursor: pointer;
       padding: 10px 15px;
+    `}
+    
+    ${media.tablet`
+      font-size: ${({ theme }: { theme: TTheme }) => theme.fonts.m}
     `}
 `;
 

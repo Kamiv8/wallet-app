@@ -1,9 +1,9 @@
 import { ReactComponent as LoginImage } from '../../../assets/images/login.svg';
 import { LoginForm } from '../../organisms';
-import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
 import { RegisterTemplate } from '../../templates';
-import { Typography } from '../../atoms';
+import { Heading } from '../../molecules/Heading/Heading';
+import { HeadingEnum } from '../../../types/enums';
 
 export const LoginPage = () => {
   return (
@@ -11,11 +11,7 @@ export const LoginPage = () => {
       <RegisterTemplate
         Image={LoginImage}
         Form={<LoginForm />}
-        Heading={
-          <Typography color={'lightBlue'} size={'xxl'} weight={700}>
-            <FormattedMessage {...messages.loginLogin} />
-          </Typography>
-        }
+        Heading={<Heading text={messages.loginLogin} type={HeadingEnum.AUTH} />}
       />
     </>
   );

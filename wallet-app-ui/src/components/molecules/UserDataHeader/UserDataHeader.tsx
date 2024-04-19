@@ -1,7 +1,7 @@
 import { Avatar, Typography } from '../../atoms';
 import { ReactNode } from 'react';
 import { Wrapper } from './UserDataHeader.styles';
-import { UserIconTypeEnum } from '../../../types/enums/userIconType.enum';
+import { UserIconTypeEnum } from '../../../types/enums';
 
 export type TProps = {
   avatarClick: () => void;

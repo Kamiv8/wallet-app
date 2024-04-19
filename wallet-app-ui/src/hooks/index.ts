@@ -4,3 +4,4 @@ export * from './useMapValidationMessages';
 export * from './useModalAction';
 export * from './usePagination';
 export * from './useAppReducer';
+export * from './useRwd';

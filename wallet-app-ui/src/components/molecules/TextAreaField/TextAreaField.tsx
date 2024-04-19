@@ -3,6 +3,7 @@ import { ChangeEvent, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TextArea, Typography } from '../../atoms';
 import { StyledErrorMessage } from './TextAreaField.style';
+import { useRwd } from '../../../hooks';
 
 type TProps = {
   label: TFormattedMessage;
@@ -15,6 +16,7 @@ type TProps = {
 };
 
 export const TextAreaField = (props: TProps) => {
+  const { getRwdValue } = useRwd();
   const setVariantControl = useCallback(
     (isLabel = false): TColor => {
       if (props.error) return 'error';
@@ -34,7 +36,11 @@ export const TextAreaField = (props: TProps) => {
   return (
     <div>
       <label>
-        <Typography size={'m'} weight={700} color={setVariantControl(true)}>
+        <Typography
+          size={getRwdValue('m', 'l')}
+          weight={700}
+          color={setVariantControl(true)}
+        >
           <FormattedMessage {...props.label} />
         </Typography>
       </label>
@@ -45,7 +51,7 @@ export const TextAreaField = (props: TProps) => {
         placeholder={props.placeholder?.defaultMessage}
         value={props.value}
       />
-      <StyledErrorMessage size={'xs'} color={'error'}>
+      <StyledErrorMessage size={getRwdValue('xs', 's')} color={'error'}>
         {props.error && props.error}
       </StyledErrorMessage>
     </div>

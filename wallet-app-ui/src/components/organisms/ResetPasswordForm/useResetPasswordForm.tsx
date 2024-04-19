@@ -4,7 +4,7 @@ import { TResetPasswordForm } from '../../../models/apiTypes/account';
 import { resetPasswordSchema } from '../../../validators/account/resetPassword.validator';
 import { useCallback } from 'react';
 import { AuthApi } from '../../../api';
-import { RoutesName } from '../../../const/routesName';
+import { RoutesName } from '../../../const';
 import { CustomString } from '../../../overrides/string.override';
 
 export const useResetPasswordForm = () => {

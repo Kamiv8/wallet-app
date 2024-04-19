@@ -1,4 +1,4 @@
-import { devConfig } from '../const/config';
+import { devConfig } from '../const';
 
 export class BaseApiConfig {
   protected static apiOptions() {

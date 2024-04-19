@@ -73,6 +73,7 @@ export class TransactionApi extends BaseApiConfig {
       values.categoryId,
       values.date,
       values.isDefault,
+      values.isTemplate,
       values.description,
       values.textColor,
       values.backgroundColor,

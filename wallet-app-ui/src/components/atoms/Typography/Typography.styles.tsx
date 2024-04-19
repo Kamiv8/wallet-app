@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { TTheme } from '../../../styles/theme';
 import { TProps } from './Typography';
 
@@ -18,7 +18,11 @@ const StyledTypography = styled.p`
   font-family: 'Source Code Pro', sans-serif;
   margin: 0;
   padding: 0;
-  letter-spacing: ${({ letterSpacing }: TProps) => `${letterSpacing}px`};
+  ${({ letterSpacing }) =>
+    letterSpacing &&
+    css`
+      letter-spacing: ${letterSpacing}px;
+    `}
 `;
 
 export default StyledTypography;

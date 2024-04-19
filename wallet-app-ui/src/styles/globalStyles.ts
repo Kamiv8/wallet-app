@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { TTheme } from './theme';
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -11,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
    box-sizing: border-box;
    padding: 0;
    margin: 0;
- },
+ }
   body {
     font-family: "Source Code Pro", sans-serif;
   }
@@ -24,6 +25,26 @@ const GlobalStyles = createGlobalStyle`
     cursor: pointer;
     text-decoration: none;
   }
+  ::-webkit-scrollbar {
+      width: 5px;
+      margin: 10px;
+
+  }
+
+  ::-webkit-scrollbar-track {
+      background: none;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: ${({ theme }: { theme: TTheme }) => theme.colors.orange};
+      border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+      background: ${({ theme }: { theme: TTheme }) =>
+        theme.colors.orangePlaceholder};
+  }
+  
 `;
 
 export default GlobalStyles;

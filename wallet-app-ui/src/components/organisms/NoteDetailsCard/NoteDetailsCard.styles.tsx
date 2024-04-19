@@ -4,9 +4,6 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-export const TitleWrapper = styled.div`
-  text-align: center;
-`;
 
 export const ListWrapper = styled.div`
   margin: 15px;
@@ -30,4 +27,11 @@ export const Li = styled.li<{ color: string }>`
     height: 100%;
     margin-left: -1em;
   }
+`;
+
+export const CardContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `;

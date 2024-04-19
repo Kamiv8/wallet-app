@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { TProps } from './CardWrapper';
 import { TTheme } from '../../../styles/theme';
+import { media } from '../../../styles/mediaQueries.helper';
 
 export const StyledWrapper = styled.div<
   Pick<TProps, 'color' | 'gradientColor'>
@@ -21,9 +22,19 @@ export const StyledWrapper = styled.div<
     css`
       background: ${({ theme }: { theme: TTheme }) => theme.gradients.main};
     `}
+    
+    ${media.desktop`
+      grid-column: 1 / -1;
+      
+    `}
 `;
 
-export const CloseWrapper = styled.div`
+export const CloseWrapper = styled.div<{ isTitle?: boolean }>`
   display: flex;
   justify-content: flex-end;
+  ${({ isTitle }) =>
+    isTitle &&
+    css`
+      justify-content: space-between;
+    `}
 `;

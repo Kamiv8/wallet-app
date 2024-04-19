@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { TTheme } from '../../../styles/theme';
 import upArrowIcon from '../../../assets/images/upArrow.svg';
 import downArrowIcon from '../../../assets/images/downArrow.svg';
+import { media } from '../../../styles/mediaQueries.helper';
 
 export const Wrapper = styled.div<{ price: number }>`
   width: 100%;
@@ -13,6 +14,9 @@ export const Wrapper = styled.div<{ price: number }>`
   background-size: auto 100%;
   border-radius: 10px;
   padding: 10px;
+  ${media.desktop`
+        min-width: 100px;
+    `}
 `;
 
 export const ContentWrapper = styled.div`

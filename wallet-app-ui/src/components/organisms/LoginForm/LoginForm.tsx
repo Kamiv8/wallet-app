@@ -8,10 +8,12 @@ import {
 import { Button, Typography } from '../../atoms';
 import { FormattedMessage } from 'react-intl';
 import { StyledLink } from '../../../styles/override/Link.styles';
-import { RoutesName } from '../../../const/routesName';
+import { RoutesName } from '../../../const';
 import { useLoginForm } from './useLoginForm';
+import { useRwd } from '../../../hooks/useRwd';
 
 export const LoginForm = () => {
+  const { getRwdValue } = useRwd();
   const { values, handleSubmit, handleChange, getValidationMessage } =
     useLoginForm();
   return (
@@ -38,14 +40,14 @@ export const LoginForm = () => {
         />
       </StyledFormItem>
       <StyledFormItem>
-        <Typography size={'xs'} underline color={'lightBlue'}>
+        <Typography size={getRwdValue('xs', 's')} underline color={'lightBlue'}>
           <StyledLink to={RoutesName.REGISTER}>
             <FormattedMessage {...messages.loginRedirectRegister} />
           </StyledLink>
         </Typography>
       </StyledFormItem>
       <StyledFormItem>
-        <Typography size={'xs'} underline color={'lightBlue'}>
+        <Typography size={getRwdValue('xs', 's')} underline color={'lightBlue'}>
           <StyledLink to={RoutesName.RESET_PASSWORD}>
             <FormattedMessage {...messages.loginReset} />
           </StyledLink>

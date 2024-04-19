@@ -9,13 +9,13 @@ import {
 import { useHref } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { TFormattedMessage } from '../../../types/types';
+import { useRwd } from '../../../hooks';
 
 export type TProps = {
   Image: FunctionComponent<SVGProps<SVGSVGElement>>;
   name: TFormattedMessage;
   routeName: string;
   notificationsNumber?: number;
-  action?: () => void;
 };
 
 export const NavigationBox = ({
@@ -23,17 +23,17 @@ export const NavigationBox = ({
   name,
   notificationsNumber,
   routeName,
-  action,
 }: TProps) => {
+  const { getRwdValue } = useRwd();
   const href = useHref(routeName);
   return (
-    <StyledLink to={href} onClick={action}>
+    <StyledLink to={href}>
       <Wrapper notificationsNumber={notificationsNumber}>
         <ImageContainer>
           <Image />
         </ImageContainer>
         <TextWrapper>
-          <Typography size={'s'} weight={700}>
+          <Typography size={getRwdValue('s', 'm', 'm')} weight={700}>
             <FormattedMessage {...name} />
           </Typography>
         </TextWrapper>

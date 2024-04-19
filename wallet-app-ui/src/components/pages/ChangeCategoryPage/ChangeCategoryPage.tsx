@@ -1,16 +1,23 @@
 import { MainTemplate } from '../../templates';
-import { Typography } from '../../atoms';
 import { ChangeCategoryForm } from '../../organisms';
-import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
+import { AppHeaderWrapper } from '../../../styles/override/AppHeaderWrapper.styles';
+import { Heading } from '../../molecules/Heading/Heading';
+import { HeadingEnum } from '../../../types/enums';
+import { CardWrapperContent } from '../../../styles/override/CardWrapperContent.styles';
 
 export const ChangeCategoryPage = () => {
   return (
     <MainTemplate>
-      <Typography size={'xxl'} weight={700} color={'lightBlue'}>
-        <FormattedMessage {...messages.changeCategoryPageTitle} />
-      </Typography>
-      <ChangeCategoryForm />
+      <AppHeaderWrapper>
+        <Heading
+          text={messages.changeCategoryPageTitle}
+          type={HeadingEnum.SUB_APP}
+        />
+      </AppHeaderWrapper>
+      <CardWrapperContent>
+        <ChangeCategoryForm />
+      </CardWrapperContent>
     </MainTemplate>
   );
 };

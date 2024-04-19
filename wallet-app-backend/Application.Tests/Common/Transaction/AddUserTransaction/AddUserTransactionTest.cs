@@ -112,7 +112,7 @@ public class AddUserTransactionTest
         result.Message.Should().Be(CommonErrorMessages.CommonError);
     }
     
-    [Theory]
+    [Theory] 
     [InlineData("CHF")]
     [InlineData("GBP")]
     [InlineData("EUR")]

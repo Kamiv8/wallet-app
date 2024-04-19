@@ -1,16 +1,23 @@
 import { MainTemplate } from '../../templates';
-import { Typography } from '../../atoms';
 import { ChangeUserPasswordForm } from '../../organisms';
-import { FormattedMessage } from 'react-intl';
 import messages from '../../../i18n/messages';
+import { AppHeaderWrapper } from '../../../styles/override/AppHeaderWrapper.styles';
+import { Heading } from '../../molecules/Heading/Heading';
+import { HeadingEnum } from '../../../types/enums';
+import { CardWrapperContent } from '../../../styles/override/CardWrapperContent.styles';
 
 export const ChangeUserPasswordPage = () => {
   return (
     <MainTemplate>
-      <Typography size={'xxl'} weight={700} color={'lightBlue'}>
-        <FormattedMessage {...messages.settingsMainPageChangePassword} />
-      </Typography>
-      <ChangeUserPasswordForm />
+      <AppHeaderWrapper>
+        <Heading
+          text={messages.settingsMainPageChangePassword}
+          type={HeadingEnum.SUB_APP}
+        />
+      </AppHeaderWrapper>
+      <CardWrapperContent>
+        <ChangeUserPasswordForm />
+      </CardWrapperContent>
     </MainTemplate>
   );
 };

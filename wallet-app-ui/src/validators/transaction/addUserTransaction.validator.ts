@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { TAddUserTransactionForm } from '../../models/apiTypes/transaction';
-import { hexColorRegex } from '../../const/regex';
+import { hexColorRegex } from '../../const';
 export const addUserTransactionSchema = yup
   .object<TAddUserTransactionForm>()
   .shape({
@@ -8,12 +8,21 @@ export const addUserTransactionSchema = yup
     price: yup.number().required(),
     date: yup
       .date()
-      .required()
-      .test((value) => {
-        const currentDate = new Date();
-        const inputDate = new Date(value);
-        return inputDate && inputDate <= currentDate;
-      }),
+      .test(
+        'is-future-date',
+        'Date must be in the past or today',
+        (value, context) => {
+          const { createError } = context;
+          const currentDate = new Date();
+          const inputDate = new Date(value as Date);
+          if (isNaN(inputDate.getTime()) || inputDate > currentDate) {
+            return createError({
+              message: 'Date must be in the past or today',
+            });
+          }
+          return true;
+        },
+      ),
     currencyId: yup.string().required(),
     categoryId: yup.string().required(),
     isDefault: yup.boolean(),

@@ -1,11 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useHref, useNavigate } from 'react-router-dom';
-import { GroupRoutesName, RoutesName } from '../../../const/routesName';
-import TransactionIcon from '../../../assets/images/navigationIcons/transaction.svg';
-import messages from '../../../i18n/messages';
-import HistoryIcon from '../../../assets/images/navigationIcons/history.svg';
-import TableIcon from '../../../assets/images/navigationIcons/table.svg';
+import { GroupRoutesName, RoutesName } from '../../../const';
 import { TFormattedMessage } from '../../../types/types';
+import { LocalstorageHelper } from '../../../helpers';
 
 export type TNavigationItems = {
   route: string;
@@ -18,27 +15,6 @@ export const useFooter = () => {
 
   const rootURL = useHref(RoutesName.ROOT);
   const rootGroupURL = useHref(GroupRoutesName.ROOT);
-  const transactionURL = useHref(RoutesName.ADD_TRANSACTIONS);
-  const historyURL = useHref(RoutesName.HISTORY);
-  const tableURL = useHref(RoutesName.TABLE);
-
-  const navigationItems: TNavigationItems[] = [
-    {
-      icon: TransactionIcon,
-      route: transactionURL,
-      text: messages.navigationTransaction,
-    },
-    {
-      icon: HistoryIcon,
-      route: historyURL,
-      text: messages.navigationHistory,
-    },
-    {
-      icon: TableIcon,
-      route: tableURL,
-      text: messages.navigationTable,
-    },
-  ];
 
   const toggleNavigation = useCallback(
     (open: boolean) => {
@@ -48,16 +24,13 @@ export const useFooter = () => {
   );
 
   const logout = useCallback(() => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('groupId');
-    localStorage.removeItem('userRole');
+    LocalstorageHelper.clear();
     navigate(RoutesName.LOGIN);
   }, []);
 
   return {
     logout,
     toggleNavigation,
-    navigationItems,
     rootURL,
     rootGroupURL,
     isOpenNav,

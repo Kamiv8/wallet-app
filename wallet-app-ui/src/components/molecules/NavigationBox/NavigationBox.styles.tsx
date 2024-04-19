@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { TTheme } from '../../../styles/theme';
 import { Link } from 'react-router-dom';
+import { media } from '../../../styles/mediaQueries.helper';
 
 type TProps = {
   notificationsNumber?: number;
@@ -42,9 +43,23 @@ export const Wrapper = styled.div<TProps>`
       }
     `}
   }
+
+    ${media.tablet`
+      width: 200px;
+      height: 200px;
+      padding: 32px 0;
+    `}
+    
 `;
 
-export const ImageContainer = styled.div``;
+export const ImageContainer = styled.div`
+  ${media.tablet`
+      & > svg {
+        width: 150px;
+        height: 60px;
+      }
+    `}
+`;
 
 export const StyledLink = styled(Link)`
   text-decoration: none;

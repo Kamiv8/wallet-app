@@ -6,20 +6,16 @@ import MoreIcon from '../../../assets/images/navigationIcons/more.svg';
 import messages from '../../../i18n/messages';
 import { NavigationPage } from '../../pages';
 import { useFooter } from './useFooter';
+import { NavigationHelper } from '../../../helpers';
+import { NavigationItemsEnum } from '../../../types/enums';
 
 export type TProps = {
   isGroup?: boolean;
 };
 
 export const Footer = (props: TProps) => {
-  const {
-    logout,
-    toggleNavigation,
-    navigationItems,
-    rootURL,
-    rootGroupURL,
-    isOpenNav,
-  } = useFooter();
+  const { logout, toggleNavigation, rootURL, rootGroupURL, isOpenNav } =
+    useFooter();
   return (
     <>
       <Wrapper isGroup={props.isGroup}>
@@ -28,23 +24,28 @@ export const Footer = (props: TProps) => {
         </Link>
         <NavigationContent>
           <NavColumn>
-            {navigationItems.slice(0, 2).map((nav) => (
+            {NavigationHelper.selectNavigationItems([
+              NavigationItemsEnum.TRANSACTION,
+              NavigationItemsEnum.HISTORY,
+            ]).map((nav) => (
               <StyledLink to={nav.route} key={nav.route}>
                 <NavigationItem
                   onClick={() => {}}
-                  icon={nav.icon}
-                  text={nav.text}
+                  icon={nav.imageURL}
+                  text={nav.name}
                 />
               </StyledLink>
             ))}
           </NavColumn>
           <NavColumn>
-            {navigationItems.slice(2).map((nav) => (
+            {NavigationHelper.selectNavigationItems([
+              NavigationItemsEnum.TABLE,
+            ]).map((nav) => (
               <StyledLink to={nav.route} key={nav.route}>
                 <NavigationItem
                   onClick={() => {}}
-                  icon={nav.icon}
-                  text={nav.text}
+                  icon={nav.imageURL}
+                  text={nav.name}
                 />
               </StyledLink>
             ))}

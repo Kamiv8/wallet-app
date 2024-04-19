@@ -5,3 +5,5 @@ export * from './modal.enum';
 export * from './role.enum';
 export * from './localstorage.enum';
 export * from './userIconType.enum';
+export * from './navigationItems.enum';
+export * from './heading.enum';
