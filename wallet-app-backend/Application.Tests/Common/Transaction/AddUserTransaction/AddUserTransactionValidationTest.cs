@@ -59,10 +59,14 @@ public class AddUserTransactionValidationTest
     {
         // Arrange
         var validator = new AddUserTransactionCommandValidation();
-        var command = new AddUserTransactionCommand(GenerateRandomGuid.RandomGuid, title, price,
+        var command = new AddUserTransactionCommand(
             GenerateRandomGuid.RandomGuid,
-            GenerateRandomGuid.RandomGuid, date, isDefault, description, textColor,
-            backgroundColor);
+            title, 
+            price,
+            GenerateRandomGuid.RandomGuid,
+            GenerateRandomGuid.RandomGuid, date, isDefault, 
+            description, textColor,
+            backgroundColor, "");
 
         // Act
         var result = validator.Validate(command);
