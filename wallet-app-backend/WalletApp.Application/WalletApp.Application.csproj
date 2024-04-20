@@ -28,4 +28,7 @@
     <Folder Include="Common\Settings\" />
     <Folder Include="Mapper\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Common\Transaction\GetSumTransactions\Dockerfile" />
+  </ItemGroup>
 </Project>
