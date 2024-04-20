@@ -1,4 +1,12 @@
 export const devConfig = {
   // eslint-disable-next-line no-undef
-  baseURL: `http://localhost:${process.env.PORT_HTTP}/api`,
+
+  baseURL: () => {
+    switch (process.env.NODE_ENV) {
+      case 'production':
+        return `https://localhost:${process.env.REACT_APP_PORT_HTTPS}/api`;
+      case 'development':
+        return `http://localhost:${process.env.REACT_APP_PORT_HTTP}/api`;
+    }
+  },
 };

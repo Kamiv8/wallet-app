@@ -31,10 +31,7 @@ builder.Host.UseSerilog(
 builder.Services.AddCors(options =>
     options.AddPolicy(name: allowOrigins, policy =>
     {
-        policy.WithOrigins("http://localhost:3000");
-        policy.AllowAnyHeader();
-        policy.AllowAnyMethod();
-        policy.AllowCredentials();
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000", "http://localhost:8003").AllowCredentials();
     }));
 
 builder.Services.AddHttpContextAccessor();

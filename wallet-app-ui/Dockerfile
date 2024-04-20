@@ -3,18 +3,22 @@ FROM node:16.20.0-alpine as builder
 # set working directory
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
 # install app dependencies
 COPY package.json .
 COPY package-lock.json .
+RUN npm install
 
-COPY . ./
-RUN npm run build
+ARG REACT_APP_PORT_HTTPS
+ARG REACT_APP_PORT_HTTP
+ARG NODE_ENV
 
-FROM nginx:1.19.0
-WORKDIR /usr/share/nginx/html
-RUN rm -rf ./*
-COPY --from=builder /app/build .
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENV REACT_APP_PORT_HTTP $REACT_APP_PORT_HTTP
+ENV NODE_ENV $NODE_ENV
+ENV REACT_APP_PORT_HTTPS $REACT_APP_PORT_HTTPS
+
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "start"]

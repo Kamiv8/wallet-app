@@ -55,7 +55,7 @@ export class UserApi {
 
   private static apiOptions() {
     return {
-      baseURL: devConfig.baseURL,
+      baseURL: devConfig.baseURL(),
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-type': 'application/json',

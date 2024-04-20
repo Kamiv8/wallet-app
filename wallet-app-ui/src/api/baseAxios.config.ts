@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { TokenApi } from './token.api';
-import { devConfig } from '../const/config';
+import { devConfig } from '../const';
 import { ApiStatus } from '../models/apiResult';
 import { LocalstorageHelper } from '../helpers';
 import { LocalstorageEnum } from '../types/enums';
@@ -14,7 +14,7 @@ api.interceptors.request.use(
       LocalstorageEnum.TOKEN,
     )}`;
     config.headers['Content-Type'] = 'application/json';
-    config.baseURL = devConfig.baseURL;
+    config.baseURL = devConfig.baseURL();
     config.withCredentials = true;
     return config;
   },
@@ -54,7 +54,8 @@ noAuthApi.interceptors.request.use(
   async (config) => {
     config.headers = config.headers || {};
     config.headers['Content-Type'] = 'application/json';
-    config.baseURL = devConfig.baseURL;
+    config.baseURL = devConfig.baseURL();
+    config.withCredentials = true;
     return config;
   },
   (error) => {
