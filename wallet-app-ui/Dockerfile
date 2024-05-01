@@ -1,24 +1,32 @@
-FROM node:16.20.0-alpine as builder
+# Use the official Node.js runtime as the base image
+FROM node:18 as build
 
-# set working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# install app dependencies
-COPY package.json .
-COPY package-lock.json .
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-ARG REACT_APP_PORT_HTTPS
-ARG REACT_APP_PORT_HTTP
-ARG NODE_ENV
-
-ENV REACT_APP_PORT_HTTP $REACT_APP_PORT_HTTP
-ENV NODE_ENV $NODE_ENV
-ENV REACT_APP_PORT_HTTPS $REACT_APP_PORT_HTTPS
-
-
+# Copy the entire application code to the container
 COPY . .
 
-EXPOSE 3000
+# Build the React app for production
+RUN npm run build
 
-CMD ["npm", "run", "start"]
+# Use Nginx as the production server
+FROM nginx:alpine
+
+# Copy the built React app to Nginx's web server directory
+COPY env.sh env.sh
+RUN chmod +x env.sh
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Expose port 80 for the Nginx server
+EXPOSE 80
+
+# Start Nginx when the container runs
+CMD ["/bin/sh", "-c", "printenv >> .env && /env.sh && nginx", "-g", "daemon off;"]
