@@ -1,5 +1,4 @@
 export enum ApiStatus {
-  PENDING = 0,
   SUCCESS = 200,
   ERROR = 404,
   UNAUTHORIZED = 401,

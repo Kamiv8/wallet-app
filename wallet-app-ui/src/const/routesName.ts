@@ -20,6 +20,7 @@ type TRoutes = {
   CHANGE_PASSWORD: string;
   CHANGE_USERNAME: string;
   CHANGE_LANGUAGE: string;
+  CHANGE_DATE_RANGE: string;
 };
 
 export const RoutesName: TRoutes = {
@@ -44,6 +45,7 @@ export const RoutesName: TRoutes = {
   CHANGE_PASSWORD: '/settings/changePassword',
   CHANGE_USERNAME: '/settings/changeUsername',
   CHANGE_LANGUAGE: '/settings/changeLanguage',
+  CHANGE_DATE_RANGE: '/settings/dateRange',
 };
 
 type TGroupRoutes = {

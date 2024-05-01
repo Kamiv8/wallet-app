@@ -4,7 +4,7 @@ import {
   Route,
   Routes as RoutesWrapper,
 } from 'react-router-dom';
-import { GroupRoutesName, RoutesName } from './const/routesName';
+import { GroupRoutesName, RoutesName } from './const';
 import GuardedRoute from './GuardedRoute';
 import {
   AddNotePage,
@@ -36,6 +36,7 @@ import {
   ManageUsersPage,
   NotificationPanelPage,
 } from './components/pages/groupPages';
+import { ChangeDateRangePage } from './components/pages/ChangeDateRangePage/ChangeDateRangePage';
 
 const GroupRoute = () => {
   const userGroup = localStorage.getItem('groupId');
@@ -92,6 +93,10 @@ export const Routes = () => (
       <Route
         path={RoutesName.CHANGE_CATEGORY}
         element={<ChangeCategoryPage />}
+      />
+      <Route
+        path={RoutesName.CHANGE_DATE_RANGE}
+        element={<ChangeDateRangePage />}
       />
       <Route path={RoutesName.TABLE} element={<TablePage />} />
       <Route path={RoutesName.TABLE + `/:id`} element={<NoteDetailsPage />} />

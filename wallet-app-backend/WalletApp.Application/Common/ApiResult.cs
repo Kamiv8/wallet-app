@@ -55,7 +55,7 @@ public class ApiResult<T>
     public T? Data { get; }
 
 
-    public ApiResult(ApiResultStatus status,T? data, string? message = null)
+    private ApiResult(ApiResultStatus status,T? data, string? message = null)
     {
         Status = status;
         Data = data;

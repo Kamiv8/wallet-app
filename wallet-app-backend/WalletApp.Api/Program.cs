@@ -21,7 +21,7 @@ using WalletApp.Persistance;
 using WalletApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var allowOrigins = "_myOrigins";
+const string allowOrigins = "_myOrigins";
 builder.Host.UseSerilog(
     (context, services, loggerConfiguration) =>
     {

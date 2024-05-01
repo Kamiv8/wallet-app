@@ -6,12 +6,13 @@ import { useFetch } from './useFetch';
 
 export enum FieldType {
   Text = 1,
-  Number = 2,
-  Checkbox = 3,
-  Icon = 4,
-  Email = 5,
-  Date = 6,
-  Select = 7,
+  Number,
+  Checkbox,
+  Icon,
+  Email,
+  Date,
+  Select,
+  Radio,
 }
 
 export const useForm = <T,>(
@@ -68,6 +69,9 @@ export const useForm = <T,>(
           break;
         case FieldType.Date:
           typedValue = new Date(event.target.value);
+          break;
+        case FieldType.Radio:
+          typedValue = +event.target.value;
           break;
         default:
           typedValue = event.target.value;

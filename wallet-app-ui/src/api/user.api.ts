@@ -1,5 +1,5 @@
 import { IApiResult } from '../models/apiResult';
-import { devConfig } from '../const/config';
+import { devConfig } from '../const';
 import axios from 'axios';
 import { BaseApiHandler } from './baseApiHandler';
 import { api } from './baseAxios.config';

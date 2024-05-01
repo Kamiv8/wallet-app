@@ -284,6 +284,29 @@ const messages = defineMessages({
     id: 'settingsMainPageChangeUsername',
     defaultMessage: 'Change username',
   },
+  settingsMainPageChangeDateRange: {
+    id: 'settingsMainPageChangeDateRange',
+    defaultMessage: 'Change date range',
+  },
+  //endregion
+  //region Change date range
+  changeDateRangeDescription: {
+    id: 'changeDateRangeDescription',
+    defaultMessage:
+      'The date range affects the pie charts on the homepage. Set the date from which current expenses are to be calculated',
+  },
+  changeDateRangeCheckboxLegend: {
+    id: 'changeDateRangeCheckboxLegend',
+    defaultMessage: 'Choose one option:',
+  },
+  changeDateRangeCustomDay: {
+    id: 'changeDateRangeCustomDay',
+    defaultMessage: 'Custom day of the month',
+  },
+  changeDateRangeCustomDate: {
+    id: 'changeDateRangeCustomDate',
+    defaultMessage: 'Custom date',
+  },
   //endregion
   //region Change currency form
   changeCurrencyPageTitle: {
