@@ -26,7 +26,7 @@ export class SettingsApi {
       values.customDay,
       values.customDate,
     );
-    const data = await api.put('/account/changeDateRange', command);
+    const data = await api.put('/settings/changeDateRange', command);
     return BaseApiHandler.handleApi(data);
   }
 }

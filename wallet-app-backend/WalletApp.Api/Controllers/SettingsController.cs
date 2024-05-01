@@ -29,4 +29,10 @@ public class SettingsController : BaseController
         var res = await _mediator.Send(command, cancellationToken);
         return CreateResponse(res);
     }
+
+    [HttpPut("changeDateRange")]
+    public async Task<ActionResult<ApiResult>> ChangeDateRange([FromBody] )
+    {
+        
+    }
 }
