@@ -16,20 +16,22 @@ export const useFetch = () => {
       api: Promise<IApiResult<T>>,
       withSuccessModal?: boolean,
     ) => {
+      const timeout = setTimeout(() => {
+        openPendingModal();
+      }, 300);
       try {
-        const timeout = setTimeout(() => {
-          openPendingModal();
-        }, 300);
         const response = await api;
         clearTimeout(timeout);
-        closePendingModal();
         if (response.status === ApiStatus.SUCCESS && withSuccessModal) {
           openSuccessModal(response.message);
         }
         return response;
       } catch (e: any) {
+        console.log(e);
+        clearTimeout(timeout);
         closePendingModal();
-        openErrorModal(e?.response.data?.message || 'An error occurred');
+        openErrorModal(e?.message || 'An error occurred');
+
         return {
           status: ApiStatus.ERROR,
           message: CustomString.Empty,

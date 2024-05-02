@@ -36,6 +36,7 @@ export const useModalAction = () => {
   };
 
   const openErrorModal = (message?: string) => {
+    console.log('error');
     dispatch({
       type: ActionEnum.CHANGE_MODAL_STATE,
       payload: {
