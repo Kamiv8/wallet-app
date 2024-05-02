@@ -1,32 +1,35 @@
-# Use the official Node.js runtime as the base image
-FROM node:18 as build
-
-# Set the working directory in the container
+# => Build container
+FROM node:18 as builder
 WORKDIR /app
-
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
-
-# Install dependencies
+COPY package.json .
+COPY package-lock.json .
 RUN npm install
-
-# Copy the entire application code to the container
 COPY . .
-
-# Build the React app for production
 RUN npm run build
 
-# Use Nginx as the production server
-FROM nginx:alpine
+# => Run container
+FROM nginx:1.15.2-alpine
 
-# Copy the built React app to Nginx's web server directory
-COPY env.sh env.sh
-RUN chmod +x env.sh
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/build /usr/share/nginx/html
+# Nginx config
+RUN rm -rf /etc/nginx/conf.d
+COPY conf /etc/nginx
 
-# Expose port 80 for the Nginx server
+# Static build
+COPY --from=builder /app/build /usr/share/nginx/html/
+
+# Default port exposure
 EXPOSE 80
 
-# Start Nginx when the container runs
-CMD ["/bin/sh", "-c", "printenv >> .env && /env.sh && nginx", "-g", "daemon off;"]
+# Copy .env file and shell script to container
+WORKDIR /usr/share/nginx/html
+COPY ./env.sh .
+COPY .env .
+
+# Add bash
+RUN apk add --no-cache bash
+
+# Make our shell script executable
+RUN chmod +x env.sh
+
+# Start Nginx server
+CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]

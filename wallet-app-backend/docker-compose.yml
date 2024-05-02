@@ -46,9 +46,9 @@ services:
     build:
       context: ../wallet-app-ui
       dockerfile: Dockerfile
-      args:
-        NODE_ENV: production
-        REACT_APP_BACKEND: http://localhost:8000/api
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_BACKEND=https://localhost:8001/api
     ports:
       - "8003:80"
     depends_on:
