@@ -9,18 +9,21 @@ echo "window._env_ = {" >> ./env-config.js
 
 # Read each line in .env file
 # Each line represents key=value pairs
-while read -r line || [[ -n "$line" ]];
+while IFS= read -r line || [ -n "$line" ];
 do
+  # Remove carriage return characters if present
+  line=$(echo "$line" | tr -d '\r')
+
   # Split env variables by character `=`
   if printf '%s\n' "$line" | grep -q -e '='; then
-    varname=$(printf '%s\n' "$line" | sed -e 's/=.*//')
-    varvalue=$(printf '%s\n' "$line" | sed -e 's/^[^=]*=//')
+    varname=$(printf '%s\n' "$line" | cut -d '=' -f 1)
+    varvalue=$(printf '%s\n' "$line" | cut -d '=' -f 2-)
   fi
 
   # Read value of current variable if exists as Environment variable
-  value=$(printf '%s\n' "${!varname}")
+  value="${!varname}"
   # Otherwise use value from .env file
-  [[ -z $value ]] && value=${varvalue}
+  [ -z "$value" ] && value="$varvalue"
 
   # Append configuration property to JS file
   echo "  $varname: \"$value\"," >> ./env-config.js

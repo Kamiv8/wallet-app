@@ -1,15 +1,5 @@
 import { ChartTypeEnum } from '../../../types/enums';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend,
-  ArcElement,
-  Filler,
-} from 'chart.js';
+import { Chart as ChartJS, registerables } from 'chart.js';
 import { Chart as LibChart } from 'react-chartjs-2';
 import { useRef } from 'react';
 import { Wrapper } from './Chart.styles';
@@ -23,16 +13,7 @@ export type TProps = {
   height?: string;
 };
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend,
-  Filler,
-  ArcElement,
-);
+ChartJS.register(...registerables);
 
 export const Chart = (props: TProps) => {
   const chartRef = useRef<ChartJS>(null);
