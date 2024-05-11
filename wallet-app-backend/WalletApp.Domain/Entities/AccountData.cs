@@ -12,7 +12,7 @@ public class AccountData : BaseEntity
     public decimal ActualMoneyGbp { get; set; }
     public Guid UserIdentityId { get; set; }
     public DateRangeOption DateRangeOption { get; set; }
-    public int? CustomDayRange { get; set; }
+    public int CustomDayRange { get; set; }
     public DateTime? CustomDateRange { get; set; }
     public virtual UserIdentity UserIdentity { get; set; } = default!;
 }

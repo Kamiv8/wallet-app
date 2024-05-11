@@ -35,7 +35,7 @@ public class SettingsController : BaseController
     public async Task<ActionResult<ApiResult>> ChangeDateRange([FromBody] ChangeDateRangeDto dto,
         CancellationToken cancellationToken)
     {
-        var command = new ChangeDateRangeCommand(dto.Option, dto.CustomDay, dto.CustomDate);
+        var command = new ChangeDateRangeCommand(_userService.Id, dto.Option, dto.CustomDay, dto.CustomDate);
         var res = await _mediator.Send(command, cancellationToken);
         return CreateResponse(res);
     }

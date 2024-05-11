@@ -4,4 +4,5 @@ public interface IDate
 {
     public DateTime Now();
     public DateTime Today();
+    public (DateTime startDate, DateTime endDate) GetCurrentMonth(int day);
 }
