@@ -12,5 +12,6 @@ public class EmailOptionsValidation : AbstractValidator<EmailOptions>
         RuleFor(x => x.SmtpServer).NotEmpty();
         RuleFor(x => x.FromEmail).NotEmpty();
         RuleFor(x => x.FromName).NotEmpty();
+        RuleFor(x => x.VerifyRegisterHost).NotEmpty();
     }
 }

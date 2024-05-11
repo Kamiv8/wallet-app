@@ -13,7 +13,7 @@ public class EmailTemplates : IEmailTemplates
         {
             EmailTemplate.REGISTER => new EmailTemplateDto(EmailTemplate.REGISTER,
                 GetTemplateByName(
-                    @"C:\\Users\\maste\\source\\repos\\wallet-app\\emailTemplates\\register_template.txt")), // TODO change path 
+                    @"\\emailTemplates\\register_template.txt")), // TODO change path 
             EmailTemplate.FORGOT_PASSWORD => new EmailTemplateDto(EmailTemplate.FORGOT_PASSWORD,
                 GetTemplateByName(@"C:\\Users\\maste\\source\\repos\\wallet-app\\emailTemplates\\changeForgotPasswordTemplate.txt")),
             _ => new EmailTemplateDto(EmailTemplate.DEFAULT, DefaultTemplate())
@@ -37,6 +37,6 @@ public class EmailTemplates : IEmailTemplates
 
     private static string DefaultTemplate()
     {
-        return """<h1>Hello, {0}</h1><a href="http://localhost:3000/verify/{1}/{2}">Confirm register</a>""";
+        return """<h1>Hello, {0}</h1><a href="{4}/{3}/{1}/{2}">Confirm register</a>""";
     }
 }

@@ -1,12 +1,14 @@
 using System.Text;
 using System.Transactions;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Options;
 using WalletApp.Application.Abstractions.Messaging;
 using WalletApp.Application.Consts;
 using WalletApp.Application.Dtos;
 using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
+using WalletApp.Application.Options.EmailOptions;
 using WalletApp.Domain.Entities;
 
 namespace WalletApp.Application.Common.Account.Register;
@@ -17,15 +19,17 @@ public class RegisterCommandHandler : ICommandHandler<RegisterCommand>
     private readonly IAccountDataRepository _accountDataRepository;
     private readonly IEmailClient _emailClient;
     private readonly IEmailTemplates _emailTemplates;
+    private readonly EmailOptions _emailOptions;
 
     public RegisterCommandHandler(IUserManager userManager,
         IAccountDataRepository accountDataRepository, IEmailClient emailClient,
-        IEmailTemplates emailTemplates)
+        IEmailTemplates emailTemplates, IOptions<EmailOptions> emailOptions)
     {
         _userManager = userManager;
         _accountDataRepository = accountDataRepository;
         _emailClient = emailClient;
         _emailTemplates = emailTemplates;
+        _emailOptions = emailOptions.Value;
     }
 
     public async Task<ApiResult> Handle(RegisterCommand request,
@@ -68,7 +72,8 @@ public class RegisterCommandHandler : ICommandHandler<RegisterCommand>
             .Replace("{0}", newUser.UserName)
             .Replace("{1}", request.Email)
             .Replace("{2}", validEmailToken)
-            .Replace("{3}", "verify");
+            .Replace("{3}", "verify")
+            .Replace("{4}", _emailOptions.VerifyRegisterHost);
         await _emailClient.SendMailAsync(new EmailClientDto("Confirm Registration", "dbfs",
             replace,
             newUser.Email));
