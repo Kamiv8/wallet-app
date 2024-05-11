@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.Common;
+using WalletApp.Application.Common.Settings.ChangeDateRange;
 using WalletApp.Application.Common.Settings.ChangePassword;
 using WalletApp.Application.Interfaces;
 
@@ -31,8 +32,11 @@ public class SettingsController : BaseController
     }
 
     [HttpPut("changeDateRange")]
-    public async Task<ActionResult<ApiResult>> ChangeDateRange([FromBody] )
+    public async Task<ActionResult<ApiResult>> ChangeDateRange([FromBody] ChangeDateRangeDto dto,
+        CancellationToken cancellationToken)
     {
-        
+        var command = new ChangeDateRangeCommand(dto.Option, dto.CustomDay, dto.CustomDate);
+        var res = await _mediator.Send(command, cancellationToken);
+        return CreateResponse(res);
     }
 }
