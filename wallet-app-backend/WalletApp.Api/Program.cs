@@ -21,7 +21,7 @@ using WalletApp.Persistance;
 using WalletApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var allowOrigins = "_myOrigins";
+const string allowOrigins = "_myOrigins";
 builder.Configuration.AddEnvironmentVariables();
 builder.Host.UseSerilog(
     (context, services, loggerConfiguration) =>
@@ -117,13 +117,6 @@ app.UseAuthentication();
 app.UseMiddleware<ValidationErrorsMiddleware>();
 
 app.UseAuthorization();
-app.MapGet("/",
-    (IConfiguration configuration) =>
-    {
-        return configuration.AsEnumerable().Select(x => new { x.Key, x.Value });
-    }).AllowAnonymous();
-app.MapGet("/mode", (IWebHostEnvironment environment) => environment.EnvironmentName).AllowAnonymous();
-
 app.MapControllers();
 
 app.Run();

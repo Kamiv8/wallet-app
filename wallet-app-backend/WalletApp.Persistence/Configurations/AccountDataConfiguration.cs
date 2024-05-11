@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WalletApp.Domain.Entities;
+using WalletApp.Domain.Enums;
 using WalletApp.Persistence.Configurations;
 
 namespace WalletApp.Persistance.Configurations;
@@ -25,5 +26,10 @@ public class AccountDataConfiguration : BaseConfiguration<AccountData>,
 
         builder.Property(a => a.ActualMoneyGbp).IsRequired().HasDefaultValue(0)
             .HasColumnType("decimal").HasPrecision(15, 2);
+        builder.Property(a => a.CustomDateRange).IsRequired(false);
+        builder.Property(a => a.DateRangeOption).IsRequired()
+            .HasDefaultValue(DateRangeOption.CUSTOM_DAY);
+        builder.Property(a => a.CustomDayRange).IsRequired().HasDefaultValue(1).HasColumnType("int")
+            .HasPrecision(2);
     }
 }

@@ -6,8 +6,6 @@ namespace WalletApp.Application.Common.Transaction.AddUserTransaction;
 
 public class AddUserTransactionCommandValidation : AbstractValidator<AddUserTransactionCommand>
 {
-    
-
     public AddUserTransactionCommandValidation()
     {
         RuleFor(x => x.Title).Cascade(CascadeMode.Stop)
@@ -15,7 +13,7 @@ public class AddUserTransactionCommandValidation : AbstractValidator<AddUserTran
             .MaximumLength(50);
         RuleFor(x => x.Price).Cascade(CascadeMode.Stop).NotEmpty()
             .PrecisionScale(15, 2, false);
-        RuleFor(x => x.Date).Cascade(CascadeMode.Stop).NotEmpty().LessThanOrEqualTo(DateTime.Today);
+        RuleFor(x => x.Date).Cascade(CascadeMode.Stop).NotEmpty().LessThanOrEqualTo(DateTime.Now);
         RuleFor(x => x.CurrencyId).Cascade(CascadeMode.Stop).NotEmpty();
         RuleFor(x => x.CategoryId).Cascade(CascadeMode.Stop).NotEmpty();
         RuleFor(x => x.Description).Cascade(CascadeMode.Stop).MinimumLength(1).MaximumLength(500);

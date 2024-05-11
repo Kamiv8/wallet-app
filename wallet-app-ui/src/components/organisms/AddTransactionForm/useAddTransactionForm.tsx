@@ -29,7 +29,7 @@ export const useAddTransactionForm = ({ onClose }: TProps) => {
     categoryId: CustomString.Empty,
     date: new Date(),
     isDefault: false,
-    isTemplate: false,
+    isTemplate: undefined,
     textColor: undefined,
     backgroundColor: undefined,
     description: undefined,

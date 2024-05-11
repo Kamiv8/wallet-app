@@ -7,3 +7,4 @@ export * from './localstorage.enum';
 export * from './userIconType.enum';
 export * from './navigationItems.enum';
 export * from './heading.enum';
+export * from './dateRangeOption.enum';

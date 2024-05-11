@@ -37,6 +37,11 @@ export const SettingsPage = () => {
           name={messages.settingsMainPageChangeLanguage}
           routeName={RoutesName.CHANGE_LANGUAGE}
         />
+        <NavigationBox
+          Image={ChangeUserIcon}
+          name={messages.settingsMainPageChangeDateRange}
+          routeName={RoutesName.CHANGE_DATE_RANGE}
+        />
       </SettingsTemplate>
     </MainTemplate>
   );

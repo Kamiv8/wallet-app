@@ -17,7 +17,7 @@ namespace WalletApp.Persistance.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.12")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -101,7 +101,8 @@ namespace WalletApp.Persistance.Migrations
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(34)
+                        .HasColumnType("nvarchar(34)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -174,6 +175,21 @@ namespace WalletApp.Persistance.Migrations
 
                     b.Property<DateTime?>("CreatedTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CustomDateRange")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CustomDayRange")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(2)
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<int>("DateRangeOption")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uniqueidentifier");
@@ -250,7 +266,7 @@ namespace WalletApp.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("fe51b179-a382-447d-9818-b29fb3062847"),
+                            Id = new Guid("4793bd67-b553-49c6-8b23-5bb0b50f5cea"),
                             IsDeleted = false,
                             Name = "Rachunki"
                         });
@@ -311,53 +327,53 @@ namespace WalletApp.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e727487c-94b1-480b-a04a-0b23ffc58bff"),
+                            Id = new Guid("2a419c42-5578-4658-88e2-099737b64969"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "USD",
                             CurrencyName = "dolar amerykanski",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8920)
+                            TradingDate = new DateTime(2024, 5, 11, 13, 9, 46, 938, DateTimeKind.Local).AddTicks(6212)
                         },
                         new
                         {
-                            Id = new Guid("e86def6d-fff1-4b84-9ed9-abd707d5bae4"),
+                            Id = new Guid("c8afc763-d5f7-46b7-bbda-03a16ec90901"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "EUR",
                             CurrencyName = "euro",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8982)
+                            TradingDate = new DateTime(2024, 5, 11, 13, 9, 46, 938, DateTimeKind.Local).AddTicks(6257)
                         },
                         new
                         {
-                            Id = new Guid("0a72d06b-b39b-47b1-8aa1-dbb7a960baef"),
+                            Id = new Guid("1312c319-aeac-441f-aee6-e202109aa73b"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "CHF",
                             CurrencyName = "frank szwajcarski",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8985)
+                            TradingDate = new DateTime(2024, 5, 11, 13, 9, 46, 938, DateTimeKind.Local).AddTicks(6260)
                         },
                         new
                         {
-                            Id = new Guid("8962939b-2c32-4579-b5c1-c5fdc626c3f0"),
+                            Id = new Guid("c76012e2-c7b0-486c-99c8-61d0e49ec701"),
                             Ask = 4.055m,
                             Bid = 3.972m,
                             Code = "GBP",
                             CurrencyName = "funt szterling",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8988)
+                            TradingDate = new DateTime(2024, 5, 11, 13, 9, 46, 938, DateTimeKind.Local).AddTicks(6263)
                         },
                         new
                         {
-                            Id = new Guid("5e241818-ff68-40a5-9e12-8d63af409e9d"),
+                            Id = new Guid("12f364d8-81d4-4248-906f-17c120527c9d"),
                             Ask = 1m,
                             Bid = 1m,
                             Code = "PLN",
                             CurrencyName = "polski złoty",
                             IsDeleted = false,
-                            TradingDate = new DateTime(2024, 1, 4, 1, 55, 19, 388, DateTimeKind.Local).AddTicks(8993)
+                            TradingDate = new DateTime(2024, 5, 11, 13, 9, 46, 938, DateTimeKind.Local).AddTicks(6278)
                         });
                 });
 
@@ -797,7 +813,6 @@ namespace WalletApp.Persistance.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("UserIdentityId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -1178,9 +1193,7 @@ namespace WalletApp.Persistance.Migrations
                 {
                     b.HasOne("WalletApp.Domain.Entities.UserIdentity", "UserIdentity")
                         .WithMany("Tokens")
-                        .HasForeignKey("UserIdentityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserIdentityId");
 
                     b.Navigation("UserIdentity");
                 });

@@ -21,3 +21,15 @@ export type TColor =
   | 'red'
   | 'green'
   | 'error';
+
+export type RadioButtonOption = {
+  value: any;
+  label: TFormattedMessage;
+};
+
+export type TRadioButtonOptions = {
+  legendMessage?: TFormattedMessage;
+  name: string;
+  align: 'vertical' | 'horizontal';
+  options: Array<RadioButtonOption>;
+};

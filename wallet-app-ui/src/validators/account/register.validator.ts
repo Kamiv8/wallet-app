@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { passwordRegex } from '../../const/regex';
+import { passwordRegex } from '../../const';
 import { TRegisterForm } from '../../models/apiTypes/account';
 import { TSelectedIcon } from '../../components/organisms/RegisterForm/RegisterForm';
 

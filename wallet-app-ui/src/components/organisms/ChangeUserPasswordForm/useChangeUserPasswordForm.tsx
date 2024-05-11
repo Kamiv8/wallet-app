@@ -4,7 +4,7 @@ import { ChangePasswordForm } from '../../../models/apiTypes/settings';
 import { changeUserPasswordValidator } from '../../../validators/settings/changeUserPassword.validator';
 import { SettingsApi } from '../../../api';
 import { ApiStatus } from '../../../models/apiResult';
-import { RoutesName } from '../../../const/routesName';
+import { RoutesName } from '../../../const';
 import { CustomString } from '../../../overrides/string.override';
 
 export const useChangeUserPasswordForm = () => {

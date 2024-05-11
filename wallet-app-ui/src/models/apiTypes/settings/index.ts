@@ -6,3 +6,6 @@ export * from './changeUsername/changeUsername.form';
 export * from './changeLanguage/changeLanguage.form';
 
 export * from './changeUserIcon/changeUserIcon.form';
+
+export * from './changeDateRange/changeDateRange.form';
+export * from './changeDateRange/changeDateRange.command';
