@@ -25,7 +25,7 @@ public class AddUserTransactionTest
         // Arrange
         var command = new AddUserTransactionCommand(
             GenerateRandomGuid.RandomGuid, "title", 12.2m, GenerateRandomGuid.RandomGuid,
-            GenerateRandomGuid.RandomGuid, new DateTime(2024, 4, 12), false, "", "", "");
+            GenerateRandomGuid.RandomGuid, new DateTime(2024, 4, 12), false, false, "", "", "");
 
         _currencyRepositoryMock
             .Setup(x => x.GetCurrencyById(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
@@ -53,7 +53,7 @@ public class AddUserTransactionTest
         // Arrange
         var command = new AddUserTransactionCommand(
             GenerateRandomGuid.RandomGuid, "title", 12.2m, GenerateRandomGuid.RandomGuid,
-            GenerateRandomGuid.RandomGuid, new DateTime(2024, 4, 12), false, "", "", "");
+            GenerateRandomGuid.RandomGuid, new DateTime(2024, 4, 12), false, false, "", "", "");
 
         _currencyRepositoryMock
             .Setup(x => x.GetCurrencyById(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
@@ -85,7 +85,7 @@ public class AddUserTransactionTest
         // Arrange
         var command = new AddUserTransactionCommand(
             GenerateRandomGuid.RandomGuid, "title", 12.2m, GenerateRandomGuid.RandomGuid,
-            GenerateRandomGuid.RandomGuid, new DateTime(2024, 4, 12), false, "", "", "");
+            GenerateRandomGuid.RandomGuid, new DateTime(2024, 4, 12), false, false, "", "", "");
 
         _currencyRepositoryMock
             .Setup(x => x.GetCurrencyById(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
@@ -123,7 +123,7 @@ public class AddUserTransactionTest
         // Arrange
         var command = new AddUserTransactionCommand(
             GenerateRandomGuid.RandomGuid, "title", 12.2m, GenerateRandomGuid.RandomGuid,
-            GenerateRandomGuid.RandomGuid, new DateTime(2024, 4, 12), false, "", "", "");
+            GenerateRandomGuid.RandomGuid, new DateTime(2024, 4, 12), false, false, "", "", "");
 
         _currencyRepositoryMock
             .Setup(x => x.GetCurrencyById(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))

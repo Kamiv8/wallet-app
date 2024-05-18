@@ -23,7 +23,7 @@ public class AuthenticateTest
     public async Task Handle_ReturnSuccess_When_Data_Is_Correct()
     {
         // Arrange
-        var command = new WalletApp.Application.Common.Account.Authenticate.AuthenticateCommand("kamiv8", "password", "0,0,0,0");
+        var command = new AuthenticateCommand("kamiv8", "password", "0,0,0,0");
         var userGuid = Guid.NewGuid();
 
         var handler = new AuthenticateCommandHandler(_signInManagerMock.Object,

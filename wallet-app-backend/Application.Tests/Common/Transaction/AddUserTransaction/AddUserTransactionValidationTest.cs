@@ -7,66 +7,67 @@ namespace Application.Tests.Common.Transaction.AddUserTransaction;
 public class AddUserTransactionValidationTest
 {
     public static readonly object[][] CorrectData =
-    {
-        new object[]
-        {
-            "Valid Title", 10.5m, new DateTime(2024, 1, 10), true, "dewscription", "#FFFFFF",
+    [
+        [
+            "Valid Title", 10.5m, new DateTime(2024, 1, 10), true, false, "dewscription", "#FFFFFF",
             "#000000"
-        },
-        new object[]
-        {
-            "Valid Title", 10.5m, new DateTime(2024, 1, 10), false, "dewscription", null!, null!
-        },
-        new object[]
-        {
-            "Valid Title", 10.5m, new DateTime(2024, 1, 10), false, null!, null!, null!
-        }
-    };
+        ],
+        [
+            "Valid Title", 10.5m, new DateTime(2024, 1, 10), false, false, "dewscription", null!, null!
+        ],
+        [
+            "Valid Title", 10.5m, new DateTime(2024, 1, 10), false, false, null!, null!, null!
+        ]
+    ];
 
     public static readonly object[][] InCorrectData =
-    {
-        new object[]
-        {
-            "", 10.5m, new DateTime(2024, 1, 10), true, "dewscription", "#FFFFFF",
+    [
+        [
+            "", 10.5m, new DateTime(2024, 1, 10), true, false, "dewscription", "#FFFFFF",
             "#000000"
-        },
-        new object[]
-        {
-            "valid title", 10.5222m, new DateTime(2024, 1, 10), true, "dewscription", "#FFFFFF",
+        ],
+        [
+            "valid title", 10.5222m, new DateTime(2024, 1, 10), true, false, "dewscription",
+            "#FFFFFF",
             "#000000"
-        },
-        new object[]
-        {
-            "valid title", 10.52m, DateTime.Today.AddDays(1), true, "dewscription", "#FFFFFF",
+        ],
+        [
+            "valid title", 10.52m, DateTime.Today.AddDays(1), true, "dewscription", false,
+            "#FFFFFF",
             "#000000"
-        },
-        new object[]
-        {
-            "valid title", 10.52m, new DateTime(2024, 1, 10), false, "dewscription", "#FFFFFF",
+        ],
+        [
+            "valid title", 10.52m, new DateTime(2024, 1, 10), false, false, "dewscription",
+            "#FFFFFF",
             "#000000"
-        },
-        new object[]
-        {
-            "valid title", 10.52m, new DateTime(2024, 1, 10), true, "dewscription", "#FFFFFFdsa",
+        ],
+        [
+            "valid title", 10.52m, new DateTime(2024, 1, 10), true, false, "dewscription",
+            "#FFFFFFdsa",
             "#0000$$00"
-        },
-    };
+        ]
+    ];
 
 
     [Theory, MemberData(nameof(InCorrectData))]
     public void Validation_Error(string title, decimal price, DateTime date, bool isDefault,
+        bool isTemplate,
         string description, string textColor, string backgroundColor)
     {
         // Arrange
         var validator = new AddUserTransactionCommandValidation();
         var command = new AddUserTransactionCommand(
             GenerateRandomGuid.RandomGuid,
-            title, 
+            title,
             price,
             GenerateRandomGuid.RandomGuid,
-            GenerateRandomGuid.RandomGuid, date, isDefault, 
-            description, textColor,
-            backgroundColor, "");
+            GenerateRandomGuid.RandomGuid,
+            date, 
+            isDefault, 
+            isTemplate,
+            description, 
+            textColor,
+            backgroundColor);
 
         // Act
         var result = validator.Validate(command);
@@ -76,14 +77,22 @@ public class AddUserTransactionValidationTest
     }
 
     [Theory, MemberData(nameof(CorrectData))]
-    public void Validation_Success(string title, decimal price, DateTime date, bool isDefault,
+    public void Validation_Success(string title, decimal price, DateTime date, bool isDefault, bool isTemplate,
         string? description, string? textColor, string? backgroundColor)
     {
         // Arrange
         var validator = new AddUserTransactionCommandValidation();
-        var command = new AddUserTransactionCommand(GenerateRandomGuid.RandomGuid, title, price,
+        var command = new AddUserTransactionCommand(
             GenerateRandomGuid.RandomGuid,
-            GenerateRandomGuid.RandomGuid, date, isDefault, description, textColor,
+            title,
+            price,
+            GenerateRandomGuid.RandomGuid,
+            GenerateRandomGuid.RandomGuid,
+            date, 
+            isDefault, 
+            isTemplate,
+            description, 
+            textColor,
             backgroundColor);
 
         // Act

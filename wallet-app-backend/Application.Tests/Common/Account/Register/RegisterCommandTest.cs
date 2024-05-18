@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Microsoft.Extensions.Options;
 using Moq;
 using WalletApp.Application.Common.Account.Register;
 using WalletApp.Application.Consts;
@@ -6,6 +7,7 @@ using WalletApp.Application.Dtos;
 using WalletApp.Application.Enums;
 using WalletApp.Application.Interfaces;
 using WalletApp.Application.Interfaces.Repository;
+using WalletApp.Application.Options.EmailOptions;
 using WalletApp.Domain.Entities;
 using WalletApp.Domain.Enums;
 
@@ -17,6 +19,7 @@ public class RegisterCommandTest
     private readonly Mock<IAccountDataRepository> _accountDataRepositoryMock = new();
     private readonly Mock<IEmailClient> _emailClientMock = new();
     private readonly Mock<IEmailTemplates> _emailTemplateMock = new();
+    private readonly Mock<IOptions<EmailOptions>> _emailOptions = new();
 
     [Fact]
     public async Task Handle_ReturnError_When_Email_Does_Exist()
@@ -32,7 +35,8 @@ public class RegisterCommandTest
             _userManagerMock.Object,
             _accountDataRepositoryMock.Object,
             _emailClientMock.Object,
-            _emailTemplateMock.Object
+            _emailTemplateMock.Object,
+            _emailOptions.Object
         );
 
         // Act
@@ -60,8 +64,9 @@ public class RegisterCommandTest
             _userManagerMock.Object,
             _accountDataRepositoryMock.Object,
             _emailClientMock.Object,
-            _emailTemplateMock.Object
-            );
+            _emailTemplateMock.Object,
+            _emailOptions.Object
+        );
 
         // Act
         var result = await handler.Handle(command, default);
@@ -91,8 +96,9 @@ public class RegisterCommandTest
             _userManagerMock.Object,
             _accountDataRepositoryMock.Object,
             _emailClientMock.Object,
-            _emailTemplateMock.Object
-            );
+            _emailTemplateMock.Object,
+            _emailOptions.Object
+        );
 
         // Act
         var result = await handler.Handle(command, default);
