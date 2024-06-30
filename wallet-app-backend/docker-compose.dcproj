@@ -4,6 +4,8 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>ca67fbbf-2bcd-4d2f-8e69-c7c0cfec50bc</ProjectGuid>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

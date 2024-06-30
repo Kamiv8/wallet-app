@@ -11,6 +11,7 @@ public class UserIdentity : IdentityUser<Guid>
     public Language Language { get; set; }
     public AccountData AccountData { get; set; } = default!;
     public Member? Member { get; set; }
+    public bool EmailConfirmed { get; set; }
     public ICollection<Token> Tokens { get; set; } = default!;
     public ICollection<Category> Categories { get; set; } = default!;
     public ICollection<Transaction> Transactions { get; set; } = default!;

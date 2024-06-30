@@ -104,11 +104,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
-
-if (app.Environment.IsProduction())
-{
     app.AppMigrations();
+
 }
 
 app.UseHttpsRedirection();
@@ -120,3 +117,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program {};

@@ -1,7 +1,13 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c033ea9a_002Db0c5_002D45e7_002D92b0_002D355865dc3f30/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AuthenticateIntTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::4EB6F1B6-9304-49A8-B711-09B3F9C25821::net8.0::Integration.Application.Tests.Account.AuthenticateIntTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c06ec726_002Ddc19_002D4149_002D8686_002D5f97d7517434/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GenerateJwtToken_ValidAccount_ReturnsToken" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c06ec726_002Ddc19_002D4149_002D8686_002D5f97d7517434/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GenerateJwtToken_ValidAccount_ReturnsToken" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::C254978D-F18B-4C57-8490-6C04CFCDBD18::net8.0::Application.Tests.Common.Account.Authenticate.AuthenticateValidationTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4EB6F1B6-9304-49A8-B711-09B3F9C25821::net8.0::Integration.Application.Tests.Account.AuthenticateIntTest.Authenticate_ShouldReturn_AccessTokens&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

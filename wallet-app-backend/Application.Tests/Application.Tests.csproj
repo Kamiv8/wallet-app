@@ -22,8 +22,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WalletApp.Api\WalletApp.Api.csproj" />
     <ProjectReference Include="..\WalletApp.Application\WalletApp.Application.csproj" />
+    <ProjectReference Include="..\WalletApp.Domain\WalletApp.Domain.csproj" />
     <ProjectReference Include="..\WalletApp.Infrastructure\WalletApp.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
