@@ -22,14 +22,15 @@ export const Avatar = (props: TProps) => {
 
   const avatar = useMemo(() => {
     if (props.isGroup) {
-      return groupAvatars[props.image - 1];
+      return groupAvatars[props.image - 1] ?? AvatarG1;
     }
-    return avatars[props.image - 1];
+    return avatars[props.image - 1] ?? Avatar1;
   }, [props.image]);
 
   return (
     <StyledAvatar
       image={avatar}
+      data-testid="avatar"
       onClick={(e) => props.onClick && props.onClick(e)}
       selected={props.selected}
     />

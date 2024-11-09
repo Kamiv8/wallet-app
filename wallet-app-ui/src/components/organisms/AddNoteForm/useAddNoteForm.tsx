@@ -1,12 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import { colorPicker } from '../../../const/colorPicker';
+import { colorPicker } from '../../../const';
 import { useForm } from '../../../hooks';
 import { AddUserNoteForm } from '../../../models/apiTypes/note';
 import { createUserSchema } from '../../../validators/Note/CreateNote.validator';
 import { NoteApi } from '../../../api';
 import { ApiStatus } from '../../../models/apiResult';
-import { RoutesName } from '../../../const/routesName';
+import { RoutesName } from '../../../const';
 import { CustomString } from '../../../overrides/string.override';
+
+export interface IUseAddNoteForm {
+  values: AddUserNoteForm;
+}
 
 export const useAddNoteForm = () => {
   const navigate = useNavigate();
